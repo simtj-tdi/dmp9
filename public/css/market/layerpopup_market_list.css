@@ -1,0 +1,217 @@
+.mask {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:999;
+    width : 100%; height : 100%;
+    background-color:#000;
+    cursor: pointer;
+}
+.mask_hide{
+    display:none;
+    opacity : 1;
+}
+.mask_show {
+    display : flex; 
+}
+.fs-popup {
+            max-width : 663px; height : 796px; border-radius : 10px;
+            z-index:99999;
+            overflow : hidden;
+        position : relative;
+}
+.window_wrapper {
+    position : absolute; width : 100%; height : 100%; top : 0; left:0; bottom:0; right:0;justify-content: center; align-items: center; z-index: 9995;
+}
+.window_wrapper_hide {
+    display : none;
+}
+.window_wrapper_show{
+    display: -webkit-flex;
+    display: flex;
+}
+.fs-add-account {
+    width : 100%; height :100%; display : flex;
+    padding : 0 11% 10.5% 11%;
+    align-items : center; flex-wrap: wrap;
+}
+.ladel_text {
+    font-size : 1.2em; color : #ffffff;
+}
+.layer_popup_input {
+    height : 59px; font-size : 1.28em; 
+    border : 2px solid #ffffff; border-radius: 0px;
+    background-color : transparent;
+}
+
+.layer_popup_input:focus {
+    background-color : transparent; color : #ffffff;
+}
+.fs-add-account-input-group {
+    width : 100%; height : 100%; display : flex; flex-wrap: wrap;
+}
+.access-width {
+    height : 364px; white-space: pre-line; 
+    resize: none;
+}
+.market-list-form-group {
+
+    width : 100%;
+}
+.close-btn:hover {
+    opacity : 1;
+}
+.send-btn {
+      width : 137px; height : 57px;
+    border-radius: 0px;
+    background-color : transparent;
+    border : 2px solid #ffffff;
+    color : #ffffff; font-size : 1.2em; 
+    margin:auto; top:0;bottom:0;left:0;right:0;
+}
+.market-close-icon-box {
+    margin-right : 20px;
+}
+.market-close-icon{
+    font-size : 1.7em; color : #ffffff;
+}
+
+.account-group {
+    margin-bottom : 35px;
+}
+
+.popup-search-group {
+    display : flex; position : absolute;
+    margin-left : 695px; margin-top : -50px; align-items: center;
+    overflow : hidden;
+}
+
+.popup-search-icon {
+  cursor : pointer; margin-right : 10px; overflow: visible;
+  opacity : 0.5; 
+    transition : all 0.3s;
+}
+
+.popup-search-icon:hover {
+    opacity : 1;
+}
+
+.popup-search-icon > img {
+    width : 1.3em;
+}
+
+.popup-search-input {
+    padding : 5px;
+    height : 40px; width : 213px;
+    background-color : transparent; 
+    color : #ffffff;
+    border : 0px; border-radius: 0px;
+    border-bottom:  2px solid #ffffff;
+    font-size : 1.3em;
+}
+
+.popup-search-input:focus {
+    background-color : transparent; color : #ffffff;
+}
+
+.popup-search-move {
+    display : flex; align-items: center;
+    position : relative; left:213px; /*213*/
+}
+
+.layer-popup-data-list-box {
+    height : 258px;  border-radius: 10px;
+    background-color : #ffffff; overflow : auto;
+}
+
+.layer-popup-data-list {
+    width : 100%; height : auto;
+    overflow : auto; padding : 10px;
+    display : flex; flex-wrap: wrap;
+}
+
+.popup-checkbox {
+    border-radius : 5px;
+    padding : 7px;
+    display : flex; align-items: center;
+    margin-right : 10px; margin-bottom : 10px;
+}
+
+.popup-list-check {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0px;
+    border: 0;
+}
+
+.fs-want-opacity-box {
+    width : 100%; height : 100%;min-height : 700px;
+    min-width : 663px;
+    border-radius : 10px;
+    background-color : #1b1b1b;
+    position : absolute;
+    z-index:-10; opacity : 0.8;
+}
+
+@media screen and (min-width : 700px) and (max-width : 1400px) {
+  
+    .fs-popup {
+        width : 410px; height : 480px;
+    }
+    .fs-want-opacity-box {
+        min-height: 0;
+        min-width: 0;
+    }
+    .layer_popup_input{
+        height : 30px;
+    }
+    .access-width{
+        height : 180px;
+    }
+    .account-group{
+        margin-bottom : 15px;
+    }
+}
+
+@media screen and (max-width :700px) {
+        .send-btn {
+        width : 100px; height : 40px;
+        margin-bottom:  40px;
+    }
+    .fs-popup{
+        width : 100%; height : 100%;
+        position : fixed; 
+    }
+    .fs-want-opacity-box {
+        width : 100%; height : 100%;
+        position :fixed;
+    }
+    .fs-add-account{
+        padding : 0px 10px 0px 10px;
+        width : 100%;
+
+    }
+       .fs-add-account,.fs-add-account-input-group {
+        overflow: auto;
+    }
+        ::-webkit-scrollbar {
+        display:none;
+}
+    .access-width{
+        height : 200px;
+    }
+    .form-group{
+        margin-left : 0px;
+    }
+    .fs-popup {
+        overflow :  auto;
+    }
+    .fs-add-account-input-group {
+        height : 500px;
+    }
+    
+}
