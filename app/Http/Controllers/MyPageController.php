@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class MyPageController extends Controller
 {
     //
-    public function __construct()
+    function __construct()
     {
 
     }
