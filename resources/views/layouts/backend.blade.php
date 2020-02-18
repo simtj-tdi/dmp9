@@ -126,7 +126,7 @@
                                 <input type="text" value="01096058111" class="fs-account-info" readonly>
 
                                 <div class="fs-change-info">
-                                    <a href="/account/mypage">내정보 수정</a>
+                                    <a href="/mypage/confirm">내정보 수정</a>
 
                                     <a  href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -170,7 +170,7 @@
                                             <li class="fsMypage"><a href="/mypage/faq" class="">자주 묻는 질문</a></li>
                                             <li class="fsMypage"><a href="/mypage/qna" class="">문의 및 답변</a></li>
 
-                                            <li class="fsMypage"><a href="/mypage" class="">내정보 수정</a></li>
+                                            <li class="fsMypage"><a href="/mypage/confirm" class="">내정보 수정</a></li>
                                             <li class="fsMypage"><a href="/mypage" class=" faMenuOn ">충전 내역</a></li>
                                         </ul>
                                     </div>
