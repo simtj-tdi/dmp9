@@ -9,7 +9,7 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="{{ route('mypage.faq.update', $faq->id) }}">
+                        <form method="POST" action="{{ route('faqs.update', $faq->id) }}">
                             @csrf
                             @method('PUT')
 
@@ -46,19 +46,10 @@
                                     <button type="submit" class="btn btn-primary">
                                         수정하기
                                     </button>
-
-
                                 </div>
                             </div>
                         </form>
-                        <form method="POST" action="{{ route('mypage.faq.destroy', $faq->id) }}">
-                            @csrf
-                            @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger">
-                                삭제
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>

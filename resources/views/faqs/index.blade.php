@@ -13,7 +13,7 @@
                             @foreach($faqs as $faq)
                                 <li class="list-group-item">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <a href="{{ route('mypage.faq.show', $faq->id ) }}">
+                                        <a href="{{ route('faqs.show', $faq->id ) }}">
                                             <h5 class="mb-1">{{ $faq->id }}. {{ $faq->title }}</h5>
                                         </a>
                                         <small></small>
@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <a class="btn btn-primary" href="{{ route('mypage.faq.create') }}" role="button">글쓰기</a>
+                        <a class="btn btn-primary" href="{{ route('faqs.create') }}" role="button">글쓰기</a>
                     </div>
 
                 </div>

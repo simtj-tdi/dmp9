@@ -8,7 +8,7 @@
                     <div class="card-header"></div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('mypage.confirm.check') }}">
+                        <form method="POST" action="{{ route('confirm_check') }}">
                             @csrf
 
                             <div class="form-group row">

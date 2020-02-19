@@ -9,7 +9,7 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="{{ route('mypage.faq.store') }}">
+                        <form method="POST" action="{{ route('faqs.store') }}">
                             @csrf
 
                             <div class="form-group row">
