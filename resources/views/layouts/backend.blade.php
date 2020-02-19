@@ -1,64 +1,29 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" href="http://fs9.co.kr/img/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="http://fs9.co.kr/img/favicon.png">
-    <meta name="naver-site-verification" content="9e35cebb2b99ff47a2482b4fe59114c9d697f57e"/>
-    <!--theme-->
-    <meta name="theme-color" content="#1b1b1b">
-    <!--ios theme-->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <!--안드로이드 홈화면 추가시 상단 주소창 제거-->
-    <meta name="mobile-web-app-capable" content="yes">
-    <!--ios 홈 화면 추가시 상단 주소창 제거-->
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <!-- hybrid app 을 위한 매니페스트-->
-    <!--<link rel="manifest" href="/json/manifest.json">-->
-    <!--babel-->
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <link rel="shortcut icon" href="/img/favicon.ico" />
-    <!--바로가기 아이콘 설정-->
-    <link rel="shortcut icon" href="/img/favicon.ico"/>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <!-- font css-->
-    <link rel="stylesheet" href="/css/nanumsquare.css">
-    <!--Bootstrap css-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!-- 페이스샵 9 레이아웃 css -->
-    <link rel="stylesheet" href="/css/layout.css?v=20180619">
-    <!-- 페이스샵 9  텍스트 css -->
-    <link rel="stylesheet" href="/css/text.css?v=20180619">
-    <!-- 페이스샵 9 메인 css -->
-    <link rel="stylesheet" href="/css/mainStyle.css?v=20180619">
-    <!--문의하기 css-->
-    <link rel="stylesheet" href="/css/popupLayer.css?v=20180619">
-    <!--bootrtrap js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!--easing js -->
-    <script src="/js/jquery-ui.min.js"></script>
-    <!-- request js -->
-    <script src="/js/request.js?v=20180619" type="text/javascript"></script>
-    <!-- common js -->
-    <script src="/js/common.js?v=20180619" type="text/javascript"></script>
-    <script src="/js/layout.js?v=20180619" type="text/javascript"></script>
-    <!-- Vue.js -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <!--axios js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <!--layer popup js-->
-    <script src="/js/layerpopup.js?v=20180619" type="text/babel"></script>
-    <!--account js -->
-    <script src="/js/accountInfo.js?v=20180619" type="text/javascript"></script>
-    <!--mobile common js-->
-    <!--네이티브로-->
-    <!--<script src="/js/mobileCommon.js"></script>-->
+
+    <!-- Main font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/appwork.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/theme-corporate.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/uikit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
+
     <script>
         //인터넷 버전 체크 ie 에서는 호환안됨
         // Internet Explorer 6-11
@@ -70,160 +35,164 @@
             }
         }
     </script>
-    <!--datepicker js-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-    <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-    <script src="https://cdn.rawgit.com/alrusdi/jquery-plugin-query-object/master/jquery.query-object.js"></script>
-
 </head>
-
 <body>
 
-<section class="wrap">
-    <div class="fs-layout">
-        <div class="fs-layout-center">
-            <div class="fs-layout-center-contents">
-                <div>
-                    <div class="fs-main-layout">
-                        <div class="fs-main-layout_logo">
-                            <div class="fs-menu-icon">
-                                <span class="fs-menu"></span>
-                                <span class="fs-menu"></span>
-                                <span class="fs-menu"></span>
-                            </div>
-                            <div class="fs-logo dark_color">
-                                <div class="fs-logo-img">
-                                    <div>
-                                        <img src="/img/logo.png" onclick="location.href='/market'">
-                                    </div>
-                                </div>
-                            </div>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-1">
+    <!-- Layout inner -->
+    <div class="layout-inner">
+
+        <!-- Layout navbar -->
+        <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-navbar-theme container-p-x"
+             id="layout-navbar">
+            <a href="#" class="navbar-brand"></a>
+
+            <!-- Sidenav toggle -->
+            <div class="layout-sidenav-toggle navbar-nav align-items-lg-center mr-auto mr-lg-4">
+                <a class="nav-item nav-link px-0 ml-2" href="javascript:void(0)">
+                    <i class="ion ion-md-menu text-large align-middle"></i>
+                </a>
+            </div>
+        </nav>
+        <!-- / Layout navbar -->
+
+        <div class="layout-container">
+
+            <!-- Layout sidenav -->
+            <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-sidenav-theme">
+                <div class="sidenav_logo_wrap">
+                    <img src="/img/logo_01.png" alt="로고 이미지" />
+                </div>
+                <div class="sidenav_total_balance_Wrap">
+                    <div class="sidenav_total_balance_inner_top form-inline">
+                        <div>Total Balance</div>
+                        <div>
+                            <button type="button"><img src="/img/btn_charge.png" alt="충전하기 버튼" /></button>
                         </div>
-                        <div class="fs-main-layout-top-nav">
-                            <div class="fs-top-nav-left">
-
+                    </div>
+                    <div class="sidenav_total_balance_inner_cont">
+                        <div>40,931,525 <span>원</span></div>
+                    </div>
+                </div>
+                <ul class="sidenav-inner py-1">
+                    <li class="sidenav-item active">
+                        <a href="#" class="sidenav-link">
+                            <div class="icon">
+                                <img src="/img/icon_sidenav_01.png" alt="마이 데이터 아이콘" />
                             </div>
-                            <dlv class="fs-top-nav-right">
-                                <div class="fs-top-nav-item-wrapper">
-                                    <div class="fs-top-nav_userInfo"><span>NSMG 님</span></div>
-                                </div>
-                                <div class="fs-top-nav-logout">
-                                    <div class="fs-mypage-icon">
-                                        <img src="/img/personal.png" alt="마이페이지">
-                                    </div>
-                                </div>
-                            </dlv>
-                            <div class="fs-account-info-box">
-                                <span class="fs-account-info-title">NSMG 님 안녕하세요!</span>
-                                <span class="fs-account-info-name"  >담당자</span>
-                                <input type="text" value=" 김은주" class="fs-account-info" readonly>
-
-                                <span class="fs-account-info-name">이메일</span>
-                                <input type="text" value="eunju@nsmg21.com" class="fs-account-info" readonly>
-
-                                <span class="fs-account-info-name">연락처</span>
-                                <input type="text" value="01096058111" class="fs-account-info" readonly>
-
-                                <div class="fs-change-info">
-                                    <a href="/mypage/confirm">내정보 수정</a>
-
-                                    <a  href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-
-                                </div>
+                            <div>마이 데이터</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="#" class="sidenav-link">
+                            <div class="icon">
+                                <img src="/img/icon_sidenav_02.png" alt="자주 묻는 질문 아이콘" />
                             </div>
+                            <div>자주 묻는 질문</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="#" class="sidenav-link">
+                            <div class="icon">
+                                <img src="/img/icon_sidenav_03.png" alt="문의 및 답변 아이콘" />
+                            </div>
+                            <div>문의 및 답변</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="#" class="sidenav-link">
+                            <div class="icon">
+                                <img src="/img/icon_sidenav_04.png" alt="세금계산서 요청 아이콘" />
+                            </div>
+                            <div>세금계산서 요청</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="#" class="sidenav-link">
+                            <div class="icon">
+                                <img src="/img/icon_sidenav_05.png" alt="내정보 수정 아이콘" />
+                            </div>
+                            <div>내정보 수정</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="#" class="sidenav-link">
+                            <div class="icon">
+                                <img src="/img/icon_sidenav_06.png" alt="충전 내역 아이콘" />
+                            </div>
+                            <div>충전 내역</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="sidenav_bottom form-inline">
+                    <li>이용약관</li>
+                    <li>개인정보처리방침</li>
+                </ul>
+            </div>
+            <!-- / Layout sidenav -->
+
+            <div class="layout-content mydata_main" id="mydata_main">
+                <div class="content_top form-inline">
+                    <div class="welcome_text">
+                        <h1>안녕하세요. <span>{{ Auth::user()->name }}</span>님! 환영합니다.</h1>
+                    </div>
+                    <div class="login_btn_box dropdown" data-toggle="dropdown">
+                        <button type="button" class="dropdown-toggle">
+                            <img src="/img/btn_login_info.png" alt="로그인 정보 아이콘"/>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div><p>M</p></div>
+                            <div>{{ Auth::user()->name }}</div>
+                            <div>{{ Auth::user()->email }}</div>
+                            <div>동기화 사용중</div>
+                            <div><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">로그아웃</a></div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="fs-main-layout-left-nav dark_color fs-nav-web fs-nav-mobile">
-                            <div class="fs-left-nav_box">
-                                <div class="fs-mb-nav-box">
-                                    <a href="/market" class="fs-left-nav-link ">
-                                        <div class="fs-left-nav-item">
-                                            <div class="fs-account-icon"><img src="/img/fs-market.png"></div>
-                                            <div class="fs-account-menu">마켓</div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="fs-mb-nav-box">
-                                    <a href="/mydate" class="fs-left-nav-link ">
-                                        <div class="fs-left-nav-item">
-                                            <div class="fs-account-icon"><img src="/img/fs-buy.png"></div>
-                                            <div class="fs-account-menu">마이 데이터</div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="fs-mb-nav-box fs-mb-my">
-                                    <div class="fs-left-nav-link myPageCon  fsMenuActive " >
-                                        <div class="fs-left-nav-item " >
-                                            <div class="fs-account-icon"><img src="/img/myPage.png"></div>
-                                            <div class="fs-account-menu">마이 페이지</div>
-                                        </div>
-                                        <ul class="fsMypageMenu">
-                                            <li class="fsMypage"><a href="/mypage/faq" class="">자주 묻는 질문</a></li>
-                                            <li class="fsMypage"><a href="/mypage/qna" class="">문의 및 답변</a></li>
+                <!-- content : start-->
+                <div class="container-fluid flex-grow-1 container-p-y">
+                    @yield('content')
+                </div>
+                <!-- content : end-->
 
-                                            <li class="fsMypage"><a href="/mypage/confirm" class="">내정보 수정</a></li>
-                                            <li class="fsMypage"><a href="/mypage" class=" faMenuOn ">충전 내역</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="fs-left-nav-setting">
-                                <div class="fs-setting-head">
-                                    <div>
-                                        <div class="fs-setting">
-                                            <a href="/img/term.pdf" class=" footerInfo" target="_blank">
-                                                <div class="fs-qna fs-setting-inner">
-                                                    이용약관                        </div>
-                                            </a>
-                                            <a href="/img/public.pdf" class="footerInfo" target="_blank">
-                                                <div class="fs-qna fs-setting-inner ">
-                                                    개인정보처리방침
-                                                </div>
-                                            </a>
-                                            <a href="/account/mypage/faq" class="footerInfo fs-mb-foot">
-                                                <div class="fs-qna fs-setting-inner ">
-                                                    자주묻는질문
-                                                </div>
-                                            </a>
-                                            <a href="/charge/history" class="footerInfo fs-mb-foot">
-                                                <div class="fs-qna fs-setting-inner ">
-                                                    충전내역
-                                                </div>
-                                            </a>
-                                            <a href="#" class="footerInfo fs-mb-foot tax_showMask">
-                                                <div class="fs-qna fs-setting-inner ">
-                                                    세금계산서 요청
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <!--하단 공지사항-->
+                <div class="footer_infobar">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><p>[TIP] 고정 데이터는 원하는 날부터 원하는날까지 고정된데이터 입니다.</p></div>
+                            <div class="swiper-slide"><p>[TIP] test 02</p></div>
+                            <div class="swiper-slide"><p>[TIP] test 03</p></div>
+                            <div class="swiper-slide"><p>[TIP] test 04</p></div>
+                            <div class="swiper-slide"><p>[TIP] test 05</p></div>
+                            <div class="swiper-slide"><p>[TIP] test 06</p></div>
+                            <div class="swiper-slide"><p>[TIP] test 07</p></div>
+                            <div class="swiper-slide"><p>[TIP] test 08</p></div>
                         </div>
-                        <!--<div class="fs-layout-opacity-box"></div>-->
-
-
-                        <div class="fs-main-layout-content gray_color">
-                            @yield('content')
-                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Layout inner -->
 
-</section>
+    <div class="layout-overlay layout-sidenav-toggle"></div>
+</div>
+<!-- / Layout wrapper -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ asset('js/popper.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+<script src="{{ asset('js/sidenav.js') }}"></script>
+<script src="{{ asset('js/swiper.js') }}"></script>
+
+<script src="{{ asset('js/function.js') }}"></script>
 </body>
-
 </html>
