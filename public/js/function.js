@@ -74,7 +74,14 @@ $(".btn_modal").on('click', function(){
   }
 });
 
-
+/*side_modal ul 삭제*/
 function deleteOption(that){
   $(that).closest('ul').remove(); 
 }
+
+/*질문하기,문의하기 ul 클릭 토글*/
+$(".cont>ul").on('click', function(){
+  console.log(this);
+  console.log($(this).children('.text_answer'));
+  $(this).children('.text_answer').toggle();
+});
