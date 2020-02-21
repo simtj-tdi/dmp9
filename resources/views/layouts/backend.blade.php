@@ -11,6 +11,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
+
     <!-- Main font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
     <!-- Core stylesheets -->
@@ -24,6 +26,12 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
 
+
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
     <script>
         //인터넷 버전 체크 ie 에서는 호환안됨
         // Internet Explorer 6-11
@@ -34,6 +42,7 @@
                 location.href = 'https://www.google.co.kr/chrome/index.html'
             }
         }
+        @stack('scripts')
     </script>
 </head>
 <body>
@@ -187,12 +196,14 @@
 </div>
 <!-- / Layout wrapper -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ asset('js/layout-helpers.js') }}"></script>
 <script src="{{ asset('js/popper.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
 <script src="{{ asset('js/sidenav.js') }}"></script>
 <script src="{{ asset('js/swiper.js') }}"></script>
-
 <script src="{{ asset('js/function.js') }}"></script>
+
+
+
 </body>
 </html>

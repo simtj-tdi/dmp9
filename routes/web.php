@@ -23,6 +23,16 @@ Route::middleware('auth')->group( function () {
 
     Route::get('/dashboard', 'DashBoardController@index')->name('dashboard.index');
 
+    Route::get('/payment', function () {
+        return view('payment');
+    })->name('Payments.index');
+
+    Route::post('/ajaxPayRequest', 'PaymentsController@payRequest')->name('Payments.payrequest');
+    Route::post('/ajaxPayReturn', 'PaymentsController@payReturn')->name('Payments.payreturn');
+    Route::get('/ajaxPayCallback', 'PaymentsController@payCallback')->name('Payments.paycallback');
+    Route::get('/ajaxPayCancel', 'PaymentsController@payCancel')->name('Payments.payCancel');
+
+
     Route::get('users/confirm', 'UserController@confirm_index')->name('confirm_index');
     Route::post('users/confirm_check', 'UserController@confirm_check')->name('confirm_check');
     Route::get('users/my_show/{id}', 'UserController@my_show')->name('my_show');
