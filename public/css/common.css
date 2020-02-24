@@ -125,12 +125,12 @@ span{display: contents;}
   height: 65px;
   margin: 0 auto;
   float: left;
-
+  
   overflow: hidden;
   list-style: none;
   padding: 0;
   z-index: 1;
-
+  
 }
 .footer_infobar .swiper-slide {
   text-align: left;
@@ -190,3 +190,4 @@ span{display: contents;}
 @media (max-width: 991px) {
   nav {display: block !important;}
 }
+

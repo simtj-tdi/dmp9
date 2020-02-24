@@ -21,6 +21,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group( function () {
 
+    // 마이데이터(order)
+    Route::get('orders', function () { return view('orders.index'); });
+
+    // 자주묻는질문(faq)
+    Route::resources(['faqs' => 'FaqController']);
+
+    // 문의및답변(qna)
+    Route::get('qnas', function () { return view('qnas.index'); });
+
+    // 세금계산서요청(tax)
+    Route::get('taxs', function () { return view('taxs.index'); });
+
+    // 내정보 수정(users)
+    Route::get('users', function () { return view('users.index'); });
+
+    // 충전 내역(costs)
+
+
     Route::get('/dashboard', 'DashBoardController@index')->name('dashboard.index');
 
     Route::get('/payment', function () {
@@ -41,7 +59,6 @@ Route::middleware('auth')->group( function () {
     Route::resources([
         'roles' => 'RoleController',
         'users/roles' => 'UserRolesController',
-        'mypage/faqs' => 'FaqController',
     ]);
 
 });

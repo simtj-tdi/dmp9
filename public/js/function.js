@@ -48,7 +48,7 @@ var swiper = new Swiper('.swiper-container', {
 
 /*side_modal ul 삭제*/
 function deleteOption(that){
-  $(that).closest('ul').remove(); 
+  $(that).closest('ul').remove();
 }
 
 /*질문하기,문의하기 ul 클릭 토글*/

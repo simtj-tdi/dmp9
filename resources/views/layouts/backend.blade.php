@@ -1,5 +1,7 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+
+<html lang="ko" class="default-style">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
@@ -11,10 +13,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
-
     <!-- Main font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
+
     <!-- Core stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/appwork.css') }}">
@@ -25,12 +26,6 @@
     <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
-
-
-
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 
     <script>
         //인터넷 버전 체크 ie 에서는 호환안됨
@@ -44,7 +39,9 @@
         }
         @stack('scripts')
     </script>
+
 </head>
+
 <body>
 
 <!-- Layout wrapper -->
@@ -53,14 +50,12 @@
     <div class="layout-inner">
 
         <!-- Layout navbar -->
-        <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-navbar-theme container-p-x"
-             id="layout-navbar">
-            <a href="#" class="navbar-brand"></a>
+        <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-navbar-theme container-p-x" id="layout-navbar">
 
             <!-- Sidenav toggle -->
             <div class="layout-sidenav-toggle navbar-nav align-items-lg-center mr-auto mr-lg-4">
                 <a class="nav-item nav-link px-0 ml-2" href="javascript:void(0)">
-                    <i class="ion ion-md-menu text-large align-middle"></i>
+                    <i class="text-large align-middle">menu</i>
                 </a>
             </div>
         </nav>
@@ -86,7 +81,7 @@
                 </div>
                 <ul class="sidenav-inner py-1">
                     <li class="sidenav-item active">
-                        <a href="#" class="sidenav-link">
+                        <a href="/orders" class="sidenav-link">
                             <div class="icon">
                                 <img src="/img/icon_sidenav_01.png" alt="마이 데이터 아이콘" />
                             </div>
@@ -94,7 +89,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="#" class="sidenav-link">
+                        <a href="/faqs" class="sidenav-link">
                             <div class="icon">
                                 <img src="/img/icon_sidenav_02.png" alt="자주 묻는 질문 아이콘" />
                             </div>
@@ -102,7 +97,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="#" class="sidenav-link">
+                        <a href="/qnas" class="sidenav-link">
                             <div class="icon">
                                 <img src="/img/icon_sidenav_03.png" alt="문의 및 답변 아이콘" />
                             </div>
@@ -110,7 +105,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="#" class="sidenav-link">
+                        <a href="/taxs" class="sidenav-link">
                             <div class="icon">
                                 <img src="/img/icon_sidenav_04.png" alt="세금계산서 요청 아이콘" />
                             </div>
@@ -118,7 +113,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="#" class="sidenav-link">
+                        <a href="users" class="sidenav-link">
                             <div class="icon">
                                 <img src="/img/icon_sidenav_05.png" alt="내정보 수정 아이콘" />
                             </div>
@@ -144,7 +139,7 @@
             <div class="layout-content mydata_main" id="mydata_main">
                 <div class="content_top form-inline">
                     <div class="welcome_text">
-                        <h1>안녕하세요. <span>{{ Auth::user()->name }}</span>님! 환영합니다.</h1>
+                        <h1>안녕하세요. <span>NSMG</span>님! 환영합니다.</h1>
                     </div>
                     <div class="login_btn_box dropdown" data-toggle="dropdown">
                         <button type="button" class="dropdown-toggle">
@@ -152,22 +147,15 @@
                         </button>
                         <div class="dropdown-menu">
                             <div><p>M</p></div>
-                            <div>{{ Auth::user()->name }}</div>
-                            <div>{{ Auth::user()->email }}</div>
+                            <div>정민우</div>
+                            <div>urr0801@nsmg21.com</div>
                             <div>동기화 사용중</div>
-                            <div><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">로그아웃</a></div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                            <div>로그아웃</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- content : start-->
-                <div class="container-fluid flex-grow-1 container-p-y">
-                    @yield('content')
-                </div>
-                <!-- content : end-->
+                @yield('content')
 
                 <!--하단 공지사항-->
                 <div class="footer_infobar">
@@ -195,15 +183,14 @@
     <div class="layout-overlay layout-sidenav-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
-
 <script src="{{ asset('js/layout-helpers.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="{{ asset('js/popper.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
 <script src="{{ asset('js/sidenav.js') }}"></script>
 <script src="{{ asset('js/swiper.js') }}"></script>
 <script src="{{ asset('js/function.js') }}"></script>
 
-
-
 </body>
+
 </html>
