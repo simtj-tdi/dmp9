@@ -63,6 +63,34 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($orders as $order)
+            <tr>
+                <td>
+                    <img src="/img/img_waiting.png" alt="결제 대기중"/>
+                </td>
+                <td>
+                    <ul>
+                        <li><img src="/img/icon_naver.png" alt="네이버 아이콘"/></li>
+                        <li><img src="/img/icon_instar.png" alt="인스타 아이콘"/></li>
+                        <li><img src="/img/icon_facebook.png" alt="페이스북 아이콘"/></li>
+                        <li><img src="/img/icon_kakao.png" alt="카카오 아이콘"/></li>
+                        <li><img src="/img/icon_instar.png" alt="인스타 아이콘"/></li>
+                    </ul>
+                </td>
+                <td>{{ $order->data_name }}</td>
+                <td>{{ $order->data_count }}</td>
+                <td>{{ $order->buy_price }}원</td>
+                <td>{{ $order->buy_date }}</td>
+                <td>{{ $order->expiration_date }}</td>
+                <td>
+                    <ul>
+                        <li><button type="button">결제하기 ></button></li>
+                        <li><button type="button" onclick="location.href='/contact_us.html'">문의하기 ></button></li>
+                    </ul>
+                </td>
+            </tr>
+        @endforeach
+        <!--
         <tr>
             <td>
                 <img src="/img/img_waiting.png" alt="결제 대기중"/>
@@ -113,7 +141,7 @@
                 </ul>
             </td>
         </tr>
-        <tr class="expiration"> <!--기간만료 일때 class-->
+        <tr class="expiration">
             <td>
                 <img src="/img/img_upload.png" alt="타겟 업로드"/>
             </td>
@@ -238,7 +266,7 @@
                 </ul>
             </td>
         </tr>
-
+        -->
 
         </tbody>
     </table>

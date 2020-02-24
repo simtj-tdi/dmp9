@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateFaqsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run thcleae migrations.
      *
      * @return void
      */

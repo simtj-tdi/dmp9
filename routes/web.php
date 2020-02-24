@@ -22,7 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group( function () {
 
     // 마이데이터(order)
-    Route::get('orders', function () { return view('orders.index'); });
+//    Route::get('orders', function () { return view('orders.index'); });
+    Route::resources(['orders' => 'OrderController']);
 
     // 자주묻는질문(faq)
     Route::resources(['faqs' => 'FaqController']);
@@ -62,5 +63,3 @@ Route::middleware('auth')->group( function () {
     ]);
 
 });
-
-
