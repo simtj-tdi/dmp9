@@ -29,7 +29,8 @@ Route::middleware('auth')->group( function () {
     Route::resources(['faqs' => 'FaqController']);
 
     // 문의및답변(qna)
-    Route::get('qnas', function () { return view('qnas.index'); });
+//    Route::get('questions', function () { return view('questions.index'); });
+    Route::resources(['questions' => 'QuestionController']);
 
     // 세금계산서요청(tax)
     Route::get('taxs', function () { return view('taxs.index'); });

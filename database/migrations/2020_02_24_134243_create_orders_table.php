@@ -15,9 +15,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');          // id
-            $table->unsignedBigInteger('pyament_id');       // 구매id
-            $table->integer('state');                       // 상태
+            $table->unsignedBigInteger('user_id');                      // id
+            $table->unsignedBigInteger('pyament_id')->nullable();       // 구매id
+            $table->integer('state')->default(1);                 // 상태
             $table->string('types');                         // 광고형태
             $table->string('data_name');                    // 데이터명
             $table->integer('data_count');                  // 데이터수

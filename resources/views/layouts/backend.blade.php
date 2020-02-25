@@ -97,7 +97,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="/qnas" class="sidenav-link">
+                        <a href="/questions" class="sidenav-link">
                             <div class="icon">
                                 <img src="/img/icon_sidenav_03.png" alt="문의 및 답변 아이콘" />
                             </div>

@@ -9,6 +9,32 @@
                 <button type="button" onclick="addWriting()"><img src="/img/btn_add_wrighting.png" alt="글쓰기 버튼"/></button>
             </div>
             <div class="cont">
+                @foreach($questions as $question)
+                    <ul>
+                        <li class="text_question">
+                            <p class="type_a">일반</p>
+                            <p>{{ $question->title }}</p>
+                            <p></p>
+                            <p>완료</p>
+                        </li>
+                        <li class="text_answer">
+                            <p>
+                                {{ $question->content }}
+                            </p>
+                            @if ($question->answers->count() >0)
+                            <li class="text_answer">
+                                <p>
+                                    <span>답변</span>
+                                    @foreach ($question->answers as $answer)
+                                        {{ $answer->content }}
+                                    @endforeach
+                                </p>
+                            </li>
+                            @endif
+                        </li>
+                    </ul>
+                @endforeach
+                <!--
                 <ul>
                     <li class="text_question">
                         <p class="type_a">일반</p>
@@ -142,7 +168,7 @@
                         </p>
                     </li>
                 </ul>
-
+                -->
             </div>
             <div class="pager">
                 <ul class="clearfix">
