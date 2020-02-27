@@ -150,7 +150,14 @@
                             <div>정민우</div>
                             <div>urr0801@nsmg21.com</div>
                             <div>동기화 사용중</div>
-                            <div>로그아웃</div>
+                            <div>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    로그아웃
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

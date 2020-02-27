@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware('auth')->group( function () {
+Route::middleware(['auth', 'approved','role'])->group( function () {
 
     // 마이데이터(order)
 //    Route::get('orders', function () { return view('orders.index'); });
@@ -57,10 +57,5 @@ Route::middleware('auth')->group( function () {
     Route::post('users/confirm_check', 'UserController@confirm_check')->name('confirm_check');
     Route::get('users/my_show/{id}', 'UserController@my_show')->name('my_show');
     Route::post('users/my_update', 'UserController@my_update')->name('my_update');
-
-    Route::resources([
-        'roles' => 'RoleController',
-        'users/roles' => 'UserRolesController',
-    ]);
 
 });
