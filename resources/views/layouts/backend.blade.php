@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         //인터넷 버전 체크 ie 에서는 호환안됨
         // Internet Explorer 6-11
@@ -191,7 +192,6 @@
 </div>
 <!-- / Layout wrapper -->
 <script src="{{ asset('js/layout-helpers.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="{{ asset('js/popper.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
 <script src="{{ asset('js/sidenav.js') }}"></script>

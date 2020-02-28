@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Payment_return;
+use App\Payment_fail;
 
 class PaymentsController extends Controller
 {
@@ -12,23 +14,24 @@ class PaymentsController extends Controller
         $strUrl = 'https://testpgapi.payletter.com/v1.0/payments/request';
 
         $strPostData = '{
-        "pgcode"            : "'.$request['pgcode'].'",
-        "user_id"           : "'.$request['user_id'].'",
-        "user_name"         : "'.mb_convert_encoding($request['user_name'], "EUC-KR", "UTF-8").'",
-        "service_name"      : "'.mb_convert_encoding($request['service_name'], "EUC-KR", "UTF-8").'",
-        "client_id"         : "'.$request['client_id'].'",
-        "order_no"          : "'.$request['order_no'].'",
-        "amount"            : '.$request['amount'].',
-        "product_name"      : "'.mb_convert_encoding($request['product_name'], "EUC-KR", "UTF-8").'",
-        "email_flag"        : "'.$request['email_flag'].'",
-        "email_addr"        : "'.$request['email_addr'].'",
-        "autopay_flag"      : "'.$request['autopay_flag'].'",
-        "receipt_flag"      : "'.$request['receipt_flag'].'",
-        "custom_parameter"  : "'.$request['custom_parameter'].'",
-        "return_url"        : "'.$request['return_url'].'",
-        "callback_url"      : "'.$request['callback_url'].'",
-        "cancel_url"        : "'.$request['cancel_url'].'",
+            "pgcode"            : "creditcard",
+            "user_id"           : "'.auth()->user()->id.'",
+            "user_name"         : "'.mb_convert_encoding(auth()->user()->name, "EUC-KR", "UTF-8").'",
+            "service_name"      : "dmp9",
+            "client_id"         : "pay_test",
+            "order_no"          : "123456",
+            "amount"            : "'.$request['data'][3].'",
+            "product_name"      : "'.mb_convert_encoding($request['data'][1], "EUC-KR", "UTF-8").'",
+            "email_flag"        : "Y",
+            "email_addr"        : "'.auth()->user()->email.'",
+            "autopay_flag"      : "N",
+            "receipt_flag"      : "Y",
+            "custom_parameter"  : "'.mb_convert_encoding(implode("|", $request['data']), "EUC-KR", "UTF-8").'",
+            "return_url"        : "'.route('Payments.payreturn').'",
+            "callback_url"      : "'.route('Payments.paycallback').'",
+            "cancel_url"        : "'.route('Payments.payCancel').'",
         }';
+
 
         $arrHeaderData   = [];
         $arrHeaderData[] = 'Content-Type: application/json';
@@ -54,14 +57,29 @@ class PaymentsController extends Controller
 
     public function payReturn(Request $request)
     {
-        dd($request);
+
+        $colleect = collect($request)->map(function ($value, $key) {
+            return $value;
+        });
+
+        if ($colleect['code'] == 0) {
+            $payment_id = Payment_return::create($colleect->toArray());
+//            $payment_id->id;
+            $custom_parameter = $colleect['custom_parameter'];
+
+        } else {
+            Payment_fail::create($colleect->toArray());
+        }
+
         return redirect()->route('Payments.paycallback');
     }
 
     public function payCallback(Request $request)
     {
-        dd($request);
-
+        // 결제가 성공한 경우에만 결제 결과가 json형태로 제공됩니다.
+        //*Callback URL로 전달되는 현금영수증 데이터의 경우 하기와 같은 형태로 제공 됩니다
+        //https://www.payletter.com/ko/technical/index#ab21eea6c1
+        //dd($request);
     }
 
     public function payCancel(Request $request)
