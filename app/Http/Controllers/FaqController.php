@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Faq;
+use App\Repositories\FaqRepositoryInterface;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
+    private $faqRepository;
+
+    public function __construct(FaqRepositoryInterface $faqRepository)
+    {
+        $this->faqRepository = $faqRepository;
+    }
+
     public function index()
     {
-        $faqs = faq::orderBy('id', 'desc')->get();
+        $faqs = $this->faqRepository->all();
 
         return view('faqs.index', compact('faqs'));
     }
@@ -25,34 +33,35 @@ class FaqController extends Controller
             'title' => 'required',
             'content' => 'required',
         ]);
-
-        auth()->user()->faqs()->create($validatedData);
+        $this->faqRepository->create($validatedData);
 
         return redirect()->route('faqs.index');
     }
 
     public function show($id)
     {
-        $faq = faq::find($id);
+        $faq = $this->faqRepository->findById($id);
+
         return view('faqs.show', compact('faq'));
     }
 
     public function edit($id)
     {
-        $faq = faq::find($id);
+        $faq = $this->faqRepository->findById($id);
+
         return view('faqs.edit', compact('faq'));
     }
 
     public function update(Request $request, $id)
     {
-        faq::find($id)->update($request->all());
+        $this->faqRepository->update($request, $id);
 
         return redirect()->route('faqs.index');
     }
 
     public function destroy($id)
     {
-        faq::find($id)->delete();
+        $this->faqRepository->destory($id);
 
         return redirect()->route('faqs.index');
     }

@@ -14,7 +14,7 @@
                                 <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
 
                                 <div class="col-md-6">
-                                    {{ $faq->title }}
+                                    {{ $faq['title'] }}
                                 </div>
                             </div>
 
@@ -22,14 +22,14 @@
                                 <label for="content" class="col-md-4 col-form-label text-md-right">Content</label>
 
                                 <div class="col-md-6">
-                                    {{ $faq->content }}
+                                    {{ $faq['content'] }}
                                 </div>
                             </div>
 
 
-                        <a class="btn btn-primary" href="{{ route('faqs.edit', $faq->id) }}" role="button">수정하기</a>
+                        <a class="btn btn-primary" href="{{ route('faqs.edit', $faq['faq_id']) }}" role="button">수정하기</a>
 
-                        <form method="POST" action="{{ route('faqs.destroy', $faq->id) }}">
+                        <form method="POST" action="{{ route('faqs.destroy', $faq['faq_id']) }}">
                             @csrf
                             @method('DELETE')
 

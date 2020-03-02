@@ -13,12 +13,12 @@
                         <li class="text_question">
                             <p>
                                 <span><img src="/img/btn_Q.png" alt="Q"/></span>
-                                {{ $faq->title }}
+                                {{ $faq['title'] }}
                                 <span><img src="/img/btn_arrow_down.png" alt="화살표 아래" /></span>
                             </p>
                         </li>
                         <li class="text_answer">
-                            {{ $faq->content }}
+                            {{ $faq['content'] }}
                         </li>
                     </ul>
                 @endforeach
