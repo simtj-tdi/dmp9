@@ -9,18 +9,22 @@ class FaqRepository implements FaqRepositoryInterface
 {
     public function all()
     {
-        return faq::orderBy('id','desc')
-            ->paginate(5)
-            ->map(function ($faq) {
-                return [
-                    'faq_id' => $faq->id,
-                    'name' => $faq->user->name,
-                    'title' => $faq->title,
-                    'content' => $faq->content,
-                    'email' => $faq->user->email,
-                    'last_update' => $faq->updated_at->diffForHumans()
-                ];
-            });
+        $faqs = faq::orderBy('id','desc')
+            ->paginate(5);
+
+        $faqs->getCollection()
+                    ->transform(function ($faq) {
+                    return [
+                        'faq_id' => $faq->id,
+                        'name' => $faq->user->name,
+                        'title' => $faq->title,
+                        'content' => $faq->content,
+                        'email' => $faq->user->email,
+                        'last_update' => $faq->updated_at->diffForHumans(),
+                    ];
+                });
+
+        return $faqs;
     }
 
     public function findById($id)
