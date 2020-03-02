@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ddd0f5b148f69950736a84c806830e68",
+    "content-hash": "11ab4efbaffc0f3936d9549e3e5309a9",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -380,6 +380,49 @@
                 "random"
             ],
             "time": "2018-07-15T23:24:35+00:00"
+        },
+        {
+            "name": "haruncpi/laravel-id-generator",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/haruncpi/laravel-id-generator.git",
+                "reference": "5d81b7a8232b434e07a84376ec6c63f43bc055cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/haruncpi/laravel-id-generator/zipball/5d81b7a8232b434e07a84376ec6c63f43bc055cf",
+                "reference": "5d81b7a8232b434e07a84376ec6c63f43bc055cf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Haruncpi\\LaravelIdGenerator\\IdGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Haruncpi\\LaravelIdGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "cc-by-4.0"
+            ],
+            "authors": [
+                {
+                    "name": "Md.Harun-Ur-Rashid",
+                    "email": "harun.cox@gmail.com"
+                }
+            ],
+            "description": "Easy way to generate custom ID in laravel framework",
+            "time": "2020-02-03T08:53:54+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

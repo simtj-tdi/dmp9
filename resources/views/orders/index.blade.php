@@ -2,32 +2,6 @@
 
 @prepend('scripts')
     $(function() {
-        $('#btn').click(function() {
-            var formSerializeArray = $('#form_pay').serializeArray();
-            var object = {};
-
-            for (var i = 0; i < formSerializeArray.length; i++){
-                object[formSerializeArray[i]['name']] = formSerializeArray[i]['value'];
-            }
-            var json = JSON.stringify(object);
-            //console.log(json);
-            $.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                url: "{{ route('Payments.payrequest') }}",
-                method: "POST",
-                dataType: "json",
-                data: object,
-                success: function (data) {
-                var JSONArray = JSON.parse(data['success']);
-                    console.log(JSONArray['token']);
-                    window.open(JSONArray['online_url'],"페이레터","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                }
-            });
-        });
-
-
         $(".checkBtn").click(function(){
             var object = new Array();
             var tr = $(this).parent().parent().parent().parent();
@@ -40,7 +14,6 @@
             object.push(td.eq(5).text().replace("원",""));
             object.push(td.eq(6).text());
             object.push(td.eq(7).text());
-            //console.log(object);
 
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -49,22 +22,20 @@
                 dataType: "json",
                 data: {'data': object},
                 success: function (data) {
-                    var JSONArray = JSON.parse(data['success']);
-                    console.log(JSONArray['token']);
-                    window.open(JSONArray['online_url'],"페이레터","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+                    if (data['error']) {
+                        var JSONArray = JSON.parse(data['error']);
+                        alert(JSONArray['message']);
+                    } else {
+                        var JSONArray = JSON.parse(data['success']);
+                        window.open(JSONArray['online_url'],"페이레터","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
+                    alert('결제 실패');
                 }
             });
-
-
-
         });
-
-
     });
-
-
 @endprepend
 
 @section('content')
@@ -131,11 +102,16 @@
         </thead>
         <tbody>
         @foreach($orders as $order)
-
             <tr>
                 <input type="hidden" name="" value="{{ $order->id }}">
                 <td>
-                    <img src="/img/img_waiting.png" alt="결제 대기중"/>
+                    @if ($order->state === 1)
+                        <img src="/img/img_waiting.png" alt="결제 대기중"/>
+                    @elseif ($order->state === 2)
+                        <img src="/img/img_upload.png" alt="타겟 업로드"/>
+                    @endif
+
+
                 </td>
                 <td>
                     <ul>
@@ -153,7 +129,16 @@
                 <td>{{ $order->expiration_date }}</td>
                 <td>
                     <ul>
-                        <li><button type="button" class="checkBtn" >결제하기 ></button></li>
+                        <li>
+                            @if ($order->state === 1)
+                                <button type="button" class="checkBtn" >결제하기 ></button>
+                            @elseif ($order->state === 2)
+                                데이터 만드는중
+                            @elseif ($order->state === 3)
+                                <button type="button" class="checkBtn" >데이터 신청 ></button>
+                            @endif
+
+                        </li>
                         <li><button type="button" onclick="location.href='/contact_us.html'">문의하기 ></button></li>
                     </ul>
                 </td>
@@ -162,26 +147,6 @@
 
         </tbody>
     </table>
-
-    <form name="form_pay" id="form_pay">
-        <input type="hidden" name="pgcode" value="creditcard" >
-        <input type="hidden" name="user_id" value="tests" >
-        <input type="hidden" name="user_name" value="테스트이름" >
-        <input type="hidden" name="service_name" value="서비스이름" >
-        <input type="hidden" name="client_id" value="pay_test" >
-        <input type="hidden" name="order_no" value="1234567890" >
-        <input type="hidden" name="amount" value="1000" >
-        <input type="hidden" name="product_name" value="테스트상품" >
-        <input type="hidden" name="email_flag" value="Y" >
-        <input type="hidden" name="email_addr" value="payletter@payletter.com" >
-        <input type="hidden" name="autopay_flag" value="N" >
-        <input type="hidden" name="receipt_flag" value="Y" >
-        <input type="hidden" name="custom_parameter" value="this is custom parameter" >
-        <input type="hidden" name="return_url" value="{{ route('Payments.payreturn') }}" >
-        <input type="hidden" name="callback_url" value="{{ route('Payments.paycallback') }}" >
-        <input type="hidden" name="cancel_url" value="{{ route('Payments.payCancel') }}" >
-    </form>
-
 
 </div>
 <!-- content : end-->

@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');                      // id
             $table->unsignedBigInteger('pyament_id')->nullable();       // 구매id
+            $table->unsignedBigInteger('order_no')->nullable();         // 주문번호
             $table->integer('state')->default(1);                 // 상태
             $table->string('types');                         // 광고형태
             $table->string('data_name');                    // 데이터명
