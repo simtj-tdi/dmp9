@@ -10,6 +10,25 @@ class Question extends Model
         'title', 'content',
     ];
 
+    protected $guarded = [];
+
+    public function format()
+    {
+        return [
+            'question_id' => $this->id,
+            'name' => $this->user->name,
+            'title' => $this->title,
+            'content' => $this->content,
+            'email' => $this->user->email,
+            'last_update' => $this->updated_at->diffForHumans()
+        ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function answers()
     {
         return $this->hasMany('App\Answer');

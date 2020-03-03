@@ -8,7 +8,7 @@
 
             <div class="card-body">
 
-                <form method="POST" action="{{ route('questions.update', $questions->id) }}">
+                <form method="POST" action="{{ route('questions.update', $question['question_id']) }}">
                     @csrf
                     @method('PUT')
 
@@ -16,7 +16,7 @@
                         <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
 
                         <div class="col-md-6">
-                            <input id="title" type="text" class="form-control  @error('title') is-invalid @enderror" name="title" value="{{ $questions->title }}" autocomplete="name">
+                            <input id="title" type="text" class="form-control  @error('title') is-invalid @enderror" name="title" value="{{ $question['title'] }}" autocomplete="name">
 
                             @error('title')
                             <span class="text-danger" role="alert">
@@ -30,7 +30,7 @@
                         <label for="content" class="col-md-4 col-form-label text-md-right">Content</label>
 
                         <div class="col-md-6">
-                            <input id="content" type="text" class="form-control  @error('content') is-invalid @enderror" name="content" value="{{ $questions->content }}" autocomplete="content">
+                            <input id="content" type="text" class="form-control  @error('content') is-invalid @enderror" name="content" value="{{ $question['content'] }}" autocomplete="content">
 
                             @error('content')
                             <span class="text-danger" role="alert">

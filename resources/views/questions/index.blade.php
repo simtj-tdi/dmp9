@@ -1,6 +1,7 @@
 @extends('layouts.backend')
 
 @section('content')
+
     <!-- content : start-->
     <div class="container-fluid flex-grow-1 container-p-y contact_us">
         <div class="wrap">
@@ -13,20 +14,24 @@
                     <ul>
                         <li class="text_question">
                             <p class="type_a">일반</p>
-                            <p>{{ $question->title }}</p>
+                            <p>{{ $question['title'] }}</p>
                             <p></p>
-                            <p>완료</p>
+                            @if ($question['answers']->count() >0)
+                                <p>완료</p>
+                            @else
+                                <p>대기</p>
+                            @endif
                         </li>
                         <li class="text_answer">
                             <p>
-                                {{ $question->content }}
+                                {{ $question['content'] }}
                             </p>
-                            @if ($question->answers->count() >0)
+                            @if ($question['answers']->count() >0)
                             <li class="text_answer">
                                 <p>
                                     <span>답변</span>
-                                    @foreach ($question->answers as $answer)
-                                        {{ $answer->content }}
+                                    @foreach ($question['answers'] as $answer)
+                                        {{ $answer['content'] }}
                                     @endforeach
                                 </p>
                             </li>
@@ -34,154 +39,18 @@
                         </li>
                     </ul>
                 @endforeach
-                <!--
-                <ul>
-                    <li class="text_question">
-                        <p class="type_a">일반</p>
-                        <p>NSMG</p>
-                        <p>2018-06-05</p>
-                        <p>완료</p>
-                    </li>
-                    <li class="text_answer">
-                        <p>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다.(개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                        <p>
-                            <span>답변</span>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다. (개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="text_question">
-                        <p class="type_b">일반</p>
-                        <p>NSMG</p>
-                        <p>2018-06-05</p>
-                        <p>완료</p>
-                    </li>
-                    <li class="text_answer">
-                        <p>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다.(개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                        <p>
-                            <span>답변</span>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다. (개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="text_question">
-                        <p class="type_a">일반</p>
-                        <p>NSMG</p>
-                        <p>2018-06-05</p>
-                        <p>완료</p>
-                    </li>
-                    <li class="text_answer">
-                        <p>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다.(개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                        <p>
-                            <span>답변</span>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다. (개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="text_question">
-                        <p class="type_b">일반</p>
-                        <p>NSMG</p>
-                        <p>2018-06-05</p>
-                        <p>완료</p>
-                    </li>
-                    <li class="text_answer">
-                        <p>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다.(개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                        <p>
-                            <span>답변</span>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다. (개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="text_question">
-                        <p class="type_b">일반</p>
-                        <p>NSMG</p>
-                        <p>2018-06-05</p>
-                        <p>완료</p>
-                    </li>
-                    <li class="text_answer">
-                        <p>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다.(개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                        <p>
-                            <span>답변</span>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다. (개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="text_question">
-                        <p class="type_b">일반</p>
-                        <p>NSMG</p>
-                        <p>2018-06-05</p>
-                        <p>완료</p>
-                    </li>
-                    <li class="text_answer">
-                        <p>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다.(개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                        <p>
-                            <span>답변</span>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다. (개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="text_question">
-                        <p class="type_b">일반</p>
-                        <p>NSMG</p>
-                        <p>2018-06-05</p>
-                        <p>완료</p>
-                    </li>
-                    <li class="text_answer">
-                        <p>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다.(개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                        <p>
-                            <span>답변</span>
-                            저희가 활용하는 정보는 ADID로 저희가 유저의 이름이나 주민번호, 전화번호 등 법에 저촉되는 개인 정보를 보유하거나
-                            사용하지 않기 때문에 법적인 문제는 걱정하지 않으셔도 됩니다. (개인 정보 전문 법무법인 유로의 자문을 받아 진행)
-                        </p>
-                    </li>
-                </ul>
-                -->
+
             </div>
-            <div class="pager">
-                <ul class="clearfix">
-                    <li class="active">1</li>
-                    <li>2</li>
-                </ul>
-            </div>
+            {{ $questions->links() }}
         </div>
 
         <div id="add_writing" class="overlay-wrap alert">
             <div class="writing_wrap">
                 <div class="writing_box">
-                    <div class="inner">
+
+                    <form method="POST" action="{{ route('questions.store') }}">
+                        @csrf
+                        <div class="inner">
                         <div class="top clearfix">
                             <h1>문의하기</h1>
                             <button type="button" onclick="addWritingDisNone()"><img src="/img/btn_close.png" alt="닫기 버튼"/></button>
@@ -192,10 +61,10 @@
                                     <option>질문구분</option>
                                     <option>b</option>
                                 </select>
-                                <input type="text" class="form-control" placeholder="제목">
+                                <input id="title" type="text" class="form-control" name="title" value="" placeholder="제목">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="문의 내용"></textarea>
+                                <textarea id="content" class="form-control" name="content" value="" placeholder="문의 내용"></textarea>
                             </div>
                             <div class="form-group form-inline">
                                 <input type="text" class="form-control" placeholder="이메일">
@@ -218,9 +87,11 @@
                             </div>
                         </div>
                         <div class="btn_box">
-                            <button type="button" onclick="addWritingDisNone()"><img src="/img/btn_commit.png" alt="문의등록 버튼"/></button>
+                            <button type="submit" onclick="addWritingDisNone()"><img src="/img/btn_commit.png" alt="문의등록 버튼"/></button>
                         </div>
                     </div>
+                    </form>
+
                 </div>
             </div>
         </div>

@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Question;
+use App\Repositories\QuestionRepositoryInterface;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+    private $questionRepository;
+
+    public function __construct(QuestionRepositoryInterface $questionRepository)
+    {
+        $this->questionRepository = $questionRepository;
+    }
+
     public function index()
     {
-        $questions = question::orderBy('id', 'desc')->get();
+        $questions = $this->questionRepository->all();
 
         return view('questions.index', compact('questions'));
     }
@@ -25,34 +32,35 @@ class QuestionController extends Controller
             'title' => 'required',
             'content' => 'required',
         ]);
-
-        auth()->user()->questions()->create($validatedData);
+        $this->questionRepository->create($validatedData);
 
         return redirect()->route('questions.index');
     }
 
     public function show($id)
     {
-        $questions = question::find($id);
-        return view('questions.show', compact('questions'));
+        $question = $this->questionRepository->findById($id);
+
+        return view('questions.show', compact('question'));
     }
 
     public function edit($id)
     {
-        $questions = question::find($id);
-        return view('questions.edit', compact('questions'));
+        $question = $this->questionRepository->findById($id);
+
+        return view('questions.edit', compact('question'));
     }
 
     public function update(Request $request, $id)
     {
-        question::find($id)->update($request->all());
+        $this->questionRepository->update($request, $id);
 
         return redirect()->route('questions.index');
     }
 
     public function destroy($id)
     {
-        question::find($id)->delete();
+        $this->questionRepository->destory($id);
 
         return redirect()->route('questions.index');
     }

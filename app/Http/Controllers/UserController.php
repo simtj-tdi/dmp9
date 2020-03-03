@@ -2,65 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UserRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use phpDocumentor\Reflection\Types\Collection;
 
 
 class UserController extends Controller
 {
-    public function index(Request $request)
-    {
-    }
+    private $userRepository;
 
-    public function create()
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-    }
-
-    public function store(Request $request)
-    {
-    }
-
-    public function show($id)
-    {
-    }
-
-    public function edit($id)
-    {
-    }
-
-    public function update(Request $request, $id)
-    {
-    }
-
-    public function destroy($id)
-    {
+        $this->userRepository = $userRepository;
     }
 
     public function confirm_index()
     {
-        $user = auth()->user();
-        return view('users.confirm_index', compact('user'));
+        return view('users.confirm_index');
     }
 
     public function confirm_check(Request $request)
     {
-        if (!Hash::check($request->current_password, auth()->user()->password)) {
+        if (!$this->userRepository->password_check($request)) {
             return back();
         }
 
-        return redirect()->route('my_show', ['id'=> auth()->user()->id]);
-
+        return redirect()->route('my_show');
     }
 
-    public function my_show($id)
+    public function my_show()
     {
-        $user = auth()->user();
+        $user = $this->userRepository->findById();
         return view('users.my_show', compact('user'));
     }
 
     public function my_update(Request $request)
     {
+
         $request = array_filter($request->toArray(), function ($v, $k) {
             return !empty($v) && $k != '_token';
         }, ARRAY_FILTER_USE_BOTH);

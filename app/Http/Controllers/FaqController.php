@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Faq;
 use App\Repositories\FaqRepositoryInterface;
 use Illuminate\Http\Request;
 
