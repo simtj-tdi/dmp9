@@ -11,17 +11,7 @@ class FaqRepository implements FaqRepositoryInterface
         $faqs = faq::orderBy('id','desc')
             ->paginate(5);
 
-        $faqs->getCollection()
-                    ->transform(function ($faq) {
-                    return [
-                        'faq_id' => $faq->id,
-                        'name' => $faq->user->name,
-                        'title' => $faq->title,
-                        'content' => $faq->content,
-                        'email' => $faq->user->email,
-                        'last_update' => $faq->updated_at->diffForHumans(),
-                    ];
-                });
+        $faqs->getCollection()->map->format();;
 
         return $faqs;
     }

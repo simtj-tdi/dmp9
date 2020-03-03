@@ -12,18 +12,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         ->orderBy('id', 'desc')
         ->paginate(5);
 
-        $questions->getCollection()
-            ->transform(function ($question) {
-                return [
-                    'question' => $question->id,
-                    'name' => $question->user->name,
-                    'title' => $question->title,
-                    'content' => $question->content,
-                    'email' => $question->user->email,
-                    'last_update' => $question->updated_at->diffForHumans(),
-                    'answers' => $question->answers,
-                ];
-            });
+        $questions->getCollection()->map->format();;
 
         return $questions;
     }

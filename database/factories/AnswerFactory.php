@@ -10,7 +10,6 @@ $factory->define(Answer::class, function (Faker $faker) {
         //
         'question_id' => rand(1, 20),
         'user_id' => rand(1, 4),
-        'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'content' => $faker->text($maxNbChars = 200),
     ];
 });

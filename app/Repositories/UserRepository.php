@@ -1,7 +1,6 @@
 <?php
 namespace App\Repositories;
 
-use App\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface

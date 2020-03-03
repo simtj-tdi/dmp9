@@ -20,7 +20,8 @@ class Question extends Model
             'title' => $this->title,
             'content' => $this->content,
             'email' => $this->user->email,
-            'last_update' => $this->updated_at->diffForHumans()
+            'last_update' => $this->updated_at->diffForHumans(),
+            'answers' => $this->answers,
         ];
     }
 

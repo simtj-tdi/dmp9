@@ -40,18 +40,14 @@ class UserController extends Controller
 
     public function my_update(Request $request)
     {
+        $id = auth()->user()->id;
+        if ($request['password']) {
+            $request['password'] = Hash::make($request['password']);
+        } else {
+            $request['password'] = auth()->user()->password;
+        }
 
-        $request = array_filter($request->toArray(), function ($v, $k) {
-            return !empty($v) && $k != '_token';
-        }, ARRAY_FILTER_USE_BOTH);
-
-        array_walk_recursive($request,function (&$val, &$key) {
-            if ($key == "password") {
-                $val = Hash::make($val);
-            }
-        });
-
-        User::find(auth()->user()->id)->update($request);
+        User::find($id)->update($request->all());
 
         return redirect()->route('dashboard.index');
     }
