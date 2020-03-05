@@ -17,9 +17,8 @@ class CheckApproved
     public function handle($request, Closure $next)
     {
         if (!auth()->user()->approved) {
-            Auth::logout();
 
-            return redirect()->route('login');
+            return redirect()->route('approved');
         }
 
         return $next($request);

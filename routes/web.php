@@ -11,13 +11,27 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// 인증 예외 처리
+Route::get('/approved', function() {
+    Auth::logout();
+
+    return view('approved');
+})->name('approved');
+
+// 권한 예외 처리
+Route::get('/role', function() {
+    Auth::logout();
+
+    return view('role');
+})->name('role');
 
 Route::middleware(['auth', 'approved','role'])->group( function () {
 
