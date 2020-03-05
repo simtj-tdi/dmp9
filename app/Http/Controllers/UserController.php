@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\UserRepositoryInterface;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\Types\Collection;
-
 
 class UserController extends Controller
 {
@@ -35,19 +31,15 @@ class UserController extends Controller
     public function my_show()
     {
         $user = $this->userRepository->findById();
+
         return view('users.my_show', compact('user'));
     }
 
     public function my_update(Request $request)
     {
-        $id = auth()->user()->id;
-        if ($request['password']) {
-            $request['password'] = Hash::make($request['password']);
-        } else {
-            $request['password'] = auth()->user()->password;
-        }
+        $request['password'] = $this->userRepository->makePassword($request['password']);
 
-        User::find($id)->update($request->all());
+        $this->userRepository->update($request);
 
         return redirect()->route('dashboard.index');
     }

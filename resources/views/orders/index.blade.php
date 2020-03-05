@@ -110,34 +110,43 @@
                     @elseif ($order->state === 2)
                         <img src="/img/img_upload.png" alt="타겟 업로드"/>
                     @endif
-
-
                 </td>
                 <td>
                     <ul>
-                        <li><img src="/img/icon_naver.png" alt="네이버 아이콘"/></li>
-                        <li><img src="/img/icon_instar.png" alt="인스타 아이콘"/></li>
-                        <li><img src="/img/icon_facebook.png" alt="페이스북 아이콘"/></li>
-                        <li><img src="/img/icon_kakao.png" alt="카카오 아이콘"/></li>
-                        <li><img src="/img/icon_instar.png" alt="인스타 아이콘"/></li>
+                        @foreach(explode(',', $order->types) as $type)
+                            @if ($type === 'naver')
+                                <li><img src="/img/icon_naver.png" alt="네이버 아이콘"/></li>
+                            @elseif ($type === 'instagram')
+                                <li><img src="/img/icon_instar.png" alt="인스타 아이콘"/></li>
+                            @elseif ($type === 'facebook')
+                                <li><img src="/img/icon_facebook.png" alt="페이스북 아이콘"/></li>
+                            @elseif ($type === 'kakao')
+                                <li><img src="/img/icon_kakao.png" alt="카카오 아이콘"/></li>
+                            @endif
+                        @endforeach
                     </ul>
                 </td>
                 <td>{{ $order->data_name }}</td>
                 <td>{{ $order->data_count }}</td>
-                <td>{{ $order->buy_price }}원</td>
+                <td>
+                    @if (isset($order->buy_price))
+                        {{ $order->buy_price }}원
+                    @endif
+                </td>
                 <td>{{ $order->buy_date }}</td>
                 <td>{{ $order->expiration_date }}</td>
                 <td>
                     <ul>
                         <li>
                             @if ($order->state === 1)
-                                <button type="button" class="checkBtn" >결제하기 ></button>
+                                결제 대기중
                             @elseif ($order->state === 2)
-                                데이터 만드는중
+                                <button type="button" class="checkBtn" >결제하기 ></button>
                             @elseif ($order->state === 3)
-                                <button type="button" class="checkBtn" >데이터 신청 ></button>
+                                결제 완료
+                            @elseif ($order->state === 4)
+                                유효 기간완료
                             @endif
-
                         </li>
                         <li><button type="button" onclick="location.href='/contact_us.html'">문의하기 ></button></li>
                     </ul>

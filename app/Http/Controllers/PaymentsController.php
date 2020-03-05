@@ -2,21 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use App\Pay_log;
+use App\Repositories\OrderRepositoryInterface;
+use App\Repositories\PaymentRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Payment_return;
-use App\Payment_fail;
-use App\Order;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class PaymentsController extends Controller
 {
+    private $paymentRepository;
+    private $orderRepository;
+    private $strPostData;
+
+    public function __construct(PaymentRepositoryInterface $paymentRepository, OrderRepositoryInterface $orderRepository)
+    {
+        $this->paymentRepository = $paymentRepository;
+        $this->orderRepository = $orderRepository;
+    }
+
     public function payRequest(Request $request)
     {
+        $order_no = $this->makeOrderNo();
+        $this->makeStrPostDate($order_no, $request);
+        $curl_getinfo = $this->curlTransfer();
+        $this->orderRepository->order_no_update($request['data'][0], $order_no);
+        return $curl_getinfo;
+    }
 
-        $order_no = IdGenerator::generate(['table' => 'orders', 'field'=>'order_no','length' => 12, 'prefix' => date('Ymd')]);
-        $strUrl = 'https://testpgapi.payletter.com/v1.0/payments/request';
+    public function payReturn(Request $request)
+    {
+        if ($request->code == 0) {
+            $this->paymentRepository->payReturn($request);
+            $payment = $this->paymentRepository->findByOrder($request->order_no);
 
+            // 결제 정상 완료 시
+            $this->orderRepository->state_update($payment->order_no, $payment->id, $payment->transaction_date);
+            $this->paymentRepository->payLog("payReturn", urldecode($request));
+        } else {
+//            Payment_fail::create($colleect->toArray());
+        }
+
+        return view('payment.payreturn');
+    }
+
+    public function payCallback(Request $request)
+    {
+        // 결제가 성공한 경우에만 결제 결과가 json형태로 제공됩니다.
+        //*Callback URL로 전달되는 현금영수증 데이터의 경우 하기와 같은 형태로 제공 됩니다
+        //https://www.payletter.com/ko/technical/index#ab21eea6c1
+    }
+
+    public function payCancel(Request $request)
+    {
+        $this->payLog("payCancel", urldecode($request));
+        return view('payment.paycancel');
+    }
+
+    public function makeOrderNo()
+    {
+        return IdGenerator::generate(['table' => 'orders', 'field'=>'order_no','length' => 12, 'prefix' => date('Ymd')]);
+    }
+
+    public function makeStrPostDate($order_no, $request)
+    {
         $strPostData = '{
             "pgcode"            : "creditcard",
             "user_id"           : "'.auth()->user()->id.'",
@@ -37,6 +84,13 @@ class PaymentsController extends Controller
         }';
         /* iconv(): Detected an illegal character in input string 오류로 인해 mb_convert_encoding 사용 */
 
+        $this->strPostData = $strPostData;
+    }
+
+    public function curlTransfer()
+    {
+        $strUrl = 'https://testpgapi.payletter.com/v1.0/payments/request';
+
         $arrHeaderData   = [];
         $arrHeaderData[] = 'Content-Type: application/json';
         $arrHeaderData[] = 'Authorization: PLKEY MTFBNTAzNTEwNDAxQUIyMjlCQzgwNTg1MkU4MkZENDA=';
@@ -44,61 +98,21 @@ class PaymentsController extends Controller
         curl_setopt($objCurl, CURLOPT_URL, $strUrl);
         curl_setopt($objCurl, CURLOPT_HTTPHEADER, $arrHeaderData);
         curl_setopt($objCurl, CURLOPT_POST, 1);
-        curl_setopt($objCurl, CURLOPT_POSTFIELDS, iconv("euc-kr", "utf-8", $strPostData));
+        curl_setopt($objCurl, CURLOPT_POSTFIELDS, iconv("euc-kr", "utf-8", $this->strPostData));
         curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, true);
         /* error: "{"code":997,"message":"지정한 코드 페이지의 367 인덱스에서 바이트 [C5]을(를) 유니코드로 변환할 수 없습니다."}" 오류로 인해 iconv 사용 */
-        $strResponse   = curl_exec($objCurl);
+        $strResponse = curl_exec($objCurl);
 
         if(curl_getinfo($objCurl, CURLINFO_HTTP_CODE) == 200) {
-            curl_close($objCurl);
-            Order::find($request['data'][0])->update(['order_no'=> $order_no]);
-            $this->pay_log("payRequest", iconv("euc-kr", "utf-8", $strPostData));
-            return response()->json(['success'=> $strResponse], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+            // 결제 창 정상 호출 시
+            $this->payLog("curlTransfer", urldecode($strResponse));
+            $strResponse = response()->json(['success'=> $strResponse], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         } else {
-            curl_close($objCurl);
-            return response()->json(['error'=> $strResponse]);
-        }
-    }
-
-    public function payReturn(Request $request)
-    {
-        $this->pay_log("payReturn", urldecode($request));
-        $colleect = collect($request)->map(function ($value, $key) {
-            return $value;
-        });
-
-        if ($colleect['code'] == 0) {
-            $payment = Payment_return::create($colleect->toArray());
-            Order::where('order_no', $payment->order_no)
-                ->update(['payment_id'=> $payment->id, 'state' => 2]);
-
-        } else {
-            Payment_fail::create($colleect->toArray());
+            $strResponse = response()->json(['error'=> $strResponse]);
         }
 
-        return view('payment.payreturn');
+        curl_close($objCurl);
+
+        return $strResponse;
     }
-
-    public function payCallback(Request $request)
-    {
-        // 결제가 성공한 경우에만 결제 결과가 json형태로 제공됩니다.
-        //*Callback URL로 전달되는 현금영수증 데이터의 경우 하기와 같은 형태로 제공 됩니다
-        //https://www.payletter.com/ko/technical/index#ab21eea6c1
-    }
-
-    public function payCancel(Request $request)
-    {
-        $this->pay_log("payCancel", urldecode($request));
-        return view('payment.paycancel');
-    }
-
-    public function pay_log($state, $message)
-    {
-        $pay_log['user_id'] = auth()->user()->id;
-        $pay_log['state'] = $state;
-        $pay_log['message'] = $message;
-
-        Pay_log::create($pay_log);
-    }
-
 }

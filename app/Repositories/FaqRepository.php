@@ -11,7 +11,7 @@ class FaqRepository implements FaqRepositoryInterface
         $faqs = faq::orderBy('id','desc')
             ->paginate(5);
 
-        $faqs->getCollection()->map->format();;
+        $faqs->getCollection()->map->format();
 
         return $faqs;
     }

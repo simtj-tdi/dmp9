@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-//    const TEST = "afsdf";
-
     protected $fillable = [
         'title', 'content',
     ];

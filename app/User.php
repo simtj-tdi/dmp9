@@ -2,10 +2,8 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -40,17 +38,21 @@ class User extends Authenticatable
 
     public function orders()
     {
-        return $this->hasMany('App\Order')->orderBy('id', 'desc');
+        return $this->hasMany(Order::class)->orderBy('id', 'desc');
     }
 
     public function faqs()
     {
-        return $this->hasMany('App\Faq');
+        return $this->hasMany(Faq::class);
     }
 
     public function questions()
     {
-        return $this->hasMany('App\Question')->orderBy('id','desc');
+        return $this->hasMany(Question::class)->orderBy('id','desc');
     }
 
+    public function payment_returns()
+    {
+        return $this->hasMany(Payment_return::class)->orderBy('id','desc');
+    }
 }

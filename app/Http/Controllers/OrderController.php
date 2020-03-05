@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
+use App\Repositories\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    private $orderRepository;
+
+    public function __construct(OrderRepositoryInterface $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
+
     public function index()
     {
-        $orders = auth()->user()->orders;
+        $orders = $this->orderRepository->all();
 
         return view('orders.index', compact('orders'));
     }
@@ -21,58 +28,16 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $types = implode(',', $request->types);
-        $param = [
-            'user_id' => auth()->user()->id,
-            'state' => '1',
-            'types' => $types,
-            'data_name' => $request->data_name,
-            'data_count' => $request->data_count,
-            'buy_price' => $request->buy_price,
-            'buy_date' => $request->buy_date,
-            'expiration_date' => $request->expiration_date
-        ];
-
-        Order::create($param);
+        $this->orderRepository->create($request);
 
         return redirect()->route('orders.index');
     }
 
     public function show($id)
     {
-        $order = order::find($id);
+        $order = $this->orderRepository->findById($id);
 
         return view('orders.show', compact('order'));
     }
 
-    public function edit($id)
-    {
-        $order = order::find($id);
-        return view('orders.edit', compact('order'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $types = implode(',', $request->types);
-        $param = [
-            'state' => '1',
-            'types' => $types,
-            'data_name' => $request->data_name,
-            'data_count' => $request->data_count,
-            'buy_price' => $request->buy_price,
-            'buy_date' => $request->buy_date,
-            'expiration_date' => $request->expiration_date
-        ];
-
-        Order::where('id', $id)->update($param);
-
-        return redirect()->route('orders.index');
-    }
-
-    public function destroy($id)
-    {
-        order::find($id)->delete();
-
-        return redirect()->route('orders.index');
-    }
 }
