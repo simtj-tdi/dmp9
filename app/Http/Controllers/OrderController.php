@@ -14,11 +14,12 @@ class OrderController extends Controller
         $this->orderRepository = $orderRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $orders = $this->orderRepository->all();
+        $orders = $this->orderRepository->all($request);
+        $sch = $request->sch;
 
-        return view('orders.index', compact('orders'));
+        return view('orders.index', compact('orders', 'sch'));
     }
 
     public function create()

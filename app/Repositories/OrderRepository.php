@@ -7,10 +7,22 @@ use App\Order;
 
 class OrderRepository implements OrderRepositoryInterface
 {
-    public function all()
+    public function all($request)
     {
         $orders = auth()->user()->orders()
-            ->orderBy('id','desc')
+            ->when(in_array($request->sort,order::SORT) == true,
+                function ($q) use ($request) {
+                    return $q->orderBy($request->sort, 'desc');
+                },
+                function ($q) use ($request) {
+                    return $q->orderBy('id','desc');
+                }
+            )
+            ->when(isset($request->sch) == true,
+                function ($q) use ($request) {
+                    return $q->where('data_name','LIKE','%'.$request->sch.'%');
+                }
+            )
             ->paginate(5);
 
         $orders->getCollection()->map->format();

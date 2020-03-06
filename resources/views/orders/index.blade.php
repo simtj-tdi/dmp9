@@ -35,6 +35,11 @@
                 }
             });
         });
+
+        $('button[name="orderBtn"], button[name="searchBtn"]').click(function(){
+            $('input[name="sort"]').val($(this).attr("data-type"));
+            $('[name="frm"]').submit();
+        })
     });
 @endprepend
 
@@ -42,41 +47,44 @@
 <!-- content : start-->
 <div class="container-fluid flex-grow-1 container-p-y">
 
-    <div class="cont_top_wrap clearfix">
-        <div class="cont_select">
-            <select name="" class="">
-                <option value="" selected="selected">전체 광고주 데이터 <i class="ion ion-ios-arrow-down d-block"></i></option>
-                <option value="">광고형태 데이터</option>
-                <option value="">데이터수 데이터</option>
-                <option value="">구매가격 데이터</option>
-                <option value="">구매일 데이터</option>
-            </select>
-        </div>
+    <form method="get" name="frm" action="{{ route('orders.index') }}" >
+        <input type="hidden" name="sort" value="">
 
-        <div class="cont_search_bar">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="데이터명 검색">
-                    <span class="input-group-append">
-                        <button class="btn" type="button">
-                            <img src="/img/btn_search.png" alt="검색 버튼 이미지"/>
-                        </button>
-                    </span>
+        <div class="cont_top_wrap clearfix">
+            <div class="cont_select">
+                <select name="" class="">
+                    <option value="" selected="selected">전체 광고주 데이터 <i class="ion ion-ios-arrow-down d-block"></i></option>
+                    <option value="">광고형태 데이터</option>
+                    <option value="">데이터수 데이터</option>
+                    <option value="">구매가격 데이터</option>
+                    <option value="">구매일 데이터</option>
+                </select>
+            </div>
+
+            <div class="cont_search_bar">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="sch" placeholder="데이터명 검색" value="{{ $sch }}">
+                        <span class="input-group-append">
+                            <button class="btn" name="searchBtn" type="button">
+                                <img src="/img/btn_search.png" alt="검색 버튼 이미지"/>
+                            </button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="cont_manu_wrap clearfix">
-        <ul class="form-inline">
-            <li><button type="button">구매순</button></li>
-            <li><button type="button">업데이트순</button></li>
-            <li><button type="button">데이터순</button></li>
-            <li><button type="button">금액순</button></li>
-            <li><button type="button">유효기간순</button></li>
-        </ul>
-    </div>
-
+        <div class="cont_manu_wrap clearfix">
+            <ul class="form-inline">
+                <li><button type="button" name="orderBtn" data-type="id" >구매순</button></li>
+                <li><button type="button" name="orderBtn" data-type="updated_at" >업데이트순</button></li>
+                <li><button type="button" name="orderBtn" data-type="data_name" >데이터순</button></li>
+                <li><button type="button" name="orderBtn" data-type="buy_price" >금액순</button></li>
+                <li><button type="button" name="orderBtn" data-type="expiration_date" >유효기간순</button></li>
+            </ul>
+        </div>
+    </form>
     <table class="table">
         <colgroup>
             <col width="40px">

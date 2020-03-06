@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    CONST SORT = array('id','updated_at', 'data_name', 'buy_price', 'expiration_date');
+
     CONST STATE_1 = 1;      // 주문 신청
     CONST STATE_2 = 2;      // 결제 요청
     CONST STATE_3 = 3;      // 결제 완료
