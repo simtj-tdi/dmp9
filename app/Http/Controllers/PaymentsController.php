@@ -22,12 +22,17 @@ class PaymentsController extends Controller
 
     public function payRequest(Request $request)
     {
+        $datda = json_decode($request->data);
+        dd($datda);
+        /**
+         *   $check = false;
+         *   if($check === false) rollback;
+         *   //log insert
+         *   $msg = '';
+         *   return ;
+         */
+
         $order_no = $this->makeOrderNo();
-//        $check = false;
-//        if($check === false) rollback;
-//        //log insert
-//        $msg = '';
-//        return ;
         $this->makeStrPostDate($order_no, $request);
         $curl_getinfo = $this->curlTransfer();
         $this->orderRepository->order_no_update($request['data'][0], $order_no);

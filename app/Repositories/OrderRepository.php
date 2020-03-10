@@ -66,7 +66,7 @@ class OrderRepository implements OrderRepositoryInterface
     public function state_update($order_no, $payment_id, $payment_transaction_date)
     {
         order::where('order_no', $order_no)
-            ->update(['payment_id'=> $payment_id, 'state' => order::STATE_5, 'buy_date'=> $payment_transaction_date ]);
+            ->update(['payment_id'=> $payment_id, 'state' => order::STATE_4, 'buy_date'=> $payment_transaction_date ]);
     }
 
 }

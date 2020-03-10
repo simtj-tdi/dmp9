@@ -2,8 +2,18 @@
 
 @prepend('scripts')
     $(function() {
-        $(".createBtn").click(function() {
+        $("input[name=sel]").click(function() {
+            var total_count=0;
+            var total_price=0;
+            $("input[name=sel]:checked").each(function() {
+                total_count += $(this).data("count");
+                total_price += $(this).data("price");
+            });
+            $("span[name=total_price]").text(total_price);
+        });
 
+
+        $(".createBtn").click(function() {
             $("form[name='registerForm']").validate({
                 rules: {
                     advertiser: "required",
@@ -21,13 +31,9 @@
                 errorPlacement: function(error, element){
                 },
                 highlight: function (element, required) {
-
                         $(element).css('border', '2px solid #FDADAF');
-
                 },
             });
-
-
         });
 
 
@@ -70,6 +76,47 @@
             $('[name="frm"]').submit();
         })
 
+        $(".new_buy").click(function() {
+            var ids = new Array();
+            var total_price=0;
+            $("input[name=sel]:checked").each(function() {
+                ids.push($(this).val());
+                total_price += $(this).data("price");
+            });
+
+            if (ids.length > 0) {
+                var data = new Object() ;
+                data.ids = ids;
+                data.price = total_price;
+                var jsonData = JSON.stringify(data);
+                console.log(jsonData);
+
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('Payments.payrequest') }}",
+                    method: "POST",
+                    dataType: "json",
+                    data: {'data': jsonData},
+                    success: function (data) {
+                        if (data['error']) {
+                            var JSONArray = JSON.parse(data['error']);
+                            alert(JSONArray['message']);
+                        } else {
+                            var JSONArray = JSON.parse(data['success']);
+                            window.open(JSONArray['online_url'],"페이레터","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('결제 실패');
+                    }
+                });
+
+
+
+            } else {
+                console.log("구매 데이터를 선택 하세요.");
+            }
+        });
 
     });
 @endprepend
@@ -82,8 +129,6 @@
         <input type="hidden" name="sort" value="">
 
         <div class="cont_top_wrap clearfix">
-
-
             <div class="cont_search_bar">
                 <div class="form-group">
                     <div class="input-group">
@@ -102,6 +147,10 @@
             <div class="top clearfix"style="display:inline-grid" >
                 <button type="button" onclick="addWriting()" class="add_btn">데이터 등록</button> <!--가-->
             </div>
+            <div class="top clearfix"style="display:inline-grid" >
+                <button type="button" class="add_btn new_buy">구매</button>
+            </div>
+
             <ul class="form-inline">
                 <li><button type="button" name="orderBtn" data-type="id" >구매순</button></li>
                 <li><button type="button" name="orderBtn" data-type="updated_at" >업데이트순</button></li>
@@ -114,6 +163,7 @@
     <table class="table">
         <colgroup>
             <col width="40px">
+            <col width="40px">
             <col width="60px">
             <col width="50px">
             <col width="50px">
@@ -124,6 +174,7 @@
         </colgroup>
         <thead class="thead-light">
         <tr>
+            <th></th>
             <th>상태</th>
             <th>광고형태</th>
             <th>데이터명</th>
@@ -139,6 +190,13 @@
             <tr>
                 <input type="hidden" name="" value="{{ $order->id }}">
                 <td>
+                    @if ($order->state === 3)
+                        <input type="checkbox" name="sel" value="{{ $order->id }}" data-count="" data-price="{{ $order->buy_price }}">
+                    @else
+                        <input type="checkbox" name="sel" value="{{ $order->id }}" disabled>
+                    @endif
+                </td>
+                <td>
                     <div class="status_box">
                     @if ($order->state === 1)
                         요청중
@@ -147,8 +205,6 @@
                     @elseif ($order->state === 3)
                         승인요청
                     @elseif ($order->state === 4)
-                        결제대기
-                    @elseif ($order->state === 5)
                         결제완료
                     @endif
                     </div>
@@ -180,7 +236,7 @@
                 <td>
                     <ul>
                         <li>
-                            @if ($order->state === 4)
+                            @if ($order->state === 3)
                                 <button type="button" class="checkBtn" >결제하기 ></button>
                             @endif
                         </li>
@@ -189,7 +245,17 @@
                 </td>
             </tr>
         @endforeach
-
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span name="total_count">0</span></td>
+                <td><span name="total_price">0</span></td>
+                <td></td>
+                <td></td>
+                <td></td> <!--빈영역-->
+            </tr>
         </tbody>
     </table>
 

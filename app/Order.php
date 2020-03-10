@@ -11,8 +11,7 @@ class Order extends Model
     CONST STATE_1 = 1;      // 요청중
     CONST STATE_2 = 2;      // 추출중
     CONST STATE_3 = 3;      // 승인요청
-    CONST STATE_4 = 4;      // 결제대기
-    CONST STATE_5 = 5;      // 결제완료
+    CONST STATE_4 = 4;      // 결제완료
 
     protected $guarded = ['*','id'];
 
@@ -26,6 +25,7 @@ class Order extends Model
             'data_types' => $this->data_types,
             'data_name' => $this->data_name,
             'data_category' => $this->data_category,
+            'data_content' => $this->data_content,
             'data_count' => $this->data_count,
             'buy_price' => $this->buy_price,
             'buy_date' => $this->buy_date,
