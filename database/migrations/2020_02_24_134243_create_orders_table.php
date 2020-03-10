@@ -15,17 +15,20 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');                      // id
-            $table->unsignedBigInteger('payment_id')->nullable();       // 구매id
-            $table->unsignedBigInteger('order_no')->nullable();         // 주문번호
-            $table->integer('state')->default(1);                 // 상태
-            $table->string('types');                                    // 광고형태
-            $table->string('data_name');                                // 데이터명
-            $table->string('data_category');                            // 데이터항목
-            $table->integer('data_count')->nullable();                  // 데이터수
-            $table->integer('buy_price')->nullable();                   // 구매가격
-            $table->date('buy_date')->nullable();                       // 구매일
-            $table->date('expiration_date')->nullable();                // 유효기간
+            $table->unsignedBigInteger('user_id')->comment("id");
+            $table->unsignedBigInteger('payment_id')->nullable()->comment("구매id");
+            $table->unsignedBigInteger('order_no')->nullable()->comment("주문번호");
+            $table->integer('state')->default(1)->comment("상태");
+            $table->string('advertiser')->comment("광고주");
+            $table->string('data_types')->comment("광고형태");
+            $table->string('data_target')->comment("타겟 유형");
+            $table->string('data_name')->comment("데이터항목");
+            $table->string('data_category')->comment("데이터항목");
+            $table->text('data_content')->nullable()->comment("설명");
+            $table->integer('data_count')->nullable()->comment("데이터수");
+            $table->integer('buy_price')->nullable()->comment("구매가격");
+            $table->date('buy_date')->nullable()->comment("구매일");
+            $table->date('expiration_date')->nullable()->comment("유효기간");
             $table->timestamps();
         });
     }

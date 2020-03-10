@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
     <script>
         //인터넷 버전 체크 ie 에서는 호환안됨
         // Internet Explorer 6-11
@@ -66,21 +68,11 @@
 
             <!-- Layout sidenav -->
             <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-sidenav-theme">
-                <div class="sidenav_logo_wrap">
+                <div class="sidenav_logo_wrap mb-4">
                     <img src="/img/logo_01.png" alt="로고 이미지" />
                 </div>
-                <div class="sidenav_total_balance_Wrap">
-                    <div class="sidenav_total_balance_inner_top form-inline">
-                        <div>Total Balance</div>
-                        <div>
-                            <button type="button"><img src="/img/btn_charge.png" alt="충전하기 버튼" /></button>
-                        </div>
-                    </div>
-                    <div class="sidenav_total_balance_inner_cont">
-                        <div>40,931,525 <span>원</span></div>
-                    </div>
-                </div>
-                <ul class="sidenav-inner py-1">
+
+                <ul class="sidenav-inner py-1 mt-4">
                     <li class="sidenav-item active">
                         <a href="/orders" class="sidenav-link">
                             <div class="icon">
@@ -126,7 +118,7 @@
                             <div class="icon">
                                 <img src="/img/icon_sidenav_06.png" alt="충전 내역 아이콘" />
                             </div>
-                            <div>충전 내역</div>
+                            <div>결제 내역</div>
                         </a>
                     </li>
                 </ul>
@@ -137,7 +129,7 @@
             </div>
             <!-- / Layout sidenav -->
 
-            <div class="layout-content mydata_main" id="mydata_main">
+            <div class="layout-content " id="mydata_main">
                 <div class="content_top form-inline">
                     <div class="welcome_text">
                         <h1>안녕하세요. <span>NSMG</span>님! 환영합니다.</h1>

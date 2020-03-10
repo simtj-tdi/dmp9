@@ -19,4 +19,5 @@ interface OrderRepositoryInterface
     public function order_no_update($id, $order_no);
 
     public function state_update($order_no, $payment_id, $payment_transaction_date);
+
 }

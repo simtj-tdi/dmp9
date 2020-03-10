@@ -9,6 +9,7 @@ class OrderRepository implements OrderRepositoryInterface
 {
     public function all($request)
     {
+
         $orders = auth()->user()->orders()
             ->when(in_array($request->sort,order::SORT) == true,
                 function ($q) use ($request) {
@@ -39,7 +40,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function create($request)
     {
-        $request['types'] = implode(',', $request->types);
+        $request['data_types'] = implode(',', $request->data_types);
         $request['state'] = order::STATE_1;
 
         auth()->user()->orders()->create($request->toArray());
@@ -65,7 +66,7 @@ class OrderRepository implements OrderRepositoryInterface
     public function state_update($order_no, $payment_id, $payment_transaction_date)
     {
         order::where('order_no', $order_no)
-            ->update(['payment_id'=> $payment_id, 'state' => order::STATE_3, 'buy_date'=> $payment_transaction_date ]);
+            ->update(['payment_id'=> $payment_id, 'state' => order::STATE_5, 'buy_date'=> $payment_transaction_date ]);
     }
 
 }

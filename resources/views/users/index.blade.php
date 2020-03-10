@@ -12,7 +12,6 @@
 
 @section('content')
     <!-- content : start-->
-
     <div class="mypage container-fluid flex-grow-1 container-p-y">
         <div class="wrap">
             <div class="text_box">

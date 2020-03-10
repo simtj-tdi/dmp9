@@ -13,10 +13,10 @@
                                 <label for="title" class="col-md-4 col-form-label text-md-right">광고형태</label>
 
                                 <div class="col-md-6">
-                                    <input type="checkbox" class="form-control" name="types[]" value="naver">naver
-                                    <input type="checkbox" class="form-control" name="types[]" value="instagram">instagram
-                                    <input type="checkbox" class="form-control" name="types[]" value="facebook">facebook
-                                    <input type="checkbox" class="form-control" name="types[]" value="kakao">kakao
+                                    <input type="checkbox" class="form-control" name="data_types[]" value="naver">naver
+                                    <input type="checkbox" class="form-control" name="data_types[]" value="instagram">instagram
+                                    <input type="checkbox" class="form-control" name="data_types[]" value="facebook">facebook
+                                    <input type="checkbox" class="form-control" name="data_types[]" value="kakao">kakao
                                     @error('types')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -9,6 +9,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class PaymentsController extends Controller
 {
+//    private $check = true;
     private $paymentRepository;
     private $orderRepository;
     private $strPostData;
@@ -22,6 +23,11 @@ class PaymentsController extends Controller
     public function payRequest(Request $request)
     {
         $order_no = $this->makeOrderNo();
+//        $check = false;
+//        if($check === false) rollback;
+//        //log insert
+//        $msg = '';
+//        return ;
         $this->makeStrPostDate($order_no, $request);
         $curl_getinfo = $this->curlTransfer();
         $this->orderRepository->order_no_update($request['data'][0], $order_no);
@@ -31,6 +37,7 @@ class PaymentsController extends Controller
     public function payReturn(Request $request)
     {
         if ($request->code == 0) {
+
             $this->paymentRepository->payReturn($request);
             $payment = $this->paymentRepository->findByOrder($request->order_no);
 
@@ -53,7 +60,7 @@ class PaymentsController extends Controller
 
     public function payCancel(Request $request)
     {
-        $this->payLog("payCancel", urldecode($request));
+        $this->paymentRepository->payLog("payCancel", urldecode($request));
         return view('payment.paycancel');
     }
 
@@ -105,7 +112,7 @@ class PaymentsController extends Controller
 
         if(curl_getinfo($objCurl, CURLINFO_HTTP_CODE) == 200) {
             // 결제 창 정상 호출 시
-            $this->payLog("curlTransfer", urldecode($strResponse));
+            $this->paymentRepository->payLog("curlTransfer", urldecode($strResponse));
             $strResponse = response()->json(['success'=> $strResponse], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         } else {
             $strResponse = response()->json(['error'=> $strResponse]);

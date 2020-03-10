@@ -38,7 +38,9 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     Route::get('/dashboard', 'DashBoardController@index')->name('dashboard.index');
 
     // 마이데이터(order)
+    Route::get('orders/history', 'OrderController@history')->name('Orders.history');
     Route::resource('orders' , 'OrderController');
+
 
     // payment
     Route::post('/ajaxPayRequest', 'PaymentsController@payRequest')->name('Payments.payrequest');

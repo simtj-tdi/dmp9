@@ -48,11 +48,16 @@ class User extends Authenticatable
 
     public function questions()
     {
-        return $this->hasMany(Question::class)->orderBy('id','desc');
+        return $this->hasMany(Question::class);
     }
 
     public function payment_returns()
     {
-        return $this->hasMany(Payment_return::class)->orderBy('id','desc');
+        return $this->hasMany(Payment_return::class);
+    }
+
+    public function taxs()
+    {
+        return $this->hasMany(Faq::class);
     }
 }

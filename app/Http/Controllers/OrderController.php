@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Repositories\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class OrderController extends Controller
         return view('orders.create');
     }
 
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
         $this->orderRepository->create($request);
 
@@ -41,4 +42,10 @@ class OrderController extends Controller
         return view('orders.show', compact('order'));
     }
 
+    public function history(Request $request)
+    {
+        $orders = $this->orderRepository->all($request);
+
+        return view('orders.history', compact('orders'));
+    }
 }
