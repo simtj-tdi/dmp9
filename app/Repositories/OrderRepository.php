@@ -7,28 +7,12 @@ use App\Order;
 
 class OrderRepository implements OrderRepositoryInterface
 {
-    public function all($request)
+    public function all()
     {
+        $order = order::order('id', 'desc')
+            ->paginte(5);
 
-        $orders = auth()->user()->orders()
-            ->when(in_array($request->sort,order::SORT) == true,
-                function ($q) use ($request) {
-                    return $q->orderBy($request->sort, 'desc');
-                },
-                function ($q) use ($request) {
-                    return $q->orderBy('id','desc');
-                }
-            )
-            ->when(isset($request->sch) == true,
-                function ($q) use ($request) {
-                    return $q->where('data_name','LIKE','%'.$request->sch.'%');
-                }
-            )
-            ->paginate(5);
-
-        $orders->getCollection()->map->format();
-
-        return $orders;
+        $order->getCollection()->map->format();
     }
 
     public function findById($id)
@@ -38,13 +22,15 @@ class OrderRepository implements OrderRepositoryInterface
             ->format();
     }
 
-    public function create($request)
+    public function create($order_no, $pay_data)
     {
-        $request['data_types'] = implode(',', $request->data_types);
-        $request['state'] = order::STATE_1;
-
-        auth()->user()->orders()->create($request->toArray());
+        $order['order_no'] = $order_no;
+        $order['goods_info'] = $pay_data['goods_info'];
+        $order['state'] = order::STATE_1;
+        $order['total_price'] = $pay_data['amount'];
+        auth()->user()->orders()->create($order);
     }
+
 
     public function update($request, $id)
     {
@@ -52,21 +38,12 @@ class OrderRepository implements OrderRepositoryInterface
         $order->update($request->all());
     }
 
-    public function destory($id)
-    {
-        order::where('id', $id)->delete();
-    }
 
-    public function order_no_update($id, $order_no)
-    {
-        order::where('id', $id)
-            ->update(['order_no' => $order_no]);
-    }
-
-    public function state_update($order_no, $payment_id, $payment_transaction_date)
+    public function state_update($order_no, $payment_id)
     {
         order::where('order_no', $order_no)
-            ->update(['payment_id'=> $payment_id, 'state' => order::STATE_4, 'buy_date'=> $payment_transaction_date ]);
+            ->update(['payment_id' => $payment_id, 'state' => order::STATE_2]);
     }
+
 
 }

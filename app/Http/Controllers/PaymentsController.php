@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CartRepositoryInterface;
+use App\Repositories\GoodsRepositoryInterface;
 use App\Repositories\OrderRepositoryInterface;
 use App\Repositories\PaymentRepositoryInterface;
 use Illuminate\Http\Request;
@@ -10,20 +12,28 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 class PaymentsController extends Controller
 {
 //    private $check = true;
-    private $paymentRepository;
+    private $cartRepository;
+    private $goodsRepository;
     private $orderRepository;
+    private $paymentRepository;
+
     private $strPostData;
 
-    public function __construct(PaymentRepositoryInterface $paymentRepository, OrderRepositoryInterface $orderRepository)
+    public function __construct(
+            CartRepositoryInterface $cartRepository,
+            GoodsRepositoryInterface $goodsRepository,
+            OrderRepositoryInterface $orderRepository,
+            PaymentRepositoryInterface $paymentRepository)
     {
-        $this->paymentRepository = $paymentRepository;
+        $this->cartRepository = $cartRepository;
+        $this->goodsRepository = $goodsRepository;
         $this->orderRepository = $orderRepository;
+        $this->paymentRepository = $paymentRepository;
     }
 
     public function payRequest(Request $request)
     {
-        $datda = json_decode($request->data);
-        dd($datda);
+
         /**
          *   $check = false;
          *   if($check === false) rollback;
@@ -32,22 +42,53 @@ class PaymentsController extends Controller
          *   return ;
          */
 
+        $request_data = json_decode($request->data);
+
+        // 상품 체크 및 가격 확인
+        $goods = $this->goodsRepository->findByIds($request_data->ids);
+
+        if ($goods->isEmpty()) {
+            // 에러 처리 (없는 상품 및 잘못된 상품)
+            dd();
+        }
+
+        if ($request_data->total_price != $goods->sum('buy_price')) {
+            // 에러 처리 (가격이 다를 경우)
+            dd();
+        }
+
+        // PG 데이터 생성
+        $pay_data['amount'] = $request_data->total_price ;
+        $pay_data['product_name'] = ($goods->count() > 1) ?
+                                            $goods[0]->data_name ."외 ". ((int)$goods->count()-1) . "개" :
+                                            $goods[0]->data_name;
+        $pay_data['goods_info'] = json_encode($goods, JSON_UNESCAPED_UNICODE) ;
+
+        // 주문번호 생성
         $order_no = $this->makeOrderNo();
-        $this->makeStrPostDate($order_no, $request);
+
+        // PG Response
+        $this->makeStrPostDate($order_no, $pay_data);
         $curl_getinfo = $this->curlTransfer();
-        $this->orderRepository->order_no_update($request['data'][0], $order_no);
+
+        $this->cartRepository->updateOrder_no($request_data->ids, $order_no);
+        $this->orderRepository->create($order_no, $pay_data);
+
         return $curl_getinfo;
     }
 
     public function payReturn(Request $request)
     {
         if ($request->code == 0) {
-
             $this->paymentRepository->payReturn($request);
             $payment = $this->paymentRepository->findByOrder($request->order_no);
 
             // 결제 정상 완료 시
-            $this->orderRepository->state_update($payment->order_no, $payment->id, $payment->transaction_date);
+            // order state update
+            $this->orderRepository->state_update($request->order_no, $payment->id);
+            // cart state update
+            $this->cartRepository->buydate_update($request->order_no, $payment->transaction_date);
+
             $this->paymentRepository->payLog("payReturn", urldecode($request));
         } else {
 //            Payment_fail::create($colleect->toArray());
@@ -74,7 +115,7 @@ class PaymentsController extends Controller
         return IdGenerator::generate(['table' => 'orders', 'field'=>'order_no','length' => 12, 'prefix' => date('Ymd')]);
     }
 
-    public function makeStrPostDate($order_no, $request)
+    public function makeStrPostDate($order_no, $pay_data)
     {
         $strPostData = '{
             "pgcode"            : "creditcard",
@@ -83,13 +124,13 @@ class PaymentsController extends Controller
             "service_name"      : "dmp9",
             "client_id"         : "pay_test",
             "order_no"          : "'.$order_no.'",
-            "amount"            : "'.$request['data'][3].'",
-            "product_name"      : "'.mb_convert_encoding($request['data'][1], "EUC-KR", "UTF-8").'",
+            "amount"            : "'.$pay_data['amount'].'",
+            "product_name"      : "'.mb_convert_encoding($pay_data['product_name'], "EUC-KR", "UTF-8").'",
             "email_flag"        : "Y",
             "email_addr"        : "'.auth()->user()->email.'",
             "autopay_flag"      : "N",
             "receipt_flag"      : "Y",
-            "custom_parameter"  : "'.mb_convert_encoding(implode("|", $request['data']), "EUC-KR", "UTF-8").'",
+            "custom_parameter"  : "",
             "return_url"        : "'.route('Payments.payreturn').'",
             "callback_url"      : "'.route('Payments.paycallback').'",
             "cancel_url"        : "'.route('Payments.payCancel').'",

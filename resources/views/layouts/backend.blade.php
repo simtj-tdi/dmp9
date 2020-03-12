@@ -74,7 +74,7 @@
 
                 <ul class="sidenav-inner py-1 mt-4">
                     <li class="sidenav-item active">
-                        <a href="/orders" class="sidenav-link">
+                        <a href="/carts" class="sidenav-link">
                             <div class="icon">
                                 <img src="/img/icon_sidenav_01.png" alt="마이 데이터 아이콘" />
                             </div>

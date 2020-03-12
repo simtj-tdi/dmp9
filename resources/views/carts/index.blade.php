@@ -37,40 +37,6 @@
         });
 
 
-        $(".checkBtn").click(function(){
-            var object = new Array();
-            var tr = $(this).parent().parent().parent().parent();
-            var td = tr.children();
-            var product_id = tr.find("input[type=hidden]").val();
-
-            object.push(product_id);
-            object.push(td.eq(3).text());
-            object.push(td.eq(4).text());
-            object.push(td.eq(5).text().replace("원","").replace(",","").trim());
-            object.push(td.eq(6).text());
-            object.push(td.eq(7).text());
-
-            $.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                url: "{{ route('Payments.payrequest') }}",
-                method: "POST",
-                dataType: "json",
-                data: {'data': object},
-                success: function (data) {
-                    if (data['error']) {
-                        var JSONArray = JSON.parse(data['error']);
-                        alert(JSONArray['message']);
-                    } else {
-                        var JSONArray = JSON.parse(data['success']);
-                        window.open(JSONArray['online_url'],"페이레터","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert('결제 실패');
-                }
-            });
-        });
-
         $('button[name="orderBtn"], button[name="searchBtn"]').click(function(){
             $('input[name="sort"]').val($(this).attr("data-type"));
             $('[name="frm"]').submit();
@@ -84,12 +50,16 @@
                 total_price += $(this).data("price");
             });
 
+            if (total_price < 0) {
+                console.log("구매 금액이 0원 이상 이여야 합니다.");
+            }
+
             if (ids.length > 0) {
                 var data = new Object() ;
                 data.ids = ids;
-                data.price = total_price;
+                data.total_price = total_price;
                 var jsonData = JSON.stringify(data);
-                console.log(jsonData);
+                //console.log(jsonData);
 
                 $.ajax({
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -110,9 +80,6 @@
                         console.log('결제 실패');
                     }
                 });
-
-
-
             } else {
                 console.log("구매 데이터를 선택 하세요.");
             }
@@ -123,16 +90,17 @@
 
 @section('content')
 <!-- content : start-->
+{{--{{ dd($carts) }}--}}
 <div class="container-fluid flex-grow-1 container-p-y mydata_main">
 
-    <form method="get" name="frm" onsubmit="return true" action="{{ route('orders.index') }}" >
+    <form method="get" name="frm" onsubmit="return true" action="{{ route('carts.index') }}" >
         <input type="hidden" name="sort" value="">
 
         <div class="cont_top_wrap clearfix">
             <div class="cont_search_bar">
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="sch" placeholder="데이터명 검색" value="{{ $sch }}">
+                        <input type="text" class="form-control" name="sch" placeholder="데이터명 검색" value="">
                         <span class="input-group-append">
                             <button class="btn" name="searchBtn" type="button">
                                 <img src="/img/btn_search.png" alt="검색 버튼 이미지"/>
@@ -186,32 +154,31 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($orders as $order)
+        @foreach($carts as $cart)
             <tr>
-                <input type="hidden" name="" value="{{ $order->id }}">
                 <td>
-                    @if ($order->state === 3)
-                        <input type="checkbox" name="sel" value="{{ $order->id }}" data-count="" data-price="{{ $order->buy_price }}">
+                    @if ($cart->state === 3)
+                        <input type="checkbox" name="sel" value="{{ $cart->id }}" data-count="{{ $cart->goods->data_count }}" data-price="{{ $cart->goods->buy_price }}">
                     @else
-                        <input type="checkbox" name="sel" value="{{ $order->id }}" disabled>
+                        <input type="checkbox" name="sel" value="{{ $cart->id }}" disabled>
                     @endif
                 </td>
                 <td>
                     <div class="status_box">
-                    @if ($order->state === 1)
+                    @if ($cart->state === 1)
                         요청중
-                    @elseif ($order->state === 2)
+                    @elseif ($cart->state === 2)
                         추출중
-                    @elseif ($order->state === 3)
+                    @elseif ($cart->state === 3)
                         승인요청
-                    @elseif ($order->state === 4)
+                    @elseif ($cart->state === 4)
                         결제완료
                     @endif
                     </div>
                 </td>
                 <td>
                     <ul>
-                        @foreach(explode(',', $order->data_types) as $type)
+                        @foreach(explode(',', $cart->goods->data_types) as $type)
                             @if ($type === 'naver')
                                 <li><img src="/img/icon_naver.png" alt="네이버 아이콘"/></li>
                             @elseif ($type === 'instagram')
@@ -224,22 +191,18 @@
                         @endforeach
                     </ul>
                 </td>
-                <td>{{ $order->data_name }}</td>
-                <td>{{ $order->data_count }}</td>
+                <td>{{ $cart->goods->data_name }}</td>
+                <td>{{ $cart->goods->data_count }}</td>
                 <td>
-                    @if (isset($order->buy_price))
-                        {{$order->mark_price}} 원</td>
+                    @if (isset($cart->goods->buy_price))
+                        {{$cart->mark_price}} 원</td>
                     @endif
                 </td>
-                <td>{{ $order->buy_date }}</td>
-                <td>{{ $order->expiration_date }}</td>
+                <td>{{ $cart->buy_date }}</td>
+                <td>{{ $cart->goods->expiration_date }}</td>
                 <td>
                     <ul>
-                        <li>
-                            @if ($order->state === 3)
-                                <button type="button" class="checkBtn" >결제하기 ></button>
-                            @endif
-                        </li>
+                        <li></li>
                         <li><button type="button" onclick="location.href='/contact_us.html'">문의하기 ></button></li>
                     </ul>
                 </td>

@@ -37,6 +37,10 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
 
     Route::get('/dashboard', 'DashBoardController@index')->name('dashboard.index');
 
+
+    Route::resource('goods' , 'GoodsController');
+    Route::resource('carts' , 'CartController');
+
     // 마이데이터(order)
     Route::get('orders/history', 'OrderController@history')->name('Orders.history');
     Route::resource('orders' , 'OrderController');
