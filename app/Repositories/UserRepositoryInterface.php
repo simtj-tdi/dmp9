@@ -10,4 +10,6 @@ interface UserRepositoryInterface
     public function update($request);
 
     public function password_check($request);
+
+    public function findByUserId($user_id);
 }

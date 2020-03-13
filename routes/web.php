@@ -13,23 +13,26 @@
 
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});
 
 Auth::routes();
+
+// 회원가입
+Route::get('/sign_up_terms', function() { return view('sign.sign_up_terms');});
+Route::get('/sign_up_company', function() { return view('sign.sign_up_company');});
+Route::get('/sign_up_terms', function() { return view('sign.sign_up_terms');});
+
+Route::post('/ajaxIdCheckRequest', 'UserController@id_check')->name('Users.idcheckrequest');
 
 // 인증 예외 처리
 Route::get('/approved', function() {
     Auth::logout();
-
     return view('approved');
 })->name('approved');
 
 // 권한 예외 처리
 Route::get('/role', function() {
     Auth::logout();
-
     return view('role');
 })->name('role');
 
@@ -37,14 +40,9 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
 
     Route::get('/dashboard', 'DashBoardController@index')->name('dashboard.index');
 
-
+    // 마이데이터(order)
     Route::resource('goods' , 'GoodsController');
     Route::resource('carts' , 'CartController');
-
-    // 마이데이터(order)
-    Route::get('orders/history', 'OrderController@history')->name('Orders.history');
-    Route::resource('orders' , 'OrderController');
-
 
     // payment
     Route::post('/ajaxPayRequest', 'PaymentsController@payRequest')->name('Payments.payrequest');

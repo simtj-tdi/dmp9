@@ -37,4 +37,13 @@ class UserRepository implements UserRepositoryInterface
 
         return true;
     }
+
+    public function findByUserId($user_id)
+    {
+        $user_id = user::where('user_id', $user_id)
+            ->get();
+
+        return $user_id;
+    }
+
 }

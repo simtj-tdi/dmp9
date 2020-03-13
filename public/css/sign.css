@@ -1,0 +1,147 @@
+
+.but_box {text-align: center;}
+.but_box button {
+  width: 200px;
+  padding: 1rem 0;
+  border-radius: 5px;
+  background: #e7bd04;
+  color: #1b1b1b;
+}
+
+/*약관동의*/
+
+.terms .inner{
+  width: 50%;
+  padding: 40px;
+  margin: 0 auto;
+}
+.terms .title {text-align: center; margin: 4rem 0;}
+.terms h1 {font-size: 35px;}
+.terms .text {
+  height: 450px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+.terms .input_box { text-align: center; margin: 2rem 0;}
+.terms .input_box ul{ display: inline-block;}
+.terms .input_box ul li{text-align: left; margin-bottom: 8px;}
+
+
+/*sign_up 회사 가입 */
+.sign_up .inner{
+  width: 36%;
+  padding: 40px;
+  margin: 0 auto;
+}
+.sign_up .title {text-align: center; margin: 3rem 0;}
+.sign_up h1 {font-size: 25px;}
+
+.sign_up .input_box {margin: 2rem 0;}
+.sign_up .input-group {margin-bottom: 5px;}
+.sign_up .input-group label {
+  width: 200px;
+  align-items: center;
+  padding: .438rem .875rem;
+  margin-bottom: 0;
+  font-size: .894rem;
+  font-weight: 400;
+  line-height: 1.54;
+  color: #4E5155;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid rgba(24,28,33,0.15);
+  background: #fff;
+}
+.sign_up .input-group button {
+  background: #8b8b8b;
+  border-radius: 5px;
+  color: #fff;
+  margin-left: 5px;
+}
+.sign_up .input_box .form-control {
+  border: 1px solid rgba(24,28,33,0.15);
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: #fff;
+}
+.sign_up .message_group {margin-bottom: 5px;}
+.sign_up .message_group .check_state_yes {
+  text-align: center;
+  font-size: 13px;
+  color: #0a37ff;
+}
+.sign_up .message_group .check_state_no{
+  text-align: center;
+  font-size: 13px;
+  color: #ce0101;
+}
+
+.sign_up .input_box .phone_box {width: 66.9%;}
+.sign_up .input_box .phone {width: 32%;}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+.sign_up .input_box .mail {width: 66.9%;}
+.sign_up .input_box .mail input:first-child {margin-left: 5px;}
+.sign_up .input_box .mail input,
+.sign_up .input_box .mail select {width: 32%; margin-left: 0;}
+
+
+/* 세금계산서 */
+.tax_bill .inner{
+  width: 36%;
+  padding: 40px;
+  margin: 0 auto;
+}
+.tax_bill .title {text-align: center; margin: 3rem 0 2rem;}
+.tax_bill h1 {font-size: 25px;}
+
+.tax_bill .input_box {margin: 2rem 0;}
+.tax_bill .input-group {margin-bottom: 5px;}
+.tax_bill .input-group label {
+  width: 200px;
+  align-items: center;
+  padding: .438rem .875rem;
+  margin-bottom: 0;
+  font-size: .894rem;
+  font-weight: 400;
+  line-height: 1.54;
+  color: #4E5155;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid rgba(24,28,33,0.15);
+  background: #fff;
+}
+
+.tax_bill .input_box .form-control {
+  border: 1px solid rgba(24,28,33,0.15);
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: #fff;
+}
+
+.tax_bill .upload_hidden, .detail_upload_hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+.tax_bill .business_number_box {width: 66.9%;}
+.tax_bill .business_number_box .form-control {width: 99%; margin-bottom: 5px;}
+.tax_bill .business_number_box .business_btn {background: #4E5155; color: #fff;}
+
+.tax_bill .address_box {width: 66.9%;}
+.tax_bill .address_box input{width: 48.5%; margin-bottom: 5px;}
+.tax_bill .address_box input:last-child{margin-bottom: 0;}
+.tax_bill .address,
+.tax_bill .detailAddress,
+.tax_bill .extraAddress {width: 100% !important;}

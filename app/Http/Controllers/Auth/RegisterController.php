@@ -27,6 +27,23 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm(Request $request)
+    {
+
+        if ($request->type == "company") {
+            return view('sign.sign_up_company');
+        } else if ($request->type == "personal") {
+            return view('sign.sign_up_personal');
+        }
+
+        return view('auth.register');
+    }
+
+    /**
      * Handle a registration request for the application.
      *
      * @param  \Illuminate\Http\Request  $request
