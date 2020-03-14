@@ -2,6 +2,8 @@
 
 @prepend('scripts')
     $(function() {
+
+
         $("button[name=id_check_btn]").click(function() {
             //alert($("input[name=user_id]").val());
 
@@ -15,23 +17,32 @@
                     var JSONArray = JSON.parse(data);
 
                     if (JSONArray['result'] != '') {
+                        // false
+                        $("[name=id_check]").val('no');
                         $("[name=idcheck_state_yes]").css('display','none');
                         $("[name=idcheck_state_no]").css('display','block');
                     } else {
+                        // true
                         $("[name=id_check]").val('yes');
                         $("[name=idcheck_state_yes]").css('display','block');
                         $("[name=idcheck_state_no]").css('display','none');
                     }
                 }
             });
+
+            console.log(check_list);
         });
 
         $("[name=password_confirmation]").keyup(function(){
 
             if ($("[name=password]").val() != $("[name=password_confirmation]").val()) {
+                // false
+                $("[name=password_check]").val('no');
                 $("[name=passcheck_state_yes]").css('display','none');
                 $("[name=passcheck_state_no]").css('display','block');
             }else{
+                // true
+                $("[name=password_check]").val('yes');
                 $("[name=passcheck_state_yes]").css('display','block');
                 $("[name=passcheck_state_no]").css('display','none');
             }
@@ -59,7 +70,8 @@
                     <div class="input_box">
                         <form name="user" method="post" action="">
                             @csrf
-                            <input type="hidden" name="id_check" value="">
+                            <input type="hidden" name="id_check" value="no">
+                            <input type="hidden" name="password_check" value="no">
 
                             <div class="input-group">
                                 <label>아이디</label>

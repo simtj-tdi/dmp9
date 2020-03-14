@@ -2,13 +2,19 @@
 
 @prepend('scripts')
     $(function() {
-        $("button[name=btn]").click(function() {
+        $("button[name=btn]").click(function(e) {
+            var success = true;
             $("input:checkbox[name=check]").each(function() {
                 if (this.checked == false) {
                     alert('필수 약관동의 후 가입이 가능합니다.');
+                    success = false;
                     return false;
                 }
             });
+
+            if (success == false) {
+                return false;
+            }
 
             $("input[name=type]").val($(this).attr('id'));
             $("form[name=sign_up]").submit();
@@ -65,7 +71,7 @@
                     <button name="btn" id="personal" type="button">개인으로 가입하기</button>
                 </div>
 
-                <form method="get" name="sign_up" action="{{ route('register') }}">
+                <form method="get" name="sign_up"  action="{{ route('register') }}">
                     @csrf
                     <input type="hidden" name="type" value="">
                 </form>
