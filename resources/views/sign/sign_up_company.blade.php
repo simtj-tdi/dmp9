@@ -5,8 +5,6 @@
 
 
         $("button[name=id_check_btn]").click(function() {
-            //alert($("input[name=user_id]").val());
-
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 url: "{{ route('Users.idcheckrequest') }}",
@@ -29,12 +27,10 @@
                     }
                 }
             });
-
             console.log(check_list);
         });
 
         $("[name=password_confirmation]").keyup(function(){
-
             if ($("[name=password]").val() != $("[name=password_confirmation]").val()) {
                 // false
                 $("[name=password_check]").val('no');
@@ -48,9 +44,61 @@
             }
         });
 
-
         $("button[name=btn_submit]").click(function() {
+            if ($("input[name=id_check]") == "no") {
+                return false;
+            }
+            if ($("input[name=password_check]") == "no") {
+                return false;
+            }
 
+            if ($("input[name=user_id]") == "") {
+                return false;
+            }
+
+            if ($("input[name=password]") == "") {
+                return false;
+            }
+
+            if ($("input[name=password_confirmation]") == "") {
+                return false;
+            }
+
+            if ($("input[name=password_confirmation]") == "") {
+                return false;
+            }
+
+            if ($("input[name=password_confirmation]") == "") {
+                return false;
+            }
+
+            if ($("input[name=name]") == "") {
+                return false;
+            }
+
+            if ($("input[name=company_name]") == "") {
+                return false;
+            }
+
+            if ($("input[name=email_id]") == "") {
+                return false;
+            }
+
+            if ($("input[name=email_text]") == "") {
+                return false;
+            }
+
+            if ($("input[name=phone_1]") == "") {
+                 return false;
+            }
+
+            if ($("input[name=phone_2]") == "") {
+                return false;
+            }
+
+            if ($("input[name=phone_3]") == "") {
+                return false;
+            }
         });
     });
 @endprepend
