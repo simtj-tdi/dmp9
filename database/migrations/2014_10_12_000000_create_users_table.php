@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('company_name')->comment('회사명');;
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
-            $table->enum('role',  ['user', 'manager', 'admin'])->default('user')->comment('role');;
+            $table->enum('role',  ['personal', 'company', 'admin'])->default('personal')->comment('role');;
             $table->boolean('approved')->default(false)->comment('승인여부');
             $table->timestamp('approved_at')->nullable()->comment('승인수정일');
             $table->timestamps();
