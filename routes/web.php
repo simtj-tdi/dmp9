@@ -18,7 +18,7 @@ Route::get('/', function () {return view('welcome');});
 Auth::routes();
 
 // 회원가입
-Route::get('/sign_up_terms', function() { return view('sign.sign_up_terms');});
+Route::get('/sign_up_terms/{type}', function() { return view('sign.sign_up_terms');});
 Route::get('/sign_up_company', function() { return view('sign.sign_up_company');});
 Route::get('/sign_up_terms', function() { return view('sign.sign_up_terms');});
 

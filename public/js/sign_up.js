@@ -3,25 +3,25 @@ $('#all_checkbox').on("change", function(){
     var checked = $(this).prop('checked'); // checked 문자열 참조(true, false)
     $('input[name="check"]').prop('checked', checked);
   });
-  
+
   $('input[name="check"]').change(function () {
     var boxLength = $('input[name="check"]').length;
     // 체크된 체크박스 갯수를 확인하기 위해 :checked 필터를 사용하여 체크박스만 선택한 후 length 프로퍼티를 확인
     var checkedLength = $('input[name="check"]:checked').length;
     var selectAll = (boxLength == checkedLength);
-  
+
     $('#all_checkbox').prop('checked', selectAll);
   });
 
-/* 이메일 선택 */  
+/* 이메일 선택 */
   function selectEmail(){
     $("#select_email option:selected").each(function () {
     if($(this).val()== '1'){ //직접입력일 경우
         $("#email_text").val('');
-        $("#email_text").attr("disabled",false);
-    }else{ 
+        $("#email_text").attr("readonly",false);
+    }else{
         $("#email_text").val($(this).text());
-        $("#email_text").attr("disabled",true);
+        $("#email_text").attr("readonly",true);
     }
     });
 };
@@ -76,7 +76,7 @@ function  execDaumPostcode() {
                 }
                 // 조합된 참고항목을 해당 필드에 넣는다.
                 document.getElementById("extraAddress").value = extraAddr;
-            
+
             } else {
                 document.getElementById("extraAddress").value = '';
             }

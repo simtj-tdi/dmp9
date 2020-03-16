@@ -4,6 +4,8 @@
 namespace App\Repositories;
 
 
+use App\Tax;
+
 class TaxRepository implements TaxRepositoryInterface
 {
     public function all()
@@ -18,7 +20,7 @@ class TaxRepository implements TaxRepositoryInterface
 
     public function create($request)
     {
-
+        tax::create($request);
     }
 
     public function update($request, $id)

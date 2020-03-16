@@ -71,7 +71,7 @@
                     <button name="btn" id="personal" type="button">개인으로 가입하기</button>
                 </div>
 
-                <form method="get" name="sign_up"  action="{{ route('register') }}">
+                <form method="GET" name="sign_up"  action="{{ route('register') }}">
                     @csrf
                     <input type="hidden" name="type" value="">
                 </form>

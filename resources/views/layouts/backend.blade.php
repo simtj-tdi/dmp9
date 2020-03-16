@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sign.css') }}">
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
@@ -189,6 +191,7 @@
 <script src="{{ asset('js/sidenav.js') }}"></script>
 <script src="{{ asset('js/swiper.js') }}"></script>
 <script src="{{ asset('js/function.js') }}"></script>
+<script src="{{ asset('js/sign_up.js') }}"></script>
 
 </body>
 

@@ -7,6 +7,8 @@ interface UserRepositoryInterface
 
     public function makePassword($password);
 
+    public function create($request);
+
     public function update($request);
 
     public function password_check($request);

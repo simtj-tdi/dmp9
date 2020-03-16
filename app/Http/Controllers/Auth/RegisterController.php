@@ -3,16 +3,27 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Repositories\TaxRepositoryInterface;
+use App\Repositories\UserRepositoryInterface;
 use Illuminate\Auth\Events\Registered;
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::INDEX;
+
+    private $userRepository;
+    private $taxRepository;
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -26,11 +37,13 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
-     * Show the application registration form.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(UserRepositoryInterface $userRepository, TaxRepositoryInterface $taxRepository)
+    {
+        $this->middleware('guest');
+        $this->userRepository = $userRepository;
+        $this->taxRepository = $taxRepository;
+    }
+
     public function showRegistrationForm(Request $request)
     {
 
@@ -43,15 +56,12 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function register(Request $request)
+
+    public function register(RegisterRequest $request)
     {
-        $this->validator($request->all())->validate();
+
+        $request['email'] = $request['email_id'].'@'.$request['email_text'];
+        $request['phone'] = $request['phone_1'].'-'.$request['phone_2'].'-'.$request['phone_3'];
 
         event(new Registered($user = $this->create($request->all())));
 
@@ -61,50 +71,19 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::INDEX;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        $users = $this->userRepository->create($data);
+
+        if ($data['type'] == "company") {
+            $path = explode('/', $data['tax_img']->store('tax/'.$data['user_id']));
+
+            $data['user_id'] = $users['id'];
+            $data['tax_img'] = $path[2];
+            $this->taxRepository->create($data);
+        }
+
+        return $users;
     }
 }

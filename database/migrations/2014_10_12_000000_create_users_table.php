@@ -15,14 +15,17 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('user_id')->unique()->comment('user_id');
+            $table->string('name')->comment('이름');
             $table->string('password');
+            $table->string('email')->comment('이메일');
+            $table->string('phone')->comment('전화번호');;
+            $table->string('company_name')->comment('회사명');;
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
-            $table->enum('role',  ['user', 'manager', 'admin'])->default('user');
-            $table->boolean('approved')->default(false);
-            $table->timestamp('approved_at')->nullable();
+            $table->enum('role',  ['user', 'manager', 'admin'])->default('user')->comment('role');;
+            $table->boolean('approved')->default(false)->comment('승인여부');
+            $table->timestamp('approved_at')->nullable()->comment('승인수정일');
             $table->timestamps();
         });
     }

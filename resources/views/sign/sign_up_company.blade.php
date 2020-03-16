@@ -1,9 +1,13 @@
 @extends('layouts.sign')
 
 @prepend('scripts')
+    function maxLengthCheck(object){
+        if (object.value.length > object.maxLength){
+            object.value = object.value.slice(0, object.maxLength);
+        }
+    }
+
     $(function() {
-
-
         $("button[name=id_check_btn]").click(function() {
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -27,7 +31,6 @@
                     }
                 }
             });
-            console.log(check_list);
         });
 
         $("[name=password_confirmation]").keyup(function(){
@@ -45,60 +48,66 @@
         });
 
         $("button[name=btn_submit]").click(function() {
-            if ($("input[name=id_check]") == "no") {
+            if ($("input[name=id_check]").val() == "no") {
+                alert('아이디 중복확인 해주세요.');
                 return false;
             }
-            if ($("input[name=password_check]") == "no") {
-                return false;
-            }
-
-            if ($("input[name=user_id]") == "") {
-                return false;
-            }
-
-            if ($("input[name=password]") == "") {
+            if ($("input[name=password_check]").val() == "no") {
+                alert('비밀번호가 일치하지 않습니다');
                 return false;
             }
 
-            if ($("input[name=password_confirmation]") == "") {
+            if ($("input[name=user_id]").val() == "") {
+                alert('아이디를 입력하세요.');
                 return false;
             }
 
-            if ($("input[name=password_confirmation]") == "") {
+            if ($("input[name=password]").val() == "") {
+                alert('비밀번호를 입력하세요.');
                 return false;
             }
 
-            if ($("input[name=password_confirmation]") == "") {
+            if ($("input[name=password_confirmation]").val() == "") {
+                alert('비밀번호 확인을 입력하세요.');
                 return false;
             }
 
-            if ($("input[name=name]") == "") {
+            if ($("input[name=name]").val() == "") {
+                alert('이름을 입력하세요.');
                 return false;
             }
 
-            if ($("input[name=company_name]") == "") {
+            if ($("input[name=company_name]").val() == "") {
+                alert('회사명을 입력하세요.');
                 return false;
             }
 
-            if ($("input[name=email_id]") == "") {
+            if ($("input[name=email_id]").val() == "") {
+                alert('이메일을 입력하세요.');
                 return false;
             }
 
-            if ($("input[name=email_text]") == "") {
+            if ($("input[name=email_text]").val() == "") {
+                alert('이메일을 입력하세요.');
                 return false;
             }
 
-            if ($("input[name=phone_1]") == "") {
-                 return false;
-            }
-
-            if ($("input[name=phone_2]") == "") {
+            if ($("input[name=phone_1]").val() == "") {
+                alert('전화번호를 입력하세요.');
                 return false;
             }
 
-            if ($("input[name=phone_3]") == "") {
+            if ($("input[name=phone_2]").val() == "") {
+                alert('전화번호를 입력하세요.');
                 return false;
             }
+
+            if ($("input[name=phone_3]").val() == "") {
+                alert('전화번호를 입력하세요.');
+                return false;
+            }
+
+            $("form[name=user]").submit();
         });
     });
 @endprepend
@@ -116,8 +125,9 @@
                         <h1>회원가입</h1>
                     </div>
                     <div class="input_box">
-                        <form name="user" method="post" action="">
+                        <form name="user" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="type" value="{{ request()->query('type') }}">
                             <input type="hidden" name="id_check" value="no">
                             <input type="hidden" name="password_check" value="no">
 
@@ -155,7 +165,7 @@
                                 <div class="form-inline mail">
                                     <div>
                                         <input type="text" class="email_id form-control" name="email_id" id="email_id">
-                                        <input type="text" class="email_text form-control" name="email_text" id="email_text" disabled value="naver.com">
+                                        <input type="text" class="email_text form-control" name="email_text" id="email_text" readonly  value="naver.com">
                                         <select class="form-control" id="select_email" onchange="selectEmail()">
                                             <option value="1">직접입력</option>
                                             <option value="naver.com" selected>naver.com</option>
@@ -186,8 +196,8 @@
                                         <option>018</option>
                                         <option>019</option>
                                     </select>
-                                    <input type="number" name="phone_2" class="phone form-control" placeholder="">
-                                    <input type="number" name="phone_3" class="phone form-control" placeholder="">
+                                    <input type="number" name="phone_2" maxlength="4" class="phone form-control" placeholder="" oninput="maxLengthCheck(this)">
+                                    <input type="number" name="phone_3" maxlength="4" class="phone form-control" placeholder="" oninput="maxLengthCheck(this)">
                                 </div>
                             </div>
 
@@ -217,6 +227,7 @@
                                     <label for="file_name" class="form-control business_btn">업로드</label>
                                     <input type="file" id="file_name" name="tax_img" class="upload_hidden">
                                     <small class="form-text text-muted ml-2"  style="display: none;">사진용량 제한</small>
+
                                 </div>
                             </div>
                             <div class="input-group">

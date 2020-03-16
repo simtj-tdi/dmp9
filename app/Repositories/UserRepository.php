@@ -22,6 +22,17 @@ class UserRepository implements UserRepositoryInterface
         return $password;
     }
 
+    public function create($request)
+    {
+        return user::create([
+            'user_id' => $request['user_id'],
+            'name' => $request['name'],
+            'password' => Hash::make($request['password']),
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'company_name' => $request['company_name'],
+        ]);
+    }
 
     public function update($request)
     {
