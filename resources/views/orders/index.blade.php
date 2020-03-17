@@ -211,17 +211,7 @@
                 </td>
                 <td>
                     <ul>
-                        @foreach(explode(',', $order->data_types) as $type)
-                            @if ($type === 'naver')
-                                <li><img src="/img/icon_naver.png" alt="네이버 아이콘"/></li>
-                            @elseif ($type === 'instagram')
-                                <li><img src="/img/icon_instar.png" alt="인스타 아이콘"/></li>
-                            @elseif ($type === 'facebook')
-                                <li><img src="/img/icon_facebook.png" alt="페이스북 아이콘"/></li>
-                            @elseif ($type === 'kakao')
-                                <li><img src="/img/icon_kakao.png" alt="카카오 아이콘"/></li>
-                            @endif
-                        @endforeach
+
                     </ul>
                 </td>
                 <td>{{ $order->data_name }}</td>

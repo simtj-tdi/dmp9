@@ -8,16 +8,6 @@
 
                     <div class="card-body">
 
-
-
-                        <div class="form-group row">
-                            <label for="title" class="col-md-4 col-form-label text-md-right">광고형태</label>
-
-                            <div class="col-md-6">
-                                {{ $order->types }}
-                            </div>
-                        </div>
-
                         <div class="form-group row">
                             <label for="content" class="col-md-4 col-form-label text-md-right">데이터명</label>
 

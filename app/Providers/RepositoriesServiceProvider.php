@@ -8,10 +8,14 @@ use App\Repositories\FaqRepository;
 use App\Repositories\FaqRepositoryInterface;
 use App\Repositories\GoodsRepository;
 use App\Repositories\GoodsRepositoryInterface;
+use App\Repositories\OptionRepository;
+use App\Repositories\OptionRepositoryInterface;
 use App\Repositories\OrderRepository;
 use App\Repositories\OrderRepositoryInterface;
 use App\Repositories\PaymentRepository;
 use App\Repositories\PaymentRepositoryInterface;
+use App\Repositories\PlatformRepository;
+use App\Repositories\PlatformRepositoryInterface;
 use App\Repositories\QuestionRepository;
 use App\Repositories\QuestionRepositoryInterface;
 use App\Repositories\TaxRepository;
@@ -47,6 +51,7 @@ class RepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(TaxRepositoryInterface::class, TaxRepository::class);
         $this->app->bind(GoodsRepositoryInterface::class, GoodsRepository::class);
         $this->app->bind(CartRepositoryInterface::class, CartRepository::class);
-
+        $this->app->bind(PlatformRepositoryInterface::class, PlatformRepository::class);
+        $this->app->bind(OptionRepositoryInterface::class, OptionRepository::class);
     }
 }

@@ -55,9 +55,6 @@ class RegisterRequest extends FormRequest
                 'tax_addres_2' => ['required', 'string', 'max:255'],
             ];
         }
-
-
-
     }
 
     public function validationData()
@@ -67,7 +64,5 @@ class RegisterRequest extends FormRequest
             'phone' => $this->phone_1.'-'.$this->phone_2.'-'.$this->phone_3,
         ]);
     }
-
-
 
 }

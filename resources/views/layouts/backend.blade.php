@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sign.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/data_up_load.css') }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
@@ -42,7 +42,7 @@
                 location.href = 'https://www.google.co.kr/chrome/index.html'
             }
         }
-        @stack('scripts')
+
     </script>
 
 </head>
@@ -192,7 +192,47 @@
 <script src="{{ asset('js/swiper.js') }}"></script>
 <script src="{{ asset('js/function.js') }}"></script>
 <script src="{{ asset('js/sign_up.js') }}"></script>
+<script>
+    /*질문하기,문의하기 ul 클릭 토글*/
+    $(".toggle_tr").on('click', function(){
+        $(this).parent().next('tr').toggle();
+    });
 
+    $(".explanation_td").hover(function(){
+        $(this).children(".explanation_box").toggle();
+    });
+
+    /* 모두체크 */
+    $('#all_checkbox').on("change", function(){
+        var checked = $(this).prop('checked'); // checked 문자열 참조(true, false)
+        $('input[name="check"]').prop('checked', checked);
+    });
+
+    $('input[name="check"]').change(function () {
+        var boxLength = $('input[name="check"]').length;
+        // 체크된 체크박스 갯수를 확인하기 위해 :checked 필터를 사용하여 체크박스만 선택한 후 length 프로퍼티를 확인
+        var checkedLength = $('input[name="check"]:checked').length;
+        var selectAll = (boxLength == checkedLength);
+
+        $('#all_checkbox').prop('checked', selectAll);
+    });
+
+    /*데이터 요청 글쓰기 클릭 모달*/
+    function addRequestData() {
+        $("#request_data").show();
+    }
+    function addRequestDataDisNone() {
+        $("#request_data").hide();
+    }
+    /*데이터 등록 글쓰기 클릭 모달*/
+    function addData() {
+        $("#add_data").show();
+    }
+    function addDataDisNone() {
+        $("#add_data").hide();
+    }
+</script>
+@stack('scripts')
 </body>
 
 </html>

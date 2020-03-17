@@ -1,4 +1,4 @@
-
+.sign_up .inner {width: 620px !important;}
 .but_box {text-align: center;}
 .but_box button {
   width: 200px;
@@ -30,7 +30,6 @@
 
 /*sign_up 회사 가입 */
 .sign_up .inner{
-  width: 36%;
   padding: 40px;
   margin: 0 auto;
 }
@@ -40,7 +39,7 @@
 .sign_up .input_box {margin: 2rem 0;}
 .sign_up .input-group {margin-bottom: 5px;}
 .sign_up .input-group label {
-  width: 200px;
+  width: 170px;
   align-items: center;
   padding: .438rem .875rem;
   margin-bottom: 0;
@@ -77,8 +76,9 @@
   color: #ce0101;
 }
 
-.sign_up .input_box .phone_box {width: 66.9%;}
-.sign_up .input_box .phone {width: 32%;}
+.sign_up .input_box .phone_box {width: 68%;}
+.sign_up .input_box .phone_box select {width: 32%; margin-left: 5px;}
+.sign_up .input_box .phone_box input {width: 32%; margin-left: 4px;}
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -86,15 +86,13 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
   }
 
-.sign_up .input_box .mail {width: 66.9%;}
+.sign_up .input_box .mail {width: 68%;}
 .sign_up .input_box .mail input:first-child {margin-left: 5px;}
 .sign_up .input_box .mail input,
 .sign_up .input_box .mail select {width: 32%; margin-left: 0;}
 
-
 /* 세금계산서 */
 .tax_bill .inner{
-  width: 36%;
   padding: 40px;
   margin: 0 auto;
 }
@@ -104,7 +102,6 @@ input[type="number"]::-webkit-inner-spin-button {
 .tax_bill .input_box {margin: 2rem 0;}
 .tax_bill .input-group {margin-bottom: 5px;}
 .tax_bill .input-group label {
-  width: 200px;
   align-items: center;
   padding: .438rem .875rem;
   margin-bottom: 0;
@@ -118,12 +115,12 @@ input[type="number"]::-webkit-inner-spin-button {
   background: #fff;
 }
 
-.tax_bill .input_box .form-control {
+/* .tax_bill .input_box .form-control {
   border: 1px solid rgba(24,28,33,0.15);
   border-radius: 5px;
   margin-left: 5px;
   background-color: #fff;
-}
+} */
 
 .tax_bill .upload_hidden, .detail_upload_hidden {
   position: absolute;

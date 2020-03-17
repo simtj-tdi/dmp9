@@ -13,7 +13,6 @@ class Goods extends Model
         return [
             'user_id' => $this->user,
             'advertiser' => $this->advertiser,
-            'data_types' => $this->data_types,
             'data_target' => $this->data_target,
             'data_name' => $this->data_name,
             'data_category' => $this->data_category,

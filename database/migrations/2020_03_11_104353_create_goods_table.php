@@ -17,7 +17,6 @@ class CreateGoodsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->comment("id");
             $table->string('advertiser')->comment("광고주");
-            $table->string('data_types')->comment("광고형태");
             $table->string('data_target')->comment("타겟 유형");
             $table->string('data_name')->comment("데이터항목");
             $table->string('data_category')->comment("데이터항목");

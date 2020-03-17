@@ -66,3 +66,9 @@ function addWritingDisNone() {
   $("#add_writing").hide();
 }
 
+function addWriting1() {
+    $("#add_writing1").show();
+}
+function addWritingDisNone1() {
+    $("#add_writing1").hide();
+}

@@ -48,12 +48,12 @@ class PaymentsController extends Controller
         $goods = $this->goodsRepository->findByIds($request_data->ids);
 
         if ($goods->isEmpty()) {
-            // 에러 처리 (없는 상품 및 잘못된 상품)
+            // todo 에러 처리 (없는 상품 및 잘못된 상품)
             dd();
         }
 
         if ($request_data->total_price != $goods->sum('buy_price')) {
-            // 에러 처리 (가격이 다를 경우)
+            // todo 에러 처리 (가격이 다를 경우)
             dd();
         }
 

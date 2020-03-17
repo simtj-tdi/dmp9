@@ -85,7 +85,7 @@
 
 
 /*mydata_main 모달 스타일*/
-#add_writing {display: none;}
+#add_writing1 {display: none;}
 .mydata_main .overlay-wrap .writing_wrap {width: 100%; height: 100%; position: relative;}
 .mydata_main .overlay-wrap .writing_wrap .writing_box {
     width: 868px;

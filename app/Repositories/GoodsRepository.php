@@ -32,7 +32,6 @@ class GoodsRepository implements GoodsRepositoryInterface
 
     public function create($request)
     {
-        $request['data_types'] = implode(',', $request->data_types);
         $goods = auth()->user()->goods()->create($request->toArray());
 
         return $goods;

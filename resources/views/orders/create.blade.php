@@ -9,21 +9,7 @@
                         <form method="POST" action="{{ route('orders.store') }}">
                             @csrf
 
-                            <div class="form-group row">
-                                <label for="title" class="col-md-4 col-form-label text-md-right">광고형태</label>
 
-                                <div class="col-md-6">
-                                    <input type="checkbox" class="form-control" name="data_types[]" value="naver">naver
-                                    <input type="checkbox" class="form-control" name="data_types[]" value="instagram">instagram
-                                    <input type="checkbox" class="form-control" name="data_types[]" value="facebook">facebook
-                                    <input type="checkbox" class="form-control" name="data_types[]" value="kakao">kakao
-                                    @error('types')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
                             <div class="form-group row">
                                 <label for="content" class="col-md-4 col-form-label text-md-right">데이터명</label>
 
