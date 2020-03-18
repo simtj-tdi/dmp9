@@ -10,5 +10,11 @@ interface OptionRepositoryInterface
 
     public function findById($id);
 
-    public function findByCartId($cart_id);
+    public function findByCartIdCount($cart_id);
+
+    public function crateOption($request);
+
+    public function updateOption($request, $id);
+
+    public function stataUpdate($id);
 }

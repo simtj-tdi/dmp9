@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tax::class);
     }
+
+    public function options()
+    {
+        return $this->hasMany(Option::class);
+    }
 }

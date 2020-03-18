@@ -58,6 +58,7 @@ class PaymentsController extends Controller
         }
 
         // PG 데이터 생성
+        $pay_data['count'] = $request_data->total_count ;
         $pay_data['amount'] = $request_data->total_price ;
         $pay_data['product_name'] = ($goods->count() > 1) ?
                                             $goods[0]->data_name ."외 ". ((int)$goods->count()-1) . "개" :

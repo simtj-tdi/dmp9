@@ -50,8 +50,11 @@
     background: #f18f8f;
 }
 
-.data_up_load .item .form-control {min-width: 220px;}
-.data_up_load .item .label_control {min-width: 120px !important;}
+.data_up_load .item .form-control {width: 235px;}
+.data_up_load .item .label_control {width: 160px !important;}
+.data_up_load .item .login_control {width: 100px !important;}
+.data_up_load .item .btn_control {width: 100px !important;}
+.data_up_load .item .value_control {width: 170px !important;}
 
 .data_up_load .explanation_td {
     position: relative;

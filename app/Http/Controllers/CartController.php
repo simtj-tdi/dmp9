@@ -19,7 +19,6 @@ class CartController extends Controller
     public function index()
     {
         $carts = $this->cartRepository->all();
-
         $platforms = $this->platformRepository->all();
 
         return view('carts.index', compact('carts', 'platforms'));

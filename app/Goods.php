@@ -16,6 +16,7 @@ class Goods extends Model
             'data_target' => $this->data_target,
             'data_name' => $this->data_name,
             'data_category' => $this->data_category,
+            'data_request' => $this->data_request,
             'data_content' => $this->data_content,
             'data_count' => $this->data_count,
             'buy_price' => $this->buy_price,

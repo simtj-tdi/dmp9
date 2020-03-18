@@ -4,15 +4,143 @@
     <script>
 
         $(function() {
+            $("body").delegate("[name=sns_save]", "click", function(){
 
-            $("select[name=select_data_types]").change(function() {
-                //alert($(this).val());
-                //alert($(this).data("tr"));
-                if ($(this).val()) {
-                    $(this).parent().parent().next('tr').show();
-                    $("td[name="+$(this).data("tr")+"]").prepend("<div class=\"item mb-1\"><div class=\"form-inline\"><div class=\"form-inline\"><p class=\"form-control label_control\">"+$(this).val()+"</p><p class=\"form-control\">https://ads.google.com</p></div><div class=\"input_control form-inline\"><label class=\"form-control label_control\">아이디</label><input type=\"text\" class=\"form-control\" value=\"abs@aasaa.com\"></div><div class=\"input_control form-inline\"><label class=\"form-control label_control\">비밀번호</label><input type=\"password\" class=\"form-control\" value=\"1234\"></div><div><button type=\"button\" class=\"form-control label_control\">수정</button></div><div><button type=\"button\" class=\"form-control label_control\">업로드 요청</button></div></div></div>");
+                if ($(this).parent().parent().find("input[name=sns_id]").val() == "") {
+                    alert('아이디를 입력 하세요.');
+                    return
                 }
 
+                if ($(this).parent().parent().find("input[name=sns_password]").val() == "") {
+                    alert('패스워드를 입력 하세요.');
+                    return
+                }
+
+                var data = new Object();
+                data.option_id = $(this).data("option_id");
+                data.platform_id = $(this).data("platform_id");
+                data.cart_id = $(this).data("cart_id");
+                data.sns_id = $(this).parent().parent().find("input[name=sns_id]").val();
+                data.sns_password = $(this).parent().parent().find("input[name=sns_password]").val();
+                var jsonData = JSON.stringify(data);
+
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('Option.save') }}",
+                    method: "POST",
+                    dataType: "json",
+                    data: {'data': jsonData},
+                    success: function (data) {
+                        var JSONArray = JSON.parse(JSON.stringify(data));
+
+                        if (JSONArray['result'] == "success") {
+                            alert('등록 되었습니다.');
+                            location.reload();
+                        };
+                    },
+                    error: function () {
+                        alert("Error while getting results");
+                    }
+                });
+            });
+
+            $("body").delegate("[name=sns_request]", "click", function(){
+                if ($(this).parent().parent().find("input[name=sns_id]").val() == "") {
+                    alert('아이디를 입력 하세요.');
+                    return
+                }
+
+                if ($(this).parent().parent().find("input[name=sns_password]").val() == "") {
+                    alert('패스워드를 입력 하세요.');
+                    return
+                }
+
+                if (!$(this).data("option_id")) {
+                    alert('아이디, 패스워드를 저장 후 데이터 요청이 가능합니다.');
+                }
+
+                var data = new Object();
+                data.option_id = $(this).data("option_id");
+                var jsonData = JSON.stringify(data);
+
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('Option.updateload') }}",
+                    method: "POST",
+                    dataType: "json",
+                    data: {'data': jsonData},
+                    success: function (data) {
+                        var JSONArray = JSON.parse(JSON.stringify(data));
+
+                        if (JSONArray['result'] == "success") {
+                            alert('업로드 요청 되었습니다.');
+                            location.reload();
+                        };
+                    },
+                    error: function () {
+                        alert("Error while getting results");
+                    }
+                });
+            });
+
+
+            $("select[name=select_data_types]").change(function() {
+                var data = new Object();
+                var select_data = $(this);
+                var select_tr = $(this).data("tr");
+                var cart_id = $(this).data("cart");
+                data.goods_id = $(this).data("goods");
+                data.cart_id = $(this).data("cart");
+                data.platform_id = $(this).val();
+
+                var jsonData = JSON.stringify(data);
+
+                if ($(this).val()) {
+
+                    if ($("td[name="+select_tr+"] > div").length+1 > $(this).data("request")) {
+                        alert($(this).data("request")+'회 까지 요청 할 수 있습니다.');
+                        return false;
+                    }
+
+                    $.ajax({
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        url: "{{ route('Option.add') }}",
+                        method: "POST",
+                        dataType: "json",
+                        data: {'data': jsonData},
+                        success: function (data) {
+                            var JSONArray = JSON.parse(JSON.stringify(data));
+
+                            if (JSONArray['result'] == "success") {
+                                select_data.parent().parent().next('tr').show();
+                                $("td[name="+select_tr+"]").prepend("" +
+                                    "<div class=\"item mb-1\">" +
+                                    "<div class=\"form-inline\">" +
+                                    "<div class=\"form-inline\">" +
+                                    "<p class=\"form-control label_control \">"+JSONArray['platform_info']['name']+"</p>" +
+                                    "<p class=\"form-control\">"+JSONArray['platform_info']['url']+"</p>" +
+                                    "</div>" +
+                                    "<div class=\"input_control form-inline\">" +
+                                    "<label class=\"form-control login_control\">아이디</label><input type=\"text\" class=\"form-control value_control\" name=\"sns_id\" value=\"\">" +
+                                    "</div>" +
+                                    "<div class=\"input_control form-inline\">" +
+                                    "<label class=\"form-control login_control\">비밀번호</label><input type=\"password\" class=\"form-control value_control\" name=\"sns_password\" value=\"\">" +
+                                    "</div>" +
+                                    "<div>" +
+                                    "<button type=\"button\" class=\"form-control btn_control\"  name=\'sns_save\' data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\" >수정</button>" +
+                                    "</div>" +
+                                    "<div>" +
+                                    "<button type=\"button\" class=\"form-control btn_control\" name=\"sns_request\">업로드 요청</button>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>");
+                            }
+                        },
+                        error: function () {
+                            alert("Error while getting results");
+                        }
+                    });
+                }
             });
 
             $("input[name=sel]").click(function() {
@@ -60,9 +188,11 @@
             $(".new_buy").click(function() {
 
                 var ids = new Array();
+                var total_count=0;
                 var total_price=0;
                 $("input[name=sel]:checked").each(function() {
                     ids.push($(this).val());
+                    total_count += $(this).data("count");
                     total_price += $(this).data("price");
                 });
 
@@ -73,9 +203,9 @@
                 if (ids.length > 0) {
                     var data = new Object() ;
                     data.ids = ids;
+                    data.total_count = total_count;
                     data.total_price = total_price;
                     var jsonData = JSON.stringify(data);
-                    //console.log(jsonData);
 
                     $.ajax({
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -120,6 +250,7 @@
                     <col width="20px">
                     <col width="20px">
                     <col width="20px">
+                    <col width="25px">
                     <col width="20px">
                     <col width="10px">
                 </colgroup>
@@ -137,6 +268,7 @@
                     <th>구매가격</th>
                     <th>구매일</th>
                     <th>유효기간</th>
+                    <th>요청횟수</th>
                     <th>대상 플랫폼</th>
                     <th>상태</th>
                     <th></th>
@@ -166,8 +298,9 @@
                         </td>
                         <td>{{ $cart->buy_date }}</td>
                         <td>{{ $cart->goods->expiration_date }}</td>
+                        <td>{{ $cart->goods->data_request }}</td>
                         <td>
-                            <select class="select_control" name="select_data_types" data-tr="td_{{ $cart->id }}" {{ $cart->state == 3 ? 'disabled' : '' }}>
+                            <select class="select_control" name="select_data_types" data-request="{{ $cart->goods->data_request }}" data-goods="{{ $cart->goods_id }}" data-cart="{{ $cart->id }}" data-tr="td_{{ $cart->id }}" {{ $cart->state == 3 ? 'disabled' : '' }}>
                                 <option value="">선택</option>
                                 @foreach($platforms as $platform)
                                     <option value="{{ $platform['platform_id'] }}">{{ $platform['name'] }}</option>
@@ -192,9 +325,41 @@
                         </td>
                     </tr>
 
-                    <tr class="toggle_dropdown_tr">
-                        <td colspan="10" name="td_{{ $cart->id }}">
 
+                    <tr class="toggle_dropdown_tr">
+                        <td colspan="11" name="td_{{ $cart->id }}">
+                            @if (!$cart->options->isEmpty())
+                                @foreach($cart->options as $option)
+                                    <div class="form-inline">
+                                        <div class="form-inline">
+                                            <p class="form-control label_control">{{$option->platform['name']}}</p>
+                                            <p class="form-control">{{$option->platform['url']}}</p>
+                                        </div>
+
+                                        <div class="input_control form-inline">
+                                            <label class="form-control login_control">아이디</label>
+                                            <input type="text" class="form-control value_control" name="sns_id" value="{{$option->sns_id}}">
+                                        </div>
+                                        <div class="input_control form-inline">
+                                            <label class="form-control login_control">비밀번호</label>
+                                            <input type="password" class="form-control value_control" name="sns_password" value="{{$option->sns_password}}">
+                                        </div>
+                                        <div>
+                                            <button type="button" class="form-control btn_control"  name='sns_save' data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">수정</button>
+                                        </div>
+                                        <div>
+                                            @if ($option->state == "1")
+                                                <button type="button" class="form-control btn_control" name='sns_request' data-option_id="{{$option->id}}">데이터 요청</button>
+                                            @elseif ($option->state == "2")
+                                                <button type="button" class="form-control btn_control" >업로드중</button>
+                                            @elseif ($option->state == "3")
+                                                <button type="button" class="form-control btn_control" >업로드완료</button>
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </td>
                     </tr>
                 @endforeach

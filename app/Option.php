@@ -8,6 +8,10 @@ class Option extends Model
 {
     protected $guarded = [];
 
+    CONST STATE_1 = 1;      // 요청중
+    CONST STATE_2 = 2;      // 업로드중
+    CONST STATE_3 = 3;      // 업로드완료
+
     public function format()
     {
         return [
@@ -19,4 +23,10 @@ class Option extends Model
             'state' => $this->state
         ];
     }
+
+    public function platform()
+    {
+        return $this->belongsTo(Platform::class);
+    }
+
 }

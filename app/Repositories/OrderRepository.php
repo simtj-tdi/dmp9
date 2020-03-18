@@ -9,10 +9,12 @@ class OrderRepository implements OrderRepositoryInterface
 {
     public function all()
     {
-        $order = order::order('id', 'desc')
-            ->paginte(5);
+        $orders = auth()->user()->orders()
+            ->orderBy('id', 'desc')
+            ->get()
+            ->map->format();
 
-        $order->getCollection()->map->format();
+        return $orders;
     }
 
     public function findById($id)
@@ -25,8 +27,11 @@ class OrderRepository implements OrderRepositoryInterface
     public function create($order_no, $pay_data)
     {
         $order['order_no'] = $order_no;
+        $order['order_name'] = $pay_data['product_name'];
         $order['goods_info'] = $pay_data['goods_info'];
         $order['state'] = order::STATE_1;
+        $order['tax_state'] = order::TAX_STATE_1;
+        $order['total_count'] = $pay_data['count'];
         $order['total_price'] = $pay_data['amount'];
         auth()->user()->orders()->create($order);
     }

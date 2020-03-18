@@ -22,6 +22,7 @@ class Cart extends Model
             'order_id' => $this->order_id,
             'state' => $this->state,
             'buy_date' => $this->buy_date,
+            'options_id' => $this->options,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
@@ -35,6 +36,11 @@ class Cart extends Model
     public function goods()
     {
         return $this->belongsTo(Goods::class);
+    }
+
+    public function options()
+    {
+        return $this->hasMany(Option::class)->orderBy('id','desc');
     }
 
     public function getMarkPriceAttribute()

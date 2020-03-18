@@ -44,6 +44,11 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     Route::resource('goods' , 'GoodsController');
     Route::resource('carts' , 'CartController');
 
+    // 마이데이터 플랫폼(option)
+    Route::post('/ajaxOptionAdd','OptionController@optionAdd')->name('Option.add');
+    Route::post('/ajaxOptionSave','OptionController@optionSave')->name('Option.save');
+    Route::post('/ajaxOptionUploadRequest','OptionController@optionUploadRequest')->name('Option.updateload');
+
     // payment
     Route::post('/ajaxPayRequest', 'PaymentsController@payRequest')->name('Payments.payrequest');
     Route::post('/ajaxPayReturn', 'PaymentsController@payReturn')->name('Payments.payreturn');
@@ -66,6 +71,8 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     Route::post('users/confirm_check', 'UserController@confirm_check')->name('confirm_check');
     Route::get('users/my_show', 'UserController@my_show')->name('my_show');
     Route::post('users/my_update', 'UserController@my_update')->name('my_update');
+
+    Route::get('orders/history', 'OrderController@history')->name('orders_history');
 
     // payment_test_page
     Route::get('/payment', function () {

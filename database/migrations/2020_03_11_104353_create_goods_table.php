@@ -20,6 +20,7 @@ class CreateGoodsTable extends Migration
             $table->string('data_target')->comment("타겟 유형");
             $table->string('data_name')->comment("데이터항목");
             $table->string('data_category')->comment("데이터항목");
+            $table->string('data_request')->nullable()->comment("데이터요청횟수");
             $table->text('data_content')->nullable()->comment("설명");
             $table->integer('data_count')->nullable()->comment("데이터수");
             $table->integer('buy_price')->nullable()->comment("구매가격");
