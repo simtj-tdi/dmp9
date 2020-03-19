@@ -38,20 +38,52 @@
                     <td></td>
                     <td>{{$order['tax_state']}}</td>
                 </tr>
-                <tr class="toggle_dropdown_tr">
+                <tr class="toggle_dropdown_tr" >
                     <td colspan="6">
-                        {{$order['goods_info']}}
-                        <div class="form-inline">
-                            <div class="form-inline">
-                                <p class="form-control label_control"></p>
-                                <p class="form-control"></p>
-                            </div>
-
-                            <div class="input_control form-inline">
-                                <label class="form-control login_control">아이디</label>
-                                <input type="text" class="form-control value_control" name="sns_id" value="">
-                            </div>
-                        </div>
+                        <table class="table">
+                            <colgroup>
+                                <col width="150px">
+                                <col width="150px">
+                                <col width="150px">
+                                <col width="150px">
+                                <col width="150px">
+                                <col width="150px">
+                                <col width="150px">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>광고주</th>
+                                <th>타겟 유형</th>
+                                <th>데이터 명</th>
+                                <th>데이터 항목</th>
+                                <th>데이터<br/>추출수</th>
+                                <th>구매가격</th>
+                                <th>유효기간</th>
+                            </tr>
+                            @foreach(json_decode($order['goods_info']) as $goods)
+                            <tr>
+                                <td>{{ $goods->advertiser }}</td>
+                                <td>
+                                    @if ($goods->data_target === "app")
+                                        App
+                                    @elseif ($goods->data_target === "local")
+                                        위치
+                                    @elseif ($goods->data_target === "applocal")
+                                        App + 위치
+                                    @elseif ($goods->data_target === "none")
+                                        유형없음
+                                    @endif
+                                    {{ $goods->data_target }}
+                                </td>
+                                <td>{{ $goods->data_name }}</td>
+                                <td>{{ $goods->data_category }}</td>
+                                <td>{{ $goods->data_count }}</td>
+                                <td>{{ $goods->buy_price }}</td>
+                                <td>{{ $goods->expiration_date }}</td>
+                            </tr>
+                            @endforeach
+                            </thead>
+                        </table>
                     </td>
                 </tr>
                 @endforeach

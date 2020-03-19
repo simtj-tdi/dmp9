@@ -116,7 +116,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="/orders/history" class="sidenav-link">
+                        <a href="/history" class="sidenav-link">
                             <div class="icon">
                                 <img src="/img/icon_sidenav_06.png" alt="충전 내역 아이콘" />
                             </div>

@@ -72,7 +72,7 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     Route::get('users/my_show', 'UserController@my_show')->name('my_show');
     Route::post('users/my_update', 'UserController@my_update')->name('my_update');
 
-    Route::get('orders/history', 'OrderController@history')->name('orders_history');
+    Route::get('/history', 'OrderController@history')->name('orders_history');
 
     // payment_test_page
     Route::get('/payment', function () {

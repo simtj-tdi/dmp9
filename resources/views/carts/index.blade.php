@@ -328,8 +328,10 @@
 
                     <tr class="toggle_dropdown_tr">
                         <td colspan="11" name="td_{{ $cart->id }}">
+
                             @if (!$cart->options->isEmpty())
                                 @foreach($cart->options as $option)
+                                    <div class="item mb-1">
                                     <div class="form-inline">
                                         <div class="form-inline">
                                             <p class="form-control label_control">{{$option->platform['name']}}</p>
@@ -358,8 +360,10 @@
 
                                         </div>
                                     </div>
+                                    </div>
                                 @endforeach
                             @endif
+
                         </td>
                     </tr>
                 @endforeach
