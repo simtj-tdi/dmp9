@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @prepend('scripts')
+    <script>
     $(function() {
         $('#btn').click(function() {
             var formSerializeArray = $('#form_pay').serializeArray();
@@ -26,6 +27,7 @@
             });
         });
     });
+    </script>
 @endprepend
 
 @section('content')

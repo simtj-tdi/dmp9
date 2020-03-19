@@ -1,6 +1,7 @@
 @extends('layouts.backend')
 
 @prepend('scripts')
+    <script>
     $(function() {
         $("input[name=sel]").click(function() {
             var total_count=0;
@@ -119,6 +120,7 @@
         });
 
     });
+    </script>
 @endprepend
 
 @section('content')

@@ -1,6 +1,7 @@
 @extends('layouts.sign')
 
 @prepend('scripts')
+    <script>
     function maxLengthCheck(object){
         if (object.value.length > object.maxLength){
             object.value = object.value.slice(0, object.maxLength);
@@ -110,6 +111,7 @@
             $("form[name=user]").submit();
         });
     });
+    </script>
 @endprepend
 
 @section('content')

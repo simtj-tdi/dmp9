@@ -36,6 +36,8 @@
                         if (JSONArray['result'] == "success") {
                             alert('등록 되었습니다.');
                             location.reload();
+                        } else if (JSONArray['result'] == "error") {
+                            alert(JSONArray['error_message']);
                         };
                     },
                     error: function () {
@@ -75,6 +77,8 @@
                         if (JSONArray['result'] == "success") {
                             alert('업로드 요청 되었습니다.');
                             location.reload();
+                        } else if (JSONArray['result'] == "error") {
+                            alert(JSONArray['error_message']);
                         };
                     },
                     error: function () {
@@ -134,7 +138,9 @@
                                     "</div>" +
                                     "</div>" +
                                     "</div>");
-                            }
+                            } else if (JSONArray['result'] == "error") {
+                                alert(JSONArray['error_message']);
+                            };
                         },
                         error: function () {
                             alert("Error while getting results");
@@ -215,15 +221,14 @@
                         data: {'data': jsonData},
                         success: function (data) {
                             if (data['error']) {
-                                var JSONArray = JSON.parse(data['error']);
-                                alert(JSONArray['message']);
+                                alert(data['message']);
                             } else {
                                 var JSONArray = JSON.parse(data['success']);
                                 window.open(JSONArray['online_url'],"페이레터","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
                             }
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            console.log('결제 실패');
+                            alert('결제 실패');
                         }
                     });
                 } else {
@@ -324,7 +329,6 @@
                             </div>
                         </td>
                     </tr>
-
 
                     <tr class="toggle_dropdown_tr">
                         <td colspan="11" name="td_{{ $cart->id }}">
@@ -438,6 +442,22 @@
                             <div class="form-group form-inline">
                                 <label>데이터 명</label>
                                 <input type="text" class="form-control data_input" name="data_name" placeholder="데이터 명 기입">
+                            </div>
+                            <div class="form-group form-inline">
+                                <label>데이터 업로드 횟수</label>
+                                <select class="data_wrap" name="data_request">
+                                    <option value=""></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
                             </div>
                             <div class="form-group form-inline">
                                 <label>데이터 항목</label>

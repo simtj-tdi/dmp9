@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         /*
          *  todo: 회원 수정
-         * */
+         */
         $request['password'] = $this->userRepository->makePassword($request['password']);
 
         $this->userRepository->update($request);
@@ -63,12 +63,9 @@ class UserController extends Controller
     // 회원가입-아이디체크
     public function id_check(Request $request)
     {
-
         $user_id = $this->userRepository->findByUserId($request->data);
-
         $result = response()->json(['result'=> $user_id], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
 
-        //dd($result);
         return $result;
     }
 

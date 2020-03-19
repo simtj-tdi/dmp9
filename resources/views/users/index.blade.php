@@ -1,6 +1,7 @@
 @extends('layouts.backend')
 
 @prepend('scripts')
+    <script>
     $(function() {
         $("#current_password").keydown(function(key) {
             if (key.keyCode == 13) {
@@ -8,6 +9,7 @@
             }
         });
     });
+    </script>
 @endprepend
 
 @section('content')

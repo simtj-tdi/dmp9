@@ -1,6 +1,7 @@
 @extends('layouts.sign')
 
 @prepend('scripts')
+    <script>
     $(function() {
         $("button[name=btn]").click(function(e) {
             var success = true;
@@ -20,8 +21,8 @@
             $("form[name=sign_up]").submit();
 
         });
-
     });
+    </script>
 @endprepend
 
 @section('content')

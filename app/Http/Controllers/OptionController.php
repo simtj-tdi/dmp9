@@ -61,9 +61,11 @@ class OptionController extends Controller
         $option_cnt = $this->optionRepository->findByCartIdCount($request_data->cart_id);
 
         if ($goods_info['data_request'] < $option_cnt || $goods_info['data_request'] == 0) {
-            // todo 에러 처리
-            dd('에러 처리');
-            return null;
+            $result['result'] = "error";
+            $result['error_message'] = "요청 횟수를 확인 해주세요.";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+
+            return $response;
         }
 
         $platform_info = $this->platformRepository->findById($request_data->platform_id);
@@ -86,9 +88,11 @@ class OptionController extends Controller
         }
 
         if (!$return_result) {
-            // todo 에러 처리
-            dd('에러 처리');
-            return null;
+            $result['result'] = "error";
+            $result['error_message'] = "등록되어 있는 대상 플랫폼이 없습니다.";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+
+            return $response;
         } else {
             $result['result'] = "success";
             $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
@@ -103,17 +107,21 @@ class OptionController extends Controller
         $option_info = $this->optionRepository->findById($request_data->option_id);
 
         if (!$option_info) {
-            // todo 에러 처리
-            dd('에러 처리');
-            return null;
+            $result['result'] = "error";
+            $result['error_message'] = "등록되어 있는 대상 플랫폼이 없습니다.";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+
+            return $response;
         } else {
             $return_result = $this->optionRepository->stataUpdate($request_data->option_id);
         }
 
         if (!$return_result) {
-            // todo 에러 처리
-            dd('에러 처리');
-            return null;
+            $result['result'] = "error";
+            $result['error_message'] = "등록되어 있는 대상 플랫폼이 없습니다.";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+
+            return $response;
         } else {
             $result['result'] = "success";
             $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);

@@ -48,13 +48,13 @@ class PaymentsController extends Controller
         $goods = $this->goodsRepository->findByIds($request_data->ids);
 
         if ($goods->isEmpty()) {
-            // todo 에러 처리 (없는 상품 및 잘못된 상품)
-            dd();
+            $strResponse = response()->json(['error'=> 'error', 'message'=>'구매 데이터의 가격을 다시 확인 해주세요.' ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+            return $strResponse;
         }
 
         if ($request_data->total_price != $goods->sum('buy_price')) {
-            // todo 에러 처리 (가격이 다를 경우)
-            dd();
+            $strResponse = response()->json(['error'=> 'error', 'message'=>'구매 데이터의 가격을 다시 확인 해주세요.' ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+            return $strResponse;
         }
 
         // PG 데이터 생성

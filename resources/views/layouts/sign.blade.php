@@ -42,14 +42,14 @@
                 location.href = 'https://www.google.co.kr/chrome/index.html'
             }
         }
-        @stack('scripts')
+
     </script>
 
 </head>
 
 <body>
 
-    @yield('content')
+@yield('content')
 
 
 <script src="{{ asset('js/layout-helpers.js') }}"></script>
@@ -60,7 +60,7 @@
 <script src="{{ asset('js/function.js') }}"></script>
 <script src="{{ asset('js/sign_up.js') }}"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+    @stack('scripts')
 </body>
 
 </html>
