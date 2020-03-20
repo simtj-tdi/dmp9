@@ -224,7 +224,7 @@
                     @endif
                 </td>
                 <td>{{ $order->buy_date }}</td>
-                <td>{{ $order->expiration_date }}</td>
+                <td>{{ $order->expiration_date->format("Y-m-d") }}</td>
                 <td>
                     <ul>
                         <li>

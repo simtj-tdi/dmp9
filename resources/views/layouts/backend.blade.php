@@ -42,13 +42,10 @@
                 location.href = 'https://www.google.co.kr/chrome/index.html'
             }
         }
-
     </script>
-
 </head>
 
 <body>
-
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-1">
     <!-- Layout inner -->
@@ -97,14 +94,6 @@
                                 <img src="/img/icon_sidenav_03.png" alt="문의 및 답변 아이콘" />
                             </div>
                             <div>문의 및 답변</div>
-                        </a>
-                    </li>
-                    <li class="sidenav-item">
-                        <a href="/taxs" class="sidenav-link">
-                            <div class="icon">
-                                <img src="/img/icon_sidenav_04.png" alt="세금계산서 요청 아이콘" />
-                            </div>
-                            <div>세금계산서 요청</div>
                         </a>
                     </li>
                     <li class="sidenav-item">

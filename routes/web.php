@@ -72,7 +72,9 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     Route::get('users/my_show', 'UserController@my_show')->name('my_show');
     Route::post('users/my_update', 'UserController@my_update')->name('my_update');
 
+    // 주문내역
     Route::get('/history', 'OrderController@history')->name('orders_history');
+    Route::post('/ajaxTaxState', 'OrderController@taxstate')->name('tax_state');
 
     // payment_test_page
     Route::get('/payment', function () {

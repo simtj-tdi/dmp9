@@ -15,4 +15,6 @@ interface OrderRepositoryInterface
     public function update($request, $id);
 
     public function state_update($order_no, $payment_id);
+
+    public function taxstate_update($request);
 }

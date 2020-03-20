@@ -43,6 +43,7 @@ class Cart extends Model
         return $this->hasMany(Option::class)->orderBy('id','desc');
     }
 
+
     public function getMarkPriceAttribute()
     {
         return number_format($this->goods->buy_price);

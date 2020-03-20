@@ -295,7 +295,7 @@
                         </td>
                         <td class="toggle_tr">{{ $cart->goods->advertiser }}</td>
                         <td>{{ $cart->goods->data_name }}</td>
-                        <td>{{ $cart->goods->data_count }}</td>
+                        <td>{{ number_format($cart->goods->data_count) }}</td>
                         <td>
                             @if (isset($cart->goods->buy_price))
                                 {{$cart->mark_price}}
@@ -367,7 +367,6 @@
                                     </div>
                                 @endforeach
                             @endif
-
                         </td>
                     </tr>
                 @endforeach

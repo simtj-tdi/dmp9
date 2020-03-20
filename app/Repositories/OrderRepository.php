@@ -50,5 +50,8 @@ class OrderRepository implements OrderRepositoryInterface
             ->update(['payment_id' => $payment_id, 'state' => order::STATE_2]);
     }
 
-
+    public function taxstate_update($request)
+    {
+        return order::where('id', $request->order_id)->update(['tax_state'=> Order::TAX_STATE_2]);
+    }
 }

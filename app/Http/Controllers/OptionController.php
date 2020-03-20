@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Option;
 use App\Repositories\GoodsRepositoryInterface;
 use App\Repositories\OptionRepositoryInterface;
-use App\Repositories\PlatformRepository;
 use App\Repositories\PlatformRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -76,7 +75,7 @@ class OptionController extends Controller
         return $response;
     }
 
-    public  function optionSave(Request $request)
+    public function optionSave(Request $request)
     {
         $request_data = json_decode($request->data);
         $option_info = $this->optionRepository->findById($request_data->option_id);
