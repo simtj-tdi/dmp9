@@ -12,7 +12,7 @@ interface TaxRepositoryInterface
 
     public function create($request);
 
-    public function update($request, $id);
+    public function update($request);
 
     public function destory($id);
 }

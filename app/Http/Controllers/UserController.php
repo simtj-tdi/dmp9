@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\TaxRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     private $userRepository;
+    private $taxRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository, TaxRepositoryInterface $taxRepository)
     {
         $this->middleware(['auth', 'approved','role'], ['except' => ['id_check']]);
         $this->userRepository = $userRepository;
+        $this->taxRepository = $taxRepository;
     }
 
     // 마이정보-패스워드입력 화면
@@ -55,7 +58,16 @@ class UserController extends Controller
          */
         $request['password'] = $this->userRepository->makePassword($request['password']);
 
+        $request['email'] = $request['email_id'].'@'.$request['email_text'];
+        $request['phone'] = $request['phone_1'].'-'.$request['phone_2'].'-'.$request['phone_3'];
+
         $this->userRepository->update($request);
+
+
+        if ($request['type'] == "company") {
+            $this->taxRepository->update($request);
+        }
+
 
         return redirect()->route('dashboard.index');
     }

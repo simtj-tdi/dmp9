@@ -1,5 +1,87 @@
 @extends('layouts.backend')
 
+@prepend('scripts')
+    <script>
+        function maxLengthCheck(object){
+            if (object.value.length > object.maxLength){
+                object.value = object.value.slice(0, object.maxLength);
+            }
+        }
+
+        $(function() {
+
+
+            $("[name=password_confirmation]").keyup(function(){
+                if ($("[name=password]").val() != $("[name=password_confirmation]").val()) {
+                    // false
+                    $("[name=password_check]").val('no');
+                    $("[name=passcheck_state_yes]").css('display','none');
+                    $("[name=passcheck_state_no]").css('display','block');
+                }else{
+                    // true
+                    $("[name=password_check]").val('yes');
+                    $("[name=passcheck_state_yes]").css('display','block');
+                    $("[name=passcheck_state_no]").css('display','none');
+                }
+            });
+
+            $("button[name=btn_submit]").click(function() {
+
+                // if ($("input[name=password_check]").val() == "no") {
+                //     alert('비밀번호가 일치하지 않습니다');
+                //     return false;
+                // }
+                //
+                // if ($("input[name=password]").val() == "") {
+                //     alert('비밀번호를 입력하세요.');
+                //     return false;
+                // }
+                //
+                // if ($("input[name=password_confirmation]").val() == "") {
+                //     alert('비밀번호 확인을 입력하세요.');
+                //     return false;
+                // }
+
+                if ($("input[name=name]").val() == "") {
+                    alert('이름을 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=company_name]").val() == "") {
+                    alert('회사명을 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=email_id]").val() == "") {
+                    alert('이메일을 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=email_text]").val() == "") {
+                    alert('이메일을 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=phone_1]").val() == "") {
+                    alert('전화번호를 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=phone_2]").val() == "") {
+                    alert('전화번호를 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=phone_3]").val() == "") {
+                    alert('전화번호를 입력하세요.');
+                    return false;
+                }
+
+                $("form[name=user]").submit();
+            });
+        });
+    </script>
+@endprepend
 @section('content')
 
 <!-- Layout wrapper -->
@@ -11,14 +93,13 @@
         <div class="layout-container sign_up tax_bill"> <!--폴더 부분-->
             <div class="inner">
                 <div class="title">
-                    <h1>회원가입</h1>
+                    <h1>회원수정</h1>
                 </div>
                 <div class="input_box">
-                    <form name="user" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form name="user" method="POST" action="{{ route('my_update') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="type" value="{{ request()->query('type') }}">
-                        <input type="hidden" name="id_check" value="no">
-                        <input type="hidden" name="password_check" value="no">
+                        <input type="hidden" name="type" value="{{ $user->role }}">
+
 
                         <div class="input-group">
                             <label>아이디</label>
@@ -39,7 +120,7 @@
                         </div>
                         <div class="input-group">
                             <label>이름</label>
-                            <input type="text" class="form-control" name="name" value="{{ $user->name }}" disabled  placeholder="이름">
+                            <input type="text" class="form-control" name="name" value="{{ $user->name }}" readonly  placeholder="이름">
                         </div>
                         <div class="input-group">
                             <label>회사명</label>
