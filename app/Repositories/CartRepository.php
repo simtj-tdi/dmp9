@@ -11,7 +11,7 @@ class CartRepository implements CartRepositoryInterface
     public function all()
     {
         $carts = auth()->user()->carts()
-            ->paginate(5);
+            ->paginate(15);
 
         $carts->getCollection()->map->format();
 
@@ -50,6 +50,6 @@ class CartRepository implements CartRepositoryInterface
 
     public function buydate_update($order_no, $buydate)
     {
-        cart::where('order_no', $order_no)->update(['state' => Cart::STATE_4, 'buy_date' => $buydate]);
+        cart::where('order_no', $order_no)->update(['state' => Cart::STATE_2, 'buy_date' => $buydate]);
     }
 }

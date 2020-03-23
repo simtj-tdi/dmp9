@@ -284,7 +284,7 @@
                 @foreach($carts as $cart)
                     <tr>
                         <td>
-                            @if ($cart->state === 3)
+                            @if (isset($cart->goods->buy_price) && $cart->state == 1)
                                 <input type="checkbox" name="sel" value="{{ $cart->id }}" data-count="{{ $cart->goods->data_count }}" data-price="{{ $cart->goods->buy_price }}">
                             @else
                                 <input type="checkbox" name="sel" value="{{ $cart->id }}" disabled>
@@ -305,7 +305,7 @@
                         <td>{{ $cart->goods->expiration_date }}</td>
                         <td>{{ $cart->goods->data_request }}</td>
                         <td>
-                            <select class="select_control" name="select_data_types" data-request="{{ $cart->goods->data_request }}" data-goods="{{ $cart->goods_id }}" data-cart="{{ $cart->id }}" data-tr="td_{{ $cart->id }}" {{ $cart->state == 3 ? 'disabled' : '' }}>
+                            <select class="select_control" name="select_data_types" data-request="{{ $cart->goods->data_request }}" data-goods="{{ $cart->goods_id }}" data-cart="{{ $cart->id }}" data-tr="td_{{ $cart->id }}" {{ $cart->state != 4 ? 'disabled' : '' }}>
                                 <option value="">선택</option>
                                 @foreach($platforms as $platform)
                                     <option value="{{ $platform['platform_id'] }}">{{ $platform['name'] }}</option>
@@ -314,13 +314,13 @@
                         </td>
                         <td>
                             @if ($cart->state === 1)
-                                요청중
+                                결제대기중
                             @elseif ($cart->state === 2)
-                                추출중
-                            @elseif ($cart->state === 3)
-                                승인요청
-                            @elseif ($cart->state === 4)
                                 결제완료
+                            @elseif ($cart->state === 3)
+                                데이터 추출중
+                            @elseif ($cart->state === 4)
+                                데이터 추출완료
                             @endif
                         </td>
                         <td  class="explanation_td">◎
@@ -357,11 +357,10 @@
                                             @if ($option->state == "1")
                                                 <button type="button" class="form-control btn_control" name='sns_request' data-option_id="{{$option->id}}">데이터 요청</button>
                                             @elseif ($option->state == "2")
-                                                <button type="button" class="form-control btn_control" >업로드중</button>
+                                                <button type="button" class="form-control btn_control" >업로드 요청</button>
                                             @elseif ($option->state == "3")
-                                                <button type="button" class="form-control btn_control" >업로드완료</button>
+                                                <button type="button" class="form-control btn_control" >업로드 완료</button>
                                             @endif
-
                                         </div>
                                     </div>
                                     </div>

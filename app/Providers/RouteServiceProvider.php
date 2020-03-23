@@ -24,6 +24,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
     public const INDEX = '/';
     public const DASHBOARD = '/dashboard';
+    public const MYINDEX = '/carts';
 
     /**
      * Define your route model bindings, pattern filters, etc.
