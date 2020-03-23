@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sign.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sign_up/sign.css') }}">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

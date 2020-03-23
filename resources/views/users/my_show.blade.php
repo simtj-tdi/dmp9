@@ -1,5 +1,61 @@
 @extends('layouts.backend')
 
+@prepend('scripts')
+    <script>
+        function maxLengthCheck(object){
+            if (object.value.length > object.maxLength){
+                object.value = object.value.slice(0, object.maxLength);
+            }
+        }
+        $(function() {
+            $("[name=password_confirmation]").keyup(function(){
+                if ($("[name=password]").val() != $("[name=password_confirmation]").val()) {
+                    // false
+                    $("[name=password_check]").val('no');
+                    $("[name=passcheck_state_yes]").css('display','none');
+                    $("[name=passcheck_state_no]").css('display','block');
+                }else{
+                    // true
+                    $("[name=password_check]").val('yes');
+                    $("[name=passcheck_state_yes]").css('display','block');
+                    $("[name=passcheck_state_no]").css('display','none');
+                }
+            });
+            $("button[name=btn_submit]").click(function() {
+                if ($("input[name=name]").val() == "") {
+                    alert('이름을 입력하세요.');
+                    return false;
+                }
+                if ($("input[name=company_name]").val() == "") {
+                    alert('회사명을 입력하세요.');
+                    return false;
+                }
+                if ($("input[name=email_id]").val() == "") {
+                    alert('이메일을 입력하세요.');
+                    return false;
+                }
+                if ($("input[name=email_text]").val() == "") {
+                    alert('이메일을 입력하세요.');
+                    return false;
+                }
+                if ($("input[name=phone_1]").val() == "") {
+                    alert('전화번호를 입력하세요.');
+                    return false;
+                }
+                if ($("input[name=phone_2]").val() == "") {
+                    alert('전화번호를 입력하세요.');
+                    return false;
+                }
+                if ($("input[name=phone_3]").val() == "") {
+                    alert('전화번호를 입력하세요.');
+                    return false;
+                }
+                $("form[name=user]").submit();
+            });
+        });
+    </script>
+@endprepend
+
 @section('content')
 
 <!-- Layout wrapper -->
@@ -11,14 +67,13 @@
         <div class="layout-container sign_up tax_bill"> <!--폴더 부분-->
             <div class="inner">
                 <div class="title">
-                    <h1>회원가입</h1>
+                    <h1>회원수정</h1>
                 </div>
                 <div class="input_box">
-                    <form name="user" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+
+                    <form name="user" method="POST" action="{{ route('my_update') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="type" value="{{ request()->query('type') }}">
-                        <input type="hidden" name="id_check" value="no">
-                        <input type="hidden" name="password_check" value="no">
+                        <input type="hidden" name="type" value="{{ $user->role }}">
 
                         <div class="input-group">
                             <label>아이디</label>
@@ -39,7 +94,7 @@
                         </div>
                         <div class="input-group">
                             <label>이름</label>
-                            <input type="text" class="form-control" name="name" value="{{ $user->name }}" disabled  placeholder="이름">
+                            <input type="text" class="form-control" name="name" value="{{ $user->name }}" readonly  placeholder="이름">
                         </div>
                         <div class="input-group">
                             <label>회사명</label>
@@ -47,43 +102,11 @@
                         </div>
                         <div class="input-group">
                             <label>이메일</label>
-                            <div class="form-inline mail">
-                                <div>
-                                    <input type="text" class="email_id form-control" name="email_id" id="email_id" value="{{ $email[0] }}">
-                                    <input type="text" class="email_text form-control" name="email_text" id="email_text" value="{{ $email[1] }}" readonly  >
-                                    <select class="form-control" id="select_email" onchange="selectEmail()">
-                                        <option value="1">직접입력</option>
-                                        <option value="naver.com" {{ $email[1] == 'naver.com' ? 'selected' : '' }} >naver.com</option>
-                                        <option value="hanmail.net" {{ $email[1] == 'hanmail.net' ? 'selected' : '' }} >hanmail.net</option>
-                                        <option value="hotmail.com" {{ $email[1] == 'hotmail.com' ? 'selected' : '' }} >hotmail.com</option>
-                                        <option value="nate.com" {{ $email[1] == 'nate.com' ? 'selected' : '' }} >nate.com</option>
-                                        <option value="yahoo.co.kr" {{ $email[1] == 'yahoo.co.kr' ? 'selected' : '' }} >yahoo.co.kr</option>
-                                        <option value="empas.com" {{ $email[1] == 'empas.com' ? 'selected' : '' }} >empas.com</option>
-                                        <option value="dreamwiz.com" {{ $email[1] == 'dreamwiz.com' ? 'selected' : '' }} >dreamwiz.com</option>
-                                        <option value="freechal.com" {{ $email[1] == 'freechal.com' ? 'selected' : '' }} >freechal.com</option>
-                                        <option value="lycos.co.kr" {{ $email[1] == 'lycos.co.kr' ? 'selected' : '' }} >lycos.co.kr</option>
-                                        <option value="korea.com" {{ $email[1] == 'korea.com' ? 'selected' : '' }} >korea.com</option>
-                                        <option value="gmail.com" {{ $email[1] == 'gmail.com' ? 'selected' : '' }} >gmail.com</option>
-                                        <option value="hanmir.com" {{ $email[1] == 'hanmir.com' ? 'selected' : '' }} >hanmir.com</option>
-                                        <option value="paran.com" {{ $email[1] == 'paran.com' ? 'selected' : '' }} >paran.com</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <input type="text" class="form-control" name="email" id="email" value="{{ $user->email }}">
                         </div>
                         <div class="input-group">
                             <label>연락처</label>
-                            <div class="phone_box input_control form-inline">
-                                <select class="form-control phone" name="phone_1">
-                                    <option value="010" {{ $phone[0] == '010' ? 'selected' : '' }} >010</option>
-                                    <option value="011" {{ $phone[0] == '011' ? 'selected' : '' }} >011</option>
-                                    <option value="016" {{ $phone[0] == '016' ? 'selected' : '' }} >016</option>
-                                    <option value="017" {{ $phone[0] == '017' ? 'selected' : '' }} >017</option>
-                                    <option value="018" {{ $phone[0] == '018' ? 'selected' : '' }} >018</option>
-                                    <option value="019" {{ $phone[0] == '019' ? 'selected' : '' }} >019</option>
-                                </select>
-                                <input type="number" name="phone_2" maxlength="4" class="phone form-control" placeholder="" value="{{ $phone[1] }}" oninput="maxLengthCheck(this)">
-                                <input type="number" name="phone_3" maxlength="4" class="phone form-control" placeholder="" value="{{ $phone[2] }}" oninput="maxLengthCheck(this)">
-                            </div>
+                            <input type="text" class="form-control" name="phone" id="phone" value="{{ $user->phone }}">
                         </div>
 
                         @if ($taxs[0])
@@ -99,13 +122,7 @@
                                 <label>업체명 (법인명)</label>
                                 <input type="text" class="form-control" name="tax_company_name" value="{{$taxs[0]['tax_company_name']}}" placeholder="업체명 (법인명)">
                             </div>
-                            <div class="input-group">
-                                <label>업종</label>
-                                <select class="form-control" name="tax_industry">
-                                    <option value="업종 01" {{ $taxs[0]['tax_industry'] == '업종 01' ? 'selected' : '' }} >업종 01</option>
-                                    <option value="업종 02" {{ $taxs[0]['tax_industry'] == '업종 02' ? 'selected' : '' }} >업종 02</option>
-                                </select>
-                            </div>
+
                             <div class="input-group">
                                 <label>사업자 번호</label>
                                 <div class="business_number_box">

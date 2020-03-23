@@ -38,7 +38,14 @@ class UserRepository implements UserRepositoryInterface
     public function update($request)
     {
         $id = auth()->user()->id;
-        user::find($id)->update($request->all());
+        user::find($id)->update([
+            'role' => $request['type'],
+            'name' => $request['name'],
+            'password' => $request['password'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'company_name' => $request['company_name'],
+        ]);
     }
 
     public function password_check($request)

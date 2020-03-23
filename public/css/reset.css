@@ -158,3 +158,14 @@ a {
   color: #4d4d4d;
   text-decoration: none;
 }
+
+input[type="number"] {
+    background: none;
+    border: 0;
+    outline: none;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

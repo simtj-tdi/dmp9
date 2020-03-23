@@ -24,45 +24,46 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->type == 'personal') {
-            return [
-                'type' => ['required', Rule::in(['company', 'personal'])],
-                'id_check' => ['required', Rule::in(['yes'])],
-                'password_check' => ['required', Rule::in(['yes'])],
-                'user_id' => ['required', 'string',  'max:255', 'unique:users'],
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255'],
-                'phone' => ['required', 'string', 'regex:/^\d{3}-\d{3,4}-\d{4}$/'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-            ];
-        } else if ($this->type == 'company') {
-            return [
-                'type' => ['required', Rule::in(['company', 'personal'])],
-                'id_check' => ['required', Rule::in(['yes'])],
-                'password_check' => ['required', Rule::in(['yes'])],
-                'user_id' => ['required', 'string',  'max:255', 'unique:users'],
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255'],
-                'phone' => ['required', 'string', 'regex:/^\d{3}-\d{3,4}-\d{4}$/'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'company_name' => ['required', 'string', 'max:255'],
-                'tax_name' => ['required', 'string', 'max:255'],
-                'tax_company_name' => ['required', 'string', 'max:255'],
-                'tax_industry' => ['required', 'string', 'max:255'],
-                'tax_img' => ['required', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-                'tax_zipcode' => ['required', 'string', 'max:255'],
-                'tax_addres_1' => ['required', 'string', 'max:255'],
-                'tax_addres_2' => ['required', 'string', 'max:255'],
-            ];
-        }
+//        if ($this->type == 'personal') {
+//            return [
+//                'type' => ['required', Rule::in(['company', 'personal'])],
+//                'id_check' => ['required', Rule::in(['yes'])],
+//                'password_check' => ['required', Rule::in(['yes'])],
+//                'user_id' => ['required', 'string',  'max:255', 'unique:users'],
+//                'name' => ['required', 'string', 'max:255'],
+//                'email' => ['required', 'string', 'email', 'max:255'],
+//                'phone' => ['required', 'string', 'regex:/^\d{3}-\d{3,4}-\d{4}$/'],
+//                'password' => ['required', 'string', 'min:8', 'confirmed'],
+//            ];
+//        }
+//        else if ($this->type == 'company') {
+//            return [
+//                'type' => ['required', Rule::in(['company', 'personal'])],
+//                'id_check' => ['required', Rule::in(['yes'])],
+//                'password_check' => ['required', Rule::in(['yes'])],
+//                'user_id' => ['required', 'string',  'max:255', 'unique:users'],
+//                'name' => ['required', 'string', 'max:255'],
+//                'email' => ['required', 'string', 'email', 'max:255'],
+//                'phone' => ['required', 'string', 'regex:/^\d{3}-\d{3,4}-\d{4}$/'],
+//                'password' => ['required', 'string', 'min:8', 'confirmed'],
+//                'company_name' => ['required', 'string', 'max:255'],
+//                'tax_name' => ['required', 'string', 'max:255'],
+//                'tax_company_name' => ['required', 'string', 'max:255'],
+//                'tax_industry' => ['required', 'string', 'max:255'],
+//                'tax_img' => ['required', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+//                'tax_zipcode' => ['required', 'string', 'max:255'],
+//                'tax_addres_1' => ['required', 'string', 'max:255'],
+//                'tax_addres_2' => ['required', 'string', 'max:255'],
+//            ];
+//        }
     }
 
     public function validationData()
     {
-        return array_merge($this->all(), [
-            'email' => $this->email_id.'@'.$this->email_text,
-            'phone' => $this->phone_1.'-'.$this->phone_2.'-'.$this->phone_3,
-        ]);
+//        return array_merge($this->all(), [
+//            'email' => $this->email_id.'@'.$this->email_text,
+//            'phone' => $this->phone_1.'-'.$this->phone_2.'-'.$this->phone_3,
+//        ]);
     }
 
 }

@@ -18,9 +18,23 @@ Route::get('/', function () {return view('welcome');});
 Auth::routes();
 
 // 회원가입
-Route::get('/sign_up_terms/{type}', function() { return view('sign.sign_up_terms');});
-Route::get('/sign_up_company', function() { return view('sign.sign_up_company');});
-Route::get('/sign_up_terms', function() { return view('sign.sign_up_terms');});
+Route::get('/sign_up_type', function() { return view('sign.sign_up_type');});
+
+Route::post('/sign_up_terms', function(\Illuminate\Http\Request $request) {
+    return view('sign.sign_up_terms', compact('request'));
+});
+
+Route::post('/sign_up_register', function(\Illuminate\Http\Request $request) {
+    return view('sign.sign_up_register', compact('request'));
+});
+
+Route::post('/sign_up_register_company', function(\Illuminate\Http\Request $request) {
+    return view('sign.sign_up_register_company', compact('request'));
+});
+
+//Route::get('/sign_up_terms/{type}', function() { return view('sign.sign_up_terms');});
+//Route::get('/sign_up_company', function() { return view('sign.sign_up_company');});
+//Route::get('/sign_up_terms', function() { return view('sign.sign_up_terms');});
 
 Route::post('/ajaxIdCheckRequest', 'UserController@id_check')->name('Users.idcheckrequest');
 

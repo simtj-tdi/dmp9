@@ -57,11 +57,10 @@ class RegisterController extends Controller
     }
 
 
-    public function register(RegisterRequest $request)
+    public function register(Request $request)
     {
-
-        $request['email'] = $request['email_id'].'@'.$request['email_text'];
-        $request['phone'] = $request['phone_1'].'-'.$request['phone_2'].'-'.$request['phone_3'];
+//        $request['email'] = $request['email_id'].'@'.$request['email_text'];
+//        $request['phone'] = $request['phone_1'].'-'.$request['phone_2'].'-'.$request['phone_3'];
 
         event(new Registered($user = $this->create($request->all())));
 

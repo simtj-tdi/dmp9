@@ -29,16 +29,16 @@ $('#all_checkbox').on("change", function(){
 
 /* file 등록 */
 $(document).ready(function(){
-    var fileTarget = $('.upload_hidden');
-        fileTarget.on('change', function(){
-            if(window.FileReader){
-                var fileName = $(this)[0].files[0].name;
-            } else {
-                var fileName = $(this).val().split('/').pop().split('\\').pop();
-            }
-            $(this).siblings('.upload_name').val(fileName);
-        });
+    var fileTarget = $('.upload_name');
+    fileTarget.on('change', function(){
+        if(window.FileReader){
+            var fileName = $(this)[0].files[0].name;
+        } else {
+            var fileName = $(this).val().split('/').pop().split('\\').pop();
+        }
+        $(this).siblings('.text_name').val(fileName);
     });
+});
 
 
 // 우편번호 찾기 찾기 화면을 넣을 element
