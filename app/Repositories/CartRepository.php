@@ -11,9 +11,9 @@ class CartRepository implements CartRepositoryInterface
     public function all()
     {
         $carts = auth()->user()->carts()
-            ->paginate(15);
+            ->get();
 
-        $carts->getCollection()->map->format();
+        $carts->map->format();
 
         return $carts;
     }

@@ -37,7 +37,13 @@
                 <li><a href="/sign_up_type">회원가입</a></li>
                 <li><a href="{{ route('login') }}">로그인</a></li>
             @else
-                <li></li>
+                <li><a href="/carts">입장하기</a></li>
+                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">로그아웃</a></li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+
             @endguest
 
         </ul>

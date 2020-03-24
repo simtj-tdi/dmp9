@@ -32,10 +32,6 @@ Route::post('/sign_up_register_company', function(\Illuminate\Http\Request $requ
     return view('sign.sign_up_register_company', compact('request'));
 });
 
-//Route::get('/sign_up_terms/{type}', function() { return view('sign.sign_up_terms');});
-//Route::get('/sign_up_company', function() { return view('sign.sign_up_company');});
-//Route::get('/sign_up_terms', function() { return view('sign.sign_up_terms');});
-
 Route::post('/ajaxIdCheckRequest', 'UserController@id_check')->name('Users.idcheckrequest');
 
 // 인증 예외 처리
