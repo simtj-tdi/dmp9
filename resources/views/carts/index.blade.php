@@ -2,6 +2,12 @@
 
 @prepend('scripts')
     <script>
+        function AddComma(num)
+        {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
 
         $(function() {
             $("body").delegate("[name=sns_save]", "click", function(){
@@ -118,25 +124,25 @@
                             if (JSONArray['result'] == "success") {
                                 select_data.parent().parent().next('tr').show();
                                 $("td[name="+select_tr+"]").prepend("" +
-                                    "<div class=\"item mb-1\">" +
-                                    "<div class=\"form-inline\">" +
-                                    "<div class=\"form-inline\">" +
-                                    "<p class=\"form-control label_control \">"+JSONArray['platform_info']['name']+"</p>" +
-                                    "<p class=\"form-control\">"+JSONArray['platform_info']['url']+"</p>" +
-                                    "</div>" +
-                                    "<div class=\"input_control form-inline\">" +
-                                    "<label class=\"form-control login_control\">아이디</label><input type=\"text\" class=\"form-control value_control\" name=\"sns_id\" value=\"\">" +
-                                    "</div>" +
-                                    "<div class=\"input_control form-inline\">" +
-                                    "<label class=\"form-control login_control\">비밀번호</label><input type=\"password\" class=\"form-control value_control\" name=\"sns_password\" value=\"\">" +
-                                    "</div>" +
-                                    "<div>" +
-                                    "<button type=\"button\" class=\"form-control btn_control\"  name=\'sns_save\' data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\" >수정</button>" +
-                                    "</div>" +
-                                    "<div>" +
-                                    "<button type=\"button\" class=\"form-control btn_control\" name=\"sns_request\">업로드 요청</button>" +
-                                    "</div>" +
-                                    "</div>" +
+                                    "<div class=\"item mb-3\">" +
+                                    "    <div class=\"form-inline\">" +
+                                    "        <div class=\"input_control form-inline\">" +
+                                    "            <label class=\"form-control label_control\">"+JSONArray['platform_info']['name']+"</label>" +
+                                    "            <input type=\"text\" class=\"form-control\" value=\""+JSONArray['platform_info']['url']+"\" placeholder=\"URL\">" +
+                                    "        </div>" +
+                                    "        <div class=\"input_control form-inline\">" +
+                                    "            <input type=\"text\" class=\"form-control id_value_control\" name=\"sns_id\" value=\"\" placeholder=\"아이디\">" +
+                                    "        </div>" +
+                                    "        <div class=\"input_control form-inline\">" +
+                                    "            <input type=\"password\" class=\"form-control pw_value_control\" name=\"sns_password\"  value=\"\" placeholder=\"비밀번호\">" +
+                                    "        </div>" +
+                                    "        <div>" +
+                                    "            <button type=\"button\" class=\"form-control btn_control_01\" name=\'sns_save\' data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\">수정</button>" +
+                                    "        </div>" +
+                                    "        <div class=\"form-inline\">" +
+                                    "            <button type=\"button\" class=\"form-control btn_control_02 upload_request\" name=\"sns_request\">데이터 요청</button>" +
+                                    "        </div>" +
+                                    "    </div>" +
                                     "</div>");
                             } else if (JSONArray['result'] == "error") {
                                 alert(JSONArray['error_message']);
@@ -149,18 +155,18 @@
                 }
             });
 
-            $("input[name=sel]").click(function() {
+            $("input[name='check']").click(function() {
                 var total_int=0;
                 var total_count=0;
                 var total_price=0;
-                $("input[name=sel]:checked").each(function() {
+                $("input[name='check']:checked").each(function() {
                     total_int += 1;
                     total_count += $(this).data("count");
                     total_price += $(this).data("price");
                 });
                 $("span[name=total_int]").text(total_int);
-                $("span[name=total_count]").text(total_count);
-                $("span[name=total_price]").text(total_price);
+                $("span[name=total_count]").text(AddComma(total_count));
+                $("span[name=total_price]").text(AddComma(total_price));
             });
 
             $(".createBtn").click(function() {
@@ -196,7 +202,7 @@
                 var ids = new Array();
                 var total_count=0;
                 var total_price=0;
-                $("input[name=sel]:checked").each(function() {
+                $("input[name='check']:checked").each(function() {
                     ids.push($(this).val());
                     total_count += $(this).data("count");
                     total_price += $(this).data("price");
@@ -204,6 +210,7 @@
 
                 if (total_price <= 0) {
                     alert("구매 금액이 0원 이상 이여야 합니다.");
+                    return false;
                 }
 
                 if (ids.length > 0) {
@@ -243,7 +250,35 @@
 @section('content')
 
     <!-- content : start-->
+
     <div class="container-fluid flex-grow-1 container-p-y data_up_load">
+        <div class="top">
+            마이데이터
+            <span class="txt">부정적 데이터 활용시(여러회사 공동 사용) 계정이 중지되거나 법적 제재를 받으실 수 있습니다.</span>
+            <button type="button" onclick="addData()">데이터 신청</button>
+        </div>
+        <div class="sum_wrap">
+            <ul class="form-inline">
+                <li class="form-inline">
+                    <div>선택한 데이터 개수</div>
+                    <div><span name="total_int">0</span></div>
+                </li>
+                <li class="form-inline">
+                    <div>선택한 데이터 총 개수</div>
+                    <div><span name="total_count">0</span></div>
+                </li>
+                <li class="form-inline">
+                    <div>선택한 데이터 총 금액</div>
+                    <div><span name="total_price">0</span>원</div>
+                </li>
+                <li>
+                    <button type="button" class="form-control btn_purchase new_buy">선택된 데이터 구매</button>
+                    <!--<button type="button" class="form-control btn_request" onclick="addRequestData()">구매한 데이터 업로드 요청</button>-->
+                </li>
+                <!-- <li></li> -->
+
+            </ul>
+        </div>
         <div class="table_wrap">
             <table class="table">
                 <colgroup>
@@ -252,8 +287,8 @@
                     <col width="20px">
                     <col width="20px">
                     <col width="20px">
-                    <col width="20px">
-                    <col width="20px">
+                    <col width="25px">
+                    <col width="25px">
                     <col width="20px">
                     <col width="25px">
                     <col width="20px">
@@ -262,14 +297,14 @@
                 <thead>
                 <tr>
                     <th>
-                        <input type="checkbox" id="all_checkbox">
-                        <label for="all_checkbox">
-                            <span></span>
-                        </label>
+                        <span class="checkbox">
+                            <input type="checkbox" id="all_checkbox" />
+                            <label for="all_checkbox"></label>
+                        </span>
                     </th>
                     <th>광고주</th>
                     <th>데이터명</th>
-                    <th>데이터<br/>추출수</th>
+                    <th>데이터추출수</th>
                     <th>구매가격</th>
                     <th>구매일</th>
                     <th>유효기간</th>
@@ -280,109 +315,133 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!--묶음-->
                 @foreach($carts as $cart)
-                    <tr>
-                        <td>
+                <!--묶음-->
+                <tr>
+                    <td>
+                        <span class="checkbox">
                             @if (isset($cart->goods->buy_price) && $cart->state == 1)
-                                <input type="checkbox" name="sel" value="{{ $cart->id }}" data-count="{{ $cart->goods->data_count }}" data-price="{{ $cart->goods->buy_price }}">
+                                <input type="checkbox" name="check" id="Check_1" value="{{ $cart->id }}" data-count="{{ $cart->goods->data_count }}" data-price="{{ $cart->goods->buy_price }}">
                             @else
-                                <input type="checkbox" name="sel" value="{{ $cart->id }}" disabled>
+                                <input type="checkbox" name="" value="{{ $cart->id }}" disabled>
                             @endif
-                            <label for="chk_02">
-                                <span></span>
-                            </label>
-                        </td>
-                        <td class="toggle_tr">{{ $cart->goods->advertiser }}</td>
-                        <td>{{ $cart->goods->data_name }}</td>
-                        <td>{{ number_format($cart->goods->data_count) }}</td>
-                        <td>
-                            @if (isset($cart->goods->buy_price))
-                                {{$cart->mark_price}}
-                            @endif
-                        </td>
-                        <td>{{ $cart->buy_date }}</td>
-                        <td>{{ $cart->goods->expiration_date }}</td>
-                        <td>{{ $cart->goods->data_request }}</td>
-                        <td>
-                            <select class="select_control" name="select_data_types" data-request="{{ $cart->goods->data_request }}" data-goods="{{ $cart->goods_id }}" data-cart="{{ $cart->id }}" data-tr="td_{{ $cart->id }}" {{ $cart->state != 4 ? 'disabled' : '' }}>
-                                <option value="">선택</option>
-                                @foreach($platforms as $platform)
-                                    <option value="{{ $platform['platform_id'] }}">{{ $platform['name'] }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            @if ($cart->state === 1)
-                                결제대기중
-                            @elseif ($cart->state === 2)
-                                결제완료
-                            @elseif ($cart->state === 3)
-                                데이터 추출중
-                            @elseif ($cart->state === 4)
-                                데이터 추출완료
-                            @endif
-                        </td>
-                        <td  class="explanation_td">◎
+
+                            <label for="Check_1"></label>
+                        </span>
+                    </td>
+                    <td>{{ $cart->goods->advertiser }}</td>
+                    <td>{{ $cart->goods->data_name }}</td>
+                    <td>{{ number_format($cart->goods->data_count) }}</td>
+                    <td>@if (isset($cart->goods->buy_price))
+                            {{$cart->mark_price}}
+                        @else
+                        0
+                        @endif원</td>
+                    <td>{{ $cart->buy_date }}</td>
+                    <td>{{ $cart->goods->expiration_date }}</td>
+                    <td>{{ $cart->goods->data_request }}회</td>
+                    <td>
+                        <select class="select_control" name="select_data_types" data-request="{{ $cart->goods->data_request }}" data-goods="{{ $cart->goods_id }}" data-cart="{{ $cart->id }}" data-tr="td_{{ $cart->id }}" {{ $cart->state != 4 ? 'disabled' : '' }}>
+                            <option value="">선택</option>
+                            @foreach($platforms as $platform)
+                                <option value="{{ $platform['platform_id'] }}">{{ $platform['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+
+                    @if ($cart->state === 1)
+                        <td  class="explanation_td icon_yellow">
+                            결제대기중
+                            <img src="../assets/img/icon_explanation_02.png" alt="아이콘 설명"/>
                             <div class="explanation_box">
-                                <p>업로드 할 플랫폼의 이용하는 아아디/비밀번호를 입력해주세요.</p>
+                                <p>구매가 완료된 데이터입니다. 선택 후 업로드 요청을 눌러주세요.</p>
                             </div>
                         </td>
-                    </tr>
-
-                    <tr class="toggle_dropdown_tr">
-                        <td colspan="11" name="td_{{ $cart->id }}">
-
-                            @if (!$cart->options->isEmpty())
-                                @foreach($cart->options as $option)
-                                    <div class="item mb-1">
-                                    <div class="form-inline">
-                                        <div class="form-inline">
-                                            <p class="form-control label_control">{{$option->platform['name']}}</p>
-                                            <p class="form-control">{{$option->platform['url']}}</p>
-                                        </div>
-
-                                        <div class="input_control form-inline">
-                                            <label class="form-control login_control">아이디</label>
-                                            <input type="text" class="form-control value_control" name="sns_id" value="{{$option->sns_id}}">
-                                        </div>
-                                        <div class="input_control form-inline">
-                                            <label class="form-control login_control">비밀번호</label>
-                                            <input type="password" class="form-control value_control" name="sns_password" value="{{$option->sns_password}}">
-                                        </div>
-                                        <div>
-                                            <button type="button" class="form-control btn_control"  name='sns_save' data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">수정</button>
-                                        </div>
-                                        <div>
-                                            @if ($option->state == "1")
-                                                <button type="button" class="form-control btn_control" name='sns_request' data-option_id="{{$option->id}}">데이터 요청</button>
-                                            @elseif ($option->state == "2")
-                                                <button type="button" class="form-control btn_control" >업로드 요청</button>
-                                            @elseif ($option->state == "3")
-                                                <button type="button" class="form-control btn_control" >업로드 완료</button>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    </div>
-                                @endforeach
-                            @endif
+                    @elseif ($cart->state === 2)
+                        <td  class="explanation_td icon_black">
+                            결제완료
+                            <img src="../assets/img/icon_explanation_01.png" alt="아이콘 설명"/>
+                            <div class="explanation_box">
+                                <p>구매가 완료된 데이터입니다. 선택 후 업로드 요청을 눌러주세요.</p>
+                            </div>
                         </td>
-                    </tr>
-                @endforeach
+                    @elseif ($cart->state === 3)
+                        <td  class="explanation_td icon_green">
+                            추출중
+                            <img src="../assets/img/icon_explanation_03.png" alt="아이콘 설명"/>
+                            <div class="explanation_box">
+                                <p>요청하신 데이터가 추출중이며 시간소요는 영업일 기준 1-3일 소요 됩니다.</p>
+                            </div>
+                        </td>
+                    @elseif ($cart->state === 4)
+                        <td  class="explanation_td icon_green">
+                            추출완료
+                            <img src="../assets/img/icon_explanation_03.png" alt="아이콘 설명"/>
+                            <div class="explanation_box">
+                                <p>데이터 추출이 완료되었습니다. 구매 후 광고플랫폼에 업로드 요청이 가능합니다.</p>
+                            </div>
+                        </td>
+                    @endif
 
+                    <td class="toggle_tr"><img src="../assets/img/icon_down_arrow.png" alt="아이콘 아래 화살표"/></td>
+                </tr>
+
+                <tr class="toggle_dropdown_tr">
+                    <td colspan="11" name="td_{{ $cart->id }}">
+                        <!--itme 묶음-->
+                        @if (!$cart->options->isEmpty())
+                            @foreach($cart->options as $option)
+                            <div class="item mb-3">
+                                <div class="form-inline">
+                                    <div class="input_control form-inline">
+                                        <label class="form-control label_control">{{$option->platform['name']}}</label>
+                                        <input type="text" class="form-control" value="{{$option->platform['url']}}" placeholder="URL">
+                                    </div>
+
+                                    <div class="input_control form-inline">
+                                        <!-- <label class="form-control login_control">아이디</label> -->
+                                        <input type="text" class="form-control id_value_control" name="sns_id" value="{{$option->sns_id}}" placeholder="아이디">
+                                    </div>
+                                    <div class="input_control form-inline">
+                                        <!-- <label class="form-control login_control">비밀번호</label> -->
+                                        <input type="password" class="form-control pw_value_control" name="sns_password"  value="{{$option->sns_password}}" placeholder="비밀번호">
+                                    </div>
+                                    <div>
+                                        <button type="button" class="form-control btn_control_01" name='sns_save' data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">수정</button>
+                                    </div>
+                                    <div class="form-inline">
+                                        @if ($option->state == "1")
+                                            <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-option_id="{{$option->id}}">데이터 요청</button>
+                                        @elseif ($option->state == "2")
+                                            <button type="button" class="form-control btn_control_02 upload_wait">업로드중</button>
+                                            <div class="explanation_td expiration_div ml-2">
+                                                <img src="../assets/img/icon_explanation_04.png" alt="아이콘 설명"/>
+                                                <div class="explanation_box">
+                                                    <p>구매하신 데이터를 플랫폼에 업로드 중 입니다.</p>
+                                                </div>
+                                            </div>
+                                        @elseif ($option->state == "3")
+                                            <button type="button" class="form-control btn_control_02 upload_complete">업로드 완료</button>
+                                            <div class="explanation_td expiration_div ml-2">
+                                                <img src="../assets/img/icon_explanation_04.png" alt="아이콘 설명"/>
+                                                <div class="explanation_box">
+                                                    <p>업로드가 완료되었습니다. 플랫폼 내에서 확인하세요.</p>
+                                                </div>
+                                            </div>
+                                        @endif
+
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
+                        <!--itme 묶음-->
+                    </td>
+                </tr>
+                <!--묶음-->
+                @endforeach
                 </tbody>
             </table>
-        </div>
-        <hr/>
-        <div class="sum_wrap mt-2">
-            <ul class="form-inline">
-                <li class="form-control"><span name="total_int">0</span></li>
-                <li class="form-control"><span name="total_count">데이터 총 개수</span></li>
-                <li class="form-control"><span name="total_price">데이터 총 금액</span>원</li>
-                <li><button type="button" class="form-control new_buy">선택된 데이터 구매</button></li>
-                <!--<li><button type="button" class="form-control" onclick="addRequestData()">구매한 데이터 업로드 요청</button></li>-->
-                <li><button type="button" class="form-control" onclick="addData()">데이터 등록</button></li>
-            </ul>
         </div>
 
         <div id="request_data" class="request_data overlay-wrap alert">
@@ -390,14 +449,11 @@
                 <div class="writing_box">
                     <div class="inner">
                         <div class="top clearfix">
-                            <h1>총 12개의 데이터가 업로드 목록으로 복사됩니다.</h1>
+                            <h1>신청하신 데이터 결과는 마이데이터 페이지에서 확인 가능합니다.</h1>
                         </div>
                         <div class="cont">
-                            <p>업로드 하실 플랫폼의 아이디/비밀번호를 꼭 입력해주세요.</p>
-                            <p>입력하지 않을 시 업로드가 되지 않습니다.</p>
-                        </div>
-                        <div class="cont_sub">
-                            <p>*DMP9은 개인정보 보호법을 위반 하지 않습니다.</p>
+                            <p>- 영업일 기준 1~3일 소요됩니다.</p>
+                            <p>- 데이터 추출이 불가능한 경우, 로그인 이메일주소로 결과를 전송 해 드립니다.</p>
                         </div>
                         <div class="btn_box">
                             <button type="button" onclick="addRequestDataDisNone()">확인</button>
@@ -412,39 +468,47 @@
                 <div class="writing_box">
                     <form name="registerForm" method="POST" action="{{ route('goods.store') }}">
                         @csrf
-                        <div class="inner">
+
+                    <div class="inner">
                         <div class="top clearfix">
                             <h1>데이터 요청하기</h1>
-                            <button type="button" onclick="addDataDisNone()"><img src="/img/btn_close.png" alt="닫기 버튼"/></button>
+                            <button type="button" onclick="addDataDisNone()"><img src="../assets/img/btn_close.png" alt="닫기 버튼"/></button>
                         </div>
                         <div class="cont">
-                            <div class="form-group form-inline">
+                            <div class="input-group">
                                 <label>광고주</label>
-                                <input type="text" class="form-control  {{ $errors->has('advertiser') ? 'is-invalid' : '' }}" name="advertiser" placeholder="업종 & 광고주명 기입" value="{{ old('title') }}" >
-                                @if ($errors->has('advertiser'))
-                                    <div class="invalid-feedback">
-                                        <strong>{{ $errors->first('advertiser') }}</strong>
-                                    </div>
-                                @endif
+                                <input type="text" class="cont_form_control" name="advertiser"  placeholder="업종 & 광고주명을 입력해주세요." />
                             </div>
-
                             <div class="form-group form-inline">
                                 <label>타겟 유형</label>
-                                <div class="target_wrap">
-                                    <input type="radio" name="data_target" value="app"> App
-                                    <input type="radio" name="data_target" value="local"> 위치
-                                    <input type="radio" name="data_target" value="applocal"> App + 위치
-                                    <input type="radio" name="data_target" value="none"> 유형없음
+
+                                <div class="target_wrap form-inline">
+                                    <div class="target_radio">
+                                        <input type="radio" name="data_target" id="radio" value="app" />
+                                        <label for="radio">App</label>
+                                    </div>
+                                    <div class="target_radio">
+                                        <input type="radio" name="data_target" id="radio1" value="local" />
+                                        <label for="radio1">위치</label>
+                                    </div>
+                                    <div class="target_radio">
+                                        <input type="radio" name="data_target" id="radio2" value="applocal" />
+                                        <label for="radio2">App + 위치</label>
+                                    </div>
+                                    <div class="target_radio">
+                                        <input type="radio" name="data_target" id="radio3" value="none" />
+                                        <label for="radio3">유형없음</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label>데이터 명</label>
-                                <input type="text" class="form-control data_input" name="data_name" placeholder="데이터 명 기입">
+                                <input type="text" class="cont_form_control data_input" name="data_name" placeholder="데이터 명을 입력해주세요.">
                             </div>
                             <div class="form-group form-inline">
                                 <label>데이터 업로드 횟수</label>
-                                <select class="data_wrap" name="data_request">
-                                    <option value=""></option>
+                                <select class="cont_form_control data_input" name="data_request">
+                                    <option value="">횟수</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -459,29 +523,29 @@
                             </div>
                             <div class="form-group form-inline">
                                 <label>데이터 항목</label>
-                                <select class="data_wrap" name="data_category">
-                                    <option value=""></option>
+                                <select class="cont_form_control data_input" name="data_category">
+                                    <option value="">항목</option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="원하는 타겟 설명" name="data_content"></textarea>
+                                <label>설명</label>
+                                <textarea class="cont_form_control" style="resize: none;" name="data_content" placeholder="원하는 타겟을 설명해주세요." ></textarea>
                             </div>
                         </div>
-
                         <div class="cont_sub">
                             <ul>
                                 <li class="mb-2">타겟 구매시 주의사항</li>
-                                <li>* 기본 구매 활용 기간은 1개월 입니다.</li>
-                                <li>* 데이터 업데이트 요청은 활용기간내에만 가능합니다. (최대 3회 / 구매시점으로부터 1개월 내 가능)</li>
-                                <li>* 특정 앱 지정 데이터 판매 불가 (트정 경쟁사 데이터만 구매 요청시 거절 될 수 있습니다.</li>
-                                <li>* 불법적 활용 가능한 데이터 판매 불가 (도박, 성인 등)</li>
+                                <li>- 기본 구매 활용 기간은 1개월 입니다.</li>
+                                <li>- 데이터 업데이트 요청은 활용기간내에만 가능합니다. (최대 3회 / 구매시점으로부터 1개월 내 가능)</li>
+                                <li>- 특정 앱 지정 데이터 판매 불가 (트정 경쟁사 데이터만 구매 요청시 거절 될 수 있습니다.</li>
+                                <li>- 불법적 활용 가능한 데이터 판매 불가 (도박, 성인 등)</li>
                             </ul>
                         </div>
                         <div class="btn_box">
-                            <!--<button type="button" onclick="addDataDisNone()">요청하기</button>-->
+
                             <button type="submit"class="createBtn">요청하기</button>
                         </div>
                     </div>

@@ -26,6 +26,8 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function create($request)
     {
+
+
         auth()->user()->questions()->create($request);
     }
 

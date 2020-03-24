@@ -18,6 +18,7 @@ class CartController extends Controller
 
     public function index()
     {
+
         $carts = $this->cartRepository->all();
         $platforms = $this->platformRepository->all();
 

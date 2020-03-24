@@ -14,23 +14,22 @@
     <title>DMP9</title>
 
     <!-- Main font -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900"
+          rel="stylesheet">
 
     <!-- Core stylesheets -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/appwork.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/theme-corporate.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/uikit.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/contents.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sign.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/data_up_load.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/appwork.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme-corporate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/colors.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/uikit.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/contents.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/sign_up/sign.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/data_up_load/data_up_load.css') }}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
     <script>
         //인터넷 버전 체크 ie 에서는 호환안됨
@@ -67,49 +66,88 @@
 
             <!-- Layout sidenav -->
             <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-sidenav-theme">
-                <div class="sidenav_logo_wrap mb-4">
-                    <img src="/img/logo_01.png" alt="로고 이미지" />
+                <div class="sidenav_logo_wrap">
+                    <a href="/carts">
+                        <img src="assets/img/common/logo_dmp_01.png" alt="로고 이미지" />
+                    </a>
                 </div>
 
-                <ul class="sidenav-inner py-1 mt-4">
-                    <li class="sidenav-item active">
+                <div class="sidenav_total_balance_Wrap">
+                    <div class="sidenav_total_balance_inner_cont form-inline">
+                        <div class="img">
+                            <!--<img src="/assets/img/common/test.jpg" alt=""/>-->
+                        </div>
+                        <div class="text">
+                            <p>{{ \Illuminate\Support\Facades\Auth::user()->user_id }}</p>
+                            <p>{{ \Illuminate\Support\Facades\Auth::user()->email }}</p>
+                        </div>
+                    </div>
+                    <div class="sidenav_total_balance_inner_top form-inline">
+                        <div class="login_btn_box dropdown" data-toggle="dropdown">
+                            <button type="button" class="dropdown-toggle">
+                                로그인정보
+                            </button>
+                            <div class="dropdown-menu">
+                                <div><p>M</p></div>
+                                <div>{{ \Illuminate\Support\Facades\Auth::user()->name }}</div>
+                                <div>{{ \Illuminate\Support\Facades\Auth::user()->email }}</div>
+
+                                <div>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        로그아웃
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">로그아웃</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <ul class="sidenav-inner">
+                    <li class="sidenav-item {{ class_basename(Route::current()->controller) == "CartController" ? 'active' : '' }} ">
                         <a href="/carts" class="sidenav-link">
                             <div class="icon">
-                                <img src="/img/icon_sidenav_01.png" alt="마이 데이터 아이콘" />
+                                <img src="assets/img/common/icon_sidenav_01.png" alt="마이 데이터 아이콘" />
                             </div>
                             <div>마이 데이터</div>
                         </a>
                     </li>
-                    <li class="sidenav-item">
+                    <li class="sidenav-item {{ class_basename(Route::current()->controller) == "FaqController" ? 'active' : '' }} ">
                         <a href="/faqs" class="sidenav-link">
                             <div class="icon">
-                                <img src="/img/icon_sidenav_02.png" alt="자주 묻는 질문 아이콘" />
+                                <img src="assets/img/common/icon_sidenav_02.png" alt="자주 묻는 질문 아이콘" />
                             </div>
                             <div>자주 묻는 질문</div>
                         </a>
                     </li>
-                    <li class="sidenav-item">
+                    <li class="sidenav-item {{ class_basename(Route::current()->controller) == "QuestionController" ? 'active' : '' }} ">
                         <a href="/questions" class="sidenav-link">
                             <div class="icon">
-                                <img src="/img/icon_sidenav_03.png" alt="문의 및 답변 아이콘" />
+                                <img src="assets/img/common/icon_sidenav_03.png" alt="문의 및 답변 아이콘" />
                             </div>
                             <div>문의 및 답변</div>
                         </a>
                     </li>
-                    <li class="sidenav-item">
-                        <a href="users" class="sidenav-link">
-                            <div class="icon">
-                                <img src="/img/icon_sidenav_05.png" alt="내정보 수정 아이콘" />
-                            </div>
-                            <div>내정보 수정</div>
-                        </a>
-                    </li>
-                    <li class="sidenav-item">
+                    <li class="sidenav-item {{ class_basename(Route::current()->controller) == "OrderController" ? 'active' : '' }} ">
                         <a href="/history" class="sidenav-link">
                             <div class="icon">
-                                <img src="/img/icon_sidenav_06.png" alt="충전 내역 아이콘" />
+                                <img src="assets/img/common/icon_sidenav_04.png" alt="세금계산서 요청 아이콘" />
                             </div>
-                            <div>결제 내역</div>
+                            <div>세금계산서 요청</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item {{ class_basename(Route::current()->controller) == "UserController" ? 'active' : '' }} ">
+                        <a href="/users" class="sidenav-link">
+                            <div class="icon">
+                                <img src="assets/img/common/icon_sidenav_05.png" alt="내정보 수정 아이콘" />
+                            </div>
+                            <div>내정보 수정</div>
                         </a>
                     </li>
                 </ul>
@@ -120,67 +158,34 @@
             </div>
             <!-- / Layout sidenav -->
 
-            <div class="layout-content " id="mydata_main">
-                <div class="content_top form-inline">
-                    <div class="welcome_text">
-                        <h1>안녕하세요. <span>NSMG</span>님! 환영합니다.</h1>
-                    </div>
-                    <div class="login_btn_box dropdown" data-toggle="dropdown">
-                        <button type="button" class="dropdown-toggle">
-                            <img src="/img/btn_login_info.png" alt="로그인 정보 아이콘"/>
-                        </button>
-                        <div class="dropdown-menu">
-                            <div><p>M</p></div>
-                            <div>정민우</div>
-                            <div>urr0801@nsmg21.com</div>
-                            <div>동기화 사용중</div>
-                            <div>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    로그아웃
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
+            <!-- content : start-->
 
                 @yield('content')
 
-                <!--하단 공지사항-->
-                <div class="footer_infobar">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><p>[TIP] 고정 데이터는 원하는 날부터 원하는날까지 고정된데이터 입니다.</p></div>
-                            <div class="swiper-slide"><p>[TIP] test 02</p></div>
-                            <div class="swiper-slide"><p>[TIP] test 03</p></div>
-                            <div class="swiper-slide"><p>[TIP] test 04</p></div>
-                            <div class="swiper-slide"><p>[TIP] test 05</p></div>
-                            <div class="swiper-slide"><p>[TIP] test 06</p></div>
-                            <div class="swiper-slide"><p>[TIP] test 07</p></div>
-                            <div class="swiper-slide"><p>[TIP] test 08</p></div>
-                        </div>
-                        <!-- Add Arrows -->
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    </div>
-                </div>
-            </div>
+            <!-- content : end-->
+
+
+
         </div>
     </div>
-    <!-- Layout inner -->
+</div>
+<!-- Layout inner -->
 
-    <div class="layout-overlay layout-sidenav-toggle"></div>
+<div class="layout-overlay layout-sidenav-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
-<script src="{{ asset('js/layout-helpers.js') }}"></script>
-<script src="{{ asset('js/popper.js') }}"></script>
-<script src="{{ asset('js/bootstrap.js') }}"></script>
-<script src="{{ asset('js/sidenav.js') }}"></script>
-<script src="{{ asset('js/swiper.js') }}"></script>
-<script src="{{ asset('js/function.js') }}"></script>
-<script src="{{ asset('js/sign_up.js') }}"></script>
+<!-- / Layout wrapper -->
+<script src="{{ asset('assets/js/layout-helpers.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ asset('assets/js/popper.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+<script src="{{ asset('assets/js/sidenav.js') }}"></script>
+<script src="{{ asset('assets/js/swiper.js') }}"></script>
+<script src="{{ asset('assets/js/function.js') }}"></script>
+<script src="{{ asset('assets/js/sign_up/sign_up.js') }}"></script>
+@stack('scripts')
 <script>
     /*질문하기,문의하기 ul 클릭 토글*/
     $(".toggle_tr").on('click', function(){
@@ -221,7 +226,6 @@
         $("#add_data").hide();
     }
 </script>
-@stack('scripts')
 </body>
 
 </html>

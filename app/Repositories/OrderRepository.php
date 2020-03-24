@@ -10,6 +10,7 @@ class OrderRepository implements OrderRepositoryInterface
     public function all()
     {
         $orders = auth()->user()->orders()
+            ->where('state', 1)
             ->orderBy('id', 'desc')
             ->get()
             ->map->format();

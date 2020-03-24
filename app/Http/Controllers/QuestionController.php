@@ -29,9 +29,13 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'name' => 'required',
             'title' => 'required',
             'content' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
         ]);
+
         $this->questionRepository->create($validatedData);
 
         return redirect()->route('questions.index');

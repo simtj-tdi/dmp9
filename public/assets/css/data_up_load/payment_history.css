@@ -1,0 +1,137 @@
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input::placeholder {font-family: 'NanumSquare', sans-serif !important;}
+
+  .payment_history .top {
+    font-size: 43px;
+    letter-spacing: -0.65px;
+    text-align: left;
+    color: #292929;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #cccccc;
+    position: relative;
+    margin-top: 80px;
+  }
+  .payment_history .top button {
+    position: absolute;
+    right: 0;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 50px;
+    padding: 12px 39px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #292929;
+  
+  }
+
+  .payment_history .table_wrap {
+    /* max-height: 620px; */
+    height: 620px;
+    overflow: auto;
+    /* border: 1px solid #f00; */
+  }
+/* table_wrap 스크롤 숨기기 */
+  .payment_history .table_wrap { 
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .payment_history .table_wrap::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
+  }
+
+  .payment_history table {
+    border-collapse: separate;
+    border-spacing: 0 13px;
+    margin-bottom: 0;
+  }
+  .payment_history thead tr {
+    background: #fac400;
+    color: #fff;
+  }
+  .payment_history thead tr th {
+    font-size: 17px;
+    letter-spacing: -0.26px;
+    font-weight: bold;
+  }
+  .payment_history tr {background: #fff;}
+  .payment_history .thead-light tr{background-color: #fff;}
+  .payment_history .table .thead-light th {color: #4E5155; background-color: #fff; border-color: #e8e8e9;}
+  .payment_history .table thead th {vertical-align: middle; border-bottom: none;}
+  .payment_history .table th {padding: 17px 0; text-align: center;}
+  
+  .payment_history .table td {
+    font-size: 19px;
+    margin-left: 27px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 700;
+  }
+  .payment_history .table th, .payment_history .table td{
+    border-top: none;
+  }
+
+  .payment_history .table .toggle_tr {cursor: pointer;}
+
+  .payment_history .toggle_dropdown_tr table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .payment_history .toggle_dropdown_tr table th {
+    padding: 12px 0;
+    text-align: center;
+  }
+
+  .payment_history .toggle_dropdown_tr tbody tr td {
+    font-size: 15.5px;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+  }
+  .payment_history .toggle_dropdown_tr tbody tr:last-child td {border-bottom: none;}
+
+  .payment_history .toggle_dropdown_tr { display: none;}
+  
+
+/*세금계산서 요청 모달 스타일*/
+.payment_history .request_data {display: none;}
+
+.payment_history .request_data .writing_wrap {width: 100%; height: 100%; position: relative;}
+.payment_history .request_data .writing_wrap .writing_box {
+  width: 700px;
+  border-radius: 20px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.payment_history .request_data .writing_wrap .inner {
+  padding: 40px 61px;
+  text-align: center;
+}
+.payment_history .request_data .top {
+  margin-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+}
+
+.payment_history .request_data .cont p {
+  color: #111;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.payment_history .request_data .btn_box button {
+  background: #fed32e;
+  color: #fff;
+  width: 20%;
+  padding: 0.7rem;
+  border-radius: 5px;
+}
+
+
+
+

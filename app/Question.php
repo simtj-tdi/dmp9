@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    protected $fillable = [
-        'title', 'content',
-    ];
+//    protected $fillable = [
+//        'title', 'content',
+//    ];
 
-    protected $guarded = [];
+    protected $guarded = ['*','id'];
 
     public function format()
     {

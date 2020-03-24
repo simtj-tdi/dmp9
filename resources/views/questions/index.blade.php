@@ -1,101 +1,203 @@
 @extends('layouts.backend')
 
-@section('content')
+@prepend('scripts')
+    <script>
 
-    <!-- content : start-->
+        function validateEmail(sEmail) {
+            var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (filter.test(sEmail)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+        $(function() {
+
+            $('button[name="btn"]').click(function(){
+                if ($("input[name=name]").val() == "") {
+                    alert('이름을 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=title]").val() == "") {
+                    alert('제목을 입력하세요.');
+                    return false;
+                }
+
+                if ($("[name=content]").val() == "") {
+                    alert('내용을 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=phone]").val() == "") {
+                    alert('연락처를 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=email]").val() == "") {
+                    alert('이메일을 입력하세요.');
+                    return false;
+                }
+
+                var sEmail = $("input[name=email]").val();
+
+                if (validateEmail(sEmail)) {
+
+                }
+                else {
+                    alert('잘못된 이메일입니다');
+                    return false;
+                }
+
+                var success = true;
+                $("input:checkbox[name=check]").each(function() {
+                    if (this.checked == false) {
+                        alert('개인정보 수집 동의 확인 후 가능합니다.');
+                        success = false;
+                        return false;
+                    }
+                });
+
+                $('[name="frm"]').submit();
+            });
+
+        });
+    </script>
+
+@endprepend
+
+@section('content')
     <div class="container-fluid flex-grow-1 container-p-y contact_us">
         <div class="wrap">
             <div class="top clearfix">
-                <p>문의하기</p>
-                <button type="button" onclick="addWriting()"><img src="/img/btn_add_wrighting.png" alt="글쓰기 버튼"/></button>
+                <p>문의하기
+                    <span class="txt">DMP9에게 궁금한 점을 쉽고 빠르게 찾아보세요.</span>
+                </p>
+                <button type="button" onclick="addWriting()">글쓰기</button>
             </div>
-            <div class="cont">
-                @foreach($questions as $question)
-                    <ul>
-                        <li class="text_question">
-                            <p class="type_a">일반</p>
-                            <p>{{ $question['title'] }}</p>
-                            <p></p>
-                            @if ($question['answers']->count() >0)
+            <div class="table_wrap">
+                <table class="table">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="40%">
+                        <col width="10%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="5%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>진행상태</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($questions as $question)
+                    <tr>
+                        <td>{{ $question['id'] }}</td>
+                        <td>{{ $question['title'] }}</td>
+                        <td>{{ $question['name'] }}</td>
+                        <td>{{ $question['created_at']->format('Y.m.d') }}</td>
+                        <td>
+                            @if (!$question['answers']->isEmpty())
                                 <p>완료</p>
                             @else
-                                <p>대기</p>
+                                <p>대기중</p>
                             @endif
-                        </li>
-                        <li class="text_answer">
-                            <p>
-                                {{ $question['content'] }}
-                            </p>
-                            @if ($question['answers']->count() >0)
-                            <li class="text_answer">
-                                <p>
-                                    <span>답변</span>
-                                    @foreach ($question['answers'] as $answer)
-                                        {{ $answer['content'] }}
-                                    @endforeach
-                                </p>
-                            </li>
-                            @endif
-                        </li>
-                    </ul>
-                @endforeach
-
+                        </td>
+                        <td class="toggle_tr"><img src="./assets/img/icon_down_arrow.png" alt="아이콘 아래 화살표"/></td>
+                    </tr>
+                    <tr class="toggle_dropdown_tr">
+                        <td colspan="6">
+                            <!--itme 묶음-->
+                            <div class="item mb-1">
+                                <div class="txt-box form-inline">
+                                    <div class="label">질문</div>
+                                    <div class="txt">개{{ $question['content'] }}</div>
+                                </div>
+                                @if (!$question['answers']->isEmpty())
+                                <div class="txt-box form-inline">
+                                    <div class="label">답변</div>
+                                    <div class="txt">
+                                        @foreach ($question['answers'] as $answer)
+                                            {{ $answer['content'] }}
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                            <!--itme 묶음-->
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-            {{ $questions->links() }}
         </div>
 
         <div id="add_writing" class="overlay-wrap alert">
             <div class="writing_wrap">
+                <form method="POST" name="frm" action="{{ route('questions.store') }}">
+                    @csrf
                 <div class="writing_box">
-
-                    <form method="POST" action="{{ route('questions.store') }}">
-                        @csrf
-                        <div class="inner">
+                    <div class="inner">
                         <div class="top clearfix">
                             <h1>문의하기</h1>
-                            <button type="button" onclick="addWritingDisNone()"><img src="/img/btn_close.png" alt="닫기 버튼"/></button>
+                            <button type="button" onclick="addWritingDisNone()"><img src="/assets/img/btn_close.png" alt="닫기 버튼"/></button>
                         </div>
                         <div class="cont">
-                            <div class="form-group form-inline">
-                                <select class="form-control">
-                                    <option>질문구분</option>
-                                    <option>b</option>
-                                </select>
-                                <input id="title" type="text" class="form-control" name="title" value="" placeholder="제목">
+                            <div class="form-group">
+                                <label for="name">이름/회사명</label>
+                                <input type="text" id="name" class="form-control" name="name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}" autocomplete="off" placeholder="이름/회사명을 입력해주세요">
                             </div>
                             <div class="form-group">
-                                <textarea id="content" class="form-control" name="content" value="" placeholder="문의 내용"></textarea>
+                                <label for="title">제목</label>
+                                <input type="text" id="title" class="form-control" name="title" autocomplete="off" placeholder="제목을 입력해주세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="context">문의내용</label>
+                                <textarea id="context" class="form-control" style="resize: none;"  name="content" autocomplete="off" placeholder="내용을 입력해주세요"></textarea>
                             </div>
                             <div class="form-group form-inline">
-                                <input type="text" class="form-control" placeholder="이메일">
-                                <input type="text" class="form-control" placeholder="연락처">
+                                <p>
+                                    <label for="phone">연락처</label>
+                                    <input type="number" id="phone" class="form-control" name="phone" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}"  autocomplete="off" placeholder="연락처를 입력해주세요">
+                                </p>
+                                <p>
+                                    <label for="email">이메일</label>
+                                    <input type="text" id="email" class="form-control" name="email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}" autocomplete="off" placeholder="이메일을 입력해주세요">
+                                </p>
+
                             </div>
                         </div>
                         <div class="cont_sub">
-                            <div>
-                                <input type="checkbox" name="check" id="add_writing_check">
-                                <label for="add_writing_check">
-                                    <span></span> 개인정보 수집 동의
-                                </label>
-                            </div>
-                            <div>
-                                <p>문의 접수 및 처리를 위해 이메일, 연락처를 수집하고 접수된 내용은 6개월 동안 보관합니다. 개인정보 수집 동의를
-                                    <br/>
-                                    거부할 수 있으며, 거부 시 문의가 불가할 수 있습니다</p>
-                                <br/>
-                                <p>상담시간 : 오전 10시 - 오후 6시   대표전화 : 070-7853-1644   이메일 : helpfs9@nsmg21.com</p>
+                            <span class="checkbox" style="position: absolute; left: 0; top: 14px;">
+                                <input type="checkbox" id="Check_1" name="check" />
+                                <label for="Check_1"></label>
+                            </span>
+                            <span class="txt">개인정보 수집 동의</span>
+                            <div class="context">
+                                <p>문의접수 및 처리를 위해 이메일, 연락처를 수집하고 접수된 내용은 6개월 동안 보관합니다.</p>
+                                <p>개인정보 수집 동의를 거부할 수 있으며, 거부 시 문의가 불가할 수 있습니다.</p>
                             </div>
                         </div>
                         <div class="btn_box">
-                            <button type="submit" onclick="addWritingDisNone()"><img src="/img/btn_commit.png" alt="문의등록 버튼"/></button>
+                            <button type="button" name="btn">문의등록</button>
                         </div>
                     </div>
-                    </form>
-
                 </div>
+                </form>
             </div>
         </div>
 
     </div>
-    <!-- content : end-->
+
+
+
 @endsection

@@ -9,9 +9,9 @@ class FaqRepository implements FaqRepositoryInterface
     public function all()
     {
         $faqs = faq::orderBy('id','desc')
-            ->paginate(5);
+            ->get();
 
-        $faqs->getCollection()->map->format();
+        $faqs->map->format();
 
         return $faqs;
     }
