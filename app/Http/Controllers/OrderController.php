@@ -26,6 +26,7 @@ class OrderController extends Controller
     public function taxstate(Request $request)
     {
         $request_data = json_decode($request->data);
+
         $return_result = $this->orderRepository->taxstate_update($request_data);
 
         if (!$return_result) {

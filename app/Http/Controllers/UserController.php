@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\TaxRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -44,8 +45,7 @@ class UserController extends Controller
             $taxs[] = '';
         }
 
-
-        return view('users.my_show', compact('user','taxs'));
+        return view('users.company', compact('user','taxs'));
     }
 
     // 마이정보-수정 업데이트
@@ -59,7 +59,7 @@ class UserController extends Controller
             $this->taxRepository->update($request);
         }
 
-        return redirect()->route('dashboard.index');
+        return redirect()->route('my_show');
     }
 
     // 회원가입-아이디체크

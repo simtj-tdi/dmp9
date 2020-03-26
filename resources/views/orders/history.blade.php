@@ -5,14 +5,44 @@
 
         $(function() {
 
-            $(".historytr").on('click', function(){
-                $(this).next('tr').toggle();
-            });
+            {{--$("[name=tax_request]").click(function() {--}}
 
-            $("[name=tax_request]").click(function() {
+            {{--    var data = new Object() ;--}}
+            {{--    data.order_id = $(this).data("order_id");--}}
+            {{--    var jsonData = JSON.stringify(data);--}}
 
+            {{--    $.ajax({--}}
+            {{--        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},--}}
+            {{--        url: "{{ route('tax_state') }}",--}}
+            {{--        method: "POST",--}}
+            {{--        dataType: "json",--}}
+            {{--        data: {'data': jsonData},--}}
+            {{--        success: function (data) {--}}
+            {{--            var JSONArray = JSON.parse(JSON.stringify(data));--}}
+
+            {{--            if (JSONArray['result'] == "success") {--}}
+            {{--                alert('계산서신청이 되었습니다.');--}}
+            {{--                location.reload();--}}
+            {{--            } else if (JSONArray['result'] == "error") {--}}
+            {{--                alert(JSONArray['error_message']);--}}
+            {{--            };--}}
+            {{--        },--}}
+            {{--        error: function () {--}}
+            {{--            alert("Error while getting results");--}}
+            {{--        }--}}
+            {{--    });--}}
+
+            {{--});--}}
+
+            $("[name=btn]").click(function() {
                 var data = new Object() ;
-                data.order_id = $(this).data("order_id");
+                var ids = new Array();
+
+                $("input[name='check']:checked").each(function() {
+                    ids.push($(this).val());
+                });
+
+                data.ids = ids;
                 var jsonData = JSON.stringify(data);
 
                 $.ajax({
@@ -22,21 +52,15 @@
                     dataType: "json",
                     data: {'data': jsonData},
                     success: function (data) {
-                        var JSONArray = JSON.parse(JSON.stringify(data));
-
-                        if (JSONArray['result'] == "success") {
-                            alert('계산서신청이 되었습니다.');
-                            location.reload();
-                        } else if (JSONArray['result'] == "error") {
-                            alert(JSONArray['error_message']);
-                        };
+                        alert('계산서신청이 되었습니다.');
+                        location.reload();
                     },
-                    error: function () {
+                    error: function (jqXHR, textStatus, errorThrown) {
                         alert("Error while getting results");
                     }
                 });
-
             });
+
         });
     </script>
 
@@ -46,7 +70,8 @@
     <div class="container-fluid flex-grow-1 container-p-y payment_history">
         <div class="top">
             결제 내역
-            <button type="button" onclick="addRequestData()">세금계산서 요청</button>
+{{--            <button type="button" onclick="addRequestData()">세금계산서 요청</button>--}}
+            <button type="button" name="btn">세금계산서 요청</button>
         </div>
 
         <div class="table_wrap">
@@ -59,6 +84,7 @@
                     <col width="20px">
                     <col width="20px">
                     <col width="20px">
+                    <col width="8px">
                 </colgroup>
                 <thead>
                 <tr>
@@ -74,6 +100,7 @@
                     <th>구매가격</th>
                     <th>결제방식</th>
                     <th>계산서 발행여부</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -81,8 +108,8 @@
                     <tr class="toggle_tr historytr">
                         <td>
                         <span class="checkbox">
-                            <input type="checkbox" name="check" id="Check_1" />
-                            <label for="Check_1"></label>
+                            <input type="checkbox" name="check" id="Check_{{$order['order_id']}}" value="{{$order['order_id']}}" />
+                            <label for="Check_{{$order['order_id']}}"></label>
                         </span>
                         </td>
                         <td>{{$order['order_no']}}</td>
@@ -98,11 +125,11 @@
                             @elseif ($order['tax_state'] === 3)
                                발행
                             @endif
-
                         </td>
+                        <td class="toggle_tr"><img src="../assets/img/icon_down_arrow.png" alt="아이콘 아래 화살표"/></td>
                     </tr>
                     <tr class="toggle_dropdown_tr">
-                        <td colspan="7">
+                        <td colspan="8">
                             <table>
                                 <colgroup>
                                     <col width="20px">
