@@ -50,7 +50,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function password_check($request)
     {
-        if (!Hash::check($request->current_password, auth()->user()->password)) {
+        if (!Hash::check($request->password, auth()->user()->password)) {
             return false;
         }
 

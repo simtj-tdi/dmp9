@@ -124,26 +124,19 @@
                             if (JSONArray['result'] == "success") {
                                 select_data.parent().parent().next('tr').show();
                                 $("td[name="+select_tr+"]").prepend("" +
-                                    "<div class=\"item mb-3\">" +
+                                    "<div class=\"item mb-2\">" +
                                     "    <div class=\"form-inline\">" +
                                     "        <div class=\"input_control form-inline\">" +
                                     "            <label class=\"form-control label_control\">"+JSONArray['platform_info']['name']+"</label>" +
                                     "            <input type=\"text\" class=\"form-control\" value=\""+JSONArray['platform_info']['url']+"\" placeholder=\"URL\">" +
-                                    "        </div>" +
-                                    "        <div class=\"input_control form-inline\">" +
                                     "            <input type=\"text\" class=\"form-control id_value_control\" name=\"sns_id\" value=\"\" placeholder=\"아이디\">" +
-                                    "        </div>" +
-                                    "        <div class=\"input_control form-inline\">" +
                                     "            <input type=\"password\" class=\"form-control pw_value_control\" name=\"sns_password\"  value=\"\" placeholder=\"비밀번호\">" +
-                                    "        </div>" +
-                                    "        <div>" +
                                     "            <button type=\"button\" class=\"form-control btn_control_01\" name=\'sns_save\' data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\">수정</button>" +
-                                    "        </div>" +
-                                    "        <div class=\"form-inline\">" +
                                     "            <button type=\"button\" class=\"form-control btn_control_02 upload_request\" name=\"sns_request\">데이터 요청</button>" +
                                     "        </div>" +
                                     "    </div>" +
-                                    "</div>");
+                                    "</div>"
+                                );
                             } else if (JSONArray['result'] == "error") {
                                 alert(JSONArray['error_message']);
                             };
@@ -279,20 +272,21 @@
 
             </ul>
         </div>
-        <div class="table_wrap">
+
+        <table class="tables">
             <table class="table">
                 <colgroup>
-                    <col width="10px">
+                    <col width="8px">
+                    <col width="23px">
+                    <col width="32px">
+                    <col width="23px">
                     <col width="20px">
-                    <col width="20px">
-                    <col width="20px">
-                    <col width="20px">
+                    <col width="22px">
+                    <col width="22px">
+                    <col width="15px">
                     <col width="25px">
-                    <col width="25px">
-                    <col width="20px">
-                    <col width="25px">
-                    <col width="20px">
-                    <col width="10px">
+                    <col width="23px">
+                    <col width="7px">
                 </colgroup>
                 <thead>
                 <tr>
@@ -304,7 +298,7 @@
                     </th>
                     <th>광고주</th>
                     <th>데이터명</th>
-                    <th>데이터추출수</th>
+                    <th>데이터수</th>
                     <th>구매가격</th>
                     <th>구매일</th>
                     <th>유효기간</th>
@@ -314,9 +308,28 @@
                     <th></th>
                 </tr>
                 </thead>
+            </table>
+
+        <div class="table_wrap">
+
+            <table class="table">
+                <colgroup>
+                    <col width="8px">
+                    <col width="23px">
+                    <col width="32px">
+                    <col width="23px">
+                    <col width="20px">
+                    <col width="22px">
+                    <col width="22px">
+                    <col width="15px">
+                    <col width="25px">
+                    <col width="23px">
+                    <col width="7px">
+                </colgroup>
+
                 <tbody>
-                @foreach($carts as $cart)
                 <!--묶음-->
+                @foreach($carts as $cart)
                 <tr>
                     <td>
                         <span class="checkbox">
@@ -332,11 +345,13 @@
                     <td>{{ $cart->goods->advertiser }}</td>
                     <td>{{ $cart->goods->data_name }}</td>
                     <td>{{ number_format($cart->goods->data_count) }}</td>
-                    <td>@if (isset($cart->goods->buy_price))
+                    <td>
+                        @if (isset($cart->goods->buy_price))
                             {{$cart->mark_price}}
                         @else
                         0
-                        @endif원</td>
+                        @endif원
+                    </td>
                     <td>{{ $cart->buy_date }}</td>
                     <td>{{ $cart->goods->expiration_date }}</td>
                     <td>{{ $cart->goods->data_request }}회</td>
@@ -348,10 +363,9 @@
                             @endforeach
                         </select>
                     </td>
-
                     @if ($cart->state === 1)
                         <td  class="explanation_td icon_yellow">
-                            결제대기중
+                            결제대기
                             <img src="../assets/img/icon_explanation_02.png" alt="아이콘 설명"/>
                             <div class="explanation_box">
                                 <p>구매가 완료된 데이터입니다. 선택 후 업로드 요청을 눌러주세요.</p>
@@ -382,64 +396,48 @@
                             </div>
                         </td>
                     @endif
-
                     <td class="toggle_tr"><img src="../assets/img/icon_down_arrow.png" alt="아이콘 아래 화살표"/></td>
                 </tr>
-
                 <tr class="toggle_dropdown_tr">
                     <td colspan="11" name="td_{{ $cart->id }}">
-                        <!--itme 묶음-->
-                        @if (!$cart->options->isEmpty())
-                            @foreach($cart->options as $option)
-                            <div class="item mb-3">
-                                <div class="form-inline">
-                                    <div class="input_control form-inline">
-                                        <label class="form-control label_control">{{$option->platform['name']}}</label>
-                                        <input type="text" class="form-control" value="{{$option->platform['url']}}" placeholder="URL">
-                                    </div>
-
-                                    <div class="input_control form-inline">
-                                        <!-- <label class="form-control login_control">아이디</label> -->
-                                        <input type="text" class="form-control id_value_control" name="sns_id" value="{{$option->sns_id}}" placeholder="아이디">
-                                    </div>
-                                    <div class="input_control form-inline">
-                                        <!-- <label class="form-control login_control">비밀번호</label> -->
-                                        <input type="password" class="form-control pw_value_control" name="sns_password"  value="{{$option->sns_password}}" placeholder="비밀번호">
-                                    </div>
-                                    <div>
-                                        <button type="button" class="form-control btn_control_01" name='sns_save' data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">수정</button>
-                                    </div>
-                                    <div class="form-inline">
-                                        @if ($option->state == "1")
-                                            <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-option_id="{{$option->id}}">데이터 요청</button>
-                                        @elseif ($option->state == "2")
-                                            <button type="button" class="form-control btn_control_02 upload_wait">업로드중</button>
-                                            <div class="explanation_td expiration_div ml-2">
-                                                <img src="../assets/img/icon_explanation_04.png" alt="아이콘 설명"/>
-                                                <div class="explanation_box">
-                                                    <p>구매하신 데이터를 플랫폼에 업로드 중 입니다.</p>
-                                                </div>
+                    @if (!$cart->options->isEmpty())
+                        @foreach($cart->options as $option)
+                        <div class="item mb-2">
+                            <div class="form-inline">
+                                <div class="input_control form-inline">
+                                    <label class="form-control label_control">{{$option->platform['name']}}</label>
+                                    <input type="text" class="form-control" value="{{$option->platform['url']}}" placeholder="URL">
+                                    <input type="text" class="form-control id_value_control" name="sns_id" value="{{$option->sns_id}}" placeholder="아이디">
+                                    <input type="password" class="form-control pw_value_control" name="sns_password"  value="{{$option->sns_password}}" placeholder="비밀번호">
+                                    <button type="button" class="form-control btn_control_01" name='sns_save' data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">수정</button>
+                                    @if ($option->state == "1")
+                                        <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-option_id="{{$option->id}}">데이터 요청</button>
+                                    @elseif ($option->state == "2")
+                                        <button type="button" class="form-control btn_control_02 upload_wait">업로드중</button>
+                                        <div class="explanation_td expiration_div ml-2">
+                                            <img src="../assets/img/icon_explanation_04.png" alt="아이콘 설명"/>
+                                            <div class="explanation_box">
+                                                <p>구매하신 데이터를 플랫폼에 업로드 중 입니다.</p>
                                             </div>
-                                        @elseif ($option->state == "3")
-                                            <button type="button" class="form-control btn_control_02 upload_complete">업로드 완료</button>
-                                            <div class="explanation_td expiration_div ml-2">
-                                                <img src="../assets/img/icon_explanation_04.png" alt="아이콘 설명"/>
-                                                <div class="explanation_box">
-                                                    <p>업로드가 완료되었습니다. 플랫폼 내에서 확인하세요.</p>
-                                                </div>
+                                        </div>
+                                    @elseif ($option->state == "3")
+                                        <button type="button" class="form-control btn_control_02 upload_complete">업로드 완료</button>
+                                        <div class="explanation_td expiration_div ml-2">
+                                            <img src="../assets/img/icon_explanation_04.png" alt="아이콘 설명"/>
+                                            <div class="explanation_box">
+                                                <p>업로드가 완료되었습니다. 플랫폼 내에서 확인하세요.</p>
                                             </div>
-                                        @endif
-
-                                    </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
-                            @endforeach
-                        @endif
-                        <!--itme 묶음-->
+                        </div>
+                        @endforeach
+                    @endif
                     </td>
                 </tr>
-                <!--묶음-->
                 @endforeach
+                <!--묶음-->
                 </tbody>
             </table>
         </div>
@@ -468,7 +466,6 @@
                 <div class="writing_box">
                     <form name="registerForm" method="POST" action="{{ route('goods.store') }}">
                         @csrf
-
                     <div class="inner">
                         <div class="top clearfix">
                             <h1>데이터 요청하기</h1>
@@ -545,7 +542,6 @@
                             </ul>
                         </div>
                         <div class="btn_box">
-
                             <button type="submit"class="createBtn">요청하기</button>
                         </div>
                     </div>

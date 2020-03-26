@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Repositories\TaxRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -28,11 +27,18 @@ class UserController extends Controller
     // 마이정보-비밀번호체크
     public function confirm_check(Request $request)
     {
-        if (!$this->userRepository->password_check($request)) {
-            return back();
+        $request_data = json_decode($request->data);
+
+        $result['result'] = "success";
+
+        if (!$this->userRepository->password_check($request_data)) {
+            $result['result'] = "error";
+            $result['error_message'] = "패스워드를 다시 입력 해주세요.";
         }
 
-        return redirect()->route('my_show');
+        $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+
+        return $response;
     }
 
     // 마이정보-수정입력 화면
@@ -59,7 +65,8 @@ class UserController extends Controller
             $this->taxRepository->update($request);
         }
 
-        return redirect()->route('my_show');
+        return redirect('users');
+//        return redirect()->route('confirm_index');
     }
 
     // 회원가입-아이디체크

@@ -79,8 +79,9 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
 
     Route::get('users/confirm', 'UserController@confirm_index')->name('confirm_index');
     Route::post('users/confirm_check', 'UserController@confirm_check')->name('confirm_check');
-    Route::get('my_show', 'UserController@my_show')->name('my_show');
+    Route::post('my_show', 'UserController@my_show')->name('my_show');
     Route::post('my_update', 'UserController@my_update')->name('my_update');
+
 
     // 주문내역
     Route::get('/history', 'OrderController@history')->name('orders_history');

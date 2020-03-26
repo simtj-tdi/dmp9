@@ -5,7 +5,30 @@
     $(function() {
         $("#current_password").keydown(function(key) {
             if (key.keyCode == 13) {
+                var data = new Object();
+                data.password = $("#current_password").val();
+                var jsonData = JSON.stringify(data);
 
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('confirm_check') }}",
+                    method: "POST",
+                    dataType: "json",
+                    data: {'data': jsonData},
+                    success: function (data) {
+                        var JSONArray = JSON.parse(JSON.stringify(data));
+                        if (JSONArray['result'] == "success") {
+                            $("form[name='frm']").attr("onsubmit", "return true");
+                            $("form[name='frm']").attr("action", "{{ route('my_show') }}");
+                            $("form[name='frm']").submit();
+                        } else if (JSONArray['result'] == "error") {
+                            alert(JSONArray['error_message']);
+                        };
+                    },
+                    error: function () {
+                        alert("Error while getting results");
+                    }
+                });
             }
         });
     });
@@ -16,7 +39,7 @@
     <!-- content : start-->
     <div class="container-fluid flex-grow-1 container-p-y edit_my_information">
         <div class="wrap">
-            <form method="post" action="{{ route('confirm_check') }}">
+            <form name="frm" method="post" onsubmit="return false"  action="">
                 @csrf
                 <div class="inner">
                     <div class="text_box">

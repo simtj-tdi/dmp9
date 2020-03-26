@@ -27,8 +27,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/contents.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/sign_up/sign.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/data_up_load/data_up_load.css') }}">
 
 
     <script>
@@ -75,7 +73,9 @@
                 <div class="sidenav_total_balance_Wrap">
                     <div class="sidenav_total_balance_inner_cont form-inline">
                         <div class="img">
-                            <!--<img src="/assets/img/common/test.jpg" alt=""/>-->
+                            <p>
+                                {{ Str::substr(\Illuminate\Support\Facades\Auth::user()->name, 0,1) }}
+                            </p>
                         </div>
                         <div class="text">
                             <p>{{ \Illuminate\Support\Facades\Auth::user()->user_id }}</p>
