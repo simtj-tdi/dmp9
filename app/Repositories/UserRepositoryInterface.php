@@ -14,4 +14,6 @@ interface UserRepositoryInterface
     public function password_check($request);
 
     public function findByUserId($user_id);
+
+    public function SingUpFindId($request);
 }

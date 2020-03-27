@@ -92,11 +92,11 @@
                         <p><span>DPM9</span>이 혁신을 제공해 드리겠습니다.</p>
                     </div>
                     <div>
-                        <button type="button">+ 서비스 바로가기</button>
+                        <button type="button" onClick="location.href='/sign_up/login.html'">+ 서비스 바로가기</button>
                     </div>
                 </div>
                 <div class="banner_img">
-                    <img src="/img/main/main_1.png" alt="아이디어 회의하는 이미지">
+                    <img src="/assets/img/main/main_1.png" alt="아이디어 회의하는 이미지">
                 </div>
             </div>
 
@@ -155,12 +155,11 @@
                     </div>
                 </div>
                 <div class="banner_img">
-                    <img src="/img/main/main_2.png" alt="사다리 올라가는 이미지">
+                    <img src="/assets/img/main/main_2.png" alt="사다리 올라가는 이미지">
                 </div>
             </div>
 
             <div class="swiper-slide banner_box_03">
-                <!-- 3page -->
                 <div class="banner_text">
                     <div class="title">
                         <h1>DMP9은 모두 가능합니다</h1>
@@ -172,7 +171,7 @@
                                 <div class="card_wrap">
                                     <div class="top form-inline">
                                         <div class="img_box">
-                                            <img src="/img/main/img_person_01.png" alt="사람 이미지">
+                                            <img src="/assets/img/main/img_person_01.png" alt="사람 이미지">
                                         </div>
                                         <div class="text_box">
                                             <p>브랜드 충성고객</p>
@@ -190,7 +189,7 @@
                                 <div class="card_wrap">
                                     <div class="top form-inline">
                                         <div class="img_box">
-                                            <img src="/img/main/img_person_02.png" alt="사람 이미지">
+                                            <img src="/assets/img/main/img_person_02.png" alt="사람 이미지">
                                         </div>
                                         <div class="text_box">
                                             <p>특정 업장 방문고객 </p>
@@ -208,7 +207,7 @@
                                 <div class="card_wrap">
                                     <div class="top form-inline">
                                         <div class="img_box">
-                                            <img src="/img/main/img_person_03.png" alt="사람 이미지">
+                                            <img src="/assets/img/main/img_person_03.png" alt="사람 이미지">
                                         </div>
                                         <div class="text_box">
                                             <p>관심사</p>
@@ -226,7 +225,7 @@
                                 <div class="card_wrap">
                                     <div class="top form-inline">
                                         <div class="img_box">
-                                            <img src="/img/main/img_person_04.png" alt="사람 이미지">
+                                            <img src="/assets/img/main/img_person_04.png" alt="사람 이미지">
                                         </div>
                                         <div class="text_box">
                                             <p>지역+취미+성별</p>
@@ -244,11 +243,11 @@
                         </ul>
                     </div>
                     <div>
-                        <button type="button">+ 서비스 바로가기</button>
+                        <button type="button" onClick="location.href='/sign_up/login.html'">+ 서비스 바로가기</button>
                     </div>
                 </div>
                 <div class="banner_img">
-                    <img src="/img/main/main_3.png" alt="하늘을 나는 이미지">
+                    <img src="/assets/img/main/main_3.png" alt="하늘을 나는 이미지">
                 </div>
             </div>
         </div>
@@ -267,12 +266,12 @@
                 <p>다양한 플랫폼에 정교한 타겟팅을 도입하여 효과적인 광고를 시작해보세요!</p>
             </div>
             <ul class="icon">
-                <li><img src="/img/main/logo_google.png" alt="구글ads 로고"></li>
-                <li><img src="/img/main/logo_facebook.png" alt="페이스북 로고"></li>
-                <li><img src="/img/main/logo_insta.png" alt="인스타그램 로고"></li>
-                <li><img src="/img/main/logo_youtube.png" alt="유튜브 로고"></li>
-                <li><img src="/img/main/logo_naver.png" alt="네이버 로고"></li>
-                <li><img src="/img/main/logo_kakao.png" alt="카카오광고 로고"></li>
+                <li><img src="/assets/img/main/logo_google.png" alt="구글ads 로고"></li>
+                <li><img src="/assets/img/main/logo_facebook.png" alt="페이스북 로고"></li>
+                <li><img src="/assets/img/main/logo_insta.png" alt="인스타그램 로고"></li>
+                <li><img src="/assets/img/main/logo_youtube.png" alt="유튜브 로고"></li>
+                <li><img src="/assets/img/main/logo_naver.png" alt="네이버 로고"></li>
+                <li><img src="/assets/img/main/logo_kakao.png" alt="카카오광고 로고"></li>
             </ul>
         </div>
     </section>
@@ -290,33 +289,33 @@
                     </div>
                     <ul class="content">
                         <li>
-                            <p><img src="/img/main/icon_headphone.png" alt="헤드폰 아이콘">고객센터</p>
+                            <p><img src="/assets/img/main/icon_headphone.png" alt="헤드폰 아이콘">고객센터</p>
                             <p>070-7798-1644</p>
                         </li>
                         <li>
-                            <p><img src="/img/main/icon_mail.png" alt="이메일 아이콘">이메일</p>
+                            <p><img src="/assets/img/main/icon_mail.png" alt="이메일 아이콘">이메일</p>
                             <p>dmp9@tdi9.com</p>
                         </li>
                         <li>
-                            <p><img src="/img/main/icon_address.png" alt="주소 아이콘">서울특별시 서초구</p>
+                            <p><img src="/assets/img/main/icon_address.png" alt="주소 아이콘">서울특별시 서초구</p>
                             <p>반포대로20길 29, TDI타워</p>
                         </li>
                     </ul>
                 </div>
 
                 <div class="form_bg">
-                    <form method="POST" name="user" action="" >
+                    <form>
                         <div class="form_inner">
                             <div class="input-group">
-                                <label><img src="/img/main/icon_name.png" alt="이름 아이콘"></label>
+                                <label><img src="/assets/img/main/icon_name.png" alt="이름 아이콘"></label>
                                 <input type="text" name="name" placeholder="회사명 / 이름">
                             </div>
                             <div class="input-group">
-                                <label><img src="/img/main/icon_phone.png" alt="핸드폰 아이콘"></label>
+                                <label><img src="/assets/img/main/icon_phone.png" alt="핸드폰 아이콘"></label>
                                 <input type="number" name="phone" placeholder="핸드폰 번호">
                             </div>
                             <div class="input-group">
-                                <label><img src="/img/main/icon_mail_02.png" alt="이메일 아이콘"></label>
+                                <label><img src="/assets/img/main/icon_mail_02.png" alt="이메일 아이콘"></label>
                                 <input type="text" name="email" placeholder="이메일 주소">
                             </div>
                             <div class="input-group">
@@ -340,7 +339,9 @@
                     <p>지금 바로 DMP9를 통해 효율적인 데이터 관리를 경험해보세요.</p>
                 </div>
                 <div class="btn_box">
-                    <button type="button"><img src="/img/main/icon_plus.png" alt="+아이콘"></button>
+                    <button type="button" onClick="location.href='/sign_up/login.html'">
+                        <img src="/assets/img/main/icon_arrow.png" alt="+아이콘">
+                    </button>
                 </div>
             </div>
         </div>
@@ -348,7 +349,9 @@
         <div class="footer_info_wrap">
             <div class="footer_info_inner clearfix">
                 <div class="logo">
-                    <img src="/img/main/logo_dmp_02.png" alt="DMP9 로고 (흰색)">
+                    <a href="/main/main.html">
+                        <img src="/assets/img/main/logo_dmp_02.png" alt="DMP9 로고 (흰색)">
+                    </a>
                 </div>
                 <ul class="text">
                     <li class="form-inline">
@@ -388,5 +391,4 @@
             </div>
         </div>
     </footer>
-    <!-- / Layout wrapper -->
 @endsection

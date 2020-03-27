@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/uikit.css') }}">
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/main/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main/main.css') }}">
 
 </head>
 <body>

@@ -5,340 +5,355 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body{ min-width: 1280px !important;}
 
 textarea:focus {
-  outline: none;
+    outline: none;
 }
 button:focus {
-  outline: none;
+    outline: none;
 }
 input:focus {
-  outline: none;
+    outline: none;
 }
 
 .sign_up .inner {
-  width: 600px !important;
+    width: 600px !important;
 }
 .but_box {
-  text-align: center;
+    text-align: center;
 }
 .but_box button {
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  margin: 60px 0;
-  border-radius: 5px;
-  background: #e7bd04;
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: -0.3px;
-  color: #292929;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 60px 0;
+    border-radius: 5px;
+    background: #fed32e;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    color: #292929;
+}
+
+.but_box button:hover {
+    background: #f2c722;
 }
 
 .form_box {
-  position: relative;
+    position: relative;
 }
 .form_box .form_ico {
-  position: absolute;
-  top: -22px;
-  left: 75px;
-  display: inline-block;
-  width: 42px;
-  height: 42px;
-  line-height: 42px;
-  border-radius: 50%;
-  text-align: center;
-  background: #fed32e;
+    position: absolute;
+    top: -22px;
+    left: 75px;
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    border-radius: 50%;
+    text-align: center;
+    background: #fed32e;
 }
 
 /*약관동의*/
 .terms {
-  display: table;
-  position: relative;
-  width: 100%;
-  height: 100%;
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 .terms .inner {
-  display: table-cell;
-  vertical-align: middle;
-  width: 550px;
-  margin: 0 auto;
+    display: table-cell;
+    vertical-align: middle;
+    width: 550px;
+    margin: 0 auto;
 }
 .terms .logo {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 .terms h1 {
-  text-align: center;
-  font-size: 25px;
+    text-align: center;
+    font-size: 25px;
 }
 .terms .form_box {
-  width: 550px;
-  margin: auto;
-  border-radius: 7px;
-  border: solid 1px #cccccc;
+    width: 550px;
+    background: #fff;
+    margin: auto;
+    border-radius: 7px;
+    border: solid 1px #cccccc;
 }
 .terms .input_box {
-  width: 400px;
-  margin: auto;
-  text-align: left;
+    width: 400px;
+    margin: auto;
+    text-align: left;
 }
 .terms .input_box p {
-  text-align: left;
+    text-align: left;
 }
 .terms .input_box .desc {
-  margin: 45px 0 20px;
-  font-size: 43px;
-  line-height: 1.27;
-  letter-spacing: -0.65px;
-  color: #292929;
+    margin: 45px 0 20px;
+    font-size: 43px;
+    line-height: 1.27;
+    letter-spacing: -0.65px;
+    color: #292929;
 }
 .terms .input_box .desc_sub {
-  margin-bottom: 40px;
-  font-size: 25px;
-  line-height: 1.52;
-  letter-spacing: -0.38px;
-  color: #292929;
+    margin-bottom: 40px;
+    font-size: 25px;
+    line-height: 1.52;
+    letter-spacing: -0.38px;
+    color: #292929;
 }
 .terms .input_box ul {
-  display: block;
+    display: block;
 }
 .terms .input_box ul li {
-  width: 100%;
-  line-height: 25px;
-  text-align: left;
-  margin-bottom: 30px;
+    width: 100%;
+    line-height: 25px;
+    text-align: left;
+    margin-bottom: 30px;
 }
 .terms .input_box ul li .checkbox {
-  position: absolute; left: 0; top: 14px;
+    position: absolute; left: 0; top: 14px;
 }
 .terms .input_box ul li .txt {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 20px;
-  letter-spacing: -0.6px;
-  color: #292929;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 20px;
+    letter-spacing: -0.6px;
+    color: #292929;
 }
 .terms .input_box ul li a {
-  float: right;
-  font-size: 18px;
-  letter-spacing: -0.27px;
-  color: #666666;
+    float: right;
+    font-size: 18px;
+    letter-spacing: -0.27px;
+    color: #666666;
 }
 .terms .input_box ul li:first-of-type {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 .terms .input_box ul li:last-of-type {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 .terms .txt_bottom {
-  margin-top: 30px;
-  font-size: 13px;
-  color: #666;
-  text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
 }
 
 .terms .terms_box {
-  margin: auto;
-  width: 60%;
-  min-height: 750px;
-  text-align: center;
-  padding: 1rem;
-  border: 1px solid #eee;
+    margin: auto;
+    width: 60%;
+    min-height: 750px;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #eee;
 }
 
 /* checkbox */
 .checkbox input[type="checkbox"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 .checkbox input[type="checkbox"] + label {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 .checkbox input[type="checkbox"] + label:before {
-  content: "";
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
-  border-radius: 50%;
-  text-align: center;
-  vertical-align: middle;
-  background-color: #fed32e;
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #fed32e;
 }
 
 .checkbox input[type="checkbox"]:checked + label::before {
-  content: "✔";
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
-  color: #fff;
+    content: "✔";
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
 }
 
 
 /*sign_up 회사 가입 */
 .sign_up {
-  margin: 60px 0;
+    margin: 60px 0;
 }
 .sign_up .inner {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 .sign_up .logo {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 .sign_up h1 {
-  text-align: center;
-  font-size: 25px;
+    text-align: center;
+    font-size: 25px;
 }
 .sign_up .form_box {
-  width: 100%;
-  border-radius: 7px;
-  border: solid 1px #cccccc;
+    width: 100%;
+    border-radius: 7px;
+    border: solid 1px #cccccc;
+    background: #fff;
 }
 .sign_up .input_box {
-  width: 440px;
-  margin: auto;
+    width: 440px;
+    margin: auto;
 }
 .sign_up .input_box .desc {
-  padding-top: 40px;
-  font-size: 43px;
-  line-height: 1.27;
-  letter-spacing: -0.65px;
-  text-align: left;
-  color: #292929;
+    padding-top: 40px;
+    font-size: 43px;
+    line-height: 1.27;
+    letter-spacing: -0.65px;
+    text-align: left;
+    color: #292929;
 }
 .sign_up .input-group {
-  position: relative;
-  flex-direction: column;
-  margin-top: 50px;
+    position: relative;
+    flex-direction: column;
+    margin-top: 50px;
 }
 .sign_up .input-group label {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: -0.23px;
-  color: #000;
-  text-align: left;
-  white-space: nowrap;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.23px;
+    color: #000;
+    text-align: left;
+    white-space: nowrap;
 }
 .sign_up .input-group button {
-  position: absolute;
-  right: 0;
-  bottom: 10px;
-  width: 95px;
-  height: 30px;
-  line-height: 26px;
-  background: #f0f0f0;
-  border-radius: 14.5px;
-  border: solid 1px #cccccc;
-  font-size: 15px;
-  letter-spacing: -0.23px;
-  color: #292929;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    width: 95px;
+    height: 30px;
+    line-height: 26px;
+    background: #f0f0f0;
+    border-radius: 14.5px;
+    border: solid 1px #cccccc;
+    font-size: 15px;
+    letter-spacing: -0.23px;
+    color: #292929;
+}
+
+.sign_up .input-group button:hover {
+    background: #cccccc;
 }
 .sign_up .input_box .form-control {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border-bottom: 1px solid #ccc;
-  background-color: transparent !important;
-  font-size: 20px;
-  letter-spacing: -0.6px;
-  text-align: left;
-  color: #292929;
-  box-sizing: border-box;
-  border-radius: 0;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent !important;
+    font-size: 20px;
+    letter-spacing: -0.6px;
+    text-align: left;
+    color: #292929;
+    box-sizing: border-box;
+    border-radius: 0;
 }
 .sign_up .input_box .form-control2 {
-  padding-right: 110px;
+    padding-right: 110px;
 }
 .sign_up .input_box .form-control::placeholder {
-  color: #ccc;
+    color: #ccc;
 }
 .sign_up .message_group {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 .sign_up .message_group .check_state_yes {
-  text-align: left;
-  font-size: 13px;
-  color: #00d294;
+    text-align: left;
+    font-size: 13px;
+    color: #00d294;
 }
 .sign_up .message_group .check_state_no {
-  text-align: left;
-  font-size: 13px;
-  color: #e40a0a;
+    text-align: left;
+    font-size: 13px;
+    color: #e40a0a;
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 .sign_up .txt_bottom {
-  margin-top: 30px;
-  font-size: 13px;
-  color: #666;
-  text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
 }
 
 .sign_up .address_box input:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 .sign_up .address,
 .sign_up .detailAddress,
 .sign_up .extraAddress {
-  width: 100% !important;
+    width: 100% !important;
 }
 .extraAddress{display: none !important;}
 
 .sign_up .upload_name {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 .sign_up .business_btn {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  text-align: center !important;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 0.25em;
-  -webkit-transition: background-color 0.2s;
-  transition: background-color 0.2s;
-  width: 95px !important;
-  height: 30px;
-  line-height: 26px;
-  background: #f0f0f0;
-  border-radius: 14.5px;
-  border: solid 1px #cccccc;
-  font-size: 15px;
-  letter-spacing: -0.23px;
-  color: #292929;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: center !important;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0.25em;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    width: 95px !important;
+    height: 30px;
+    line-height: 26px;
+    background: #f0f0f0;
+    border-radius: 14.5px;
+    border: solid 1px #cccccc;
+    font-size: 15px;
+    letter-spacing: -0.23px;
+    color: #292929;
 }
+
+.sign_up .business_btn:hover {
+    background: #cccccc;
+}
+
 .sign_up .business_btn.form-control {
-  border: 0;
-  border-bottom: 1px solid #ccc;
+    border: 0;
+    border-bottom: 1px solid #ccc;
 }
 
 
 .sign_up .address,
 .sign_up .detailAddress,
 .sign_up .extraAddress {
-  width: 100% !important;
+    width: 100% !important;
 }
 .extraAddress{display: none !important;}
 
@@ -347,95 +362,97 @@ input[type="number"]::-webkit-inner-spin-button {
 /*login*/
 
 .login {
-  width: 100%;
-  height: 650px;
-  background-image: url('/assets/img/sign_up/login_bg.png');
-  background-size: cover;
-  background-position: center;
-  position: relative;
+    width: 100%;
+    height: 650px;
+    background-image: url('/img/sign_up/login_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
 .login .but_box button {
-  color: #fff;
-  margin: 60px 0 22px;
+    color: #fff;
+    margin: 60px 0 22px;
 }
 
 .login .inner {
-  width: 450px !important;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+    width: 450px !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 .login .input_box {
-  width: 100%;
-  margin: auto;
+    width: 100%;
+    margin: auto;
 }
 .login .logo {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
 }
 .login h1 {
-  text-align: center;
-  font-size: 25px;
+    text-align: center;
+    font-size: 25px;
 }
 .login .input_box .desc {
-  padding-top: 40px;
-  font-size: 43px;
-  line-height: 1.27;
-  letter-spacing: -0.65px;
-  text-align: left;
-  color: #fff;
-  margin-bottom: 70px;
+    padding-top: 40px;
+    font-size: 43px;
+    line-height: 1.27;
+    letter-spacing: -0.65px;
+    text-align: left;
+    color: #fff;
+    margin-bottom: 70px;
 }
 .login .form_box {
-  width: 100%;
-  border: none;
+    width: 100%;
+    border: none;
 }
 .login .input-group{
-  margin-bottom: 35px;
+    margin-bottom: 35px;
 }
 .login .input-group label {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: -0.23px;
-  color: #fff;
-  text-align: left;
-  white-space: nowrap;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.23px;
+    color: #fff;
+    text-align: left;
+    white-space: nowrap;
 }
 
 .login .input_box .form-control {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border-bottom: 1px solid #fff;
-  background-color: transparent !important;
-  font-size: 20px;
-  letter-spacing: -0.6px;
-  text-align: left;
-  color: #fff;
-  box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border-bottom: 1px solid #fff;
+    background-color: transparent !important;
+    font-size: 20px;
+    letter-spacing: -0.6px;
+    text-align: left;
+    color: #fff;
+    box-sizing: border-box;
 }
 
 .login .input_box .form-control::placeholder{
-  color: #fff;
+    color: #fff;
 }
 .login .checkbox label {color: #fff;}
 .login .txt_bottom {
-  margin-top: 170px;
-  font-size: 13px;
-  color: #fff;
-  text-align: center;
+    margin-top: 170px;
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
 }
+
+.login .but_box .sign_box,
 .login .but_box .sign_box a {
-  font-size: 15px;
-  line-height: 2.53;
-  letter-spacing: -0.23px;
-  color: #ffffff;
+    font-size: 15px;
+    line-height: 2.53;
+    letter-spacing: -0.23px;
+    color: #ffffff;
 }
 
 .login .but_box .sign_box div:nth-child(1) {float: left;}
@@ -445,161 +462,164 @@ input[type="number"]::-webkit-inner-spin-button {
 /*초이스*/
 
 .choice {
-  display: table;
-  position: relative;
-  width: 100%;
-  height: 100%;
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 .choice .inner {
-  display: table-cell;
-  vertical-align: middle;
-  width: 550px;
-  margin: 0 auto;
+    display: table-cell;
+    vertical-align: middle;
+    width: 550px;
+    margin: 0 auto;
 }
 .choice .logo {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 .choice h1 {
-  text-align: center;
-  font-size: 25px;
+    text-align: center;
+    font-size: 25px;
 }
 .choice .form_box {
-  width: 550px;
-  margin: auto;
-  border-radius: 7px;
-  border: solid 1px #cccccc;
+    width: 550px;
+    background: #fff;
+    margin: auto;
+    border-radius: 7px;
+    border: solid 1px #cccccc;
 }
 .choice .input_box {
-  width: 400px;
-  margin: auto;
-  text-align: left;
+    width: 400px;
+    margin: auto;
+    text-align: left;
 }
 .choice .input_box p {
-  text-align: left;
+    text-align: left;
 }
 .choice .input_box .desc {
-  margin: 45px 0 20px;
-  font-size: 43px;
-  line-height: 1.27;
-  letter-spacing: -0.65px;
-  color: #292929;
+    margin: 45px 0 20px;
+    font-size: 43px;
+    line-height: 1.27;
+    letter-spacing: -0.65px;
+    color: #292929;
 }
 .choice .input_box .desc_sub {
-  margin-bottom: 40px;
-  font-size: 25px;
-  line-height: 1.52;
-  letter-spacing: -0.38px;
-  color: #292929;
+    margin-bottom: 40px;
+    font-size: 25px;
+    line-height: 1.52;
+    letter-spacing: -0.38px;
+    color: #292929;
 }
 .choice .input_box ul {
-  display: block;
+    display: block;
 }
 .choice .input_box ul li {
-  width: 100%;
-  line-height: 25px;
-  text-align: left;
-  margin-bottom: 30px;
+    width: 100%;
+    line-height: 25px;
+    text-align: left;
+    margin-bottom: 30px;
 }
 .choice .input_box ul li .checkbox {
-  position: absolute; left: 0; top: 14px;
+    position: absolute; left: 0; top: 14px;
 }
 .choice .input_box ul li .txt {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 20px;
-  letter-spacing: -0.6px;
-  color: #292929;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 20px;
+    letter-spacing: -0.6px;
+    color: #292929;
 }
 .choice .input_box ul li a {
-  float: right;
-  font-size: 18px;
-  letter-spacing: -0.27px;
-  color: #666666;
+    float: right;
+    font-size: 18px;
+    letter-spacing: -0.27px;
+    color: #666666;
 }
 .choice .input_box ul li:first-of-type {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 .choice .input_box ul li:last-of-type {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 .choice .txt_bottom {
-  margin-top: 30px;
-  font-size: 13px;
-  color: #666;
-  text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
 }
 .choice .but {
-  overflow: hidden;
-  padding-bottom: 1rem;
+    overflow: hidden;
+    padding-bottom: 1rem;
 }
 .choice .but p {
-  float: left;
-  font-size: 15px;
-  line-height: 2.53;
-  letter-spacing: -0.23px;
-  color: #292929;
+    float: left;
+    font-size: 15px;
+    line-height: 2.53;
+    letter-spacing: -0.23px;
+    color: #292929;
 }
 .choice .but button {
-  background: none;
-  float: right;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 2.53;
-  letter-spacing: -0.23px;
-  color: #292929;
+    background: none;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 2.53;
+    letter-spacing: -0.23px;
+    color: #292929;
 }
 .choice hr {margin: 20px 0 20px;}
 
 .choice .but_box {
-  text-align: center;
+    text-align: center;
 }
 .choice .but_box button {
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  margin: 10px 0;
-  border-radius: 5px;
-  background: #e7bd04;
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: -0.3px;
-  color: #292929;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background: #fed32e;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    color: #292929;
 }
-
+.choice .but_box button:hover {
+    background: #e7bd04;
+}
 
 
 .radio1 input[type="radio"]{
-  display: none;
+    display: none;
 }
 .radio2 input[type="radio"]{
-  display: none;
+    display: none;
 }
 
 .radio1 input[type="radio"]+label {
-  width: 50px;
-  height: 50px;
-  background-image: url('/assets/img/sign_up/icon_one_man_off.png');
-  background-size: cover;
-  background-position: center;
+    width: 50px;
+    height: 50px;
+    background-image: url('/assets/img/sign_up/icon_one_man_off.png');
+    background-size: cover;
+    background-position: center;
 
 }
 .radio1 input[type="radio"]:checked + label {
-  background-image: url('/assets/img/sign_up/icon_one_man_on.png');
-  background-size: cover;
-  background-position: center;
+    background-image: url('/assets/img/sign_up/icon_one_man_on.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .radio2 input[type="radio"]+label {
-  width: 50px;
-  height: 50px;
-  background-image: url('/assets/img/sign_up/icon_two_man_off.png');
-  background-size: cover;
-  background-position: center;
+    width: 50px;
+    height: 50px;
+    background-image: url('/assets/img/sign_up/icon_two_man_off.png');
+    background-size: cover;
+    background-position: center;
 }
 .radio2 input[type="radio"]:checked + label {
-  background-image: url('/assets/img/sign_up/icon_two_man_on.png');
-  background-size: cover;
-  background-position: center;
+    background-image: url('/assets/img/sign_up/icon_two_man_on.png');
+    background-size: cover;
+    background-position: center;
 }
 
 
@@ -607,40 +627,176 @@ input[type="number"]::-webkit-inner-spin-button {
 .sign_up .request_data {display: none;}
 
 .sign_up .request_data .writing_wrap {
-  width: 100%;
-  height: 100%;
-  position: relative;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 .sign_up .request_data .writing_wrap .writing_box {
-  border-radius: 20px;
-  background-color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+    border-radius: 20px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .sign_up .request_data .writing_wrap .inner {
-  padding: 45px 30px;
-  text-align: center;
+    padding: 45px 30px;
+    text-align: center;
 }
 .sign_up .request_data .top {
-  margin-top: 0;
-  padding-bottom: 0;
-  text-align: center;
+    margin-top: 0;
+    padding-bottom: 0;
+    text-align: center;
 }
 .sign_up .request_data .top h1 {
-  font-size: 17px;
-  line-height: 1.65;
-  letter-spacing: -0.26px;
-  color: #292929;
-  margin-bottom: 1rem;
+    font-size: 17px;
+    line-height: 1.65;
+    letter-spacing: -0.26px;
+    color: #292929;
+    margin-bottom: 1rem;
 }
 
 .sign_up .request_data .btn_box button {
-  background: #fed32e;
-  color: #fff;
-  width: 50%;
-  padding: 0.7rem;
-  border-radius: 5px;
+    background: #fed32e;
+    color: #fff;
+    width: 50%;
+    padding: 0.7rem;
+    border-radius: 5px;
+}
+.sign_up .request_data .btn_box button:hover {
+    background: #f2c722;
+}
+
+.finish_sign_up .logo {
+    margin: 60px 0 40px;
+}
+.finish_sign_up .input_box .desc {
+    padding-top: 40px;
+    font-size: 43px;
+    line-height: 1.27;
+    letter-spacing: -0.65px;
+    text-align: left;
+    color: #292929;
+    font-weight: bold;
+}
+.finish_sign_up .input_box .desc span {
+    padding-top: 40px;
+    font-size: 25px;
+    line-height: 1.52;
+    letter-spacing: -0.38px;
+    text-align: left;
+    color: #292929;
+}
+.finish_sign_up .but_box{
+    text-align: left;
+}
+.finish_sign_up .but_box button {
+    width: 35%;
+    height: 50px;
+    line-height: 50px;
+    margin: 80px 0 50px;
+    border-radius: 5px;
+    background: #fff !important;
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: -0.3px;
+    color: #111;
+}
+
+
+
+/*아이디/비밀번호 찾기*/
+.find_id .logo {
+    margin: 60px 0 40px;
+}
+
+.find_id .input_box .desc {
+    padding-top: 40px;
+    font-size: 43px;
+    line-height: 1.27;
+    letter-spacing: -0.65px;
+    text-align: left;
+    color: #292929;
+    font-weight: bold;
+}
+.find_id .input_box .desc span {
+    padding-top: 40px;
+    font-size: 25px;
+    line-height: 1.52;
+    letter-spacing: -0.38px;
+    text-align: left;
+    color: #292929;
+}
+
+.find_id .but_box button {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 60px 0;
+    border-radius: 5px;
+    background: #fed32e;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    color: #fff;
+}
+
+.find_id .but_box button:hover {
+    background: #f2c722;
+}
+
+.find_id .new_pw {margin-top: 20px;}
+
+/*아이디 모달*/
+.find_id .request_data {display: none;}
+
+.find_id .request_data .writing_wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.find_id .request_data .writing_wrap .writing_box {
+    width: 550px;
+    border-radius: 7px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.find_id .request_data .writing_wrap .inner {
+    width: 550px !important;
+    padding: 80px 30px 50px !important;
+    text-align: center;
+    position: relative;
+}
+
+.find_id .request_data .writing_wrap .inner .close_btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+.find_id .request_data .writing_wrap .inner .close_btn img {
+    width: 40%;
+}
+
+.find_id .request_data .cont p {
+    color: #111;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 55px;
+}
+
+.find_id .request_data .btn_box button {
+    background: #fed32e;
+    color: #fff;
+    width: 80%;
+    padding: 0.7rem;
+    border-radius: 5px;
+}
+
+.find_new_pw .request_data .cont p:nth-child(1) {
+    margin-bottom: 13px;
 }

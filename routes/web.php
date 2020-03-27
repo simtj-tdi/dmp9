@@ -19,20 +19,35 @@ Auth::routes();
 
 // 회원가입
 Route::get('/sign_up_type', function() { return view('sign.sign_up_type');});
-
 Route::post('/sign_up_terms', function(\Illuminate\Http\Request $request) {
     return view('sign.sign_up_terms', compact('request'));
 });
-
 Route::post('/sign_up_register', function(\Illuminate\Http\Request $request) {
     return view('sign.sign_up_register', compact('request'));
 });
-
 Route::post('/sign_up_register_company', function(\Illuminate\Http\Request $request) {
     return view('sign.sign_up_register_company', compact('request'));
 });
 
+Route::get('/sign_up_type', function() {
+    return view('sign.sign_up_type');
+});
+
+Route::get('/sign_up_find_id', function() {
+    return view('sign.sign_up_find_id');
+});
+
+Route::get('/sign_up_find_pw', function() {
+    return view('sign.sign_up_find_pw');
+});
+
+Route::post('/sign_up_find_new_pw', function() {
+    return view('sign.sign_up_find_new_pw');
+});
+
 Route::post('/ajaxIdCheckRequest', 'UserController@id_check')->name('Users.idcheckrequest');
+Route::post('/ajaxSignUpFindId', 'UserController@SingUpFindId')->name('Users.SingUpFindId');
+
 
 // 인증 예외 처리
 Route::get('/approved', function() {
