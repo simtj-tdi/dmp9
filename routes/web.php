@@ -46,6 +46,8 @@ Route::get('/role', function() {
     return view('role');
 })->name('role');
 
+Route::post('/ajaxContactusCreate', 'ContactsusController@store')->name('Contactsus.create');
+
 Route::middleware(['auth', 'approved','role'])->group( function () {
 
     Route::get('/dashboard', 'DashBoardController@index')->name('dashboard.index');

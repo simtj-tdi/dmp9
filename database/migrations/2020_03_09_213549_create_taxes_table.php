@@ -18,6 +18,7 @@ class CreateTaxesTable extends Migration
             $table->unsignedBigInteger('user_id')->comment("id");
             $table->string('tax_name')->comment("대표자명");
             $table->string('tax_company_name')->comment("업체명");
+            $table->string('tax_company_number')->comment("사업자등록번호");
             $table->string('tax_zipcode')->comment("우편번호");
             $table->string('tax_addres_1')->comment("주소");
             $table->string('tax_addres_2')->comment("상세주소");

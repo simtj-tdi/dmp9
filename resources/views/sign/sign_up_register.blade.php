@@ -101,17 +101,10 @@
 
                 var sEmail = $("input[name=email]").val();
 
-                if (validateEmail(sEmail)) {
-
-                }
-                else {
-                    alert('잘못된 이메일입니다');
+                if (!validateEmail(sEmail)) {
+                    alert('잘못된 이메일 형식 입니다');
                     return false;
                 }
-
-
-
-
 
                 if ($("input[name=phone]").val() == "") {
                     alert('전화번호를 입력하세요.');

@@ -1,9 +1,20 @@
 @extends('layouts.frontend')
 @prepend('scripts')
     <script>
+
+        function validateEmail(sEmail) {
+            var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (filter.test(sEmail)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
         $(function() {
 
-            $("button[name=btn_submit]").click(function() {
+            $("#btn_submit").click(function() {
 
                 if ($("input[name=name]").val() == "") {
                     alert('회사명 / 이름을 입력해주세요.');
@@ -20,11 +31,51 @@
                     return false;
                 }
 
-                if ($("input[name=content]").val() == "") {
+                var sEmail = $("input[name=email]").val();
+
+                if (!validateEmail(sEmail)) {
+                    alert('잘못된 이메일 형식 입니다');
+                    return false;
+                }
+
+                if ($("[name=content]").val() == "") {
                     alert('문의사항을 입력해주세요.');
                     return false;
                 }
-              //  $("form[name=user]").submit();
+
+                var data = new Object();
+                data.name = $("input[name=name]").val();
+                data.phone = $("input[name=phone]").val() ;
+                data.email = $("input[name=email]").val();
+                data.content = $("[name=content]").val();
+
+                var jsonData = JSON.stringify(data);
+
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('Contactsus.create') }}",
+                    method: "POST",
+                    dataType: "json",
+                    data: {'data': jsonData},
+                    success: function (data) {
+                        var JSONArray = JSON.parse(JSON.stringify(data));
+
+                        if (JSONArray['result'] == "success") {
+                            $("input[name=name]").val("");
+                            $("input[name=phone]").val("") ;
+                            $("input[name=email]").val("");
+                            $("[name=content]").val("");
+
+                            alert('등록 되었습니다.');
+                        } else if (JSONArray['result'] == "error") {
+                            alert(JSONArray['error_message']);
+                        };
+                    },
+                    error: function () {
+                        alert("Error while getting results");
+                    }
+                });
+
             });
         });
     </script>
@@ -272,7 +323,7 @@
                                 <textarea type="text" name="content" placeholder="문의사항"></textarea>
                             </div>
                             <div class="btn_box">
-                                <button type="button" name="btn_submit">전송하기</button>
+                                <button type="button" id="btn_submit">전송하기</button>
                             </div>
                         </div>
                     </form>

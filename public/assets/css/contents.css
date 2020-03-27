@@ -746,8 +746,8 @@ input[type=password] {
 
 .contact_us .overlay-wrap .top button {
     position: absolute;
-    right: 20px;
-    top: 30px;
+    right: -10px;
+    top: -10px;
 }
 .contact_us .overlay-wrap .top button img {
     width: 60%;
