@@ -349,7 +349,7 @@
         <div class="footer_info_wrap">
             <div class="footer_info_inner clearfix">
                 <div class="logo">
-                    <a href="/main/main.html">
+                    <a href="/">
                         <img src="/assets/img/main/logo_dmp_02.png" alt="DMP9 로고 (흰색)">
                     </a>
                 </div>

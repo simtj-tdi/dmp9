@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function __construct(UserRepositoryInterface $userRepository, TaxRepositoryInterface $taxRepository)
     {
-        $this->middleware(['auth', 'approved','role'], ['except' => ['id_check', 'SingUpFindId']]);
+        $this->middleware(['auth', 'approved','role'], ['except' => ['id_check', 'SingUpFindId', 'SingUpNewPw']]);
         $this->userRepository = $userRepository;
         $this->taxRepository = $taxRepository;
     }
@@ -84,6 +84,24 @@ class UserController extends Controller
         $return_result = $this->userRepository->SingUpFindId($request_data);
 
         if (empty($return_result[0])) {
+            $result['result'] = "error";
+            $result['error_message'] = "전송 실패";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        } else {
+            $result['result'] = "success";
+            $result['result_info'] = $return_result;
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        }
+
+        return $response;
+    }
+
+    public function SingUpNewPw(Request $request)
+    {
+        $request_data = json_decode($request->data);
+        $return_result = $this->userRepository->SingUpNewPw($request_data);
+
+        if (!$return_result) {
             $result['result'] = "error";
             $result['error_message'] = "전송 실패";
             $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);

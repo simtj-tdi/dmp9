@@ -4,13 +4,15 @@
     <script>
         function validateEmail(sEmail) {
             var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-            if (filter.test(sEmail)) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return filter.test(sEmail) ? true : false;
         };
+
+        function validatePassword(sPassword) {
+            var filter = /^[A-Za-z0-9]{8,12}$/;
+            return filter.test(sPassword) ? true : false;
+        };
+
+
 
         $(function() {
 
@@ -69,6 +71,11 @@
                     return false;
                 }
 
+                if ($("input[name=password]").val() != $("input[name=password_confirmation]").val()) {
+                    alert('비밀번호가 일치하지 않습니다');
+                    return false;
+                }
+
                 if ($("input[name=user_id]").val() == "") {
                     alert('아이디를 입력하세요.');
                     return false;
@@ -81,6 +88,11 @@
 
                 if ($("input[name=password_confirmation]").val() == "") {
                     alert('비밀번호 확인을 입력하세요.');
+                    return false;
+                }
+
+                if (!validatePassword($("input[name=password]").val())) {
+                    alert('영문, 숫자 포함 8~12자를 입력하세요.');
                     return false;
                 }
 
@@ -99,9 +111,7 @@
                     return false;
                 }
 
-                var sEmail = $("input[name=email]").val();
-
-                if (!validateEmail(sEmail)) {
+                if (!validateEmail($("input[name=email]").val())) {
                     alert('잘못된 이메일 형식 입니다');
                     return false;
                 }

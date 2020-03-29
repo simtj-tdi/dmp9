@@ -74,4 +74,10 @@ class UserRepository implements UserRepositoryInterface
         return $user_id;
     }
 
+    public function SingUpNewPw($request)
+    {
+        return user::where('user_id', $request->user_id)->update([
+            'password' => Hash::make($request->password),
+        ]);
+    }
 }

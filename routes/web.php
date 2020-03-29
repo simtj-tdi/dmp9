@@ -45,8 +45,13 @@ Route::post('/sign_up_find_new_pw', function() {
     return view('sign.sign_up_find_new_pw');
 });
 
+Route::get('/sign_up_finish_sign_up', function() {
+    return view('sign.sign_up_finish_sign_up');
+});
+
 Route::post('/ajaxIdCheckRequest', 'UserController@id_check')->name('Users.idcheckrequest');
 Route::post('/ajaxSignUpFindId', 'UserController@SingUpFindId')->name('Users.SingUpFindId');
+Route::post('/ajaxSingUpNewPw', 'UserController@SingUpNewPw')->name('Users.SingUpNewPw');
 
 
 // 인증 예외 처리

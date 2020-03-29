@@ -16,4 +16,6 @@ interface UserRepositoryInterface
     public function findByUserId($user_id);
 
     public function SingUpFindId($request);
+
+    public function SingUpNewPw($request);
 }

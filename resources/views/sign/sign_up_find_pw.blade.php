@@ -71,7 +71,7 @@
                 <div class="inner">
                     <div class="logo">
                         <h1>
-                            <a href="/main/main.html"><img src="../assets/img/sign_up/logo_dmp9.png" alt="DMP9 logo" /></a>
+                            <a href="/"><img src="../assets/img/sign_up/logo_dmp9.png" alt="DMP9 logo" /></a>
                         </h1>
                     </div>
                     <div class="form_box">
