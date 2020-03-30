@@ -354,7 +354,13 @@
                     </td>
                     <td>{{ $cart->buy_date }}</td>
                     <td>{{ $cart->goods->expiration_date }}</td>
-                    <td>{{ $cart->goods->data_request }}회</td>
+                    <td>
+                        @if ($cart->options->count() > 0)
+                            {{ $cart->options->count() }}/{{ $cart->goods->data_request }}회
+                        @else
+                            {{ $cart->goods->data_request }}회
+                        @endif
+                    </td>
                     <td>
                         <select class="select_control" name="select_data_types" data-request="{{ $cart->goods->data_request }}" data-goods="{{ $cart->goods_id }}" data-cart="{{ $cart->id }}" data-tr="td_{{ $cart->id }}" {{ $cart->state != 4 ? 'disabled' : '' }}>
                             <option value="">선택</option>
