@@ -88,7 +88,7 @@
                                 로그인정보
                             </button>
                             <div class="dropdown-menu">
-                                <div><p>M</p></div>
+                                <div><p>{{ Str::substr(\Illuminate\Support\Facades\Auth::user()->name, 0,1) }}</p></div>
                                 <div>{{ \Illuminate\Support\Facades\Auth::user()->name }}</div>
                                 <div>{{ \Illuminate\Support\Facades\Auth::user()->email }}</div>
 
