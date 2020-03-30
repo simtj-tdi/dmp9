@@ -185,6 +185,7 @@
 <script src="{{ asset('assets/js/swiper.js') }}"></script>
 <script src="{{ asset('assets/js/function.js') }}"></script>
 <script src="{{ asset('assets/js/sign_up/sign_up.js') }}"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 @stack('scripts')
 <script>
     /*질문하기,문의하기 ul 클릭 토글*/
