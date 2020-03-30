@@ -19,7 +19,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::INDEX;
+    protected $redirectTo = RouteServiceProvider::APPROVED;
 
     private $userRepository;
     private $taxRepository;

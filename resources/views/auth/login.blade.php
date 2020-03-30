@@ -32,13 +32,14 @@
                                     <label>비밀번호</label>
                                     <input id="password" type="password" class="form-control" name="password" placeholder="비밀번호를 입력해주세요" />
                                 </div>
+                                <!--
                                 <div>
                                     <span class="checkbox">
                                       <input type="checkbox" name="check" id="login_memory" />
                                       <label for="login_memory"> 로그인 상태유지</label>
                                     </span>
                                 </div>
-
+                                -->
                                 <div class="but_box mt-4">
                                     <button type="submit" >로그인</button>
                                     <div class="sign_box">

@@ -31,10 +31,7 @@
                     return false;
                 }
 
-                // if ($("input[name=tax_addres_2]").val() == "") {
-                //     alert('참고항목을 입력하세요.');
-                //     return false;
-                // }
+
 
                 if ($("input[name=tax_img]").val() == "") {
                     alert('사업장등록증을 등록하세요.');
@@ -63,11 +60,9 @@
                         </h1>
                     </div>
                     <div class="form_box">
-              <span class="form_ico">
-                <img src="/img/sign_up/ico_etc.png" alt="" />
-              </span>
-
-
+                      <span class="form_ico">
+                        <img src="/img/sign_up/ico_etc.png" alt="" />
+                      </span>
                         <div class="input_box">
                             <form name="user" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                 @csrf
@@ -86,7 +81,7 @@
                                 </p>
                                 <div class="input-group">
                                     <label>사업자등록번호</label>
-                                    <input type="number" class="form-control" name="tax_company_number" placeholder="사업자등록번호를 입력해주세요" />
+                                    <input type="text" class="form-control" name="tax_company_number" placeholder="사업자등록번호를 입력해주세요" />
                                 </div>
                                 <div class="input-group">
                                     <label>업체명(법인명)</label>

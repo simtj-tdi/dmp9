@@ -9,6 +9,11 @@
             $("#request_data").hide();
         }
 
+        function validatePassword(sPassword) {
+            var filter = /^[A-Za-z0-9]{8,12}$/;
+            return filter.test(sPassword) ? true : false;
+        };
+
         $(function() {
 
             $("[name=password_confirmation]").keyup(function(){
@@ -38,12 +43,17 @@
                 }
 
                 if ($("input[name=password_check]").val() == "no") {
-                    alert('비밀번호가 일치하지 않습니다.1');
+                    alert('비밀번호가 일치하지 않습니다.');
                     return false;
                 }
 
                 if ($("input[name=password]").val() != $("input[name=password_confirmation]").val() ) {
-                    alert('비밀번호가 일치하지 않습니다.2');
+                    alert('비밀번호가 일치하지 않습니다.');
+                    return false;
+                }
+
+                if (!validatePassword($("input[name=password]").val())) {
+                    alert('영문, 숫자 포함 8~12자를 입력하세요.');
                     return false;
                 }
 

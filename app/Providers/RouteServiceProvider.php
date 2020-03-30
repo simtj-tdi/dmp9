@@ -25,6 +25,7 @@ class RouteServiceProvider extends ServiceProvider
     public const INDEX = '/';
     public const DASHBOARD = '/dashboard';
     public const MYINDEX = '/carts';
+    public const APPROVED= '/approved';
 
     /**
      * Define your route model bindings, pattern filters, etc.
