@@ -92,7 +92,11 @@
                         <p><span>DPM9</span>이 혁신을 제공해 드리겠습니다.</p>
                     </div>
                     <div>
-                        <button type="button" onClick="location.href='/sign_up/login.html'">+ 서비스 바로가기</button>
+                        @guest
+                            <button type="button" onClick="location.href='/login'">+ 서비스 바로가기</button>
+                        @else
+                            <button type="button" onClick="location.href='/carts'">+ 서비스 바로가기</button>
+                        @endguest
                     </div>
                 </div>
                 <div class="banner_img">
@@ -243,7 +247,11 @@
                         </ul>
                     </div>
                     <div>
-                        <button type="button" onClick="location.href='/sign_up/login.html'">+ 서비스 바로가기</button>
+                        @guest
+                            <button type="button" onClick="location.href='/login'">+ 서비스 바로가기</button>
+                        @else
+                            <button type="button" onClick="location.href='/carts'">+ 서비스 바로가기</button>
+                        @endguest
                     </div>
                 </div>
                 <div class="banner_img">
@@ -339,9 +347,11 @@
                     <p>지금 바로 DMP9를 통해 효율적인 데이터 관리를 경험해보세요.</p>
                 </div>
                 <div class="btn_box">
-                    <button type="button" onClick="location.href='/sign_up/login.html'">
-                        <img src="/assets/img/main/icon_arrow.png" alt="+아이콘">
-                    </button>
+                    @guest
+                        <button type="button" onClick="location.href='/login'"><img src="/assets/img/main/icon_arrow.png" alt="+아이콘"></button>
+                    @else
+                        <button type="button" onClick="location.href='/carts'"><img src="/assets/img/main/icon_arrow.png" alt="+아이콘"></button>
+                    @endguest
                 </div>
             </div>
         </div>
