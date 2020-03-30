@@ -1435,7 +1435,10 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
     }
 }
 
-
+.data_up_load .add_data .upload_input {
+    width: 20%;
+    text-align: center;
+}
 @media (max-width: 1440px) {
     .data_up_load .table_wrap {
         height: 65%;

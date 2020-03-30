@@ -20,6 +20,7 @@ class CreateCartsTable extends Migration
             $table->unsignedBigInteger('order_no')->nullable()->comment("주문번호");
             $table->integer('state')->default(1)->comment("상태");
             $table->date('buy_date')->nullable()->comment("구매일");
+            $table->date('memo')->comment("메모");
             $table->timestamps();
         });
     }

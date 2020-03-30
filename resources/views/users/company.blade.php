@@ -131,7 +131,7 @@
                                     <label>연락처</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="number" placeholder="" name="phone" id="phone" value="{{ $user->phone }}" />
+                                    <input type="number" placeholder="연락처를 입력해주세요 (ex. 01012345678910)" name="phone" id="phone" value="{{ $user->phone }}" />
                                 </div>
                             </div>
 

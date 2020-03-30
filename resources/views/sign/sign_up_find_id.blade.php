@@ -86,7 +86,7 @@
                                     <input type="text" name="name" class="form-control"  placeholder="이름을 입력해주세요" />
                                 </div>
                                 <div class="input-group">
-                                    <input type="number" name="phone" class="form-control"  placeholder="연락처를 입력해주세요" />
+                                    <input type="number" name="phone" class="form-control"  placeholder="연락처를 입력해주세요 (ex. 01012345678910)" />
                                 </div>
                                 <div class="but_box mt-4">
                                     <button type="button" id="btn_submit" >아이디 찾기</button>

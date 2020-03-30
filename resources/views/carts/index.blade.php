@@ -510,19 +510,8 @@
                             </div>
                             <div class="form-group form-inline">
                                 <label>데이터 업로드 횟수</label>
-                                <select class="cont_form_control data_input" name="data_request">
-                                    <option value="">횟수</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
+                                <input type="text" class="cont_form_control data_input upload_input" value="3" readonly>
+                                <p class="ml-2">4회 이상의 횟수는 별도 문의 바랍니다.</p>
                             </div>
                             <div class="form-group form-inline">
                                 <label>데이터 항목</label>
@@ -532,7 +521,6 @@
                                     <option value="B">B</option>
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <label>설명</label>
                                 <textarea class="cont_form_control" style="resize: none;" name="data_content" placeholder="원하는 타겟을 설명해주세요." ></textarea>
@@ -542,7 +530,8 @@
                             <ul>
                                 <li class="mb-2">타겟 구매시 주의사항</li>
                                 <li>- 기본 구매 활용 기간은 1개월 입니다.</li>
-                                <li>- 데이터 업데이트 요청은 활용기간내에만 가능합니다. (최대 3회 / 구매시점으로부터 1개월 내 가능)</li>
+                                <li>- 데이터 결제 완료 후 환불은 불가합니다.</li>
+{{--                                <li>- 데이터 업데이트 요청은 활용기간내에만 가능합니다. (최대 3회 / 구매시점으로부터 1개월 내 가능)</li>--}}
                                 <li>- 특정 앱 지정 데이터 판매 불가 (트정 경쟁사 데이터만 구매 요청시 거절 될 수 있습니다.</li>
                                 <li>- 불법적 활용 가능한 데이터 판매 불가 (도박, 성인 등)</li>
                             </ul>

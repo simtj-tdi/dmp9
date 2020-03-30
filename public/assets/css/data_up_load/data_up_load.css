@@ -38,7 +38,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     /* border: 1px solid #f00; */
   }
 /* table_wrap 스크롤 숨기기 */
-  .table_wrap { 
+  .table_wrap {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
@@ -67,7 +67,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   .data_up_load .table .thead-light th {color: #4E5155; background-color: #fff; border-color: #e8e8e9;}
   .data_up_load .table thead th {vertical-align: middle; border-bottom: none;}
   .data_up_load .table th {padding: 17px 0; text-align: center;}
-  
+
   .data_up_load .table td {
     font-size: 19px;
     margin-left: 27px;
@@ -167,7 +167,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   .data_up_load .expiration_div .explanation_box {
     top: 25px !important;
     right: -15px !important;
-  } 
+  }
 
 
   .data_up_load .select_control {

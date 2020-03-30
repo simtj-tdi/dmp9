@@ -85,10 +85,10 @@
                                     </span>
                                 </p>
                                 <div class="input-group">
-                                    <input type="text" name="name" value="이름" class="form-control" placeholder="아이디를 입력해주세요" />
+                                    <input type="text" name="name" value="" class="form-control" placeholder="아이디를 입력해주세요" />
                                 </div>
                                 <div class="input-group">
-                                    <input type="number" name="phone" value="01013213123" class="form-control" placeholder="연락처를 입력해주세요" />
+                                    <input type="number" name="phone" value="" class="form-control" placeholder="연락처를 입력해주세요 (ex. 01012345678910)"  />
                                 </div>
                                 <div class="but_box mt-4">
                                     <button type="button" id="btn_submit" >비밀번호 찾기</button>

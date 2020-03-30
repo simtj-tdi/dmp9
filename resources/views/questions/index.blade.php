@@ -164,7 +164,7 @@
                             <div class="form-group form-inline">
                                 <p>
                                     <label for="phone">연락처</label>
-                                    <input type="number" id="phone" class="form-control" name="phone" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}"  autocomplete="off" placeholder="연락처를 입력해주세요">
+                                    <input type="number" id="phone" class="form-control" name="phone" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}"  autocomplete="off" placeholder="(ex. 01012345678910)">
                                 </p>
                                 <p>
                                     <label for="email">이메일</label>

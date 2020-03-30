@@ -199,7 +199,7 @@
                             </div>
                             <div class="input-group">
                                 <label>연락처</label>
-                                <input type="number" class="form-control" name="phone" placeholder="연락처를 입력해주세요" />
+                                <input type="number" class="form-control" name="phone" placeholder="연락처를 입력해주세요 (ex. 01012345678910)" />
                             </div>
                             <div class="but_box mt-4">
                                 @if ($request['type'] == "personal")
