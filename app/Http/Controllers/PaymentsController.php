@@ -58,6 +58,7 @@ class PaymentsController extends Controller
         }
 
         // PG 데이터 생성
+        $pay_data['pgcode'] = $request_data->pgcode ;
         $pay_data['count'] = $request_data->total_count ;
         $pay_data['amount'] = $request_data->total_price ;
         $pay_data['product_name'] = ($goods->count() > 1) ?
@@ -86,9 +87,12 @@ class PaymentsController extends Controller
 
             // 결제 정상 완료 시
             // order state update
-            $this->orderRepository->state_update($request->order_no, $payment->id);
-            // cart state update
-            $this->cartRepository->buydate_update($request->order_no, $payment->transaction_date);
+            $this->orderRepository->state_update_state($request->order_no, $payment->id);
+
+            if ($request->pgcode == "creditcard") {
+                // cart state update
+                $this->cartRepository->buydate_update($request->order_no, $payment->transaction_date);
+            }
 
             $this->paymentRepository->payLog("payReturn", urldecode($request));
         } else {
@@ -100,6 +104,13 @@ class PaymentsController extends Controller
 
     public function payCallback(Request $request)
     {
+        /*
+         * todo : payCallback 처리
+         * payCallball 처리는 실도메인
+         * 또는 곌제 아이디 밭고 작업
+         */
+
+        $this->paymentRepository->payLog("payCallback", urldecode($request));
         // 결제가 성공한 경우에만 결제 결과가 json형태로 제공됩니다.
         //*Callback URL로 전달되는 현금영수증 데이터의 경우 하기와 같은 형태로 제공 됩니다
         //https://www.payletter.com/ko/technical/index#ab21eea6c1
@@ -118,8 +129,10 @@ class PaymentsController extends Controller
 
     public function makeStrPostDate($order_no, $pay_data)
     {
+        //creditcard
+        //virtualaccount
         $strPostData = '{
-            "pgcode"            : "creditcard",
+            "pgcode"            : "'.$pay_data['pgcode'].'",
             "user_id"           : "'.auth()->user()->id.'",
             "user_name"         : "'.mb_convert_encoding(auth()->user()->name, "EUC-KR", "UTF-8").'",
             "service_name"      : "dmp9",

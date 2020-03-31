@@ -52,6 +52,26 @@
                 });
             });
 
+            $("body").delegate("[name=sns_id]", "keyup", function(){
+                //console.log($(this).val());
+                if ($(this).val()) {
+                    $(this).parent().parent().find("button[name=sns_save]").attr('disabled', false);
+                    $(this).parent().parent().find("button[name=sns_save]").css('background-color', '#fff');
+                } else {
+                    $(this).parent().parent().find("button[name=sns_save]").attr('disabled', true);
+                    $(this).parent().parent().find("button[name=sns_save]").css('background-color', '#e8e8e9');
+                }
+            });
+
+            $("body").delegate("[name=sns_modify]", "click", function(){
+                $(this).parent().parent().find("[name=sns_id]").attr('disabled', false);
+                $(this).parent().parent().find("[name=sns_id]").css('background-color', '#fff');
+                $(this).parent().parent().find("[name=sns_password]").attr('disabled', false);
+                $(this).parent().parent().find("[name=sns_password]").css('background-color', '#fff');
+                $(this).parent().parent().find("button[name=sns_modify]").css('display', 'none');
+                $(this).parent().parent().find("button[name=sns_save]").css('display', 'block');
+            });
+
             $("body").delegate("[name=sns_request]", "click", function(){
                 if ($(this).parent().parent().find("input[name=sns_id]").val() == "") {
                     alert('아이디를 입력 하세요.');
@@ -128,10 +148,10 @@
                                     "    <div class=\"form-inline\">" +
                                     "        <div class=\"input_control form-inline\">" +
                                     "            <label class=\"form-control label_control\">"+JSONArray['platform_info']['name']+"</label>" +
-                                    "            <input type=\"text\" class=\"form-control\" value=\""+JSONArray['platform_info']['url']+"\" placeholder=\"URL\">" +
+                                    "            <input type=\"text\" class=\"form-control\" readonly value=\""+JSONArray['platform_info']['url']+"\" placeholder=\"URL\">" +
                                     "            <input type=\"text\" class=\"form-control id_value_control\" name=\"sns_id\" value=\"\" placeholder=\"아이디\">" +
                                     "            <input type=\"password\" class=\"form-control pw_value_control\" name=\"sns_password\"  value=\"\" placeholder=\"비밀번호\">" +
-                                    "            <button type=\"button\" class=\"form-control btn_control_01\" name=\'sns_save\' data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\">수정</button>" +
+                                    "            <button type=\"button\" class=\"form-control btn_control_01\" style=\"background: #e8e8e9\" name=\'sns_save\' disabled data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\">저장</button>" +
                                     "            <button type=\"button\" class=\"form-control btn_control_02 upload_request\" name=\"sns_request\">데이터 요청</button>" +
                                     "        </div>" +
                                     "    </div>" +
@@ -191,6 +211,32 @@
             })
 
             $(".new_buy").click(function() {
+                var ids = new Array();
+                var total_count=0;
+                var total_price=0;
+                $("input[name='check']:checked").each(function() {
+                    ids.push($(this).val());
+                    total_count += $(this).data("count");
+                    total_price += $(this).data("price");
+                });
+
+                if (total_price <= 0) {
+                    alert("구매 금액이 0원 이상 이여야 합니다.");
+                    return false;
+                }
+
+                $("#request_data").show();
+
+            });
+
+            $("#new_payment").click(function() {
+
+                if (typeof($('[name="radio"]:checked').val()) == "undefined") {
+                    alert('결제 유형을 선택 해주세요.');
+                    return false;
+                }
+
+                $("#request_data").hide();
 
                 var ids = new Array();
                 var total_count=0;
@@ -208,6 +254,7 @@
 
                 if (ids.length > 0) {
                     var data = new Object() ;
+                    data.pgcode = $('[name="radio"]:checked').val();
                     data.ids = ids;
                     data.total_count = total_count;
                     data.total_price = total_price;
@@ -234,7 +281,9 @@
                 } else {
                     console.log("구매 데이터를 선택 하세요.");
                 }
+
             });
+
         });
     </script>
 
@@ -243,7 +292,6 @@
 @section('content')
 
     <!-- content : start-->
-
     <div class="container-fluid flex-grow-1 container-p-y data_up_load">
         <div class="top">
             마이데이터
@@ -333,13 +381,13 @@
                 <tr>
                     <td>
                         <span class="checkbox">
-                            @if (isset($cart->goods->buy_price) && $cart->state == 1)
-                                <input type="checkbox" name="check" id="Check_1" value="{{ $cart->id }}" data-count="{{ $cart->goods->data_count }}" data-price="{{ $cart->goods->buy_price }}">
+                            @if (isset($cart->goods->buy_price) && $cart->state == 2)
+                                <input type="checkbox" name="check" id="Check_{{ $cart->id }}" value="{{ $cart->id }}" data-count="{{ $cart->goods->data_count }}" data-price="{{ $cart->goods->buy_price }}">
                             @else
                                 <input type="checkbox" name="" value="{{ $cart->id }}" disabled>
                             @endif
 
-                            <label for="Check_1"></label>
+                            <label for="Check_{{ $cart->id }}"></label>
                         </span>
                     </td>
                     <td>{{ $cart->goods->advertiser }}</td>
@@ -362,14 +410,23 @@
                         @endif
                     </td>
                     <td>
-                        <select class="select_control" name="select_data_types" data-request="{{ $cart->goods->data_request }}" data-goods="{{ $cart->goods_id }}" data-cart="{{ $cart->id }}" data-tr="td_{{ $cart->id }}" {{ $cart->state != 4 ? 'disabled' : '' }}>
+                        <select class="select_control" name="select_data_types" data-request="{{ $cart->goods->data_request }}" data-goods="{{ $cart->goods_id }}" data-cart="{{ $cart->id }}" data-tr="td_{{ $cart->id }}" {{ $cart->state != 5 ? 'disabled' : '' }}>
                             <option value="">선택</option>
                             @foreach($platforms as $platform)
                                 <option value="{{ $platform['platform_id'] }}">{{ $platform['name'] }}</option>
                             @endforeach
                         </select>
                     </td>
+
                     @if ($cart->state === 1)
+                        <td  class="explanation_td icon_black">
+                            확인중
+                            <img src="../assets/img/icon_explanation_01.png" alt="아이콘 설명"/>
+                            <div class="explanation_box">
+                                <p></p>
+                            </div>
+                        </td>
+                    @elseif ($cart->state === 2)
                         <td  class="explanation_td icon_yellow">
                             결제대기
                             <img src="../assets/img/icon_explanation_02.png" alt="아이콘 설명"/>
@@ -377,26 +434,26 @@
                                 <p>구매가 완료된 데이터입니다. 선택 후 업로드 요청을 눌러주세요.</p>
                             </div>
                         </td>
-                    @elseif ($cart->state === 2)
-                        <td  class="explanation_td icon_black">
+                    @elseif ($cart->state === 3)
+                        <td  class="explanation_td icon_green">
                             결제완료
-                            <img src="../assets/img/icon_explanation_01.png" alt="아이콘 설명"/>
+                            <img src="../assets/img/icon_explanation_03.png" alt="아이콘 설명"/>
                             <div class="explanation_box">
                                 <p>구매가 완료된 데이터입니다. 선택 후 업로드 요청을 눌러주세요.</p>
                             </div>
                         </td>
-                    @elseif ($cart->state === 3)
-                        <td  class="explanation_td icon_green">
+                    @elseif ($cart->state === 4)
+                        <td  class="explanation_td icon_yellow">
                             추출중
-                            <img src="../assets/img/icon_explanation_03.png" alt="아이콘 설명"/>
+                            <img src="../assets/img/icon_explanation_02.png" alt="아이콘 설명"/>
                             <div class="explanation_box">
                                 <p>요청하신 데이터가 추출중이며 시간소요는 영업일 기준 1-3일 소요 됩니다.</p>
                             </div>
                         </td>
-                    @elseif ($cart->state === 4)
-                        <td  class="explanation_td icon_green">
+                    @elseif ($cart->state === 5)
+                        <td  class="explanation_td icon_black">
                             추출완료
-                            <img src="../assets/img/icon_explanation_03.png" alt="아이콘 설명"/>
+                            <img src="../assets/img/icon_explanation_01.png" alt="아이콘 설명"/>
                             <div class="explanation_box">
                                 <p>데이터 추출이 완료되었습니다. 구매 후 광고플랫폼에 업로드 요청이 가능합니다.</p>
                             </div>
@@ -413,9 +470,10 @@
                                 <div class="input_control form-inline">
                                     <label class="form-control label_control">{{$option->platform['name']}}</label>
                                     <input type="text" class="form-control" value="{{$option->platform['url']}}" placeholder="URL">
-                                    <input type="text" class="form-control id_value_control" name="sns_id" value="{{$option->sns_id}}" placeholder="아이디">
-                                    <input type="password" class="form-control pw_value_control" name="sns_password"  value="{{$option->sns_password}}" placeholder="비밀번호">
-                                    <button type="button" class="form-control btn_control_01" name='sns_save' data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">수정</button>
+                                    <input type="text" class="form-control id_value_control" name="sns_id" style="background: #e8e8e9" disabled value="{{$option->sns_id}}" placeholder="아이디">
+                                    <input type="password" class="form-control pw_value_control" name="sns_password" style="background: #e8e8e9" disabled  value="{{$option->sns_password}}" placeholder="비밀번호">
+                                    <button type="button" class="form-control btn_control_01" name='sns_modify' >수정</button>
+                                    <button type="button" class="form-control btn_control_01" name='sns_save' style="display:none;" data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">저장</button>
                                     @if ($option->state == "1")
                                         <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-option_id="{{$option->id}}">데이터 요청</button>
                                     @elseif ($option->state == "2")
@@ -448,24 +506,78 @@
             </table>
         </div>
 
+{{--        <div id="request_data_finish" class="request_data overlay-wrap alert">--}}
+{{--            <div class="writing_wrap">--}}
+{{--                <div class="writing_box">--}}
+{{--                    <div class="inner">--}}
+{{--                        <div class="top clearfix">--}}
+{{--                            <h1>신청하신 데이터 결과는 마이데이터 페이지에서 확인 가능합니다.</h1>--}}
+{{--                        </div>--}}
+{{--                        <div class="cont">--}}
+{{--                            <p>- 영업일 기준 1~3일 소요됩니다.</p>--}}
+{{--                            <p>- 데이터 추출이 불가능한 경우, 로그인 이메일주소로 결과를 전송 해 드립니다.</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="btn_box">--}}
+{{--                            <button type="button" onclick="addRequestDataDisNone()">확인</button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+
         <div id="request_data" class="request_data overlay-wrap alert">
             <div class="writing_wrap">
                 <div class="writing_box">
                     <div class="inner">
-                        <div class="top clearfix">
-                            <h1>신청하신 데이터 결과는 마이데이터 페이지에서 확인 가능합니다.</h1>
-                        </div>
                         <div class="cont">
-                            <p>- 영업일 기준 1~3일 소요됩니다.</p>
-                            <p>- 데이터 추출이 불가능한 경우, 로그인 이메일주소로 결과를 전송 해 드립니다.</p>
-                        </div>
-                        <div class="btn_box">
-                            <button type="button" onclick="addRequestDataDisNone()">확인</button>
+                            <div class="layout-container payment_choice">
+                                <div class="payment_choice_inner">
+                                    <div class="form_box">
+                                        <div class="close">
+                                            <button type="button" onclick="addRequestDataDisNone()">
+                                                <img src="/assets/img/btn_close.png" alt="닫기 버튼">
+                                            </button>
+                                        </div>
+                                        <span class="form_ico">
+                                                  <img src="../assets/img/sign_up/ico_etc.png" alt="" />
+                                                </span>
+                                        <div class="input_box">
+                                            <p class="desc">
+                                                결제유형을 선택해주세요.
+                                            </p>
+                                            <ul>
+                                                <li>
+                                                      <span class="radio1">
+                                                        <input type="radio" name="radio" id="radio5" value="creditcard" />
+                                                        <label for="radio5"></label>
+                                                      </span>
+                                                    <span class="txt">
+                                                        <p>신용카드</p>
+                                                      </span>
+                                                </li>
+                                                <li>
+                                                      <span class="radio2">
+                                                        <input type="radio" name="radio" id="radio6" value="virtualaccount" />
+                                                        <label for="radio6"></label>
+                                                      </span>
+                                                    <span class="txt">
+                                                        <p>무통장 입금</p>
+                                                      </span>
+                                                </li>
+                                            </ul>
+                                            <div class="but_box mt-4 mb-4">
+                                                <button type="button" id="new_payment">다음</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div id="add_data" class="add_data overlay-wrap alert">
             <div class="writing_wrap">
@@ -510,17 +622,17 @@
                             </div>
                             <div class="form-group form-inline">
                                 <label>데이터 업로드 횟수</label>
-                                <input type="text" class="cont_form_control data_input upload_input" value="3" readonly>
+                                <input type="text" class="cont_form_control data_input upload_input" name="data_request" value="3" readonly>
                                 <p class="ml-2">4회 이상의 횟수는 별도 문의 바랍니다.</p>
                             </div>
-                            <div class="form-group form-inline">
-                                <label>데이터 항목</label>
-                                <select class="cont_form_control data_input" name="data_category">
-                                    <option value="">항목</option>
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                </select>
-                            </div>
+{{--                            <div class="form-group form-inline">--}}
+{{--                                <label>데이터 항목</label>--}}
+{{--                                <select class="cont_form_control data_input" name="data_category">--}}
+{{--                                    <option value="">항목</option>--}}
+{{--                                    <option value="A">A</option>--}}
+{{--                                    <option value="B">B</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <label>설명</label>
                                 <textarea class="cont_form_control" style="resize: none;" name="data_content" placeholder="원하는 타겟을 설명해주세요." ></textarea>

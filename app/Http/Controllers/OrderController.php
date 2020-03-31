@@ -20,7 +20,13 @@ class OrderController extends Controller
     {
         $orders = $this->orderRepository->all();
 
-        return view('orders.history', compact('orders'));
+        if (auth()->user()->role == "personal") {
+            $txt = "영수증";
+        } else if (auth()->user()->role == "company") {
+            $txt = "계산서";
+        }
+
+        return view('orders.history', compact('orders', 'txt'));
     }
 
     public function taxstate(Request $request)

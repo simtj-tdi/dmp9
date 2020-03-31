@@ -320,7 +320,7 @@
                             </div>
                             <div class="input-group">
                                 <label><img src="/assets/img/main/icon_phone.png" alt="핸드폰 아이콘"></label>
-                                <input type="number" name="phone" placeholder="핸드폰 번호">
+                                <input type="number" name="phone" placeholder="01012345678">
                             </div>
                             <div class="input-group">
                                 <label><img src="/assets/img/main/icon_mail_02.png" alt="이메일 아이콘"></label>

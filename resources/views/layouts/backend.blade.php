@@ -140,7 +140,7 @@
                             <div class="icon">
                                 <img src="assets/img/common/icon_sidenav_04.png" alt="세금계산서 요청 아이콘" />
                             </div>
-                            <div>세금계산서 요청</div>
+                            <div>결제 내역</div>
                         </a>
                     </li>
                     @endif

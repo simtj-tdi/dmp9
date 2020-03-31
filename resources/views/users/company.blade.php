@@ -137,7 +137,11 @@
 
                             @if ($taxs[0])
                             <!--사업자정보-->
-                            <div class="title company_title">사업계산서 수정</div>
+                            <div class="title company_title">
+                                사업계산서 수정
+                                <span class="txt"> - 사업자 정보 수정은 관리자 승인 후 변경 가능 합니다. </span>
+                                <button type="button">수정요청</button>
+                            </div>
                             <div class="input-group first_radius">
                                 <div class="label_box">
                                     <label>사업자등록번호</label>

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 
-    CONST ORDER_STATE_1 = 0;      // 결제전
-    CONST ORDER_STATE_2 = 1;      // 결제완료
+    CONST ORDER_STATE_0 = 0;      // 결제전
+    CONST ORDER_STATE_1 = 1;      // 결제완료
 
     CONST TAX_STATE_1 = 1;  // 계산서 요청가능 (미발행)
     CONST TAX_STATE_2 = 2;  // 계산서 요청신청 (확인중)

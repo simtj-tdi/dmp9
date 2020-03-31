@@ -50,6 +50,6 @@ class CartRepository implements CartRepositoryInterface
 
     public function buydate_update($order_no, $buydate)
     {
-        cart::where('order_no', $order_no)->update(['state' => Cart::STATE_2, 'buy_date' => $buydate]);
+        cart::where('order_no', $order_no)->update(['state' => Cart::STATE_3, 'buy_date' => $buydate]);
     }
 }

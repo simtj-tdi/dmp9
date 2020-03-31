@@ -34,16 +34,16 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .data_up_load .top button {
     position: absolute;
     right: 0;
-    background: #fff;
+    background: #747fff;
     border: 1px solid #ccc;
-    color: #292929;
+    color: #fff;
     border-radius: 50px;
     padding: 12px 39px;
     font-size: 18px;
     font-weight: bold;
 }
 .data_up_load .top button:hover {
-    background: #f0f0f0;
+    background: #5f6cfc;
 }
 
 .data_up_load .table_wrap {
@@ -272,7 +272,7 @@ input[type=password] {
 
 .data_up_load .request_data .writing_wrap {width: 100%; height: 100%; position: relative;}
 .data_up_load .request_data .writing_wrap .writing_box {
-    width: 524px;
+    width: 650px;
     border-radius: 20px;
     background-color: #fff;
     position: absolute;
@@ -299,11 +299,10 @@ input[type=password] {
 }
 .data_up_load .request_data .cont p {
     color: #292929;
-    font-size: 12px;
+    font-size: 20px;
     line-height: 1.83;
     letter-spacing: -0.36px;
     font-weight: bold;
-    margin-bottom: 0.5rem;
 }
 
 
@@ -392,6 +391,7 @@ input[type=password] {
     border: none;
     border-radius: 0;
     padding: 4px !important;
+    background: none;
 }
 
 .data_up_load .add_data .top button img {width: 70%;}
@@ -1006,7 +1006,7 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
 
 .payment_history .request_data .writing_wrap {width: 100%; height: 100%; position: relative;}
 .payment_history .request_data .writing_wrap .writing_box {
-    width: 700px;
+    width: 650px;
     border-radius: 20px;
     background-color: #fff;
     position: absolute;
@@ -1016,7 +1016,8 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
 }
 
 .payment_history .request_data .writing_wrap .inner {
-    padding: 40px 61px;
+    margin: auto;
+    padding: 40px 0;
     text-align: center;
 }
 .payment_history .request_data .top {
@@ -1029,7 +1030,6 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
     color: #111;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 2rem;
 }
 
 .payment_history .request_data .btn_box button {
@@ -1217,9 +1217,24 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
     font-size: 20px;
 }
 .edit_my_info .wrap .cont .company_title {
-    padding: 40px 0 20px;
+    padding: 40px 0 10px;
     margin-top: 40px;
     border-top: 1px solid #ddd;
+    overflow: hidden;
+}
+.edit_my_info .wrap .cont .company_title .txt {
+    display: inline-block;
+    font-size: 0.8rem;
+    padding-left: 1rem;
+}
+.edit_my_info .wrap .cont .company_title button {
+    float: right;
+    border: 1px solid #e7bd04;
+    background: #e7bd04;
+    font-size: 1rem;
+    width: 100px;
+    padding: 8px;
+    border-radius: 50px;
 }
 .edit_my_info .edit_wrap {
     padding: 1rem 0;
@@ -1398,9 +1413,174 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
   width: 100%;
 } */
 
+.data_up_load .add_data .upload_input {
+    width: 20%;
+    text-align: center;
+}
 
 
 
+
+/*결제방법 선택*/
+.payment_choice {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.payment_choice h1 {
+    text-align: center;
+    font-size: 25px;
+}
+.payment_choice .form_box {
+    width: 85%;
+    background: #fff;
+    margin: auto;
+    border-radius: 7px;
+    border: solid 1px #cccccc;
+    position: relative;
+}
+.payment_choice .payment_choice_inner .close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.2rem;
+}
+.payment_choice .payment_choice_inner .close button img {
+    width: 70%;
+}
+.payment_choice .input_box {
+    width: 450px;
+    margin: auto;
+    text-align: left;
+}
+.payment_choice .input_box p {
+    text-align: left;
+}
+.payment_choice .payment_choice_inner .input_box .desc {
+    margin: 45px 0 40px;
+    font-size: 43px;
+    line-height: 1.27;
+    letter-spacing: -0.65px;
+    color: #292929;
+}
+.payment_choice .payment_choice_inner .input_box .desc_sub {
+    margin-bottom: 40px;
+    font-size: 25px;
+    line-height: 1.52;
+    letter-spacing: -0.38px;
+    color: #292929;
+}
+.payment_choice .payment_choice_inner .input_box ul {
+    display: block;
+}
+.payment_choice .payment_choice_inner .input_box ul li {
+    width: 100%;
+    line-height: 25px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+.payment_choice .input_box ul li .checkbox {
+    position: absolute; left: 0; top: 14px;
+}
+.payment_choice .input_box ul li .txt {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 20px;
+    letter-spacing: -0.6px;
+    color: #292929;
+}
+.payment_choice .input_box ul li a {
+    float: right;
+    font-size: 18px;
+    letter-spacing: -0.27px;
+    color: #666666;
+}
+.payment_choice .input_box ul li:first-of-type {
+    margin-bottom: 40px;
+}
+.payment_choice .input_box ul li:last-of-type {
+    margin-bottom: 0;
+}
+.payment_choice .txt_bottom {
+    margin-top: 30px;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+}
+.payment_choice .but {
+    overflow: hidden;
+    padding-bottom: 1rem;
+}
+.payment_choice .but p {
+    float: left;
+    font-size: 15px;
+    line-height: 2.53;
+    letter-spacing: -0.23px;
+    color: #292929;
+}
+.payment_choice .but button {
+    background: none;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 2.53;
+    letter-spacing: -0.23px;
+    color: #292929;
+}
+.payment_choice hr {margin: 20px 0 20px;}
+
+.payment_choice .but_box {
+    text-align: center;
+}
+.payment_choice .but_box button {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background: #fed32e;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    color: #292929;
+}
+.payment_choice .but_box button:hover {
+    background: #e7bd04;
+}
+
+.radio1 input[type="radio"]{
+    display: none;
+}
+.radio2 input[type="radio"]{
+    display: none;
+}
+
+.radio1 input[type="radio"]+label {
+    width: 50px;
+    height: 50px;
+    background-image: url('/assets/img/bank_off.png');
+    background-size: cover;
+    background-position: center;
+
+}
+.radio1 input[type="radio"]:checked + label {
+    background-image: url('/assets/img/bank_on.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.radio2 input[type="radio"]+label {
+    width: 50px;
+    height: 50px;
+    background-image: url('/assets/img/card_off.png');
+    background-size: cover;
+    background-position: center;
+}
+.radio2 input[type="radio"]:checked + label {
+    background-image: url('/assets/img/card_on.png');
+    background-size: cover;
+    background-position: center;
+}
 
 
 @media (max-width: 1600px) {
@@ -1435,10 +1615,7 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
     }
 }
 
-.data_up_load .add_data .upload_input {
-    width: 20%;
-    text-align: center;
-}
+
 @media (max-width: 1440px) {
     .data_up_load .table_wrap {
         height: 65%;
@@ -1470,4 +1647,106 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
 
 @media (max-width: 991.98px) {
     .data_up_load {width: 900px !important;}
+}
+
+@media (max-width: 760px) {
+    body {width:100% !important; min-width:200px; margin: auto !important;}
+    .layout-container {padding: 1rem;}
+    .bg-navbar-theme {
+        background-color: #ecad00 !important;
+        color: #a3a4a6;
+    }
+    .container-p-y:not([class^="pb-"]):not([class*=" pb-"]) {
+        padding-bottom: 0 !important;
+    }
+    .container-p-y:not([class^="pt-"]):not([class*=" pt-"]) {
+        padding-top: 0 !important;
+    }
+
+    .container-fluid {
+        padding: 0 1px;
+    }
+
+    .top {
+        font-size: 25px;
+        letter-spacing: -0.65px;
+        text-align: left;
+        color: #292929;
+        padding-bottom: 20px;
+        padding-left: 1rem;
+        margin-bottom: 20px;
+        border-bottom: solid 1px #cccccc;
+        position: relative;
+    }
+    .top .txt {
+        font-size: 14px;
+        letter-spacing: -0.26px;
+    }
+
+    .question .wrap {
+        padding: 25px 0 0;
+    }
+
+    .question .wrap .cont .top {
+        text-indent: 0;
+        height: 50px;
+        line-height: 50px;
+    }
+    .question .top .txt {
+        display: block;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .question .wrap .cont ul {
+        padding: 1rem;
+        margin-bottom: 7px;
+        background: #fff;
+        box-sizing: border-box;
+    }
+    .question .wrap .cont .text_question p {
+        font-size: 16px;
+        width: 90%;
+        line-height: 1.39;
+    }
+    .question .wrap .cont .text_question span:nth-child(2) img {
+        margin-left: 5px;
+    }
+    .question .wrap .cont .text_answer {
+        padding-top: 25px;
+        font-size: 16px;
+        line-height: 1.39;
+    }
+
+    .question .wrap .cont .text_answer .index {
+        display: inline-block;
+        width: 5%;
+        vertical-align: top;
+    }
+    .question .wrap .cont .text_answer .txt {
+        width: 88%;
+    }
+
+    .contact_us .wrap {
+        padding: 25px 0 0;
+    }
+    .contact_us .top .txt {
+        display: block;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .contact_us .wrap .top button {
+        position: absolute;
+        right: 0;
+        top: -4px;
+        width: 90px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 22.5px;
+        background: #fff;
+        color: #292929;
+        border: solid 1px #cccccc;
+        font-size: 15px;
+        letter-spacing: -0.3px;
+    }
 }

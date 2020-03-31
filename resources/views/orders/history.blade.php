@@ -38,7 +38,7 @@
     <div class="container-fluid flex-grow-1 container-p-y payment_history">
         <div class="top">
             결제 내역
-            <button type="button" name="btn">세금계산서 요청</button>
+            <button type="button" name="btn">{{ $txt }} 요청</button>
         </div>
 
         <div class="table_wrap">
@@ -66,7 +66,7 @@
                     <th>구매날짜</th>
                     <th>구매가격</th>
                     <th>결제방식</th>
-                    <th>계산서 발행여부</th>
+                    <th>{{ $txt }} 발행여부</th>
                     <th></th>
                 </tr>
                 </thead>
