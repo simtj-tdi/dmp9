@@ -1398,6 +1398,17 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
     background: #eee;
     border: 1px solid #cccccc;
 }
+
+.edit_my_info .input_disabled {
+    /* background: #fff; */
+    background: #eee;
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+}
+.edit_my_info .input_disabled input {
+    background: #eee !important;
+}
+
 /*
 .edit_my_info .form_ico {
   position: absolute;

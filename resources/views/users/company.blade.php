@@ -137,57 +137,58 @@
 
                             @if ($taxs[0])
                             <!--사업자정보-->
-                            <div class="title company_title">
+                            <div class="title company_title ">
                                 사업계산서 수정
                                 <span class="txt"> - 사업자 정보 수정은 관리자 승인 후 변경 가능 합니다. </span>
-                                <button type="button">수정요청</button>
+                                <button type="button" onclick="location.href = '/questions';">수정요청</button>
                             </div>
-                            <div class="input-group first_radius">
+
+                            <div class="input-group first_radius input_disabled">
                                 <div class="label_box">
                                     <label>사업자등록번호</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="tax_company_number" value="{{$taxs[0]['tax_company_number']}}" />
+                                    <input type="text" placeholder="" name="tax_company_number" value="{{$taxs[0]['tax_company_number']}}" disabled/>
                                 </div>
                             </div>
-                            <div class="input-group">
+                            <div class="input-group input_disabled">
                                 <div class="label_box">
                                     <label>업체명(법인명)</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="tax_company_name" value="{{$taxs[0]['tax_company_name']}}"  />
+                                    <input type="text" placeholder="" name="tax_company_name" value="{{$taxs[0]['tax_company_name']}}" disabled/>
                                 </div>
                             </div>
-                            <div class="input-group">
+                            <div class="input-group input_disabled">
                                 <div class="label_box">
                                     <label>대표자명</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="tax_name" value="{{$taxs[0]['tax_name']}}" />
+                                    <input type="text" placeholder="" name="tax_name" value="{{$taxs[0]['tax_name']}}" disabled />
                                 </div>
                             </div>
-                            <div class="input-group">
+                            <div class="input-group input_disabled">
                                 <div class="label_box">
                                     <label>주소</label>
                                 </div>
                                 <div class="input_box">
                                     <div class="address_box form-inline">
-                                        <input type="text" id="postcode" class="postcode form-control form-control2" placeholder="우편번호를 입력해주세요" name="tax_zipcode" value="{{$taxs[0]['tax_zipcode']}}">
-                                        <button type="button" onclick=" execDaumPostcode()"> 검색</button>
-                                        <input type="text" id="address" class="address form-control" placeholder="기본주소를 검색하세요" name="tax_addres_1" value="{{$taxs[0]['tax_addres_1']}}">
-                                        <input type="text" id="detailAddress" class="detailAddress form-control" placeholder="상세주소를 입력해주세요" name="tax_addres_2" value="{{$taxs[0]['tax_addres_2']}}">
+                                        <input type="text" id="postcode" class="postcode form-control form-control2" placeholder="우편번호를 입력해주세요" name="tax_zipcode" value="{{$taxs[0]['tax_zipcode']}}" disabled>
+
+                                        <input type="text" id="address" class="address form-control" placeholder="기본주소를 검색하세요" name="tax_addres_1" value="{{$taxs[0]['tax_addres_1']}}" disabled>
+                                        <input type="text" id="detailAddress" class="detailAddress form-control" placeholder="상세주소를 입력해주세요" name="tax_addres_2" value="{{$taxs[0]['tax_addres_2']}}" disabled>
                                         <input type="text" id="extraAddress" class="extraAddress form-control" placeholder="참고항목">
                                     </div>
                                 </div>
                             </div>
-                            <div class="input-group last_radius">
+                            <div class="input-group last_radius input_disabled">
                                 <div class="label_box">
                                     <label>사업자등록증</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" class="form-control form-control2 text_name" placeholder="사업자등록증을 첨부해주세요" disabled="">
+                                    <input type="text" class="form-control form-control2 text_name" placeholder="사업자등록증을 첨부해주세요" disabled>
                                     <input id="file_name" type="file" class="upload_name form-control">
-                                    <label for="file_name" class="business_btn">첨부하기</label>
+
                                 </div>
                             </div>
                             @endif

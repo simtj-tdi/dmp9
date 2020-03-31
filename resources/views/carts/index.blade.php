@@ -423,7 +423,7 @@
                             확인중
                             <img src="../assets/img/icon_explanation_01.png" alt="아이콘 설명"/>
                             <div class="explanation_box">
-                                <p></p>
+                                <p>신청하신 데이터의 추출 가능 여부를 확인중입니다.</p>
                             </div>
                         </td>
                     @elseif ($cart->state === 2)

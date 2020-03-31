@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMailable;
 use App\Repositories\TaxRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -13,7 +15,7 @@ class UserController extends Controller
 
     public function __construct(UserRepositoryInterface $userRepository, TaxRepositoryInterface $taxRepository)
     {
-        $this->middleware(['auth', 'approved','role'], ['except' => ['id_check', 'SingUpFindId', 'SingUpNewPw']]);
+        $this->middleware(['auth', 'approved','role'], ['except' => ['id_check', 'SingUpFindId', 'SingUpNewPw', 'SingUpFindPassWord']]);
         $this->userRepository = $userRepository;
         $this->taxRepository = $taxRepository;
     }
@@ -94,6 +96,26 @@ class UserController extends Controller
         }
 
         return $response;
+    }
+
+    public function SingUpFindPassWord(Request $request)
+    {
+        $request_data = json_decode($request->data);
+        $return_result = $this->userRepository->SingUpFindId($request_data);
+
+        if (empty($return_result[0])) {
+            $result['result'] = "error";
+            $result['error_message'] = "전송 실패";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        } else {
+//                dd($return_result);
+
+                Mail::to($return_result[0]['email'])->send(new SendMailable($return_result[0]));
+
+//            $result['result'] = "success";
+//            $result['result_info'] = $return_result;
+//            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        }
     }
 
     public function SingUpNewPw(Request $request)

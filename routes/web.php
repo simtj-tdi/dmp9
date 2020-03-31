@@ -51,6 +51,8 @@ Route::get('/sign_up_finish_sign_up', function() {
 
 Route::post('/ajaxIdCheckRequest', 'UserController@id_check')->name('Users.idcheckrequest');
 Route::post('/ajaxSignUpFindId', 'UserController@SingUpFindId')->name('Users.SingUpFindId');
+Route::post('/ajaxSingUpFindPassword', 'UserController@SingUpFindPassWord')->name('Users.SingUpFindPassword');
+
 Route::post('/ajaxSingUpNewPw', 'UserController@SingUpNewPw')->name('Users.SingUpNewPw');
 
 
@@ -67,6 +69,10 @@ Route::get('/role', function() {
 })->name('role');
 
 Route::post('/ajaxContactusCreate', 'ContactsusController@store')->name('Contactsus.create');
+
+Route::get('/send/email', 'HomeController@mail');
+
+Route::get('/send/email1', 'HomeController@mailarray');
 
 Route::middleware(['auth', 'approved','role'])->group( function () {
 
@@ -113,4 +119,6 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     Route::get('/payment', function () {
         return view('payment');
     })->name('Payments.index');
+
+
 });
