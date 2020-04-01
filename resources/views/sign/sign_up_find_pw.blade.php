@@ -25,7 +25,7 @@
 
 
                 var data = new Object();
-                data.name = $("input[name='name']").val();
+                data.user_id = $("input[name='user_id']").val();
                 data.phone = $("input[name='phone']").val() ;
 
                 var jsonData = JSON.stringify(data);
@@ -39,14 +39,12 @@
                     success: function (data) {
                         var JSONArray = JSON.parse(JSON.stringify(data));
 
-                        // if (JSONArray['result'] == "success") {
-                        //     $("input[name='user_id']").val(JSONArray['result_info'][0]['user_id']);
-                        //     $("#idSend").attr("action", "/sign_up_find_new_pw");
-                        //     $("#idSend").submit();
-                        //
-                        // } else if (JSONArray['result'] == "error") {
-                        //     $("#request_data").show();
-                        // };
+                        if (JSONArray['result'] == "success") {
+
+                            alert(JSONArray['result_info'][0]['email']+" 메일 확인 후 새 비밀번호를 입력하세요.");
+                        } else if (JSONArray['result'] == "error") {
+                            $("#request_data").show();
+                        };
                     },
                     error: function () {
                         alert("Error while getting results");
@@ -85,10 +83,10 @@
                                     </span>
                                 </p>
                                 <div class="input-group">
-                                    <input type="text" name="name" value="이름" class="form-control" placeholder="아이디를 입력해주세요" />
+                                    <input type="text" name="user_id" value="" class="form-control" placeholder="아이디를 입력해주세요" />
                                 </div>
                                 <div class="input-group">
-                                    <input type="number" name="phone" value="01050375610" class="form-control" placeholder="연락처를 입력해주세요 (ex. 01012345678910)"  />
+                                    <input type="number" name="phone" value="" class="form-control" placeholder="연락처를 입력해주세요 (ex. 01012345678910)"  />
                                 </div>
                                 <div class="but_box mt-4">
                                     <button type="button" id="btn_submit" >비밀번호 찾기</button>

@@ -41,7 +41,12 @@ Route::get('/sign_up_find_pw', function() {
     return view('sign.sign_up_find_pw');
 });
 
-Route::post('/sign_up_find_new_pw', function() {
+Route::post('/sign_up_find_new_pw', function(\Illuminate\Http\Request $request) {
+
+    if (!$request->user_id) {
+        return response()->redirectTo('/');
+    }
+
     return view('sign.sign_up_find_new_pw');
 });
 
@@ -107,7 +112,7 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     Route::post('users/confirm_check', 'UserController@confirm_check')->name('confirm_check');
     Route::post('my_show', 'UserController@my_show')->name('my_show');
     Route::post('my_update', 'UserController@my_update')->name('my_update');
-
+    Route::get('file_download/{file_name}', 'UserController@file_download')->name('file_download');
 
     // 주문내역
     Route::get('/history', 'OrderController@history')->name('orders_history');

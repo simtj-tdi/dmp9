@@ -26,6 +26,7 @@ class CreateGoodsTable extends Migration
             $table->integer('buy_price')->nullable()->comment("구매가격");
             $table->date('expiration_date')->nullable()->comment("유효기간");
             $table->date('data_files')->nullable()->comment("업로드파일");
+            $table->date('org_files')->nullable()->comment("완본업로드파일");
             $table->timestamps();
         });
     }

@@ -74,6 +74,15 @@ class UserRepository implements UserRepositoryInterface
         return $user_id;
     }
 
+    public function SingUpFindById($request)
+    {
+        $user_id = user::where('user_id', $request->user_id)
+            ->where('phone', $request->phone)
+            ->get();
+
+        return $user_id;
+    }
+
     public function SingUpNewPw($request)
     {
         return user::where('user_id', $request->user_id)->update([

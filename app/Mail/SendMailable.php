@@ -21,7 +21,7 @@ class SendMailable extends Mailable
      */
     public function __construct(User $user)
     {
-        //$this->name = $name;
+        $this->name = $user->name;
         $this->user_id = $user->user_id;
     }
 
@@ -32,8 +32,6 @@ class SendMailable extends Mailable
      */
     public function build()
     {
-//        return $this->view('view.name');
-
-        return $this->subject('mail_test')->markdown('emails.password', ['user_id'=>$this->user_id]);
+        return $this->subject('DMP9에서 드리는 알림메일입니다.')->markdown('emails.password', ['name'=>$this->name, 'user_id'=>$this->user_id]);
     }
 }

@@ -96,9 +96,9 @@
                                     <div class="address_box form-inline">
                                         <input type="text" id="postcode" class="postcode form-control form-control2" name="tax_zipcode" placeholder="우편번호를 입력해주세요">
                                         <button type="button" onclick=" execDaumPostcode()" style="top:33px;">검색</button>
-                                        <input type="text" id="address" class="address form-control" placeholder="기본주소를 검색하세요">
-                                        <input type="text" id="detailAddress" class="detailAddress form-control" name="tax_addres_1" placeholder="상세주소를 입력해주세요">
-                                        <input type="text" id="extraAddress" class="extraAddress form-control" name="tax_addres_2" placeholder="참고항목">
+                                        <input type="text" id="address" class="address form-control" name="tax_addres_1" placeholder="기본주소를 검색하세요">
+                                        <input type="text" id="detailAddress" class="detailAddress form-control" name="tax_addres_2" placeholder="상세주소를 입력해주세요">
+                                        <input type="text" id="extraAddress" class="extraAddress form-control" placeholder="참고항목">
                                     </div>
                                 </div>
                                 <div class="input-group">

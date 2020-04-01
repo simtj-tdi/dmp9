@@ -7,6 +7,7 @@ use App\Repositories\TaxRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -56,6 +57,13 @@ class UserController extends Controller
         return view('users.company', compact('user','taxs'));
     }
 
+    public function file_download($file_name)
+    {
+        $path = storage_path(). "/app/tax/".auth()->user()->user_id."/".$file_name;
+
+        return response()->download($path);
+    }
+
     // 마이정보-수정 업데이트
     public function my_update(Request $request)
     {
@@ -63,9 +71,9 @@ class UserController extends Controller
 
         $this->userRepository->update($request);
 
-        if ($request['type'] == "company") {
-            $this->taxRepository->update($request);
-        }
+//        if ($request['type'] == "company") {
+//            $this->taxRepository->update($request);
+//        }
 
         return redirect('users');
     }
@@ -101,21 +109,21 @@ class UserController extends Controller
     public function SingUpFindPassWord(Request $request)
     {
         $request_data = json_decode($request->data);
-        $return_result = $this->userRepository->SingUpFindId($request_data);
+        $return_result = $this->userRepository->SingUpFindById($request_data);
 
         if (empty($return_result[0])) {
             $result['result'] = "error";
             $result['error_message'] = "전송 실패";
             $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         } else {
-//                dd($return_result);
+            Mail::to($return_result[0]['email'])->send(new SendMailable($return_result[0]));
 
-                Mail::to($return_result[0]['email'])->send(new SendMailable($return_result[0]));
-
-//            $result['result'] = "success";
-//            $result['result_info'] = $return_result;
-//            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+            $result['result'] = "success";
+            $result['result_info'] = $return_result;
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
+
+        return $response;
     }
 
     public function SingUpNewPw(Request $request)

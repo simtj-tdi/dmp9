@@ -3,44 +3,32 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
 </head>
+<style type="text/css">
+    .btn-link {
+        border: none;
+        outline: none;
+        background: none;
+        cursor: pointer;
+        color: #0000EE;
+        padding: 0;
+        text-decoration: underline;
+        font-family: inherit;
+        font-size: inherit;
+    }
+</style>
 <body>
-<p>Hello,</p>
-<p>
-    Thanks for signing up for our newsletter.
-    I am sure this is your email <span><a href="http://dmp9.test">fgfdsdsf</a></span><br>
-    We love you!!!
-    <form method="POST" action="http://dmp9.test/sign_up_find_new_pw">
+    <form method="POST" target="_blank" action="http://dmp9.test/sign_up_find_new_pw">
         <input type="hidden" name="user_id" value="{{$user_id}}">
-        <button type="submit" class="btn btn-danger">
-            이동하기
-        </button>
+
+        <p>DMP9 에서 드리는 알림메일입니다.</p>
+        <p>{{$name}} 회원님</p>
+        <p>[비밀번호 수정 메일]</p>
+        <p><button type="submit" class="btn btn-link" >새 비밀번호 설정</button></p>
+        <p>위 링크를 클릭하신 후</p>
+        <p>새 비밀번호를 입력 해 주세요.</p>
+        <p>변경하신 비밀번호로 로그인 가능합니다.</p>
     </form>
 
-</p>
-<p>
-    Goodness Kayode | Pusher of Codes
-    <br>
-    CodebagNG
-</p>
-<div class="layout-container sign_up find_id find_new_pw">
-    <div class="inner">
-        <div class="logo">
-            <h1>
-                <img src="{{asset('assets/img/sign_up/logo_dmp9.png')}}" alt="DMP9 logo" />
-            </h1>
-        </div>
-        <div class="form_box">
-            <div class="input_box">
-                <form method="POST" action="">
-                    <div class="but_box">
-                        <button type="button" id="btn_submit" onclick="location.href = 'http://dmp9.test';" >확인</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <p class="txt_bottom">Copyright © DMP9. All rights reserved.</p>
-    </div>
 </body>
 </html>

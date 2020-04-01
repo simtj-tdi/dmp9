@@ -1334,7 +1334,7 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
     min-width: 360px !important;
 }
 .edit_my_info .address_box input:nth-child(4) {margin-bottom: 20px;}
-.extraAddress{display: none !important;}
+/*.extraAddress{display: none !important;}*/
 
 
 .edit_my_info .text_name {

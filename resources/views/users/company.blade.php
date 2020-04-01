@@ -186,9 +186,7 @@
                                     <label>사업자등록증</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" class="form-control form-control2 text_name" placeholder="사업자등록증을 첨부해주세요" disabled>
-                                    <input id="file_name" type="file" class="upload_name form-control">
-
+                                    <a href="{{ route('file_download', $taxs[0]['tax_img']) }}">{{$taxs[0]['tax_img']}}</a>
                                 </div>
                             </div>
                             @endif
