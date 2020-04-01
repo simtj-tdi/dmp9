@@ -21,5 +21,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         "/ajaxPayReturn",
+        "/ajaxPayCallback",
+        "/sign_up_find_new_pw",
     ];
 }

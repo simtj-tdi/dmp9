@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 </head>
 <body>
 <p>Hello,</p>
@@ -10,6 +11,13 @@
     Thanks for signing up for our newsletter.
     I am sure this is your email <span><a href="http://dmp9.test">fgfdsdsf</a></span><br>
     We love you!!!
+    <form method="POST" action="http://dmp9.test/sign_up_find_new_pw">
+        <input type="hidden" name="user_id" value="{{$user_id}}">
+        <button type="submit" class="btn btn-danger">
+            이동하기
+        </button>
+    </form>
+
 </p>
 <p>
     Goodness Kayode | Pusher of Codes
@@ -20,7 +28,7 @@
     <div class="inner">
         <div class="logo">
             <h1>
-                <a href="/"><img src="http://dmp9.test/assets/img/sign_up/logo_dmp9.png" alt="DMP9 logo" /></a>
+                <img src="{{asset('assets/img/sign_up/logo_dmp9.png')}}" alt="DMP9 logo" />
             </h1>
         </div>
         <div class="form_box">

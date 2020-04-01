@@ -70,9 +70,7 @@ Route::get('/role', function() {
 
 Route::post('/ajaxContactusCreate', 'ContactsusController@store')->name('Contactsus.create');
 
-Route::get('/send/email', 'HomeController@mail');
-
-Route::get('/send/email1', 'HomeController@mailarray');
+Route::get('/ajaxPayCallback', 'PaymentsController@payCallback')->name('Payments.paycallback');
 
 Route::middleware(['auth', 'approved','role'])->group( function () {
 
@@ -90,7 +88,7 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     // payment
     Route::post('/ajaxPayRequest', 'PaymentsController@payRequest')->name('Payments.payrequest');
     Route::post('/ajaxPayReturn', 'PaymentsController@payReturn')->name('Payments.payreturn');
-    Route::get('/ajaxPayCallback', 'PaymentsController@payCallback')->name('Payments.paycallback');
+
     Route::get('/ajaxPayCancel', 'PaymentsController@payCancel')->name('Payments.payCancel');
 
     // 자주묻는질문(faq)
