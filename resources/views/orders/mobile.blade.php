@@ -70,7 +70,8 @@
                     }
 
                     $("#contDiv").append(strDiv);
-                    $("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+                    $("#mo_detail_data").css("top", Math.max(0,  $(window).scrollTop()) + "px").show();
+                    //$("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
                     $('body').css("overflow", "hidden");
                 },
                 error: function () {
