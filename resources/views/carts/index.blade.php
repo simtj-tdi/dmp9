@@ -168,11 +168,11 @@
                 }
             });
 
-            $("input[name='check']").click(function() {
+            $("[id^='Check_']").click(function() {
                 var total_int=0;
                 var total_count=0;
                 var total_price=0;
-                $("input[name='check']:checked").each(function() {
+                $("[id^='Check_']:checked").each(function() {
                     total_int += 1;
                     total_count += $(this).data("count");
                     total_price += $(this).data("price");
@@ -182,27 +182,29 @@
                 $("span[name=total_price]").text(AddComma(total_price));
             });
 
-            $(".createBtn").click(function() {
-                $("form[name='registerForm']").validate({
-                    rules: {
-                        advertiser: "required",
-                        "data_types[]": {
-                            required: true,
-                            minlength: 1
-                        },
-                        data_target:"required",
-                        data_name:"required",
-                        data_category:"required",
-                    },
-                    messages: {
-                    },
+            $('#registerForm button[name=btn]').click(function() {
 
-                    errorPlacement: function(error, element){
-                    },
-                    highlight: function (element, required) {
-                        $(element).css('border', '2px solid #FDADAF');
-                    },
-                });
+                if ($("#registerForm input[name=advertiser]").val() == "") {
+                    alert('광고주를 입력하세요.');
+                    return false;
+                }
+
+                if ($("#registerForm input:radio[name=data_target]").is(":checked") == false) {
+                    alert('타겟 유형을 선택하세요.');
+                    return false;
+                }
+
+                if ($("#registerForm input[name=data_name]").val() == "") {
+                    alert('데이터 명을 입력하세요.');
+                    return false;
+                }
+
+                if ($("#registerForm input[name=data_request]").val() == "") {
+                    alert('데이터 업로드 횟수를 입력하세요.');
+                    return false;
+                }
+
+                $('#registerForm').submit();
             });
 
             $('button[name="orderBtn"], button[name="searchBtn"]').click(function(){
@@ -214,7 +216,7 @@
                 var ids = new Array();
                 var total_count=0;
                 var total_price=0;
-                $("input[name='check']:checked").each(function() {
+                $("[id^='Check_']:checked").each(function() {
                     ids.push($(this).val());
                     total_count += $(this).data("count");
                     total_price += $(this).data("price");
@@ -226,7 +228,6 @@
                 }
 
                 $("#request_data").show();
-
             });
 
             $("#new_payment").click(function() {
@@ -241,7 +242,7 @@
                 var ids = new Array();
                 var total_count=0;
                 var total_price=0;
-                $("input[name='check']:checked").each(function() {
+                $("[id^='Check_']:checked").each(function() {
                     ids.push($(this).val());
                     total_count += $(this).data("count");
                     total_price += $(this).data("price");
@@ -281,7 +282,6 @@
                 } else {
                     console.log("구매 데이터를 선택 하세요.");
                 }
-
             });
 
         });
@@ -469,7 +469,7 @@
                             <div class="form-inline">
                                 <div class="input_control form-inline">
                                     <label class="form-control label_control">{{$option->platform['name']}}</label>
-                                    <input type="text" class="form-control" value="{{$option->platform['url']}}" placeholder="URL">
+                                    <input type="text" class="form-control" value="{{$option->platform['url']}}" disabled placeholder="URL">
                                     <input type="text" class="form-control id_value_control" name="sns_id" style="background: #e8e8e9" disabled value="{{$option->sns_id}}" placeholder="아이디">
                                     <input type="password" class="form-control pw_value_control" name="sns_password" style="background: #e8e8e9" disabled  value="{{$option->sns_password}}" placeholder="비밀번호">
                                     <button type="button" class="form-control btn_control_01" name='sns_modify' >수정</button>
@@ -578,11 +578,10 @@
             </div>
         </div>
 
-
         <div id="add_data" class="add_data overlay-wrap alert">
             <div class="writing_wrap">
                 <div class="writing_box">
-                    <form name="registerForm" method="POST" action="{{ route('goods.store') }}">
+                    <form id="registerForm" method="POST" action="{{ route('goods.store') }}">
                         @csrf
                     <div class="inner">
                         <div class="top clearfix">
@@ -649,14 +648,16 @@
                             </ul>
                         </div>
                         <div class="btn_box">
-                            <button type="submit"class="createBtn">요청하기</button>
+                            <button type="button" class="createBtn" name="btn"  >요청하기</button>
                         </div>
                     </div>
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
     <!-- content : end-->
+
+@include('carts.mobile')
+
 @endsection

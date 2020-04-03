@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App\Repositories\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 
-
 class OrderController extends Controller
 {
     private $orderRepository;
@@ -41,6 +40,25 @@ class OrderController extends Controller
             $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         } else {
             $result['result'] = "success";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        }
+
+        return $response;
+    }
+
+    public function findById(Request $request)
+    {
+        $request_data = json_decode($request->data);
+
+        $return_result = $this->orderRepository->findById($request_data->order_id);
+
+        if (!$return_result) {
+            $result['result'] = "error";
+            $result['error_message'] = "등록되어 있는 계산서가 없습니다.";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        } else {
+            $result['result'] = "success";
+            $result['order_info'] = $return_result;
             $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
 

@@ -32,6 +32,7 @@ class CreatePaymentReturnsTable extends Migration
             $table->string('bank_name')->nullable();
             $table->string('expire_date')->nullable();
             $table->string('expire_time')->nullable();
+            $table->text('cash_receipt')->nullable();
             $table->string('issue_tid')->nullable();
             $table->string('cash_receipt_type')->nullable();
             $table->string('tid')->nullable();

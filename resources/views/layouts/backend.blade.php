@@ -54,7 +54,8 @@
             <!-- Sidenav toggle -->
             <div class="layout-sidenav-toggle navbar-nav align-items-lg-center mr-auto mr-lg-4">
                 <a class="nav-item nav-link px-0 ml-2" href="javascript:void(0)">
-                    <i class="text-large align-middle">menu</i>
+                    <i class="text-large align-middle"><img src="assets/img/common/mo_icon_manu.png" alt="햄버거 이미지"></i>
+
                 </a>
             </div>
         </nav>

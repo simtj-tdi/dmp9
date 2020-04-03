@@ -30,4 +30,9 @@ class Goods extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class, 'id');
+    }
 }

@@ -13,54 +13,48 @@
             }
         };
 
-        $(function() {
+        $('#frm button[name=btn]').click(function(){
+            if ($("#frm input[name=name]").val() == "") {
+                alert('이름을 입력하세요.');
+                return false;
+            }
 
-            $('button[name="btn"]').click(function(){
-                if ($("input[name=name]").val() == "") {
-                    alert('이름을 입력하세요.');
-                    return false;
-                }
+            if ($("#frm input[name=title]").val() == "") {
+                alert('제목을 입력하세요.1');
+                return false;
+            }
 
-                if ($("input[name=title]").val() == "") {
-                    alert('제목을 입력하세요.');
-                    return false;
-                }
+            if ($("#frm [name=content]").val() == "") {
+                alert('내용을 입력하세요.');
+                return false;
+            }
 
-                if ($("[name=content]").val() == "") {
-                    alert('내용을 입력하세요.');
-                    return false;
-                }
+            if ($("#frm input[name=phone]").val() == "") {
+                alert('연락처를 입력하세요.');
+                return false;
+            }
 
-                if ($("input[name=phone]").val() == "") {
-                    alert('연락처를 입력하세요.');
-                    return false;
-                }
+            if ($("#frm input[name=email]").val() == "") {
+                alert('이메일을 입력하세요.');
+                return false;
+            }
 
-                if ($("input[name=email]").val() == "") {
-                    alert('이메일을 입력하세요.');
-                    return false;
-                }
+            var sEmail = $("#frm input[name=email]").val();
 
-                var sEmail = $("input[name=email]").val();
+            if (!validateEmail(sEmail)) {
+                alert('잘못된 이메일 형식 입니다');
+                return false;
+            }
 
-                if (!validateEmail(sEmail)) {
-                    alert('잘못된 이메일 형식 입니다');
-                    return false;
-                }
+            if ($("#frm input:checkbox[name=check]").is(":checked") == false) {
+                alert('개인정보 수집 동의 확인 후 가능합니다.');
+                return false;
+            }
 
-                var success = true;
-                $("input:checkbox[name=check]").each(function() {
-                    if (this.checked == false) {
-                        alert('개인정보 수집 동의 확인 후 가능합니다.');
-                        success = false;
-                        return false;
-                    }
-                });
-
-                $('[name="frm"]').submit();
-            });
-
+            $('#frm').submit();
         });
+
+
     </script>
 
 @endprepend
@@ -116,13 +110,13 @@
                             <div class="item mb-1">
                                 <div class="txt-box form-inline">
                                     <div class="label">질문</div>
-                                    <div class="txt">개{{ $question['content'] }}</div>
+                                    <div class="txt">{{ $question['content'] }}</div>
                                 </div>
                                 @if (!$question['answers']->isEmpty())
                                 <div class="txt-box form-inline">
                                     <div class="label">답변</div>
                                     <div class="txt">
-                                        @foreach ($question['answers'] as $answer)
+                                         @foreach ($question['answers'] as $answer)
                                             {{ $answer['content'] }}
                                         @endforeach
                                     </div>
@@ -140,9 +134,10 @@
 
         <div id="add_writing" class="overlay-wrap alert">
             <div class="writing_wrap">
-                <form method="POST" name="frm" action="{{ route('questions.store') }}">
-                    @csrf
+
                 <div class="writing_box">
+                    <form method="POST" id="frm" name="frm" action="{{ route('questions.store') }}">
+                        @csrf
                     <div class="inner">
                         <div class="top clearfix">
                             <h1>문의하기</h1>
@@ -151,24 +146,24 @@
                         <div class="cont">
                             <div class="form-group">
                                 <label for="name">이름/회사명</label>
-                                <input type="text" id="name" class="form-control" name="name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}" autocomplete="off" placeholder="이름/회사명을 입력해주세요">
+                                <input type="text"  class="form-control" name="name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}" autocomplete="off" placeholder="이름/회사명을 입력해주세요">
                             </div>
                             <div class="form-group">
                                 <label for="title">제목</label>
-                                <input type="text" id="title" class="form-control" name="title" autocomplete="off" placeholder="제목을 입력해주세요">
+                                <input type="text"  class="form-control" name="title" autocomplete="off" placeholder="제목을 입력해주세요">
                             </div>
                             <div class="form-group">
                                 <label for="context">문의내용</label>
-                                <textarea id="context" class="form-control" style="resize: none;"  name="content" autocomplete="off" placeholder="내용을 입력해주세요"></textarea>
+                                <textarea  class="form-control" style="resize: none;"  name="content" autocomplete="off" placeholder="내용을 입력해주세요"></textarea>
                             </div>
                             <div class="form-group form-inline">
                                 <p>
                                     <label for="phone">연락처</label>
-                                    <input type="number" id="phone" class="form-control" name="phone" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}"  autocomplete="off" placeholder="(ex. 01012345678910)">
+                                    <input type="number" class="form-control" name="phone" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}"  autocomplete="off" placeholder="(ex. 01012345678910)">
                                 </p>
                                 <p>
                                     <label for="email">이메일</label>
-                                    <input type="text" id="email" class="form-control" name="email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}" autocomplete="off" placeholder="이메일을 입력해주세요">
+                                    <input type="text"  class="form-control" name="email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}" autocomplete="off" placeholder="이메일을 입력해주세요">
                                 </p>
 
                             </div>
@@ -185,16 +180,16 @@
                             </div>
                         </div>
                         <div class="btn_box">
-                            <button type="button" name="btn">문의등록</button>
+                            <button type="button" id="btn" name="btn">문의등록</button>
                         </div>
                     </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
 
     </div>
 
-
+@include('questions.mobile')
 
 @endsection

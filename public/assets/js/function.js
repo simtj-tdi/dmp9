@@ -48,7 +48,7 @@ var swiper = new Swiper('.swiper-container', {
 
 /*side_modal ul 삭제*/
 function deleteOption(that){
-  $(that).closest('ul').remove(); 
+  $(that).closest('ul').remove();
 }
 
 /*질문하기,문의하기 ul 클릭 토글*/
@@ -62,6 +62,13 @@ function addWriting() {
 }
 function addWritingDisNone() {
   $("#add_writing").hide();
+}
+
+function moAddWriting() {
+    $("#mo_add_writing").show();
+}
+function moAddWritingDisNone() {
+    $("#mo_add_writing").hide();
 }
 
 

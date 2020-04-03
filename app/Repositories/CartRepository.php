@@ -21,8 +21,8 @@ class CartRepository implements CartRepositoryInterface
     public function findById($id)
     {
         return cart::where('id', $id)
-            ->firstOrFail()
-            ->format();
+            ->get()
+            ->map->format();
     }
 
     public function create(Goods $goods)

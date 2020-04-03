@@ -1,8 +1,69 @@
 
-body {min-width: 1280px;}
+@font-face {
+    font-family: 'NanumSquareB';
+    src: url('/assets/font/NanumSquare/NanumSquareB.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumSquareEB.ttf';
+    src: url('/assets/font/NanumSquare/NanumSquareEB.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumSquareL';
+    src: url('/assets/font/NanumSquare/NanumSquareL.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumSquareR';
+    src: url('/assets/font/NanumSquare/NanumSquareR.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+
+html, body, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+input, select, blockquote, pre, a, abbr, acronym, address, big, cite,
+code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong,
+sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset,
+label, legend, table, caption, tbody, tfoot, thead, th, article,
+aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary, time, mark, audio, video, input::placeholder {
+    font-family: 'NanumSquareB', sans-serif !important;
+    transform: skew(-0.003deg);
+    -webkit-transform: skew(-0.003deg);
+    -moz-transform: skew(-0.003deg);
+    -ms-transform: skew(-0.003deg);
+    -o-transform: skew(-0.003deg);
+}
+span, option, button, li{
+    font-family: 'NanumSquareEB', sans-serif !important;
+    transform: skew(-0.003deg);
+    -webkit-transform: skew(-0.003deg);
+    -moz-transform: skew(-0.003deg);
+    -ms-transform: skew(-0.003deg);
+    -o-transform: skew(-0.003deg);
+}
+
+body {min-width: 1280px; }
 /* .layout-container {height: 650px; overflow: hidden;} */
 nav {display: none !important;}
 span{display: contents;}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
 
 .clearfix::after {
     content: "";
@@ -54,14 +115,14 @@ input:focus {
 .sidenav-vertical .sidenav-inner>.sidenav-item {width: 100%; margin: 0;}
 .sidenav-item .sidenav-link .icon {width: 18px; height: 18px; margin-right: 20px;}
 .sidenav-item.active .sidenav-link div:nth-child(2) {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
     letter-spacing: -0.3px;
     color: #292929;
 }
 
 .sidenav-item .sidenav-link div:nth-child(2) {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
     letter-spacing: -0.3px;
     color: rgba(41, 41, 41, 0.7);
@@ -93,7 +154,7 @@ input:focus {
 }
 
 .sidenav_total_balance_inner_cont .text p:nth-child(1){
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
     line-height: 1.5;
 }
@@ -107,7 +168,7 @@ input:focus {
     padding: 0 1rem;
 }
 .sidenav_total_balance_inner_top div:nth-child(1) {
-    font-size: 16px;
+    font-size: 17px;
     margin: 0 24px 0 31px;
     letter-spacing: -0.24px;
 }
@@ -219,27 +280,65 @@ input:focus {
 
 /* overlay */
 .overlay-wrap {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     z-index: 9999;
     width: 100%;
-    height: 100%;
+    height:100vh;
     background: rgba(0, 0, 0, 0.8);
 }
+
+.alert {margin-bottom: 0;}
 
 @media (max-width: 1600px) {}
 @media (max-width: 1440px) {}
 @media (max-width: 1366px) {}
 @media (max-width: 1280px) {}
 
-
-
-
-
-
 @media (max-width: 991px) {
     nav {display: block !important;}
     body {min-width: 991px;}
+
+    .sidenav_logo_wrap img {
+        width: 100%;
+        margin: 25px auto 25px;
+    }
+    .layout-sidenav {
+        overflow-y: auto;
+    }
+    .layout-sidenav-toggle{
+        position: absolute;
+        top: 0;
+    }
+    .sidenav_bottom {
+        width: 75%;
+        text-align: center;
+        position: absolute;
+        bottom: 3rem;
+    }
 }
+
+@media (max-width: 380px) {
+    .sidenav_total_balance_inner_top button {
+        font-size: 13px;
+        width: 100%;
+    }
+    .login_btn_box {
+        width: 30%;
+        text-align: center;
+    }
+    .sidenav_total_balance_inner_top div:nth-child(1) {
+        font-size: 13px;
+        margin: 0;
+        letter-spacing: -0.24px;
+    }
+    .sidenav_total_balance_inner_top div:nth-child(2){
+        margin-left: 0;
+        width: 100px;
+    }
+
+}
+
+
 

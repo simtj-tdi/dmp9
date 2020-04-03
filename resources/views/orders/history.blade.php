@@ -117,7 +117,6 @@
                                     <th>광고주</th>
                                     <th>타겟유형</th>
                                     <th>데이터명</th>
-                                    <th>데이터 항목</th>
                                     <th>데이터 추출수</th>
                                     <th>구매가격</th>
                                     <th>유효기간</th>
@@ -140,7 +139,6 @@
                                             @endif
                                         </td>
                                         <td>{{ $goods->data_name }}</td>
-                                        <td>{{ $goods->data_category }}</td>
                                         <td>{{ $goods->data_count }}</td>
                                         <td>{{ number_format($goods->buy_price) }}</td>
                                         <td>{{ $goods->expiration_date}}</td>
@@ -172,8 +170,8 @@
             </div>
         </div>
 
-
     </div>
 
+    @include('orders.mobile')
 
 @endsection

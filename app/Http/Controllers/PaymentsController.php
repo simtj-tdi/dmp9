@@ -104,16 +104,28 @@ class PaymentsController extends Controller
 
     public function payCallback(Request $request)
     {
-        /*
-         * todo : payCallback 처리
-         * payCallball 처리는 실도메인
-         * 또는 곌제 아이디 밭고 작업
-         */
-
-        $this->paymentRepository->payLog("payCallback", urldecode($request));
         // 결제가 성공한 경우에만 결제 결과가 json형태로 제공됩니다.
         //*Callback URL로 전달되는 현금영수증 데이터의 경우 하기와 같은 형태로 제공 됩니다
         //https://www.payletter.com/ko/technical/index#ab21eea6c1
+
+        $this->paymentRepository->payLog("payCallback", urldecode($request));
+        $request_data = json_decode($request);
+
+        if (empty($request_data)) {
+            $strResponse = response()->json(['code'=> '9999', 'message'=> 'Response data is empty']);
+
+            return $strResponse;;
+        }
+
+        $return_result = $this->paymentRepository->payReturnByCallback($request_data);
+
+        if (!$return_result) {
+            $strResponse = response()->json(['code'=> '1', 'message'=> 'error']);
+        } else {
+            $strResponse = response()->json(['code'=> '0', 'message'=> 'success']);
+        }
+
+        return $strResponse;
     }
 
     public function payCancel(Request $request)

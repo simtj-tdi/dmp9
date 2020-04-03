@@ -10,4 +10,6 @@ interface PaymentRepositoryInterface
     public function payLog($state, $message);
 
     public function findByOrder($order_no);
+
+    public function payReturnByCallback($request);
 }

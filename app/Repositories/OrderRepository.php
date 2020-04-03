@@ -21,8 +21,8 @@ class OrderRepository implements OrderRepositoryInterface
     public function findById($id)
     {
         return order::where('id', $id)
-            ->firstOrFail()
-            ->format();
+            ->get()
+            ->map->format();
     }
 
     public function create($order_no, $pay_data)

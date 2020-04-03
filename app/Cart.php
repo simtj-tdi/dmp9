@@ -20,7 +20,7 @@ class Cart extends Model
             'cart_id' => $this->id,
             'user_id' => $this->user,
             'goods_id' => $this->goods,
-            'order_id' => $this->order_id,
+            'order_id' => $this->orders,
             'state' => $this->state,
             'buy_date' => $this->buy_date,
             'options_id' => $this->options,
@@ -37,6 +37,11 @@ class Cart extends Model
     public function goods()
     {
         return $this->belongsTo(Goods::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'order_no','order_no');
     }
 
     public function options()

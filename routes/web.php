@@ -75,7 +75,7 @@ Route::get('/role', function() {
 
 Route::post('/ajaxContactusCreate', 'ContactsusController@store')->name('Contactsus.create');
 
-Route::get('/ajaxPayCallback', 'PaymentsController@payCallback')->name('Payments.paycallback');
+Route::post('/ajaxPayCallback', 'PaymentsController@payCallback')->name('Payments.paycallback');
 
 Route::middleware(['auth', 'approved','role'])->group( function () {
 
@@ -84,6 +84,8 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
     // 마이데이터(order)
     Route::resource('goods' , 'GoodsController');
     Route::resource('carts' , 'CartController');
+    Route::post('/ajaxFindCart' , 'CartController@findById')->name('carts.findById');
+
 
     // 마이데이터 플랫폼(option)
     Route::post('/ajaxOptionAdd','OptionController@optionAdd')->name('Option.add');
@@ -116,6 +118,7 @@ Route::middleware(['auth', 'approved','role'])->group( function () {
 
     // 주문내역
     Route::get('/history', 'OrderController@history')->name('orders_history');
+    Route::post('/ajaxFindOrder', 'OrderController@findById')->name('orders.findById');
     Route::post('/ajaxTaxState', 'OrderController@taxstate')->name('tax_state');
 
     // payment_test_page

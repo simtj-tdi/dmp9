@@ -250,6 +250,7 @@ input:focus {
     font-size: 15px;
     letter-spacing: -0.23px;
     color: #292929;
+    z-index: 9999;
 }
 
 .sign_up .input-group button:hover {
@@ -364,7 +365,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .login {
     width: 100%;
     height: 650px;
-    background-image: url('/img/sign_up/login_bg.jpg');
+    background-image: url('/assets/img/sign_up/login_bg.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -494,6 +495,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .choice .input_box p {
     text-align: left;
+    font-size: 17px;
 }
 .choice .input_box .desc {
     margin: 45px 0 20px;
@@ -523,11 +525,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .choice .input_box ul li .txt {
     display: inline-block;
+    width: 80%;
     margin-left: 10px;
     font-size: 20px;
     letter-spacing: -0.6px;
     color: #292929;
 }
+
 .choice .input_box ul li a {
     float: right;
     font-size: 18px;
@@ -552,7 +556,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .choice .but p {
     float: left;
-    font-size: 15px;
+    font-size: 12px;
     line-height: 2.53;
     letter-spacing: -0.23px;
     color: #292929;
@@ -560,7 +564,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .choice .but button {
     background: none;
     float: right;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
     line-height: 2.53;
     letter-spacing: -0.23px;
@@ -692,7 +696,7 @@ input[type="number"]::-webkit-inner-spin-button {
     text-align: left;
 }
 .finish_sign_up .but_box button {
-    width: 35%;
+    width: 40%;
     height: 50px;
     line-height: 50px;
     margin: 80px 0 50px;
@@ -799,4 +803,635 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .find_new_pw .request_data .cont p:nth-child(1) {
     margin-bottom: 13px;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 991.98px) {
+    body{  min-width: 100% !important;}
+    .login {
+        height: 100%;
+    }
+    .login .inner {
+        width: 70% !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .login .logo img {width: 75%;}
+    .login .form_box {
+        margin-top: 0rem;
+    }
+    .login .input_box .desc {
+        font-size: 27px;
+        padding-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .login .input_box .form-control {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border-bottom: 1px solid #fff;
+        background-color: transparent !important;
+        font-size: 17px;
+        letter-spacing: -0.6px;
+        text-align: left;
+        color: #fff;
+        box-sizing: border-box;
+    }
+    .login .but_box button {
+        color: #fff;
+        margin: 0;
+        height: 40px;
+        line-height: 40px;
+    }
+    .login .but_box .sign_box, .login .but_box .sign_box a {
+        font-size: 12px;
+    }
+
+    .login .txt_bottom {
+        width: 100%;
+        margin-top: 0;
+        font-size: 11px;
+        color: #fff;
+        text-align: center;
+        position: absolute;
+        bottom: -3rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+
+    .form_box .form_ico {
+        position: absolute;
+        top: -22px;
+        left: 22px;
+        display: inline-block;
+        width: 42px;
+        height: 42px;
+        line-height: 42px;
+        border-radius: 50%;
+        text-align: center;
+        background: #fed32e;
+    }
+
+
+
+
+
+    /* .choice */
+
+    .choice .logo {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .choice h1 {
+        text-align: center;
+        font-size: 25px;
+    }
+    .choice .form_box {
+        width: 90%;
+        background: #fff;
+        margin: auto;
+        border-radius: 7px;
+        border: solid 1px #cccccc;
+    }
+    .choice .input_box {
+        width: 100%;
+        margin: auto;
+        text-align: left;
+        padding: 1rem;
+    }
+    .choice .input_box p {
+        text-align: left;
+    }
+    .choice .input_box .desc {
+        margin: 25px 0 10px;
+        font-size: 27px;
+        line-height: 1.27;
+        letter-spacing: -0.65px;
+        color: #292929;
+    }
+    .choice .input_box .desc_sub {
+        margin-bottom: 25px;
+        font-size: 20px;
+        line-height: 1.52;
+        letter-spacing: -0.38px;
+        color: #292929;
+    }
+    .choice .input_box ul {
+        display: block;
+    }
+    .choice .input_box ul li {
+        width: 100%;
+        line-height: 25px;
+        text-align: left;
+        margin-bottom: 30px;
+    }
+    .choice .input_box ul li .checkbox {
+        position: absolute; left: 0; top: 14px;
+    }
+    .choice .input_box ul li .txt {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 20px;
+        letter-spacing: -0.6px;
+        color: #292929;
+    }
+    .choice .input_box ul li .txt p:nth-child(2){
+        font-size: 14px;
+    }
+    .choice .input_box ul li a {
+        float: right;
+        font-size: 18px;
+        letter-spacing: -0.27px;
+        color: #666666;
+    }
+    .choice .input_box ul li:first-of-type {
+        margin-bottom: 20px;
+    }
+    .choice .input_box ul li:last-of-type {
+        margin-bottom: 0;
+    }
+    .choice .txt_bottom {
+        margin-top: 30px;
+        margin-bottom: 1rem;
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+    }
+    .choice .but {
+        overflow: hidden;
+        padding-bottom: 1rem;
+    }
+    .choice .but p {
+        float: left;
+        font-size: 15px;
+        line-height: 2.53;
+        letter-spacing: -0.23px;
+        color: #292929;
+    }
+    .choice .but button {
+        background: none;
+        float: right;
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 2.53;
+        letter-spacing: -0.23px;
+        color: #292929;
+    }
+    .choice .but_box button {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        margin: 0;
+        border-radius: 5px;
+        background: #fed32e;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+        color: #292929;
+    }
+    .radio1 input[type="radio"]+label {
+        width: 30px;
+        height: 30px;
+        background-image: url('/assets/img/sign_up/icon_one_man_off.png');
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .radio2 input[type="radio"]+label {
+        width: 30px;
+        height: 30px;
+        background-image: url('/assets/img/sign_up/icon_two_man_off.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+
+    /*sign_up 회사 가입 */
+    .sign_up {
+        margin: 0;
+    }
+    .sign_up .logo {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .sign_up h1 {
+        text-align: center;
+        font-size: 25px;
+    }
+    .sign_up .form_box {
+        width: 90%;
+        background: #fff;
+        margin: auto;
+        border-radius: 7px;
+        border: solid 1px #cccccc;
+    }
+    .sign_up .input_box {
+        width: 100%;
+        margin: auto;
+        text-align: left;
+        padding: 1rem;
+    }
+    .sign_up .input_box p {
+        text-align: left;
+    }
+    .sign_up .input_box .desc {
+        margin: 25px 0 10px;
+        font-size: 27px;
+        line-height: 1.27;
+        letter-spacing: -0.65px;
+        color: #292929;
+        padding-top: 0;
+    }
+    .sign_up .input_box .desc_sub {
+        margin-bottom: 25px;
+        font-size: 20px;
+        line-height: 1.52;
+        letter-spacing: -0.38px;
+        color: #292929;
+    }
+    .sign_up .input-group {
+        position: relative;
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .sign_up .input-group label {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: -0.23px;
+        color: #000;
+        text-align: left;
+        white-space: nowrap;
+    }
+    .sign_up .input-group button {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        width: 95px;
+        height: 30px;
+        line-height: 26px;
+        background: #f0f0f0;
+        border-radius: 14.5px;
+        border: solid 1px #cccccc;
+        font-size: 15px;
+        letter-spacing: -0.23px;
+        color: #292929;
+        z-index: 9999;
+    }
+
+    .sign_up .input-group button:hover {
+        background: #cccccc;
+    }
+    .sign_up .input_box .form-control {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border-bottom: 1px solid #ccc;
+        background-color: transparent !important;
+        font-size: 18px;
+        letter-spacing: -0.6px;
+        text-align: left;
+        color: #292929;
+        box-sizing: border-box;
+        border-radius: 0;
+    }
+    .sign_up .input_box .form-control2 {
+        padding-right: 110px;
+    }
+    .sign_up .input_box .form-control::placeholder {
+        color: #ccc;
+        font-size: 14px;
+    }
+    .sign_up .message_group {
+        margin-top: 10px;
+    }
+    .sign_up .message_group .check_state_yes {
+        text-align: left;
+        font-size: 13px;
+        color: #00d294;
+    }
+    .sign_up .message_group .check_state_no {
+        text-align: left;
+        font-size: 13px;
+        color: #e40a0a;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .sign_up .txt_bottom {
+        margin-top: 30px;
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+    }
+
+    .sign_up .address_box input:last-child {
+        margin-bottom: 0;
+    }
+    .sign_up .address,
+    .sign_up .detailAddress,
+    .sign_up .extraAddress {
+        width: 100% !important;
+    }
+    .extraAddress{display: none !important;}
+
+    .sign_up .upload_name {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+    .sign_up .business_btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        text-align: center !important;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 0.25em;
+        -webkit-transition: background-color 0.2s;
+        transition: background-color 0.2s;
+        width: 95px !important;
+        height: 30px;
+        line-height: 26px;
+        background: #f0f0f0;
+        border-radius: 14.5px;
+        border: solid 1px #cccccc;
+        font-size: 15px;
+        letter-spacing: -0.23px;
+        color: #292929;
+    }
+
+    .sign_up .business_btn:hover {
+        background: #cccccc;
+    }
+
+    .sign_up .business_btn.form-control {
+        border: 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+
+    .sign_up .address,
+    .sign_up .detailAddress,
+    .sign_up .extraAddress {
+        width: 100% !important;
+    }
+    .extraAddress{display: none !important;}
+
+
+
+    /*약관동의*/
+    .terms {
+        margin: 0;
+    }
+    .terms .logo {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .terms h1 {
+        text-align: center;
+        font-size: 25px;
+    }
+    .terms .form_box {
+        width: 90%;
+        background: #fff;
+        margin: auto;
+        border-radius: 7px;
+        border: solid 1px #cccccc;
+    }
+    .terms .input_box {
+        width: 100%;
+        margin: auto;
+        text-align: left;
+        padding: 1rem;
+    }
+    .terms .input_box p {
+        text-align: left;
+    }
+    .terms .input_box .desc {
+        margin: 25px 0 10px;
+        font-size: 27px;
+        line-height: 1.27;
+        letter-spacing: -0.65px;
+        color: #292929;
+        padding-top: 0;
+    }
+    .terms .input_box .desc_sub {
+        margin-bottom: 25px;
+        font-size: 20px;
+        line-height: 1.52;
+        letter-spacing: -0.38px;
+        color: #292929;
+    }
+    .terms .input_box ul {
+        display: block;
+    }
+    .terms .input_box ul li {
+        width: 100%;
+        line-height: 25px;
+        text-align: left;
+        margin-bottom: 30px;
+    }
+    .terms .input_box ul li .checkbox {
+        position: absolute; left: 0; top: 14px;
+    }
+    .terms .input_box ul li .txt {
+        display: inline-block;
+        margin-left: 5px;
+        font-size: 17px;
+        letter-spacing: -0.6px;
+        color: #292929;
+    }
+    .terms .input_box ul li a {
+        float: right;
+        font-size:14px;
+        letter-spacing: -0.27px;
+        color: #666666;
+    }
+    .terms .input_box ul li:first-of-type {
+        margin-bottom: 20px;
+    }
+    .terms .input_box ul li:last-of-type {
+        margin-bottom: 0;
+    }
+    .terms .txt_bottom {
+        margin-top: 30px;
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+    }
+
+    .terms .terms_box {
+        margin: auto;
+        width: 60%;
+        min-height: 750px;
+        text-align: center;
+        padding: 1rem;
+        border: 1px solid #eee;
+    }
+
+    .terms_01 .terms_box {
+        margin: auto;
+        width: 95% !important;
+        min-height: 750px;
+        text-align: center;
+        padding: 1rem;
+        border: 1px solid #eee;
+    }
+
+    .checkbox input[type="checkbox"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+    .checkbox input[type="checkbox"] + label {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    .checkbox input[type="checkbox"] + label:before {
+        content: "";
+        /* content: url(/assets/img/img_add_writing_checkbox_on.png); */
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        vertical-align: middle;
+        background-color: #fed32e;
+    }
+
+    .checkbox input[type="checkbox"]:checked + label::before {
+        content: "✔";
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        color: #fff;
+    }
+
+    .terms .but_box button {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        margin: 25px 0;
+        border-radius: 5px;
+        background: #fed32e;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+        color: #292929;
+    }
+
+    .terms .txt_bottom {
+        margin-top: 30px;
+        margin-bottom: 1rem;
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+    }
+
+
+    /*가입완료 승인대기 페이지*/
+    .finish_sign_up .logo {
+        margin: 60px 0 40px;
+    }
+    .finish_sign_up .input_box .desc {
+        margin: 25px 0 10px;
+        font-size: 27px;
+        line-height: 1.27;
+        letter-spacing: -0.65px;
+        color: #292929;
+        padding-top: 0;
+    }
+    .finish_sign_up .input_box .desc span {
+        margin-bottom: 25px;
+        font-size: 20px;
+        line-height: 1.52;
+        letter-spacing: -0.38px;
+        color: #292929;
+    }
+    .finish_sign_up .but_box{
+        text-align: left;
+    }
+    .finish_sign_up .but_box button {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        margin: 40px 0 50px;
+        border-radius: 5px;
+        background: #fff !important;
+        font-size: 17px;
+        font-weight: normal;
+        letter-spacing: -0.3px;
+        color: #111;
+    }
+
+
+    /*아이디 찾기 (모달)*/
+    .find_id .request_data .writing_wrap .writing_box {
+        width: 95%;
+        border-radius: 7px;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .find_id .request_data .writing_wrap .inner {
+        width: 100% !important;
+        padding: 80px 15px 50px !important;
+        text-align: center;
+        position: relative;
+    }
+
+    .find_id .request_data .cont p {
+        color: #111;
+        font-size: 17px;
+        font-weight: bold;
+        margin-bottom: 55px;
+    }
+
+
+
+
 }

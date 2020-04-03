@@ -17,11 +17,26 @@ class Option extends Model
         return [
             'option_id' => $this->id,
             'cart_id' => $this->cart_id,
-            'platform_id' => $this->platform_id,
+            'platform_id' => $this->platform,
             'sns_id' => $this->sns_id,
             'sns_password' => $this->sns_password,
             'state' => $this->state
         ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
+    }
+
+    public function goods()
+    {
+        return $this->belongsTo(Goods::class);
     }
 
     public function platform()
