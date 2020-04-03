@@ -17,26 +17,32 @@
 
         /*모바일 데이터 신청 팝업*/
         function moAddData() {
-            $("#mo_add_data").show();
+            $("#mo_add_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+            $('body').css("overflow", "hidden");
         }
         function moAddDataDisNone() {
             $("#mo_add_data").hide();
+            $('body').css("overflow", "auto");
         }
 
         /*모바일 상세보기 팝업*/
         function moDetailData() {
-            $("#mo_detail_data").show();
+            $("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+            $('body').css("overflow", "hidden");
         }
         function moDetailDataDisNone() {
             $("#mo_detail_data").hide();
+            $('body').css("overflow", "auto");
         }
 
         /*모바일 결제방법 선택 팝업*/
         function moRequest() {
-            $("#mo_request_data").show();
+            $("#mo_request_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+            $('body').css("overflow", "hidden");
         }
         function moRequestDisNone() {
             $("#mo_request_data").hide();
+            $('body').css("overflow", "auto");
         }
 
         $("button[name=more]").click(function() {
@@ -88,7 +94,8 @@
                         "</div>";
                     }
                     $("#contDiv").append(strDiv);
-                    $("#mo_detail_data").show();
+                    $("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+                    $('body').css("overflow", "hidden");
                 },
                 error: function () {
                     console.log("구매 데이터를 선택 하세요.");
@@ -166,7 +173,8 @@
                             "</div>";
                     }
                     $("#contDiv").append(strDiv);
-                    $("#mo_detail_data").show();
+                    $("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+                    $('body').css("overflow", "hidden");
                 },
                 error: function () {
                     console.log("구매 데이터를 선택 하세요.");
@@ -230,7 +238,8 @@
                 return false;
             }
 
-            $("#mo_request_data").show();
+            $("#mo_request_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+            $('body').css("overflow", "hidden");
         });
 
         $("#mobile_new_payment").click(function() {
@@ -241,6 +250,7 @@
             }
 
             $("#mo_request_data").hide();
+            $('body').css("overflow", "auto");
 
             var ids = new Array();
             var total_count=0;

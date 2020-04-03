@@ -58,17 +58,19 @@ $(".cont>ul").on('click', function(){
 
 /*contact 글쓰기 클릭 모달*/
 function addWriting() {
-  $("#add_writing").show();
+    $("#add_writing").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+    $('body').css("overflow", "hidden");
 }
 function addWritingDisNone() {
-  $("#add_writing").hide();
+    $("#add_writing").hide();
+    $('body').css("overflow", "auto");
 }
 
 function moAddWriting() {
-    $("#mo_add_writing").show();
+    $("#mo_add_writing").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+    $('body').css("overflow", "hidden");
 }
 function moAddWritingDisNone() {
     $("#mo_add_writing").hide();
+    $('body').css("overflow", "auto");
 }
-
-

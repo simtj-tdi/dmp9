@@ -6,6 +6,7 @@
         }
         function moDetailDataDisNone() {
             $("#mo_detail_data").hide();
+            $('body').css("overflow", "auto");
         }
 
         $("button[name=mobile_btn]").click(function() {
@@ -69,7 +70,8 @@
                     }
 
                     $("#contDiv").append(strDiv);
-                    $("#mo_detail_data").show();
+                    $("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+                    $('body').css("overflow", "hidden");
                 },
                 error: function () {
 
