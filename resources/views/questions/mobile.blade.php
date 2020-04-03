@@ -88,6 +88,17 @@
                 </li>
             </ul>
             @endforeach
+            @if ($questions->isEmpty())
+                <tr>
+                    <td colspan="6">
+                        <div class="no_data">
+                            <img src="https://image.flaticon.com/icons/svg/87/87980.svg"/>
+                            <p>문의 내역이 없습니다.</p>
+                        </div>
+                    </td>
+                </tr>
+            @endif
+
             <!--묶음-->
         </div>
     </div>
@@ -126,21 +137,22 @@
                             </p>
 
                         </div>
-                    </div>
-                    <div class="cont_sub">
+                        <div class="cont_sub">
                         <span class="checkbox" style="position: absolute; left: 0; top: 14px;">
                             <input type="checkbox" id="Check_2" name="check" />
                             <label for="Check_2"></label>
                         </span>
-                        <span class="txt">개인정보 수집 동의</span>
-                        <div class="context">
-                            <p>문의접수 및 처리를 위해 이메일, 연락처를 수집하고 접수된 내용은 6개월 동안 보관합니다.</p>
-                            <p>개인정보 수집 동의를 거부할 수 있으며, 거부 시 문의가 불가할 수 있습니다.</p>
+                            <span class="txt">개인정보 수집 동의</span>
+                            <div class="context">
+                                <p>문의접수 및 처리를 위해 이메일, 연락처를 수집하고 접수된 내용은 6개월 동안 보관합니다.</p>
+                                <p>개인정보 수집 동의를 거부할 수 있으며, 거부 시 문의가 불가할 수 있습니다.</p>
+                            </div>
+                        </div>
+                        <div class="btn_box">
+                            <button type="button" name="btn">문의등록</button>
                         </div>
                     </div>
-                    <div class="btn_box">
-                        <button type="button" name="btn">문의등록</button>
-                    </div>
+
                 </div>
 
                 </form>

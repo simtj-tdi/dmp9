@@ -108,8 +108,8 @@
                 <div class="banner_text">
                     <div class="title">
                         <h1>광고도 이제 혁신이 필요합니다</h1>
-                        <p>약 180여개의 APP 매체에 자체 SDK 삽입 <span>2,700만 유저 확보</span></p>
-                        <p>해당 APP 유저들의 거주지/성향/성별/라이프스타일/방문/빈도수 등 분석</p>
+                        <p>약 180여개의 APP 매체에 <br class="mo_br"/>자체 SDK 삽입 <span>2,700만 유저 확보</span></p>
+                        <p>해당 APP 유저들의 거주지/성향/<br class="mo_br"/>성별/라이프스타일/방문/빈도수 등 분석</p>
                     </div>
                     <div class="banner_text_sub_wrap">
                         <div class="banner_text_sub_inner">
@@ -270,8 +270,8 @@
         <div class="target_wrap">
             <div class="text">
                 <h2>타겟 가능한 플랫폼</h2>
-                <p>DMP9은 아래 모든 모바일 광고 플랫폼을 지원합니다.</p>
-                <p>다양한 플랫폼에 정교한 타겟팅을 도입하여 효과적인 광고를 시작해보세요!</p>
+                <p>DMP9은 아래 모든 <br class="mo_br"/>모바일 광고 플랫폼을 지원합니다.</p>
+                <p>다양한 플랫폼에 정교한 타겟팅을 도입하여 <br class="mo_br"/>효과적인 광고를 시작해보세요!</p>
             </div>
             <ul class="icon">
                 <li><img src="/assets/img/main/logo_google.png" alt="구글ads 로고"></li>
@@ -287,13 +287,13 @@
         <div class="contacts_us_wrap">
             <div class="text">
                 <h2>문의하기</h2>
-                <p>DMP9에게 문의하실 점이 있다면 아래의 양식을 작성해주세요!</p>
+                <p>DMP9에게 문의하실 점이 있다면<br class="mo_br"/> 아래의 양식을 작성해주세요!</p>
             </div>
             <div class="contacts_info clearfix">
                 <div class="cont_bg">
                     <div class="title">
                         <p>Contacts Us</p>
-                        <p>빅데이터를 통한 Deep Targeting Platform DMP9</p>
+                        <p>빅데이터를 통한<br class="mo_br"/> Deep Targeting Platform DMP9</p>
                     </div>
                     <ul class="content">
                         <li>
@@ -344,7 +344,7 @@
             <div class="footer_together_inner">
                 <div class="text">
                     <h1>함께하기</h1>
-                    <p>지금 바로 DMP9를 통해 효율적인 데이터 관리를 경험해보세요.</p>
+                    <p>지금 바로 DMP9를 통해 <br class="mo_br"/>효율적인 데이터 관리를 경험해보세요.</p>
                 </div>
                 <div class="btn_box">
                     @guest

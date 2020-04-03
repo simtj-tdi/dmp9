@@ -139,7 +139,7 @@
                             <!--사업자정보-->
                             <div class="title company_title ">
                                 사업계산서 수정
-                                <span class="txt"> - 사업자 정보 수정은 관리자 승인 후 변경 가능 합니다. </span>
+                                <span class="txt"> - 사업자 정보 수정은 <br class="mo_br"/>관리자 승인 후 변경 가능 합니다. </span>
                                 <button type="button" onclick="location.href = '/questions';">수정요청</button>
                             </div>
 

@@ -502,6 +502,18 @@
                 </tr>
                 @endforeach
                 <!--묶음-->
+
+                @if ($carts->isEmpty())
+                    <tr>
+                        <td colspan="11">
+                            <div class="no_data">
+                                <img src="https://image.flaticon.com/icons/svg/87/87980.svg"/>
+                                <p>내역이 없습니다.</p>
+                            </div>
+                        </td>
+                    </tr>
+                @endif
+
                 </tbody>
             </table>
         </div>

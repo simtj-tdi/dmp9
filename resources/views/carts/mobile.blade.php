@@ -455,18 +455,18 @@
                                 <label>설명</label>
                                 <textarea class="cont_form_control" style="resize: none;" name="data_content" placeholder="원하는 타겟을 설명해주세요." ></textarea>
                             </div>
-                        </div>
-                        <div class="cont_sub">
-                            <ul>
-                                <li class="mb-2">타겟 구매시 주의사항</li>
-                                <li>- 기본 구매 활용 기간은 1개월 입니다.</li>
-                                <li>- 데이터 결제 완료 후 환불은 불가합니다.</li>
-                                <li>- 특정 앱 지정 데이터 판매 불가<br/> (특정 경쟁사 데이터만 구매 요청시 거절 될 수 있습니다.)</li>
-                                <li>- 불법적 활용 가능한 데이터 판매 불가 (도박, 성인 등)</li>
-                            </ul>
-                        </div>
-                        <div class="btn_box">
-                            <button type="submit" class="createBtn">요청하기</button>
+                            <div class="cont_sub">
+                                <ul>
+                                    <li class="mb-2">타겟 구매시 주의사항</li>
+                                    <li>- 기본 구매 활용 기간은 1개월 입니다.</li>
+                                    <li>- 데이터 결제 완료 후 환불은 불가합니다.</li>
+                                    <li>- 특정 앱 지정 데이터 판매 불가<br/> (특정 경쟁사 데이터만 구매 요청시 거절 될 수 있습니다.)</li>
+                                    <li>- 불법적 활용 가능한 데이터 판매 불가 (도박, 성인 등)</li>
+                                </ul>
+                            </div>
+                            <div class="btn_box">
+                                <button type="submit" class="createBtn">요청하기</button>
+                            </div>
                         </div>
                     </form>
                 </div>

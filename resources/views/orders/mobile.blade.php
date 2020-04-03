@@ -124,6 +124,12 @@
                     <button type="button" class="btn_request" name="mobile_btn" data-order_id="{{ $order['order_id'] }}" >자세히보기</button>
                 </div>
                 @endforeach
+                @if ($orders->isEmpty())
+                    <div class="no_data">
+                        <img src="https://image.flaticon.com/icons/svg/87/87980.svg"/>
+                        <p>사용중인 데이터가 없습니다.</p>
+                    </div>
+                @endif
             </div>
 
         </div>
