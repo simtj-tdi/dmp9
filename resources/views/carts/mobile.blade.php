@@ -94,20 +94,23 @@
                         "</div>";
                     }
                     $("#contDiv").append(strDiv);
-                    $("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
-                    $('body').css("overflow", "hidden");
+
+
                 },
                 error: function () {
                     console.log("구매 데이터를 선택 하세요.");
                 }
             });
+            $("#mo_detail_data").css("top", Math.max(0,  $(window).scrollTop()) + "px").show();
+            //$("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
+            $('body').css("overflow", "hidden");
         });
 
 
         $("select[name=mobile_select_data_types]").change(function() {
             //console.log($(this).val());
             var platform_val = $(this).val()-1;
-            console.log($(this).val());
+
             var data = new Object();
             data.cart_id = $(this).data("mo_cart");
             var jsonData = JSON.stringify(data);
@@ -173,15 +176,14 @@
                             "</div>";
                     }
                     $("#contDiv").append(strDiv);
-                    $("#mo_detail_data").css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px").show();
-                    $('body').css("overflow", "hidden");
                 },
                 error: function () {
                     console.log("구매 데이터를 선택 하세요.");
                 }
             });
-
-
+            console.log($(this).outerHeight());
+            $("#mo_detail_data").css("top", Math.max(0,  $(window).scrollTop()) + "px").show();
+            $('body').css("overflow", "hidden");
         });
 
 
