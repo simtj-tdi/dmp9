@@ -2,6 +2,13 @@
 
 @prepend('scripts')
     <script>
+
+        $(document).on("keyup", "input:text[numberOnly]", function() {$(this).val( $(this).val().replace(/[^0-9]/gi,"") );});
+        $(document).on("keyup", "input:text[engOnly]", function() {$(this).val( $(this).val().replace(/[0-9]|[^\!-z]/gi,"") );});
+
+
+        $(document).on("keyup", "input:text[engNumber]", function() {$(this).val( $(this).val().replace(/[^a-zA-Z0-9]/gi,"") );});
+
         function validateEmail(sEmail) {
             var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
             return filter.test(sEmail) ? true : false;
@@ -166,7 +173,7 @@
                             </p>
                             <div class="input-group">
                                 <label>아이디</label>
-                                <input type="text" name="user_id" class="form-control form-control2" placeholder="사용하실 아이디를 입력해주세요" />
+                                <input type="text" name="user_id" class="form-control form-control2" engOnly placeholder="사용하실 아이디를 입력해주세요" />
                                 <button type="button" name="id_check_btn">중복확인</button>
                             </div>
                             <div class="message_group">
@@ -175,11 +182,11 @@
                             </div>
                             <div class="input-group">
                                 <label>비밀번호</label>
-                                <input type="password" class="form-control" name="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
+                                <input type="text" class="form-control" name="password" engNumber placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
                             </div>
                             <div class="input-group">
                                 <label>비밀번호 확인</label>
-                                <input type="password" class="form-control" name="password_confirmation" placeholder="비밀번호 재입력" />
+                                <input type="password" class="form-control" name="password_confirmation" engNumber placeholder="비밀번호 재입력" />
                             </div>
                             <div class="message_group">
                                 <div class="check_state_yes" name="passcheck_state_yes" style="display: none;">비밀번호가 일치합니다.</div>
@@ -199,7 +206,7 @@
                             </div>
                             <div class="input-group">
                                 <label>연락처</label>
-                                <input type="number" class="form-control" name="phone" placeholder="연락처를 입력해주세요 (ex. 01012345678910)" />
+                                <input type="text" class="form-control" name="phone" numberOnly placeholder="연락처를 입력해주세요 (ex. 01012345678910)" />
                             </div>
                             <div class="but_box mt-4">
                                 @if ($request['type'] == "personal")

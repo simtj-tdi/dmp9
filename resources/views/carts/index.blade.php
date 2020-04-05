@@ -10,6 +10,13 @@
 
 
         $(function() {
+
+            $("body").delegate("[name=sns_save11]", "click", function(){
+                alert($(this).parent().parent().find("input[name=sns_id]").val());
+
+            });
+
+
             $("body").delegate("[name=sns_save]", "click", function(){
 
                 if ($(this).parent().parent().find("input[name=sns_id]").val() == "") {
