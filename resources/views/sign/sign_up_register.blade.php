@@ -43,6 +43,7 @@
                         var JSONArray = JSON.parse(JSON.stringify(data));
                         if (JSONArray['result'] == "success") {
                             alert('SMS를 전송했습니다.\n\n 인증번호를 입력해주세요.');
+
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
                         };
@@ -84,6 +85,7 @@
                         if (JSONArray['result'] == "success") {
                             alert('인증 되었습니다.');
                             $("[name=sms_check]").val('yes');
+                            $
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
                             $("[name=sms_check]").val('no');

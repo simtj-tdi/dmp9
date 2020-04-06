@@ -17,10 +17,20 @@ class CartController extends Controller
         $this->platformRepository = $platformRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $carts = $this->cartRepository->all();
         $platforms = $this->platformRepository->all();
+
+        if ($request->currentTr) {
+
+            $return_result = $this->cartRepository->findById($request->currentTr);
+
+            dd($return_result);
+
+        }
+
+
 
         return view('carts.index', compact('carts', 'platforms'));
     }

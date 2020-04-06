@@ -8,14 +8,7 @@
             return num.toString().replace(regexp, ',');
         }
 
-
         $(function() {
-
-            $("body").delegate("[name=sns_save11]", "click", function(){
-                alert($(this).parent().parent().find("input[name=sns_id]").val());
-
-            });
-
 
             $("body").delegate("[name=sns_save]", "click", function(){
 
@@ -30,6 +23,7 @@
                 }
 
                 var data = new Object();
+                var cart_id = $(this).data("cart_id");
                 data.option_id = $(this).data("option_id");
                 data.platform_id = $(this).data("platform_id");
                 data.cart_id = $(this).data("cart_id");
@@ -48,7 +42,7 @@
 
                         if (JSONArray['result'] == "success") {
                             alert('등록 되었습니다.');
-                            location.reload();
+                            location.href = window.location.pathname+"?currentTr="+cart_id;
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
                         };
@@ -57,6 +51,8 @@
                         alert("Error while getting results");
                     }
                 });
+
+
             });
 
             $("body").delegate("[name=sns_id]", "keyup", function(){
@@ -95,6 +91,7 @@
                 }
 
                 var data = new Object();
+                var cart_id = $(this).data("cart");
                 data.option_id = $(this).data("option_id");
                 var jsonData = JSON.stringify(data);
 
@@ -109,7 +106,8 @@
 
                         if (JSONArray['result'] == "success") {
                             alert('업로드 요청 되었습니다.');
-                            location.reload();
+                            //location.reload();
+                            location.href = window.location.pathname+"?currentTr="+cart_id;
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
                         };
@@ -468,8 +466,8 @@
                     @endif
                     <td class="toggle_tr"><img src="../assets/img/icon_down_arrow.png" alt="아이콘 아래 화살표"/></td>
                 </tr>
-                <tr class="toggle_dropdown_tr">
-                    <td colspan="11" name="td_{{ $cart->id }}">
+                <tr class="toggle_dropdown_tr" @if ($cart->id == Request::get('currentTr')) {!! "style=\"display:table-row;\"" !!} @else {!! "style=\"display:none;\"" !!} @endif  >
+                    <td colspan="11" name="td_{{ $cart->id }}"  >
                     @if (!$cart->options->isEmpty())
                         @foreach($cart->options as $option)
                         <div class="item mb-2">
@@ -482,7 +480,7 @@
                                     <button type="button" class="form-control btn_control_01" name='sns_modify' >수정</button>
                                     <button type="button" class="form-control btn_control_01" name='sns_save' style="display:none;" data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">저장</button>
                                     @if ($option->state == "1")
-                                        <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-option_id="{{$option->id}}">데이터 요청</button>
+                                        <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-cart="{{ $cart->id }}" data-option_id="{{$option->id}}">데이터 요청</button>
                                     @elseif ($option->state == "2")
                                         <button type="button" class="form-control btn_control_02 upload_wait">업로드중</button>
                                         <div class="explanation_td expiration_div ml-2">
