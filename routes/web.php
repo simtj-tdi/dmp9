@@ -23,6 +23,7 @@ Route::post('/sign_up_terms', function(\Illuminate\Http\Request $request) {
     return view('sign.sign_up_terms', compact('request'));
 });
 Route::post('/sign_up_register', function(\Illuminate\Http\Request $request) {
+//    Session()->getId();
     return view('sign.sign_up_register', compact('request'));
 });
 Route::post('/sign_up_register_company', function(\Illuminate\Http\Request $request) {
@@ -59,6 +60,9 @@ Route::post('/ajaxSignUpFindId', 'UserController@SingUpFindId')->name('Users.Sin
 Route::post('/ajaxSingUpFindPassword', 'UserController@SingUpFindPassWord')->name('Users.SingUpFindPassword');
 
 Route::post('/ajaxSingUpNewPw', 'UserController@SingUpNewPw')->name('Users.SingUpNewPw');
+
+Route::post('/ajaxSmsSend', 'SmsController@SmsSend')->name('SmsSend');
+Route::post('/ajaxSmsCheck', 'SmsController@SmsCheck')->name('SmsCheck');
 
 
 // 인증 예외 처리

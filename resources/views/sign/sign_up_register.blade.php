@@ -23,6 +23,80 @@
 
         $(function() {
 
+            $("button[name=sms_send]").click(function() {
+                if ($("input[name=phone]").val() == "") {
+                    alert('전화번호를 입력하세요.');
+                    return false;
+                }
+
+                var data = new Object() ;
+                data.phone = $("input[name=phone]").val();
+                var jsonData = JSON.stringify(data);
+
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('SmsSend') }}",
+                    method: "POST",
+                    dataType: "json",
+                    data: {'data': jsonData},
+                    success: function (data) {
+                        var JSONArray = JSON.parse(JSON.stringify(data));
+                        if (JSONArray['result'] == "success") {
+                            alert('SMS를 전송했습니다.\n\n 인증번호를 입력해주세요.');
+                        } else if (JSONArray['result'] == "error") {
+                            alert(JSONArray['error_message']);
+                        };
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Error while getting results");
+                    }
+                });
+            });
+
+
+            $("button[name=sms_check]").click(function() {
+
+                if ($("input[name=phone]").val() == "") {
+                    alert('전화번호를 입력하세요.');
+                    return false;
+                }
+
+                if ($("input[name=token]").val() == "") {
+                    alert('인증번호를 입력하세요.');
+                    return false;
+                }
+
+                var data = new Object() ;
+                data.phone = $("input[name=phone]").val();
+                data.token = $("input[name=token]").val();
+                var jsonData = JSON.stringify(data);
+
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: "{{ route('SmsCheck') }}",
+                    method: "POST",
+                    dataType: "json",
+                    data: {'data': jsonData},
+                    success: function (data) {
+                        var JSONArray = JSON.parse(JSON.stringify(data));
+
+                        if (JSONArray['result'] == "success") {
+                            alert('인증 되었습니다.');
+                            $("[name=sms_check]").val('yes');
+                        } else if (JSONArray['result'] == "error") {
+                            alert(JSONArray['error_message']);
+                            $("[name=sms_check]").val('no');
+                        };
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Error while getting results");
+                    }
+                });
+
+            });
+
+
             $("button[name=id_check_btn]").click(function() {
 
                 if (!$("input[name=user_id]").val()) {
@@ -73,6 +147,12 @@
                     alert('아이디 중복확인 해주세요.');
                     return false;
                 }
+
+                if ($("input[name=sms_check]").val() == "no") {
+                    alert('SMS 인증을 해주세요.');
+                    return false;
+                }
+
                 if ($("input[name=password_check]").val() == "no") {
                     alert('비밀번호가 일치하지 않습니다');
                     return false;
@@ -164,6 +244,8 @@
                         <input type="hidden" name="type" value="{{ $request['type'] }}">
                         <input type="hidden" name="id_check" value="no">
                         <input type="hidden" name="password_check" value="no">
+                        <input type="hidden" name="sms_check" value="no">
+
 
                         <div class="input_box">
                         <form action="">
@@ -180,6 +262,20 @@
                                 <div class="check_state_yes" name="idcheck_state_yes" style="display: none;">사용 가능한 아이디 입니다.</div>
                                 <div class="check_state_no" name="idcheck_state_no" style="display: none;">이미 가입된 아이디 입니다.</div>
                             </div>
+
+                            <div class="input-group">
+                                <label>연락처</label>
+                                <input type="text" class="form-control form-control2" name="phone" numberOnly placeholder="연락처 (ex 01012345678)" />
+                                <button type="button" name="sms_send" >인증번호</button>
+                            </div>
+
+                            <div class="input-group">
+                                <label>인증번호</label>
+                                <input type="text" class="form-control form-control2" name="token" numberOnly placeholder="인증번호를 입력해주세요" />
+                                <button type="button" name="sms_check" >확인</button>
+                            </div>
+
+
                             <div class="input-group">
                                 <label>비밀번호</label>
                                 <input type="text" class="form-control" name="password" engNumber placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
@@ -204,10 +300,11 @@
                                 <label>이메일</label>
                                 <input type="text" class="form-control" name="email" placeholder="이메일을 입력해주세요" />
                             </div>
-                            <div class="input-group">
-                                <label>연락처</label>
-                                <input type="text" class="form-control" name="phone" numberOnly placeholder="연락처를 입력해주세요 (ex. 01012345678910)" />
-                            </div>
+{{--                            <div class="input-group">--}}
+{{--                                <label>연락처</label>--}}
+{{--                                <input type="text" class="form-control" name="phone" numberOnly placeholder="연락처를 입력해주세요 (ex. 01012345678910)" />--}}
+{{--                            </div>--}}
+{{--<button type="button"  name="sms_send" >전송</button>--}}
                             <div class="but_box mt-4">
                                 @if ($request['type'] == "personal")
                                     <button type="button" name="btn_submit" >가입하기</button>
