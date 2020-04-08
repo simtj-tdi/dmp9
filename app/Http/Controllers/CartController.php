@@ -22,17 +22,15 @@ class CartController extends Controller
         $carts = $this->cartRepository->all();
         $platforms = $this->platformRepository->all();
 
+        $carts_select = "";
         if ($request->currentTr) {
 
             $return_result = $this->cartRepository->findById($request->currentTr);
 
-            dd($return_result);
-
+            $carts_select = $return_result;
         }
 
-
-
-        return view('carts.index', compact('carts', 'platforms'));
+        return view('carts.index', compact('carts', 'platforms', 'carts_select'));
     }
 
     public function findById(Request $request)

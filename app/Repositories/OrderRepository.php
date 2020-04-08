@@ -30,7 +30,7 @@ class OrderRepository implements OrderRepositoryInterface
         $order['order_no'] = $order_no;
         $order['order_name'] = $pay_data['product_name'];
         $order['goods_info'] = $pay_data['goods_info'];
-        $order['state'] = order::ORDER_STATE_1;
+        $order['state'] = order::ORDER_STATE_0;
         $order['tax_state'] = order::TAX_STATE_1;
         $order['total_count'] = $pay_data['count'];
         $order['total_price'] = $pay_data['amount'];

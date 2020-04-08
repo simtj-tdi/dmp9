@@ -2,6 +2,26 @@
 
 @prepend('scripts')
     <script>
+        var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
+        var myVar = 0;
+        function time() {
+            num = 60 * 3;
+            clearInterval(myVar);
+            myVar = setInterval(alertFunc, 1000);
+        }
+
+        function alertFunc() {
+            var min = num / 60;
+            min = Math.floor(min);
+
+            var sec = num - (60 * min);
+
+            $("[name=tokenTimer]").text(min + '분' + sec + '초');
+            if(num == 0){
+                clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료
+            }
+            num--;
+        }
 
         $(document).on("keyup", "input:text[numberOnly]", function() {$(this).val( $(this).val().replace(/[^0-9]/gi,"") );});
         $(document).on("keyup", "input:text[engOnly]", function() {$(this).val( $(this).val().replace(/[0-9]|[^\!-z]/gi,"") );});
@@ -18,8 +38,6 @@
             var filter = /^[A-Za-z0-9]{8,12}$/;
             return filter.test(sPassword) ? true : false;
         };
-
-
 
         $(function() {
 
@@ -43,7 +61,8 @@
                         var JSONArray = JSON.parse(JSON.stringify(data));
                         if (JSONArray['result'] == "success") {
                             alert('SMS를 전송했습니다.\n\n 인증번호를 입력해주세요.');
-
+                            $("[name=tokenTimer]").css("display", "block");
+                            time();
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
                         };
@@ -84,10 +103,11 @@
 
                         if (JSONArray['result'] == "success") {
                             alert('인증 되었습니다.');
+                            $("button[name=sms_send]").attr( 'disabled', true );
                             $("[name=sms_check]").val('yes');
-                            $
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
+                            $("button[name=sms_send]").attr( 'disabled', false );
                             $("[name=sms_check]").val('no');
                         };
                     },
@@ -276,11 +296,13 @@
                                 <input type="text" class="form-control form-control2" name="token" numberOnly placeholder="인증번호를 입력해주세요" />
                                 <button type="button" name="sms_check" >확인</button>
                             </div>
-
+                            <div class="message_group">
+                                <div class="check_state_no" name="tokenTimer" style="display: none;"></div>
+                            </div>
 
                             <div class="input-group">
                                 <label>비밀번호</label>
-                                <input type="text" class="form-control" name="password" engNumber placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
+                                <input type="password" class="form-control" name="password" engNumber placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
                             </div>
                             <div class="input-group">
                                 <label>비밀번호 확인</label>

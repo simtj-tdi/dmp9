@@ -2,6 +2,28 @@
 
 @prepend('scripts')
     <script>
+        var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
+        var myVar = 0;
+        function time() {
+            num = 60 * 3;
+            clearInterval(myVar);
+            myVar = setInterval(alertFunc, 1000);
+        }
+
+        function alertFunc() {
+            var min = num / 60;
+            min = Math.floor(min);
+
+            var sec = num - (60 * min);
+            //console.log(num);
+            // var $input = $('.input').val(min + '분' + sec + '초');
+            $("[name=tokenTimer]").text(min + '분' + sec + '초')
+            if(num == 0){
+                clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료
+            }
+            num--;
+        }
+
         function addRequestData() {
             $("#request_data").show();
         }
@@ -32,6 +54,8 @@
                         if (JSONArray['result'] == "success") {
                             alert('SMS를 전송했습니다.\n\n 인증번호를 입력해주세요.');
 
+                            $("[name=tokenTimer]").css("display", "block");
+                            time();
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
                         };
@@ -72,9 +96,11 @@
 
                         if (JSONArray['result'] == "success") {
                             alert('인증 되었습니다.');
+                            $("button[name=sms_send]").attr( 'disabled', true );
                             $("[name=sms_check]").val('yes');
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
+                            $("button[name=sms_send]").attr( 'disabled', false );
                             $("[name=sms_check]").val('no');
                         };
                     },
@@ -174,12 +200,13 @@
                                     <input type="text" class="form-control form-control2" name="phone" numberOnly placeholder="연락처 (ex 01012345678)" />
                                     <button type="button" name="sms_send" >인증번호</button>
                                 </div>
-
                                 <div class="input-group">
                                     <input type="number" class="form-control form-control2" name="token" placeholder="인증번호를 입력해주세요" />
                                     <button type="button" name="sms_check" >확인</button>
                                 </div>
-
+                                <div class="message_group">
+                                    <div class="check_state_no" name="tokenTimer" style="display: none;"></div>
+                                </div>
 
                                 <div class="but_box mt-4">
                                     <button type="button" id="btn_submit" >아이디 찾기</button>

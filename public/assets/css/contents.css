@@ -34,8 +34,8 @@
 .data_up_load .top button {
     position: absolute;
     right: 0;
-    background: #747fff;
-    border: 1px solid #ccc;
+    background: #fed42a;
+    border: 1px solid #fed42a;
     color: #fff;
     border-radius: 50px;
     padding: 12px 39px;
@@ -43,7 +43,7 @@
     font-weight: bold;
 }
 .data_up_load .top button:hover {
-    background: #5f6cfc;
+    background: #fac400;
 }
 
 .data_up_load .table_wrap {
@@ -1590,8 +1590,8 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
     background-image: url('/assets/img/bank_off.png');
     background-size: cover;
     background-position: center;
-
 }
+
 .radio1 input[type="radio"]:checked + label {
     background-image: url('/assets/img/bank_on.png');
     background-size: cover;
@@ -1605,6 +1605,7 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
     background-size: cover;
     background-position: center;
 }
+
 .radio2 input[type="radio"]:checked + label {
     background-image: url('/assets/img/card_on.png');
     background-size: cover;
@@ -2965,7 +2966,6 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
         letter-spacing: -0.3px;
         color: #292929;
     }
-
 }
 
 @media (max-width: 380px) {

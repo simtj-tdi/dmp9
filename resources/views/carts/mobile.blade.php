@@ -321,6 +321,11 @@
                 console.log("구매 데이터를 선택 하세요.");
             }
         });
+        @if ($carts_select)
+        $("#mo_detail_data").css("top", Math.max(0,  $(window).scrollTop()) + "px").show();
+        $('body').css("overflow", "hidden");
+        @endif
+
     </script>
 
 @endprepend
@@ -517,26 +522,48 @@
                     <div class="top clearfix">
                         <div class="form-inline">
                             <p>추출수</p>
-                            <p id="order_info_count"></p>
+                            <p id="order_info_count">{{ ($carts_select) ? $carts_select[0]['order_id'][0]['total_count'] : "" }}</p>
                         </div>
                         <div class="form-inline">
                             <p>구매가격</p>
-                            <p><span id="order_info_price"></span>원</p>
+                            <p><span id="order_info_price">{{ ($carts_select) ? $carts_select[0]['order_id'][0]['total_price'] : "" }}</span>원</p>
                         </div>
                         <div class="form-inline">
                             <p>요청횟수</p>
-                            <p><span id="order_info_request"></span>회</p>
+                            <p><span id="order_info_request">{{ ($carts_select) ? $carts_select[0]['goods_id']['data_request'] : ""  }}</span>회</p>
                         </div>
                         <div class="form-inline detail_date">
-                            <h5>구매일 <span id="order_info_buy_date"></span></h5>
-                            <h5>유효기간 <span id="order_info_expiration_date"></span></h5>
+                            <h5>구매일 <span id="order_info_buy_date">{{ ($carts_select) ? $carts_select[0]['buy_date'] : ""}}</span></h5>
+                            <h5>유효기간 <span id="order_info_expiration_date">{{ ($carts_select) ? $carts_select[0]['goods_id']['expiration_date'] : "" }}</span></h5>
                         </div>
                         <button type="button" onclick="moDetailDataDisNone()"><img src="../assets/img/btn_close.png" alt="닫기 버튼"/></button>
                     </div>
                     <div class="cont" id="contDiv">
-
+                        @if ($carts_select)
+                            @foreach($carts_select[0]['options_id'] as $option)
+                                <div class="item">
+                                    <div class="form-inline">
+                                        <div class="input_control form-inline">
+                                            <div class="top_title">
+                                                <p>{{ $option->platform['name'] }}</p>
+                                                <button type="button" name="sns_save" data-option_id="{{ $option->id }}" data-cart_id="{{ $option->cart_id }}" data-platform_id="{{ $option->platform_id }}">수정</button>
+                                            </div>
+                                            <input type="text" class="form-control" value="{{ $option->platform['url'] }}" placeholder="URL">
+                                            <input type="text" class="form-control id_value_control" name="sns_id" value="{{ $option->sns_id }}" placeholder="아이디">
+                                            <input type="password" class="form-control pw_value_control" name="sns_password" value="{{ $option->sns_password }}" placeholder="비밀번호">
+                                            @if ($option->state == "1")
+                                                <button type="button" class="form-control btn_control_02 upload_request" name="sns_request" data-cart="{{ $cart->id }}" data-option_id="{{$option->id}}">업로드 요청</button>
+                                            @elseif ($option->state == "2")
+                                                <button type="button" class="form-control btn_control_02 upload_wait">업로드중</button>
+                                            @elseif ($option->state == "3")
+                                                <button type="button" class="form-control btn_control_02 upload_complete">업로드 완료</button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
-
                 </div>
             </div>
         </div>
@@ -568,7 +595,9 @@
                                             <label for="radio7"></label>
                                         </span>
                                         <span class="txt">
-                                            <p>신용카드</p>
+                                            <label for="radio7">
+                                                <p>신용카드</p>
+                                            </label>
                                         </span>
                                     </li>
                                     <li class="form-inline">
@@ -577,7 +606,9 @@
                                             <label for="radio8"></label>
                                         </span>
                                         <span class="txt">
-                                            <p>무통장 입금</p>
+                                            <label for="radio8">
+                                                <p>무통장 입금</p>
+                                            </label>
                                         </span>
                                     </li>
                                 </ul>

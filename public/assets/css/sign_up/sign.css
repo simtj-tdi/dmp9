@@ -67,6 +67,7 @@ input:focus {
     margin: 0 auto;
 }
 .terms .logo {
+    margin-top: 40px;
     margin-bottom: 40px;
 }
 .terms h1 {
@@ -135,6 +136,7 @@ input:focus {
 }
 .terms .txt_bottom {
     margin-top: 30px;
+    margin-bottom: 15px;
     font-size: 13px;
     color: #666;
     text-align: center;
@@ -144,10 +146,50 @@ input:focus {
     margin: auto;
     width: 60%;
     min-height: 750px;
-    text-align: center;
-    padding: 1rem;
+    text-align: left;
+    padding: 1rem 3rem;
     border: 1px solid #eee;
 }
+
+.terms_01 .terms_box,
+.terms_02 .terms_box {
+    background: #fff;
+}
+
+.terms_01 .terms_box .title,
+.terms_02 .terms_box .title {
+    font-size: 2rem;
+    text-align: center;
+}
+.terms_01 .terms_box p, .terms_01 .terms_box ol, .terms_01 .terms_box ul,
+.terms_02 .terms_box p, .terms_02 .terms_box ol, .terms_02 .terms_box ul {
+    margin-top: 15px;
+    line-height: 1.25rem;
+}
+.terms_01 .terms_box p span,
+.terms_02 .terms_box p span {
+    font-weight: bold;
+}
+.terms_01 .terms_box h3,
+.terms_02 .terms_box h3 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+}
+.terms_01 .terms_box ol, .terms_01 .terms_box ul,
+.terms_02 .terms_box ol, .terms_02 .terms_box ul {
+    /* list-style-type: decimal; */
+    margin-left: 1.5rem;
+}
+.terms_01 .terms_box ol li,
+.terms_02 .terms_box ol li {
+    text-indent: -1.2rem
+}
+.terms_01 .terms_box .date {
+    text-align: right;
+    margin-top: 40px;
+}
+.terms_01 .terms_box .mo_br {display: none;}
+
 
 /* checkbox */
 .checkbox input[type="checkbox"] {
@@ -205,7 +247,7 @@ input:focus {
 }
 .sign_up .form_box {
     width: 100%;
-    border-radius: 7px;
+    border-radius: 7px 7px 0 0;
     border: solid 1px #cccccc;
     background: #fff;
 }
@@ -699,7 +741,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 40%;
     height: 50px;
     line-height: 50px;
-    margin: 80px 0 50px;
+    margin: 40px 0 50px;
     border-radius: 5px;
     background: #fff !important;
     font-size: 20px;
@@ -708,6 +750,23 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #111;
 }
 
+.finish_sign_up .notice_box {
+    font-size: 18px;
+    text-align: center;
+    background: #fcd143;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 7px 7px;
+}
+.finish_sign_up .notice_box .notice_inner {
+    width: 440px;
+    margin: auto;
+    padding: 3rem 0;
+}
+.finish_sign_up .notice_box p,
+.finish_sign_up .notice_box img {
+    margin-bottom: 11px;
+}
 
 
 /*아이디/비밀번호 찾기*/
@@ -1036,7 +1095,7 @@ input[type="number"]::-webkit-inner-spin-button {
         width: 90%;
         background: #fff;
         margin: auto;
-        border-radius: 7px;
+        border-radius: 7px 7px 0 0;
         border: solid 1px #cccccc;
     }
     .sign_up .input_box {
@@ -1214,6 +1273,7 @@ input[type="number"]::-webkit-inner-spin-button {
     .terms {
         margin: 0;
     }
+    .terms_01 .terms_box .mo_br {display: block;}
     .terms .logo {
         margin-top: 40px;
         margin-bottom: 40px;
@@ -1235,8 +1295,14 @@ input[type="number"]::-webkit-inner-spin-button {
         text-align: left;
         padding: 1rem;
     }
+    .terms_01 .terms_box h3,
+    .terms_02 .terms_box h3 {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
     .terms .input_box p {
         text-align: left;
+        font-size: 12px;
     }
     .terms .input_box .desc {
         margin: 25px 0 10px;
@@ -1295,18 +1361,14 @@ input[type="number"]::-webkit-inner-spin-button {
         margin: auto;
         width: 60%;
         min-height: 750px;
-        text-align: center;
+        text-align: left;
         padding: 1rem;
         border: 1px solid #eee;
     }
 
-    .terms_01 .terms_box {
-        margin: auto;
+    .terms_01 .terms_box,
+    .terms_02 .terms_box {
         width: 95% !important;
-        min-height: 750px;
-        text-align: center;
-        padding: 1rem;
-        border: 1px solid #eee;
     }
 
     .checkbox input[type="checkbox"] {
@@ -1405,6 +1467,20 @@ input[type="number"]::-webkit-inner-spin-button {
         color: #111;
     }
 
+    .finish_sign_up .notice_box {
+        font-size: 0.9rem;
+        width: 90%;
+        margin: auto;
+    }
+    .finish_sign_up .notice_box .notice_inner {
+        width: 100%;
+        margin: auto;
+        padding: 2rem 0 !important;
+    }
+    .finish_sign_up .notice_box p,
+    .finish_sign_up .notice_box img {
+        margin-bottom: 9px;
+    }
 
     /*아이디 찾기 (모달)*/
     .find_id .request_data .writing_wrap .writing_box {

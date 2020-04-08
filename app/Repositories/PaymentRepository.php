@@ -22,7 +22,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function payLog($state, $message)
     {
-        
+
         $pay_log['state'] = $state;
         $pay_log['message'] = $message;
 

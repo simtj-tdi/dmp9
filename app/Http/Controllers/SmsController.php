@@ -80,6 +80,14 @@ class SmsController extends Controller
             ->orderby('id', 'desc')
             ->first();
 
+        if (strtotime(date("Y-m-d H:i:s")) - strtotime($sms_result->created_at) >= 180) {
+            $result['result'] = "error";
+            $result['error_message'] = "인증번호가 만료되었습니다.";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+
+            return $response;
+        }
+
         if ($sms_result->token != $sms_info['token']) {
             $result['result'] = "error";
             $result['error_message'] = "인증번호를 다시 확인 해주세요.";

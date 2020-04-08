@@ -56,35 +56,51 @@
                             </p>
                             <ul>
                                 <li>
-                    <span class="checkbox">
-                      <input type="checkbox" id="all_checkbox" />
-                      <label for="all_checkbox"></label>
-                    </span>
-                                    <span class="txt">모두 동의합니다.</span>
+                                    <span class="checkbox">
+                                      <input type="checkbox" id="all_checkbox" />
+                                      <label for="all_checkbox"></label>
+                                    </span>
+                                    <span class="txt">
+                                        <label for="all_checkbox">
+                                        모두 동의합니다.
+                                        </label>
+                                    </span>
                                 </li>
                                 <li>
-                    <span class="checkbox">
-                      <input type="checkbox" name="check" id="Check_1" />
-                      <label for="Check_1"></label>
-                    </span>
-                                    <span class="txt">DMP9 서비스 이용약관 (필수)</span>
-                                    <a href="#">보기</a>
+                                    <span class="checkbox">
+                                      <input type="checkbox" name="check" id="Check_1" />
+                                      <label for="Check_1"></label>
+                                    </span>
+                                    <span class="txt">
+                                      <label for="Check_1">
+                                              DMP9 서비스 이용약관 (필수)
+                                      </label>
+                                    </span>
+                                    <a href="/terms_01">보기</a>
                                 </li>
                                 <li>
-                    <span class="checkbox">
-                      <input type="checkbox" name="check" id="Check_2" />
-                      <label for="Check_2"></label>
-                    </span>
-                                    <span class="txt">개인정보 수집 및 이용 안내 (필수)</span>
-                                    <a href="#">보기</a>
+                                    <span class="checkbox">
+                                      <input type="checkbox" name="check" id="Check_2" />
+                                      <label for="Check_2"></label>
+                                    </span>
+                                    <span class="txt">
+                                        <label for="Check_2">
+                                            개인정보 수집 및 이용 안내 (필수)
+                                        </label>
+                                    </span>
+                                    <a href="/terms_02">보기</a>
                                 </li>
                                 <li>
-                    <span class="checkbox">
-                      <input type="checkbox" name="check" id="Check_3" />
-                      <label for="Check_3"></label>
-                    </span>
-                                    <span class="txt">개인정보 처리 위탁 안내 (필수)</span>
-                                    <a href="#">보기</a>
+                                    <span class="checkbox">
+                                      <input type="checkbox" name="check" id="Check_3" />
+                                      <label for="Check_3"></label>
+                                    </span>
+                                    <span class="txt">
+                                        <label for="Check_3">
+                                            개인정보 처리 위탁 안내 (필수)
+                                        </label>
+                                        </span>
+                                    <a href="/terms_02">보기</a>
                                 </li>
                             </ul>
                             <div class="but_box">

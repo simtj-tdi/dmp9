@@ -45,6 +45,14 @@
                             </form>
                         </div>
                     </div>
+                    <div class="notice_box">
+                        <div class="notice_inner">
+                            <img src="/assets/img/sign_up/exclamation.png" alt="느낌표 아이콘"/>
+                            <p>관리자 승인은 24시간 이내에 처리되며,</p>
+                            <p>승인완료시 가입한 이메일로 알림메일이 전송됩니다.</p>
+                            <p>승인 후 데이터를 요청 할 수 있습니다.</p>
+                        </div>
+                    </div>
                     <p class="txt_bottom">Copyright © DMP9. All rights reserved.</p>
                 </div>
             </div>

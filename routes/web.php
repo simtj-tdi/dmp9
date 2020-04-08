@@ -30,6 +30,14 @@ Route::post('/sign_up_register_company', function(\Illuminate\Http\Request $requ
     return view('sign.sign_up_register_company', compact('request'));
 });
 
+Route::get('/terms_01', function() {
+    return view('sign.terms_01');
+});
+
+Route::get('/terms_02', function() {
+    return view('sign.terms_02');
+});
+
 Route::get('/sign_up_type', function() {
     return view('sign.sign_up_type');
 });

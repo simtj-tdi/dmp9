@@ -182,9 +182,9 @@
                     total_count += $(this).data("count");
                     total_price += $(this).data("price");
                 });
-                $("span[name=total_int]").text(total_int);
-                $("span[name=total_count]").text(AddComma(total_count));
-                $("span[name=total_price]").text(AddComma(total_price));
+                $("div[name=total_int]").text(total_int);
+                $("div[name=total_count]").text(AddComma(total_count));
+                $("div[name=total_price]").text(AddComma(total_price));
             });
 
             $('#registerForm button[name=btn]').click(function() {
@@ -307,15 +307,15 @@
             <ul class="form-inline">
                 <li class="form-inline">
                     <div>선택한 데이터 개수</div>
-                    <div><span name="total_int">0</span></div>
+                    <div name="total_int">0</div>
                 </li>
                 <li class="form-inline">
                     <div>선택한 데이터 총 개수</div>
-                    <div><span name="total_count">0</span></div>
+                    <div name="total_count">0</div>
                 </li>
                 <li class="form-inline">
                     <div>선택한 데이터 총 금액</div>
-                    <div><span name="total_price">0</span>원</div>
+                    <div name="total_price">0원</div>
                 </li>
                 <li>
                     <button type="button" class="form-control btn_purchase new_buy">선택된 데이터 구매</button>
@@ -569,7 +569,9 @@
                                                         <label for="radio5"></label>
                                                       </span>
                                                     <span class="txt">
-                                                        <p>신용카드</p>
+                                                        <label for="radio5">
+                                                            <p>신용카드</p>
+                                                        </label>
                                                       </span>
                                                 </li>
                                                 <li>
@@ -578,7 +580,9 @@
                                                         <label for="radio6"></label>
                                                       </span>
                                                     <span class="txt">
-                                                        <p>무통장 입금</p>
+                                                        <label for="radio6">
+                                                            <p>무통장 입금</p>
+                                                        </label>
                                                       </span>
                                                 </li>
                                             </ul>

@@ -60,9 +60,11 @@
                                       <input type="radio" name="radio" id="radio1" value="personal" />
                                       <label for="radio1"></label>
                                     </span>
-                                                    <span class="txt">
-                                      <p>개인회원</p>
-                                      <p>개인회원 가입을 원하시면 선택해주세요.</p>
+                                    <span class="txt">
+                                        <label for="radio1">
+                                          <p>개인회원</p>
+                                          <p>개인회원 가입을 원하시면 선택해주세요.</p>
+                                        </label>
                                     </span>
                                 </li>
                                 <li>
@@ -70,9 +72,11 @@
                                       <input type="radio" name="radio" id="radio2" value="company" />
                                       <label for="radio2"></label>
                                     </span>
-                                                    <span class="txt">
-                                      <p>기업회원</p>
-                                      <p>기업회원 가입을 원하시면 선택해주세요.</p>
+                                    <span class="txt">
+                                        <label for="radio2">
+                                          <p>기업회원</p>
+                                          <p>기업회원 가입을 원하시면 선택해주세요.</p>
+                                        </label>
                                     </span>
                                 </li>
                             </ul>
