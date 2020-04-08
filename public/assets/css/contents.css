@@ -3,6 +3,18 @@
 .data_up_load {display: block;}
 .data_up_load_mo {display: none;}
 
+.btn_red {
+    background: #fff;
+    border: 2px solid #d10202 !important;
+    color: #d10202;
+}
+
+.btn_green {
+    background: #fff;
+    border: 2px solid #10b788 !important;
+    color: #10b788;
+}
+
 .data_up_load .top {
     font-size: 38px;
     letter-spacing: -0.65px;
@@ -1619,8 +1631,6 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
 .no_data {padding: 1rem 0; text-align: center;}
 .no_data img {width: 50px; margin-bottom: 10px;}
 .no_data p {font-weight: bold !important;}
-
-
 
 @media (max-width: 1600px) {
     .data_up_load .table_wrap {

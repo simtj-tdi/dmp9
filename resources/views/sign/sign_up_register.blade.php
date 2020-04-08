@@ -105,6 +105,8 @@
                             alert('인증 되었습니다.');
                             $("button[name=sms_send]").attr( 'disabled', true );
                             $("[name=sms_check]").val('yes');
+                            $("[name=tokenTimer]").css("display", "none");
+                            $("[name=tokenTimer_yes]").css("display", "block");
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
                             $("button[name=sms_send]").attr( 'disabled', false );
@@ -298,6 +300,7 @@
                             </div>
                             <div class="message_group">
                                 <div class="check_state_no" name="tokenTimer" style="display: none;"></div>
+                                <div class="check_state_yes" name="tokenTimer_yes" style="display: none;">인증이 완료 되었습니다.</div>
                             </div>
 
                             <div class="input-group">
