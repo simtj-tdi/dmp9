@@ -55,16 +55,7 @@
 
             });
 
-            $("body").delegate("[name=sns_id]", "keyup", function(){
-                //console.log($(this).val());
-                if ($(this).val()) {
-                    $(this).parent().parent().find("button[name=sns_save]").attr('disabled', false);
-                    $(this).parent().parent().find("button[name=sns_save]").css('background-color', '#fff');
-                } else {
-                    $(this).parent().parent().find("button[name=sns_save]").attr('disabled', true);
-                    $(this).parent().parent().find("button[name=sns_save]").css('background-color', '#e8e8e9');
-                }
-            });
+      
 
             $("body").delegate("[name=sns_modify]", "click", function(){
                 $(this).parent().parent().find("[name=sns_id]").attr('disabled', false);
@@ -156,7 +147,7 @@
                                     "            <input type=\"text\" class=\"form-control\" readonly value=\""+JSONArray['platform_info']['url']+"\" placeholder=\"URL\">" +
                                     "            <input type=\"text\" class=\"form-control id_value_control\" name=\"sns_id\" value=\"\" placeholder=\"아이디\">" +
                                     "            <input type=\"password\" class=\"form-control pw_value_control\" name=\"sns_password\"  value=\"\" placeholder=\"비밀번호\">" +
-                                    "            <button type=\"button\" class=\"form-control btn_control_01\" style=\"background: #e8e8e9\" name=\'sns_save\' disabled data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\">저장</button>" +
+                                    "            <button type=\"button\" class=\"form-control btn_control_01 btn_green \"  name=\'sns_save\'  data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\">저장</button>" +
                                     "            <button type=\"button\" class=\"form-control btn_control_02 upload_request\" name=\"sns_request\">데이터 요청</button>" +
                                     "        </div>" +
                                     "    </div>" +
@@ -478,7 +469,7 @@
                                     <input type="text" class="form-control id_value_control" name="sns_id" style="background: #e8e8e9" disabled value="{{$option->sns_id}}" placeholder="아이디">
                                     <input type="password" class="form-control pw_value_control" name="sns_password" style="background: #e8e8e9" disabled  value="{{$option->sns_password}}" placeholder="비밀번호">
                                     <button type="button" class="form-control btn_control_01" name='sns_modify' >수정</button>
-                                    <button type="button" class="form-control btn_control_01" name='sns_save' style="display:none;" data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">저장</button>
+                                    <button type="button" class="form-control btn_control_01 btn_green" name='sns_save' style="display:none;" data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">저장</button>
                                     @if ($option->state == "1")
                                         <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-cart="{{ $cart->id }}" data-option_id="{{$option->id}}">데이터 요청</button>
                                     @elseif ($option->state == "2")
