@@ -23,11 +23,10 @@
             num--;
         }
 
-        $(document).on("keyup", "input:text[numberOnly]", function() {$(this).val( $(this).val().replace(/[^0-9]/gi,"") );});
-        $(document).on("keyup", "input:text[engOnly]", function() {$(this).val( $(this).val().replace(/[0-9]|[^\!-z]/gi,"") );});
-
-
-        $(document).on("keyup", "input:text[engNumber]", function() {$(this).val( $(this).val().replace(/[^a-zA-Z0-9]/gi,"") );});
+        $(document).on("keyup", "input[numberOnly]", function() {$(this).val( $(this).val().replace(/[^0-9]/gi,"") );});
+        $(document).on("keyup", "input[engOnly]", function() {$(this).val( $(this).val().replace(/[0-9]|[^\!-z]/gi,"") );});
+        $(document).on("keyup", "input[engNumber]", function() {$(this).val( $(this).val().replace(/[^a-zA-Z0-9]/gi,"") );});
+        $(document).on("keyup", "input[engspecial]", function() {$(this).val( $(this).val().replace(/[^a-zA-Z0-9~!@\#$%<>^&*\()\-=+_\.’]/gi,"") );});
 
         function validateEmail(sEmail) {
             var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -39,6 +38,12 @@
             return filter.test(sPassword) ? true : false;
         };
 
+        function validatePhone(sPhone) {
+            var filter = /^[0-9]{3}[0-9]{4}[0-9]{4}$/;
+            return filter.test(sPhone) ? true : false;
+        }
+
+
         $(function() {
 
             $("button[name=sms_send]").click(function() {
@@ -46,6 +51,13 @@
                     alert('전화번호를 입력하세요.');
                     return false;
                 }
+
+                //validatePhone
+                if (!validatePhone($("input[name=phone]").val())) {
+                    alert('올바른 전화번호를 입력하세요.');
+                    return false;
+                }
+
 
                 var data = new Object() ;
                 data.phone = $("input[name=phone]").val();
@@ -152,6 +164,18 @@
                 });
             });
 
+            $("[name=password]").keyup(function(){
+                if (!validatePassword($("input[name=password]").val())) {
+                    // false
+                    $("[name=passcheck_state_yes1]").css('display','none');
+                    $("[name=passcheck_state_no1]").css('display','block');
+                }else{
+                    // true
+                    $("[name=passcheck_state_yes1]").css('display','block');
+                    $("[name=passcheck_state_no1]").css('display','none');
+                }
+            });
+
             $("[name=password_confirmation]").keyup(function(){
                 if ($("[name=password]").val() != $("[name=password_confirmation]").val()) {
                     // false
@@ -167,6 +191,7 @@
             });
 
             $("button[name=btn_submit]").click(function() {
+
                 if ($("input[name=id_check]").val() == "no") {
                     alert('아이디 중복확인 해주세요.');
                     return false;
@@ -279,7 +304,7 @@
                             </p>
                             <div class="input-group">
                                 <label>아이디</label>
-                                <input type="text" name="user_id" class="form-control form-control2" engOnly placeholder="사용하실 아이디를 입력해주세요" />
+                                <input type="text" name="user_id" class="form-control form-control2" engNumber placeholder="사용하실 아이디를 입력해주세요" />
                                 <button type="button" name="id_check_btn">중복확인</button>
                             </div>
                             <div class="message_group">
@@ -307,6 +332,10 @@
                                 <label>비밀번호</label>
                                 <input type="password" class="form-control" name="password" engNumber placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
                             </div>
+                            <div class="message_group">
+                                <div class="check_state_yes" name="passcheck_state_yes1" style="display: none;"></div>
+                                <div class="check_state_no" name="passcheck_state_no1" style="display: none;">영문, 숫자 포함 8~12자를 입력하세요.</div>
+                            </div>
                             <div class="input-group">
                                 <label>비밀번호 확인</label>
                                 <input type="password" class="form-control" name="password_confirmation" engNumber placeholder="비밀번호 재입력" />
@@ -325,7 +354,7 @@
                             </div>
                             <div class="input-group">
                                 <label>이메일</label>
-                                <input type="text" class="form-control" name="email" placeholder="이메일을 입력해주세요" />
+                                <input type="text" class="form-control" name="email" engspecial placeholder="이메일을 입력해주세요" />
                             </div>
 {{--                            <div class="input-group">--}}
 {{--                                <label>연락처</label>--}}
