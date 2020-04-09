@@ -88,6 +88,9 @@
                                 <div class="input-group">
                                     <input type="number" name="phone" value="" class="form-control" placeholder="연락처를 입력해주세요 (ex. 01012345678910)"  />
                                 </div>
+                                <div class="mt-3">
+                                    <p>정보가 일치하면 가입한 이메일로 새로운 비밀번호를 등록 해주세요.</p>
+                                </div>
                                 <div class="but_box mt-4">
                                     <button type="button" id="btn_submit" >비밀번호 찾기</button>
                                 </div>

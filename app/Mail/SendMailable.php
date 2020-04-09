@@ -32,6 +32,8 @@ class SendMailable extends Mailable
      */
     public function build()
     {
-        return $this->subject('DMP9에서 드리는 알림메일입니다.')->markdown('emails.password', ['name'=>$this->name, 'user_id'=>$this->user_id]);
+        $url = "http://".$_SERVER['HTTP_HOST']."/sign_up_find_new_pw";
+
+        return $this->subject('DMP9에서 드리는 알림메일입니다.')->markdown('emails.password', ['name'=>$this->name, 'user_id'=>$this->user_id, 'url'=>$url]);
     }
 }

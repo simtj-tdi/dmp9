@@ -229,7 +229,7 @@
                                     <p id="msg"></p>
                                 </div>
                                 <div class="btn_box">
-                                    <button type="button" onclick="addRequestDataDisNone()">확인</button>
+                                    <button type="button" onclick="location.href='/'">확인</button>
                                 </div>
                             </div>
                         </div>

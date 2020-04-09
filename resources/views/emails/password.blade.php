@@ -18,7 +18,7 @@
     }
 </style>
 <body>
-    <form method="POST" target="_blank" action="http://dmp9.test/sign_up_find_new_pw">
+    <form method="POST" target="_blank" action="{{$url}}">
         <input type="hidden" name="user_id" value="{{$user_id}}">
 
         <p>DMP9 에서 드리는 알림메일입니다.</p>

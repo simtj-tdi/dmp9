@@ -55,7 +55,7 @@
 
             });
 
-      
+
 
             $("body").delegate("[name=sns_modify]", "click", function(){
                 $(this).parent().parent().find("[name=sns_id]").attr('disabled', false);
