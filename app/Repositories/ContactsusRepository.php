@@ -5,7 +5,7 @@ namespace App\Repositories;
 
 use App\Contactsus;
 
-class ContactsusRepository implements contactsusrepositoryinterface
+class ContactsusRepository implements ContactsusRepositoryInterface
 {
     public function all()
     {
