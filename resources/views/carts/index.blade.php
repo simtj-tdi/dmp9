@@ -223,7 +223,8 @@
                     return false;
                 }
 
-                $("#request_data").show();
+                $("#request_data").css("top", Math.max(0,  $(window).scrollTop()) + "px").show();
+                $('body').css("overflow", "hidden");
             });
 
             $("#new_payment").click(function() {

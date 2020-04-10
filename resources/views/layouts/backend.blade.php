@@ -224,7 +224,8 @@
     }
     /*데이터 등록 글쓰기 클릭 모달*/
     function addData() {
-        $("#add_data").show();
+        $("#add_data").css("top", Math.max(0,  $(window).scrollTop()) + "px").show();
+        $('body').css("overflow", "hidden");
     }
     function addDataDisNone() {
         $("#add_data").hide();
