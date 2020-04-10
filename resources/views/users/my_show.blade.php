@@ -92,7 +92,7 @@
                                     <label>비밀번호</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
+                                    <input type="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="input-group">
@@ -100,7 +100,7 @@
                                     <label>비밀번호 확인</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
+                                    <input type="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" autocomplete="off" />
                                     <div class="message_group">
                                         <!-- <div class="check_state_yes">비밀번호가 일치합니다.</div> -->
                                         <div class="check_state_no">비밀번호가 일치하지 않습니다.</div>
@@ -112,7 +112,7 @@
                                     <label>회사명</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" value="TDI" />
+                                    <input type="text" placeholder="" value="TDI"  />
                                 </div>
                             </div>
                             <div class="input-group">

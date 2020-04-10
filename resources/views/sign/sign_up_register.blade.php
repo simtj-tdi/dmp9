@@ -304,7 +304,7 @@
                             </p>
                             <div class="input-group">
                                 <label>아이디</label>
-                                <input type="text" name="user_id" class="form-control form-control2" engNumber placeholder="사용하실 아이디를 입력해주세요" />
+                                <input type="text" name="user_id" class="form-control form-control2" engNumber placeholder="사용하실 아이디를 입력해주세요" autocomplete="off" />
                                 <button type="button" name="id_check_btn">중복확인</button>
                             </div>
                             <div class="message_group">
@@ -314,13 +314,13 @@
 
                             <div class="input-group">
                                 <label>연락처</label>
-                                <input type="text" class="form-control form-control2" name="phone" numberOnly placeholder="연락처 (ex 01012345678)" />
+                                <input type="text" class="form-control form-control2" name="phone" numberOnly placeholder="연락처 (ex 01012345678)" autocomplete="off" />
                                 <button type="button" name="sms_send" >인증번호</button>
                             </div>
 
                             <div class="input-group">
                                 <label>인증번호</label>
-                                <input type="text" class="form-control form-control2" name="token" numberOnly placeholder="인증번호를 입력해주세요" />
+                                <input type="text" class="form-control form-control2" name="token" numberOnly placeholder="인증번호를 입력해주세요" autocomplete="off" />
                                 <button type="button" name="sms_check" >확인</button>
                             </div>
                             <div class="message_group">
@@ -330,7 +330,7 @@
 
                             <div class="input-group">
                                 <label>비밀번호</label>
-                                <input type="password" class="form-control" name="password" engNumber placeholder="영문,숫자 포함 8~12자를 입력해주세요" />
+                                <input type="password" class="form-control" name="password" engNumber placeholder="영문,숫자 포함 8~12자를 입력해주세요" autocomplete="off" />
                             </div>
                             <div class="message_group">
                                 <div class="check_state_yes" name="passcheck_state_yes1" style="display: none;"></div>
@@ -338,7 +338,7 @@
                             </div>
                             <div class="input-group">
                                 <label>비밀번호 확인</label>
-                                <input type="password" class="form-control" name="password_confirmation" engNumber placeholder="비밀번호 재입력" />
+                                <input type="password" class="form-control" name="password_confirmation" engNumber placeholder="비밀번호 재입력" autocomplete="off"/>
                             </div>
                             <div class="message_group">
                                 <div class="check_state_yes" name="passcheck_state_yes" style="display: none;">비밀번호가 일치합니다.</div>
@@ -346,15 +346,15 @@
                             </div>
                             <div class="input-group">
                                 <label>회사명</label>
-                                <input type="text" class="form-control" name="company_name" placeholder="회사명을 입력해주세요" />
+                                <input type="text" class="form-control" name="company_name" placeholder="회사명을 입력해주세요" autocomplete="off" />
                             </div>
                             <div class="input-group">
                                 <label>이름</label>
-                                <input type="text" class="form-control" name="name" placeholder="이름을 입력해주세요" />
+                                <input type="text" class="form-control" name="name" placeholder="이름을 입력해주세요" autocomplete="off" />
                             </div>
                             <div class="input-group">
                                 <label>이메일</label>
-                                <input type="text" class="form-control" name="email" engspecial placeholder="이메일을 입력해주세요" />
+                                <input type="text" class="form-control" name="email" engspecial placeholder="이메일을 입력해주세요" autocomplete="off" />
                             </div>
 {{--                            <div class="input-group">--}}
 {{--                                <label>연락처</label>--}}

@@ -48,7 +48,7 @@ class UserController extends Controller
     public function my_show()
     {
         $user = $this->userRepository->findById();
-        $taxs = $user->taxs;
+        $taxs = $user->taxes;
 
         if (!is_array($taxs)) {
             $taxs[] = '';

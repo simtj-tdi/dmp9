@@ -79,7 +79,7 @@
                                     <label>이름</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text"  placeholder="" name="name" value="{{ $user->name }}" readonly />
+                                    <input type="text"  placeholder="" name="name" value="{{ $user->name }}" style="color: #ccc" readonly />
                                 </div>
                             </div>
                             <div class="input-group">
@@ -87,7 +87,7 @@
                                     <label>아이디</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="user_id" value="{{ $user->user_id }}" disabled/>
+                                    <input type="text" placeholder="" name="user_id" value="{{ $user->user_id }}" style="color: #ccc" disabled/>
                                 </div>
                             </div>
                             <div class="input-group">
@@ -95,7 +95,7 @@
                                     <label>비밀번호</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" name="password" />
+                                    <input type="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" name="password" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="input-group">
@@ -103,7 +103,7 @@
                                     <label>비밀번호 확인</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" name="password_confirmation"  />
+                                    <input type="password" placeholder="영문,숫자 포함 8~12자를 입력해주세요" name="password_confirmation" autocomplete="off"  />
                                     <div class="message_group">
                                         <div class="check_state_yes" name="passcheck_state_yes" style="display: none;">비밀번호가 일치합니다.</div>
                                         <div class="check_state_no" name="passcheck_state_no" style="display: none;">비밀번호가 일치하지 않습니다.</div>
@@ -115,7 +115,7 @@
                                     <label>회사명</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="company_name" value="{{ $user->company_name }}" />
+                                    <input type="text" placeholder="" name="company_name" value="{{ $user->company_name }}" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="input-group">
@@ -123,7 +123,7 @@
                                     <label>이메일</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="email" id="email" value="{{ $user->email }}" />
+                                    <input type="text" placeholder="" name="email" id="email" value="{{ $user->email }}" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="input-group last_radius">
@@ -131,7 +131,7 @@
                                     <label>연락처</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="number" placeholder="연락처를 입력해주세요 (ex. 01012345678910)" name="phone" id="phone" value="{{ $user->phone }}" />
+                                    <input type="number" placeholder="연락처를 입력해주세요 (ex. 01012345678910)" name="phone" id="phone" value="{{ $user->phone }}" autocomplete="off" />
                                 </div>
                             </div>
 
@@ -148,7 +148,7 @@
                                     <label>사업자등록번호</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="tax_company_number" value="{{$taxs[0]['tax_company_number']}}" disabled/>
+                                    <input type="text" placeholder="" name="tax_company_number" value="{{$taxs[0]['tax_company_number']}}" style="color: #ccc" disabled/>
                                 </div>
                             </div>
                             <div class="input-group input_disabled">
@@ -156,7 +156,7 @@
                                     <label>업체명(법인명)</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="tax_company_name" value="{{$taxs[0]['tax_company_name']}}" disabled/>
+                                    <input type="text" placeholder="" name="tax_company_name" value="{{$taxs[0]['tax_company_name']}}" style="color: #ccc" disabled/>
                                 </div>
                             </div>
                             <div class="input-group input_disabled">
@@ -164,7 +164,7 @@
                                     <label>대표자명</label>
                                 </div>
                                 <div class="input_box">
-                                    <input type="text" placeholder="" name="tax_name" value="{{$taxs[0]['tax_name']}}" disabled />
+                                    <input type="text" placeholder="" name="tax_name" value="{{$taxs[0]['tax_name']}}" style="color: #ccc" disabled />
                                 </div>
                             </div>
                             <div class="input-group input_disabled">
@@ -173,10 +173,10 @@
                                 </div>
                                 <div class="input_box">
                                     <div class="address_box form-inline">
-                                        <input type="text" id="postcode" class="postcode form-control form-control2" placeholder="우편번호를 입력해주세요" name="tax_zipcode" value="{{$taxs[0]['tax_zipcode']}}" disabled>
+                                        <input type="text" id="postcode" class="postcode form-control form-control2" placeholder="우편번호를 입력해주세요" name="tax_zipcode" value="{{$taxs[0]['tax_zipcode']}}" style="color: #ccc" disabled>
 
-                                        <input type="text" id="address" class="address form-control" placeholder="기본주소를 검색하세요" name="tax_addres_1" value="{{$taxs[0]['tax_addres_1']}}" disabled>
-                                        <input type="text" id="detailAddress" class="detailAddress form-control" placeholder="상세주소를 입력해주세요" name="tax_addres_2" value="{{$taxs[0]['tax_addres_2']}}" disabled>
+                                        <input type="text" id="address" class="address form-control" placeholder="기본주소를 검색하세요" name="tax_addres_1" value="{{$taxs[0]['tax_addres_1']}}" style="color: #ccc" disabled>
+                                        <input type="text" id="detailAddress" class="detailAddress form-control" placeholder="상세주소를 입력해주세요" name="tax_addres_2" value="{{$taxs[0]['tax_addres_2']}}" style="color: #ccc" disabled>
                                         <input type="text" id="extraAddress" class="extraAddress form-control" placeholder="참고항목">
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                     <label>사업자등록증</label>
                                 </div>
                                 <div class="input_box">
-                                    <a href="{{ route('file_download', $taxs[0]['tax_img']) }}">{{$taxs[0]['tax_img']}}</a>
+                                    <a target="_blank" href="https://dmp9storage1.blob.core.windows.net/images/tax/{{$user->user_id}}/{{$taxs[0]['tax_img']}}">{{$taxs[0]['tax_img']}}</a>
                                 </div>
                             </div>
                             @endif
@@ -195,7 +195,7 @@
 
                         <div class="but_box mt-4">
                             <button type="button" name="btn_submit">회원정보수정</button>
-                            <button type="button">취소</button>
+                            <button type="button" onclick="location.href='/carts'">취소</button>
                         </div>
                     </form>
                 </div>
