@@ -50,7 +50,7 @@
                         <p>개인 정보를 수정하실 수 있습니다.</p>
                     </div>
                     <div class="input_box">
-                        <input id="current_password" type="password" class="@error('current_password') is-invalid @enderror" placeholder="비밀번호를 입력하세요" name="current_password" required>
+                        <input id="current_password" type="password" class="@error('current_password') is-invalid @enderror" placeholder="비밀번호를 입력하세요" name="current_password" autocomplete="off" required>
                         @error('current_password')
                         <span class="invalid-feedback" role="alert">
                         <strong></strong>

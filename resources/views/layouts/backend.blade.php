@@ -135,7 +135,7 @@
                             <div>문의 및 답변</div>
                         </a>
                     </li>
-                    @if (\Illuminate\Support\Facades\Auth::user()->role == "company")
+
                     <li class="sidenav-item {{ class_basename(Route::current()->controller) == "OrderController" ? 'active' : '' }} ">
                         <a href="/history" class="sidenav-link">
                             <div class="icon">
@@ -144,7 +144,7 @@
                             <div>결제 내역</div>
                         </a>
                     </li>
-                    @endif
+
                     <li class="sidenav-item {{ class_basename(Route::current()->controller) == "UserController" ? 'active' : '' }} ">
                         <a href="/users" class="sidenav-link">
                             <div class="icon">

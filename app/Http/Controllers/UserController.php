@@ -75,7 +75,7 @@ class UserController extends Controller
 //            $this->taxRepository->update($request);
 //        }
 
-        return redirect('users');
+        return redirect('carts');
     }
 
     // 회원가입-아이디체크

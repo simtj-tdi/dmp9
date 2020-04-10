@@ -593,13 +593,14 @@
         <div id="add_data" class="add_data overlay-wrap alert">
             <div class="writing_wrap">
                 <div class="writing_box">
-                    <form id="registerForm" method="POST" action="{{ route('goods.store') }}">
-                        @csrf
+
                     <div class="inner">
                         <div class="top clearfix">
                             <h1>데이터 요청하기</h1>
                             <button type="button" onclick="addDataDisNone()"><img src="../assets/img/btn_close.png" alt="닫기 버튼"/></button>
                         </div>
+                        <form id="registerForm" method="POST" action="{{ route('goods.store') }}">
+                            @csrf
                         <div class="cont">
                             <div class="input-group">
                                 <label>광고주</label>
@@ -662,8 +663,9 @@
                         <div class="btn_box">
                             <button type="button" class="createBtn" name="btn"  >요청하기</button>
                         </div>
+                        </form>
                     </div>
-                    </form>
+
                 </div>
             </div>
         </div>

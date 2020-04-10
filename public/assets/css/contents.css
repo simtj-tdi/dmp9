@@ -224,7 +224,7 @@ input[type=password] {
 .data_up_load .sum_wrap {background: #fff; padding: 1.25rem 0.8rem 1.25rem 1.5rem; border-radius: 0px 50px 50px 0;}
 .data_up_load .sum_wrap ul {position: relative;}
 
-.data_up_load .sum_wrap ul li div {text-align: center !important;}
+.data_up_load .sum_wrap ul li div {text-align: left !important;}
 .data_up_load .sum_wrap ul li div:nth-child(1){
     font-size: 17px;
     font-weight: bold;
@@ -567,7 +567,7 @@ input[type=password] {
     vertical-align: top;
 }
 .question .wrap .cont .text_answer .txt {
-    display: inline-block;
+    display: contents;
     width: 96%;
 }
 
@@ -1650,13 +1650,13 @@ thead .checkbox input[type="checkbox"]:checked + label::before {
         font-size: 23px;
         margin-left: 0;
     }
-    .data_up_load .sum_wrap ul li:nth-child(1) {width: 130px;}
+    .data_up_load .sum_wrap ul li:nth-child(1) {width: 160px;}
     .data_up_load .sum_wrap ul li:nth-child(2),
     .data_up_load .sum_wrap ul li:nth-child(3) {width: 170px;}
 
     .data_up_load .sum_wrap ul li:nth-child(1) div,
     .data_up_load .sum_wrap ul li:nth-child(2) div,
-    .data_up_load .sum_wrap ul li:nth-child(3) div {margin-left: 0;}
+    .data_up_load .sum_wrap ul li:nth-child(3) div {margin-left: 0; width: 100%;}
     .data_up_load .sum_wrap ul li div:nth-child(1) {
         margin-bottom: 4px;}
 

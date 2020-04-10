@@ -110,7 +110,6 @@
                                     <col width="20px">
                                     <col width="20px">
                                     <col width="20px">
-                                    <col width="20px">
                                 </colgroup>
                                 <thead>
                                 <tr>
@@ -151,7 +150,7 @@
                 @endforeach
                 @if ($orders->isEmpty())
                     <tr>
-                        <td colspan="7">
+                        <td colspan="9">
                             <div class="no_data">
                                 <img src="https://image.flaticon.com/icons/svg/87/87980.svg"/>
                                 <p>내역이 없습니다.</p>

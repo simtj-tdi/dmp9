@@ -185,11 +185,12 @@
                             </span>
                             <label for="Check_1">
                                 <span class="txt">개인정보 수집 동의</span>
+                            </label>
                                 <div class="context">
                                     <p>문의접수 및 처리를 위해 이메일, 연락처를 수집하고 접수된 내용은 6개월 동안 보관합니다.</p>
                                     <p>개인정보 수집 동의를 거부할 수 있으며, 거부 시 문의가 불가할 수 있습니다.</p>
                                 </div>
-                            </label>
+
                         </div>
                         <div class="btn_box">
                             <button type="button" id="btn" name="btn">문의등록</button>
