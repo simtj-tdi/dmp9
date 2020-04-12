@@ -109,9 +109,8 @@ class PaymentsController extends Controller
         //https://www.payletter.com/ko/technical/index#ab21eea6c1
 
         $this->paymentRepository->payLog("payCallback", urldecode($request));
-        $request_data = json_decode($request);
+
         $request_data = json_decode(file_get_contents('php://input'), true);
-        $this->paymentRepository->payLog("payCallback1", $request_data);
 
         if (empty($request_data)) {
             $strResponse = response()->json(['code'=> '9999', 'message'=> 'Response data is empty']);
@@ -121,14 +120,13 @@ class PaymentsController extends Controller
 
         $return_result = $this->paymentRepository->payReturnByCallback($request_data);
 
-        $this->paymentRepository->payLog("payCallback2", $return_result);
-
         if (!$return_result) {
             $strResponse = response()->json(['code'=> '1', 'message'=> 'error']);
         } else {
+            $this->cartRepository->buydate_update($request['order_no'], $request['transaction_date']);
             $strResponse = response()->json(['code'=> '0', 'message'=> 'success']);
         }
-        $this->paymentRepository->payLog("payCallback3", $strResponse);
+
         return $strResponse;
     }
 

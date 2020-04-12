@@ -31,8 +31,6 @@
                     return false;
                 }
 
-
-
                 if ($("input[name=tax_img]").val() == "") {
                     alert('사업장등록증을 등록하세요.');
                     return false;

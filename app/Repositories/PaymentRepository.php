@@ -31,20 +31,23 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function payReturnByCallback($request)
     {
-        $request_date['cash_receipt'] = json_encode($request->cash_receipt);
-        $request_date['tid'] = $request->tid;
-        $request_date['cid'] = $request->cid;
-        $request_date['pay_info'] = $request->pay_info;
-        $request_date['custom_parameter'] = $request->custom_parameter;
-        $request_date['domestic_flag'] = $request->domestic_flag;
-        $request_date['install_month'] = $request->install_month;
-        $request_date['tax_amount'] = $request->tax_amount;
-        $request_date['taxfree_amount'] = $request->taxfree_amount;
-        $request_date['nonsettle_amount'] = $request->nonsettle_amount;
-        $request_date['payhash'] = $request->payhash;
-        $request_date['transaction_date'] = $request->transaction_date;
+        if (isset($request['cash_receipt'])) {
+            $request_date['cash_receipt'] = json_encode($request['cash_receipt']);
+        }
+        $request_date['tid'] = $request['tid'];
+        $request_date['cid'] = $request['cid'];
+        $request_date['pay_info'] = $request['pay_info'];
+        $request_date['custom_parameter'] = $request['custom_parameter'];
+        $request_date['domestic_flag'] = $request['domestic_flag'];
+        $request_date['install_month'] = $request['install_month'];
+        $request_date['tax_amount'] = $request['tax_amount'];
+        $request_date['taxfree_amount'] = $request['taxfree_amount'];
+        $request_date['nonsettle_amount'] = $request['nonsettle_amount'];
+        $request_date['payhash'] = $request['payhash'];
+        $request_date['transaction_date'] = $request['transaction_date'];
 
-        return $payment_info = payment_return::where('order_no',$request->order_no)->update($request_date);
+
+        return $payment_info = payment_return::where('order_no',$request['order_no'])->update($request_date);
     }
 
 }

@@ -93,7 +93,7 @@
                                               DMP9 서비스 이용약관 (필수)
                                       </label>
                                     </span>
-                                    <a href="javascript:void(0);" onclick="termsOneData();">보기</a>
+                                    <a href="javascript:void(0);" onclick="termsTwoData();">보기</a>
                                 </li>
                                 <li>
                                     <span class="checkbox">
@@ -105,7 +105,7 @@
                                             개인정보 수집 및 이용 안내 (필수)
                                         </label>
                                     </span>
-                                    <a href="javascript:void(0);" onclick="termsTwoData();">보기</a>
+                                    <a href="javascript:void(0);" onclick="termsOneData();">보기</a>
                                 </li>
                                 <li>
                                     <span class="checkbox">
@@ -117,7 +117,7 @@
                                             개인정보 처리 위탁 안내 (필수)
                                         </label>
                                         </span>
-                                    <a href="javascript:void(0);" onclick="termsTwoData();">보기</a>
+                                    <a href="javascript:void(0);" onclick="termsOneData();">보기</a>
                                 </li>
                             </ul>
                             <div class="but_box">
