@@ -158,11 +158,13 @@ input[type=password] {
     background: #f0f0f0;
     color: #d0d0d0;
     border: 1px solid rgba(24, 28, 33, 0.15);
+    cursor: default;
 }
 .data_up_load .item .upload_complete {
     background: #10b788;
     color: #fff;
     border: 1px solid #10b788;
+    cursor: default;
 }
 
 

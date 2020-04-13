@@ -106,7 +106,7 @@
                         "                <p>"+JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['name'] +"</p>" +
                         "                <button type=\"button\" name=\"sns_save\" data-option_id=\""+JSONArray['cart_info'][0]['options_id'][i]['id']+"\" data-cart_id=\""+JSONArray['cart_info'][0]['options_id'][i]['cart_id']+"\" data-platform_id=\""+JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['platform_id']+"\" >수정</button>" +
                         "            </div>" +
-                        "            <input type=\"text\" class=\"form-control\" value=\""+JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['url']+ "\" disabled placeholder=\"URL\">" +
+                        "            <a class=\"form-control\" href=\""+ JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['url'] +"\" target=\"_blank\" >"+JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['url']+"</a>" +
                         "            <input type=\"text\" class=\"form-control id_value_control\" name=\"sns_id\" value=\""+JSONArray['cart_info'][0]['options_id'][i]['sns_id']+ "\" placeholder=\"아이디\">" +
                         "            <input type=\"password\" class=\"form-control pw_value_control\" name=\"sns_password\" value=\""+JSONArray['cart_info'][0]['options_id'][i]['sns_password']+ "\" placeholder=\"비밀번호\">" +
                             strBtn +
@@ -172,7 +172,7 @@
                         "                <p>"+JSONArray['platform_info'][platform_val]['name']+"</p>" +
                         "                <button type=\"button\" name=\"sns_save\" data-option_id=\"\" data-cart_id=\""+JSONArray['cart_info'][0]['cart_id']+"\" data-platform_id=\""+JSONArray['platform_info'][platform_val]['platform_id']+"\" >수정</button>" +
                         "            </div>" +
-                        "            <input type=\"text\" class=\"form-control\" value=\""+ JSONArray['platform_info'][platform_val]['url'] + "\" disabled placeholder=\"URL\">" +
+                        "            <a class=\"form-control\" href=\""+ JSONArray['platform_info'][platform_val]['url'] +"\" target=\"_blank\" >"+JSONArray['platform_info'][platform_val]['url']+"</a>" +
                         "            <input type=\"text\" class=\"form-control id_value_control\" name=\"sns_id\" value=\"\" placeholder=\"아이디\">" +
                         "            <input type=\"password\" class=\"form-control pw_value_control\" name=\"sns_password\" value=\"\" placeholder=\"비밀번호\">" +
                         "            <button type=\"button\" class=\"form-control btn_control_02 upload_request\">데이터 요청</button>" +
@@ -190,7 +190,7 @@
                             "                <p>"+JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['name'] +"</p>" +
                             "                <button type=\"button\" name=\"sns_save\" data-option_id=\""+JSONArray['cart_info'][0]['options_id'][i]['id']+"\" data-cart_id=\""+JSONArray['cart_info'][0]['options_id'][i]['cart_id']+"\" data-platform_id=\""+JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['platform_id']+"\" >수정</button>" +
                             "            </div>" +
-                            "            <input type=\"text\" class=\"form-control\" value=\""+JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['url']+ "\" disabled placeholder=\"URL\">" +
+                            "            <a class=\"form-control\" href=\""+ JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['url'] +"\" target=\"_blank\" >"+JSONArray['platform_info'][JSONArray['cart_info'][0]['options_id'][i]['platform_id']-1]['url']+"</a>" +
                             "            <input type=\"text\" class=\"form-control id_value_control\" name=\"sns_id\" value=\""+JSONArray['cart_info'][0]['options_id'][i]['sns_id']+ "\" placeholder=\"아이디\">" +
                             "            <input type=\"password\" class=\"form-control pw_value_control\" name=\"sns_password\" value=\""+JSONArray['cart_info'][0]['options_id'][i]['sns_password']+ "\" placeholder=\"비밀번호\">" +
                             "            <button type=\"button\" class=\"form-control btn_control_02 upload_request\">데이터 요청</button>" +

@@ -115,13 +115,15 @@
 
                         if (JSONArray['result'] == "success") {
                             alert('인증 되었습니다.');
-                            $("button[name=sms_send]").attr( 'disabled', true );
+                            //$("button[name=sms_send]").attr( 'disabled', true );
+                            $("button[name=sms_send]").css( 'display', 'none' );
                             $("[name=sms_check]").val('yes');
                             $("[name=tokenTimer]").css("display", "none");
                             $("[name=tokenTimer_yes]").css("display", "block");
                         } else if (JSONArray['result'] == "error") {
                             alert(JSONArray['error_message']);
-                            $("button[name=sms_send]").attr( 'disabled', false );
+                            //$("button[name=sms_send]").attr( 'disabled', false );
+                            $("button[name=sms_send]").css( 'display', 'black' );
                             $("[name=sms_check]").val('no');
                         };
                     },
@@ -137,6 +139,11 @@
 
                 if (!$("input[name=user_id]").val()) {
                     alert('아이디를 입력하세요.');
+                    return false;
+                }
+
+                if (!validatePassword($("input[name=user_id]").val())) {
+                    alert('영문, 숫자 포함 8~12자를 입력하세요.');
                     return false;
                 }
 
@@ -227,6 +234,11 @@
                     return false;
                 }
 
+                if (!validatePassword($("input[name=user_id]").val())) {
+                    alert('영문, 숫자 포함 8~12자를 입력하세요.');
+                    return false;
+                }
+
                 if (!validatePassword($("input[name=password]").val())) {
                     alert('영문, 숫자 포함 8~12자를 입력하세요.');
                     return false;
@@ -237,10 +249,10 @@
                     return false;
                 }
 
-                if ($("input[name=company_name]").val() == "") {
-                    alert('회사명을 입력하세요.');
-                    return false;
-                }
+                // if ($("input[name=company_name]").val() == "") {
+                //     alert('회사명을 입력하세요.');
+                //     return false;
+                // }
 
                 if ($("input[name=email]").val() == "") {
                     alert('이메일을 입력하세요.');
@@ -279,9 +291,11 @@
                     </h1>
                 </div>
                 <div class="form_box">
-              <span class="form_ico">
-                <img src="/img/sign_up/ico_etc.png" alt="" />
-              </span>
+                      <span class="form_ico">
+                        <button type="button" onclick="window.history.go(-1);">
+                          <img src="../assets/img/sign_up/icon_back.png" alt="" />
+                        </button>
+                      </span>
 
                     @if ($request['type'] == "personal")
                         <form name="user" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -344,10 +358,10 @@
                                 <div class="check_state_yes" name="passcheck_state_yes" style="display: none;">비밀번호가 일치합니다.</div>
                                 <div class="check_state_no" name="passcheck_state_no" style="display: none;">비밀번호가 일치하지 않습니다.</div>
                             </div>
-                            <div class="input-group">
-                                <label>회사명</label>
-                                <input type="text" class="form-control" name="company_name" placeholder="회사명을 입력해주세요" autocomplete="off" />
-                            </div>
+{{--                            <div class="input-group">--}}
+{{--                                <label>회사명</label>--}}
+{{--                                <input type="text" class="form-control" name="company_name" placeholder="회사명을 입력해주세요" autocomplete="off" />--}}
+{{--                            </div>--}}
                             <div class="input-group">
                                 <label>이름</label>
                                 <input type="text" class="form-control" name="name" placeholder="이름을 입력해주세요" autocomplete="off" />

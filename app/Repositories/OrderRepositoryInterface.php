@@ -18,4 +18,6 @@ interface OrderRepositoryInterface
 
     public function taxstate_update($request);
 
+    public function findByOrder($order_no);
+
 }

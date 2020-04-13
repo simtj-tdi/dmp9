@@ -31,7 +31,7 @@ class UserRepository implements UserRepositoryInterface
             'password' => Hash::make($request['password']),
             'email' => $request['email'],
             'phone' => $request['phone'],
-            'company_name' => $request['company_name'],
+
         ]);
     }
 
@@ -44,7 +44,7 @@ class UserRepository implements UserRepositoryInterface
             'password' => $request['password'],
             'email' => $request['email'],
             'phone' => $request['phone'],
-            'company_name' => $request['company_name'],
+
         ]);
     }
 
@@ -88,5 +88,10 @@ class UserRepository implements UserRepositoryInterface
         return user::where('user_id', $request->user_id)->update([
             'password' => Hash::make($request->password),
         ]);
+    }
+
+    public function findByPhone($phone)
+    {
+        return user::where('phone', $phone)->get();
     }
 }

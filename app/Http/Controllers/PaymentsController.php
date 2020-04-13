@@ -91,12 +91,21 @@ class PaymentsController extends Controller
 
             if ($request->pgcode == "creditcard") {
                 // cart state update
+
+                // 유호기간 업데이트
+                $order_info = $this->orderRepository->findByOrder($request->order_no);
+                if ($order_info[0]['goods_info']) {
+                    $goods_info = json_decode($order_info[0]['goods_info']);
+                    foreach ($goods_info as $k => $v) {
+                        $expiration_date = date("Y-m-d H:i:s",strtotime("+1 month", strtotime($request->transaction_date)));
+                        $this->goodsRepository->expirationdate_update($expiration_date, $goods_info[$k]->id);
+                    }
+                }
+
                 $this->cartRepository->buydate_update($request->order_no, $payment->transaction_date);
             }
 
             $this->paymentRepository->payLog("payReturn", urldecode($request));
-        } else {
-//            Payment_fail::create($colleect->toArray());
         }
 
         return view('payment.payreturn');
@@ -123,6 +132,17 @@ class PaymentsController extends Controller
         if (!$return_result) {
             $strResponse = response()->json(['code'=> '1', 'message'=> 'error']);
         } else {
+
+            // 유호기간 업데이트
+            $order_info = $this->orderRepository->findByOrder($request['order_no']);
+            if ($order_info[0]['goods_info']) {
+                $goods_info = json_decode($order_info[0]['goods_info']);
+                foreach ($goods_info as $k => $v) {
+                    $expiration_date = date("Y-m-d H:i:s",strtotime("+1 month", strtotime($request['transaction_date'])));
+                    $this->goodsRepository->expirationdate_update($expiration_date, $goods_info[$k]->id);
+                }
+            }
+
             $this->cartRepository->buydate_update($request['order_no'], $request['transaction_date']);
             $strResponse = response()->json(['code'=> '0', 'message'=> 'success']);
         }

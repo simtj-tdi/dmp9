@@ -48,4 +48,8 @@ class GoodsRepository implements GoodsRepositoryInterface
         goods::where('id', $id)->delete();
     }
 
+    public function expirationdate_update($expirationdate, $id)
+    {
+        goods::where('id', $id)->update(['expiration_date' => $expirationdate]);
+    }
 }

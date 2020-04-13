@@ -3,15 +3,34 @@
 namespace App\Http\Controllers;
 
 
+use App\Repositories\UserRepositoryInterface;
 use App\Sms\SMS;
 use Illuminate\Http\Request;
 
 class SmsController extends Controller
 {
+    private $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     public function SmsSend(Request $request)
     {
         $request_data = json_decode($request->data);
+
+
+        $phone_info = $this->userRepository->findByPhone($request_data->phone);
+
+        if (isset($phone_info[0])) {
+
+            $result['result'] = "error";
+            $result['error_message'] = "등록되어 있는 연락처 입니다.";
+            $response = response()->json($result, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+
+            return $response;
+        }
 
         // random 값 생성
         $r = rand(100000, 999999);

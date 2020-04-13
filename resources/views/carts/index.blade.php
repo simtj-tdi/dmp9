@@ -144,11 +144,11 @@
                                     "    <div class=\"form-inline\">" +
                                     "        <div class=\"input_control form-inline\">" +
                                     "            <label class=\"form-control label_control\">"+JSONArray['platform_info']['name']+"</label>" +
-                                    "            <input type=\"text\" class=\"form-control\" readonly value=\""+JSONArray['platform_info']['url']+"\" placeholder=\"URL\">" +
+                                    "            <a class=\"form-control\" href=\""+ JSONArray['platform_info']['url'] +"\" target=\"_blank\" >"+JSONArray['platform_info']['url']+"</a>" +
                                     "            <input type=\"text\" class=\"form-control id_value_control\" name=\"sns_id\" value=\"\" placeholder=\"아이디\">" +
                                     "            <input type=\"password\" class=\"form-control pw_value_control\" name=\"sns_password\"  value=\"\" placeholder=\"비밀번호\">" +
                                     "            <button type=\"button\" class=\"form-control btn_control_01 btn_green \"  name=\'sns_save\'  data-option_id=\"\" data-cart_id=\""+cart_id+"\" data-platform_id=\""+JSONArray['platform_info']['id']+"\">저장</button>" +
-                                    "            <button type=\"button\" class=\"form-control btn_control_02 upload_request\" name=\"sns_request\">데이터 요청</button>" +
+                                    "            <button type=\"button\" class=\"form-control btn_control_02 upload_request\" name=\"sns_request\">업로드 요청</button>" +
                                     "        </div>" +
                                     "    </div>" +
                                     "</div>"
@@ -466,13 +466,14 @@
                             <div class="form-inline">
                                 <div class="input_control form-inline">
                                     <label class="form-control label_control">{{$option->platform['name']}}</label>
-                                    <input type="text" class="form-control" value="{{$option->platform['url']}}" disabled placeholder="URL">
+{{--                                    <input type="text" class="form-control" value="{{$option->platform['url']}}" disabled placeholder="URL">--}}
+                                    <a class="form-control" href="{{$option->platform['url']}}" target="_blank">{{$option->platform['url']}}</a>
                                     <input type="text" class="form-control id_value_control" name="sns_id" style="background: #e8e8e9" disabled value="{{$option->sns_id}}" placeholder="아이디">
                                     <input type="password" class="form-control pw_value_control" name="sns_password" style="background: #e8e8e9" disabled  value="{{$option->sns_password}}" placeholder="비밀번호">
                                     <button type="button" class="form-control btn_control_01" name='sns_modify' >수정</button>
                                     <button type="button" class="form-control btn_control_01 btn_green" name='sns_save' style="display:none;" data-option_id="{{$option->id}}" data-cart_id="{{$option->cart_id}}" data-platform_id="{{$option->platform_id}}">저장</button>
                                     @if ($option->state == "1")
-                                        <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-cart="{{ $cart->id }}" data-option_id="{{$option->id}}">데이터 요청</button>
+                                        <button type="button" class="form-control btn_control_02 upload_request" name='sns_request' data-cart="{{ $cart->id }}" data-option_id="{{$option->id}}">업로드 요청</button>
                                     @elseif ($option->state == "2")
                                         <button type="button" class="form-control btn_control_02 upload_wait">업로드중</button>
                                         <div class="explanation_td expiration_div ml-2">

@@ -59,7 +59,9 @@
                     </div>
                     <div class="form_box">
                       <span class="form_ico">
-                        <img src="/img/sign_up/ico_etc.png" alt="" />
+                        <button type="button" onclick="window.history.go(-1);">
+                          <img src="../assets/img/sign_up/icon_back.png" alt="" />
+                        </button>
                       </span>
                         <div class="input_box">
                             <form name="user" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -68,7 +70,7 @@
                                 <input type="hidden" name="user_id" value="{{ $request['user_id'] }}">
                                 <input type="hidden" name="password" value="{{ $request['password'] }}">
                                 <input type="hidden" name="password_confirmation" value="{{ $request['password_confirmation'] }}">
-                                <input type="hidden" name="company_name" value="{{ $request['company_name'] }}">
+{{--                                <input type="hidden" name="company_name" value="{{ $request['company_name'] }}">--}}
                                 <input type="hidden" name="name" value="{{ $request['name'] }}">
                                 <input type="hidden" name="email" value="{{ $request['email'] }}">
                                 <input type="hidden" name="phone" value="{{ $request['phone'] }}">

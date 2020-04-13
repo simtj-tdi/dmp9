@@ -34,6 +34,19 @@ body{ min-width: 1280px !important;}
   background: #fed32e;
 }
 
+.form_box .form_ico button {
+    width: 42px;
+    height: 42px;
+}
+
+.form_box .form_ico button img{
+    width: 60%;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 /*약관동의*/
 .terms {
   display: table;

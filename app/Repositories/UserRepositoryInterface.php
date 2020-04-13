@@ -20,4 +20,6 @@ interface UserRepositoryInterface
     public function SingUpFindById($request);
 
     public function SingUpNewPw($request);
+
+    public function findByPhone($phone);
 }

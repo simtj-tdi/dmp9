@@ -23,7 +23,6 @@ Route::post('/sign_up_terms', function(\Illuminate\Http\Request $request) {
     return view('sign.sign_up_terms', compact('request'));
 });
 Route::post('/sign_up_register', function(\Illuminate\Http\Request $request) {
-//    Session()->getId();
     return view('sign.sign_up_register', compact('request'));
 });
 Route::post('/sign_up_register_company', function(\Illuminate\Http\Request $request) {

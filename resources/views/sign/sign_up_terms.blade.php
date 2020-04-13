@@ -59,10 +59,14 @@
                             <a href="/"><img src="/img/sign_up/logo_dmp9.png" alt="DMP9 logo" /></a>
                         </h1>
                     </div>
-                    <div class="form_box">
-              <span class="form_ico">
-                <img src="/img/sign_up/ico_etc.png" alt="" />
-              </span>
+
+                        <div class="form_box">
+                          <span class="form_ico">
+                            <button type="button" onclick="window.history.go(-1);">
+                              <img src="../assets/img/sign_up/icon_back.png" alt="" />
+                            </button>
+                          </span>
+
                         <div class="input_box">
                             <p class="desc">
                                 약관에<br />
@@ -414,11 +418,6 @@
                                                         시행일자 : 2020년 4월 1일
                                                     </p>
                                                 </div>
-
-
-
-
-                                            </div>
                                             <p class="txt_bottom">Copyright © DMP9. All rights reserved.</p>
                                         </div>
                                     </div>

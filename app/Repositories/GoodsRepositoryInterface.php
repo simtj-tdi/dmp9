@@ -17,4 +17,6 @@ interface GoodsRepositoryInterface
     public function update($request, $id);
 
     public function destory($id);
+
+    public function expirationdate_update($expirationdate, $id);
 }

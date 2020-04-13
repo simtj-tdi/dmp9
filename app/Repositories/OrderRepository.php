@@ -55,4 +55,11 @@ class OrderRepository implements OrderRepositoryInterface
         return order::whereIn('id', $request->ids)->update(['tax_state'=> Order::TAX_STATE_2]);
 
     }
+
+    public function findByOrder($order_no)
+    {
+        return order::where('order_no', $order_no)
+            ->get()
+            ->map->format();
+    }
 }
