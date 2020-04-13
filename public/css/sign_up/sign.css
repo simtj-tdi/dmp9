@@ -544,3 +544,8 @@ input[type="number"]::-webkit-inner-spin-button {
   background-size: cover;
   background-position: center;
 }
+
+.terms_page .terms_box {
+    padding: 1rem 2rem;
+    width: 60%;
+}

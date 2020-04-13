@@ -14,7 +14,7 @@
 
             <!--content-->
             <!-- 약관동의 -->
-            <div class="layout-container terms terms_02">
+            <div class="layout-container terms terms_02 terms_page">
                 <div class="inner">
                     <div class="logo">
                         <h1>

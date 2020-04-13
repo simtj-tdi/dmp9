@@ -155,8 +155,8 @@
                     </li>
                 </ul>
                 <ul class="sidenav_bottom form-inline">
-                    <li><a href="/terms_02">이용약관</a></li>
-                    <li><a href="/terms_01">개인정보처리방침</a></li>
+                    <li><a href="/terms_02" target="_blank">이용약관</a></li>
+                    <li><a href="/terms_01" target="_blank">개인정보처리방침</a></li>
                 </ul>
             </div>
             <!-- / Layout sidenav -->
