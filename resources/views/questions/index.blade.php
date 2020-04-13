@@ -89,9 +89,11 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($questions as $question)
+
                     <tr>
-                        <td>{{ $question['id'] }}</td>
+                        <td>{{ $count }}</td>
                         <td>{{ $question['title'] }}</td>
                         <td>{{ $question['name'] }}</td>
                         <td>{{ $question['created_at']->format('Y.m.d') }}</td>
@@ -126,6 +128,7 @@
                             <!--itme 묶음-->
                         </td>
                     </tr>
+                    <?php $count--; ?>
                     @endforeach
                     @if ($questions->isEmpty())
                         <tr>
@@ -146,57 +149,59 @@
             <div class="writing_wrap">
 
                 <div class="writing_box">
-                    <form method="POST" id="frm" name="frm" action="{{ route('questions.store') }}">
-                        @csrf
+
                     <div class="inner">
                         <div class="top clearfix">
                             <h1>문의하기</h1>
                             <button type="button" onclick="addWritingDisNone()"><img src="/assets/img/btn_close.png" alt="닫기 버튼"/></button>
                         </div>
-                        <div class="cont">
-                            <div class="form-group">
-                                <label for="name">이름/회사명</label>
-                                <input type="text"  class="form-control" name="name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}" autocomplete="off" placeholder="이름/회사명을 입력해주세요">
-                            </div>
-                            <div class="form-group">
-                                <label for="title">제목</label>
-                                <input type="text"  class="form-control" name="title" autocomplete="off" placeholder="제목을 입력해주세요">
-                            </div>
-                            <div class="form-group">
-                                <label for="context">문의내용</label>
-                                <textarea  class="form-control" style="resize: none;"  name="content" autocomplete="off" placeholder="내용을 입력해주세요"></textarea>
-                            </div>
-                            <div class="form-group form-inline">
-                                <p>
-                                    <label for="phone">연락처</label>
-                                    <input type="number" class="form-control" name="phone" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}"  autocomplete="off" placeholder="(ex. 01012345678910)">
-                                </p>
-                                <p>
-                                    <label for="email">이메일</label>
-                                    <input type="text"  class="form-control" name="email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}" autocomplete="off" placeholder="이메일을 입력해주세요">
-                                </p>
-
-                            </div>
-                        </div>
-                        <div class="cont_sub">
-                            <span class="checkbox" style="position: absolute; left: 0; top: 14px;">
-                                <input type="checkbox" id="Check_1" name="check" />
-                                <label for="Check_1"></label>
-                            </span>
-                            <label for="Check_1">
-                                <span class="txt">개인정보 수집 동의</span>
-                            </label>
-                                <div class="context">
-                                    <p>문의접수 및 처리를 위해 이메일, 연락처를 수집하고 접수된 내용은 6개월 동안 보관합니다.</p>
-                                    <p>개인정보 수집 동의를 거부할 수 있으며, 거부 시 문의가 불가할 수 있습니다.</p>
+                        <form method="POST" id="frm" name="frm" action="{{ route('questions.store') }}">
+                            @csrf
+                            <div class="cont">
+                                <div class="form-group">
+                                    <label for="name">이름/회사명</label>
+                                    <input type="text"  class="form-control" name="name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}" autocomplete="off" placeholder="이름/회사명을 입력해주세요">
                                 </div>
+                                <div class="form-group">
+                                    <label for="title">제목</label>
+                                    <input type="text"  class="form-control" name="title" autocomplete="off" placeholder="제목을 입력해주세요">
+                                </div>
+                                <div class="form-group">
+                                    <label for="context">문의내용</label>
+                                    <textarea  class="form-control" style="resize: none;"  name="content" autocomplete="off" placeholder="내용을 입력해주세요"></textarea>
+                                </div>
+                                <div class="form-group form-inline">
+                                    <p>
+                                        <label for="phone">연락처</label>
+                                        <input type="number" class="form-control" name="phone" value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}"  autocomplete="off" placeholder="(ex. 01012345678910)">
+                                    </p>
+                                    <p>
+                                        <label for="email">이메일</label>
+                                        <input type="text"  class="form-control" name="email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}" autocomplete="off" placeholder="이메일을 입력해주세요">
+                                    </p>
 
-                        </div>
-                        <div class="btn_box">
-                            <button type="button" id="btn" name="btn">문의등록</button>
-                        </div>
+                                </div>
+                            </div>
+                            <div class="cont_sub">
+                                <span class="checkbox" style="position: absolute; left: 0; top: 14px;">
+                                    <input type="checkbox" id="Check_1" name="check" />
+                                    <label for="Check_1"></label>
+                                </span>
+                                <label for="Check_1">
+                                    <span class="txt">개인정보 수집 동의</span>
+                                </label>
+                                    <div class="context">
+                                        <p>문의접수 및 처리를 위해 이메일, 연락처를 수집하고 접수된 내용은 6개월 동안 보관합니다.</p>
+                                        <p>개인정보 수집 동의를 거부할 수 있으며, 거부 시 문의가 불가할 수 있습니다.</p>
+                                    </div>
+
+                            </div>
+                            <div class="btn_box">
+                                <button type="button" id="btn" name="btn">문의등록</button>
+                            </div>
+                        </form>
                     </div>
-                    </form>
+
                 </div>
             </div>
         </div>

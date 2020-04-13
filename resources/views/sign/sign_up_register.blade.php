@@ -314,13 +314,13 @@
 
                             <div class="input-group">
                                 <label>연락처</label>
-                                <input type="text" class="form-control form-control2" name="phone" numberOnly placeholder="연락처 (ex 01012345678)" autocomplete="off" />
+                                <input type="number" class="form-control form-control2" name="phone" numberOnly placeholder="연락처 (ex 01012345678)" autocomplete="off" />
                                 <button type="button" name="sms_send" >인증번호</button>
                             </div>
 
                             <div class="input-group">
                                 <label>인증번호</label>
-                                <input type="text" class="form-control form-control2" name="token" numberOnly placeholder="인증번호를 입력해주세요" autocomplete="off" />
+                                <input type="number" class="form-control form-control2" name="token" numberOnly placeholder="인증번호를 입력해주세요" autocomplete="off" />
                                 <button type="button" name="sms_check" >확인</button>
                             </div>
                             <div class="message_group">

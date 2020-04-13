@@ -155,21 +155,15 @@
                     </li>
                 </ul>
                 <ul class="sidenav_bottom form-inline">
-                    <li>이용약관</li>
-                    <li>개인정보처리방침</li>
+                    <li><a href="/terms_02">이용약관</a></li>
+                    <li><a href="/terms_01">개인정보처리방침</a></li>
                 </ul>
             </div>
             <!-- / Layout sidenav -->
 
-
-
             <!-- content : start-->
 
                 @yield('content')
-
-            <!-- content : end-->
-
-
 
         </div>
     </div>

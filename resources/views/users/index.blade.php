@@ -35,6 +35,14 @@
     </script>
 @endprepend
 
+
+@if(session()->has('alert'))
+    <script>
+        alert('정상적으로 수정 되었습니다.');
+        location.href = "{{ route('carts.index') }}";
+    </script>
+@endif
+
 @section('content')
     <!-- content : start-->
     <div class="container-fluid flex-grow-1 container-p-y edit_my_information">

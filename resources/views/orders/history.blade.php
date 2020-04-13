@@ -150,7 +150,7 @@
                 @endforeach
                 @if ($orders->isEmpty())
                     <tr>
-                        <td colspan="9">
+                        <td colspan="8">
                             <div class="no_data">
                                 <img src="https://image.flaticon.com/icons/svg/87/87980.svg"/>
                                 <p>내역이 없습니다.</p>

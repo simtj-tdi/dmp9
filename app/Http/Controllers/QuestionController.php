@@ -18,7 +18,8 @@ class QuestionController extends Controller
     {
         $questions = $this->questionRepository->all();
 
-        return view('questions.index', compact('questions'));
+        $count = $questions->total();
+        return view('questions.index', compact('questions', 'count'));
     }
 
     public function create()
