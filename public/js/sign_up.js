@@ -31,6 +31,21 @@ $('#all_checkbox').on("change", function(){
 $(document).ready(function(){
     var fileTarget = $('.upload_name');
     fileTarget.on('change', function(){
+
+        if ($(this)[0].files[0].size > 3145728) {
+            alert('파일 용량이 큽니다. 다시 올려 주세요.');
+            var agent = navigator.userAgent.toLowerCase();
+            if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ){
+                // ie 일때 input[type=file] init.
+                $('.upload_name').replaceWith( $("#excelFile").clone(true) );
+
+            } else {
+                //other browser 일때 input[type=file] init.
+                $('.upload_name').val("");
+
+            }
+            return false;
+        }
         if(window.FileReader){
             var fileName = $(this)[0].files[0].name;
         } else {

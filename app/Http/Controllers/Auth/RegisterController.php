@@ -72,19 +72,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-  //      $users = $this->userRepository->create($data);
+        $users = $this->userRepository->create($data);
 
         if ($data['type'] == "company") {
-
-
-            //if ($data['tax_img']->getsize() > 3145728) {
-            if ($data['tax_img']->getsize() > 28) {
-
-                return redirect()->back();
-                
-            }
-
-
             $path = explode('/', $data['tax_img']->store('tax/'.$data['user_id']));
 
             $data['user_id'] = $users['id'];
